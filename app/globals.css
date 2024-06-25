@@ -24,11 +24,20 @@
   }
 }
 
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-image: linear-gradient(0deg, #10e89c, #0593f7);
+}
+
 body {
   overflow-x: hidden;
   color: rgba(0, 0, 0, 0.8);
-  /* background-image: linear-gradient(90deg, #10e89c, #0593f7); */
 }
+
 .test {
   border: 1px solid red;
 }
