@@ -1,9 +1,8 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import Blogimage from "./_components/blogs/Blogimage";
-import Fulldesc from "./_components/blogs/Fulldesc";
-import Smalldesc from "./_components/blogs/Smalldesc";
+import Link from "next/link";
+import Blogscomp from "./_components/Blogscomp";
 import Deliverysvg from "./_svgs/Deliverysvg";
 import Paymentsvg from "./_svgs/Paymentsvg";
 import Qualitysvg from "./_svgs/Qualitysvg";
@@ -122,7 +121,6 @@ export default function Home() {
       title: "This is a title",
       desc: "this is a description this is a description this is a desscription this is a description this is a description this is a derscription this is a description this is a descrittion this is a description this is a descritption this is a descritpion this is a description this is a dsciption ",
     },
-    
   ];
 
   return (
@@ -140,6 +138,7 @@ export default function Home() {
             <li className="bg-clip-text text-transparent font-bold bg-[linear-gradient(90deg,#10e89c,#0593f7)]">
               Home
             </li>
+            <Link href="#blogs">Blogs</Link>
             <li>Home</li>
             <li>Home</li>
             <li>Car</li>
@@ -271,82 +270,9 @@ export default function Home() {
           </div>
         </div>
       </div>
+
       {/* blogs */}
-      <h2 className="text-center font-bold text-[40px] mt-[80px]">Blogs</h2>
-      {blogs.map((blog, i) => {
-        if (i % 6 == 0) {
-          return (
-            <div className="px-[10px] md:px-[200px] grid gap-[20px] grid-cols-3 mt-[50px] ">
-              {/* blog1 image */}
-              {blogs[i] && (
-                <>
-                  <Blogimage image={blogs[i]?.image} title={blogs[i]?.title} />
-                  <Fulldesc title={blogs[i]?.title} desc={blogs[i]?.desc} />
-                </>
-              )}
-
-              {/* blog 2nd and 3rd */}
-              <div className="grid grid-cols-2 grid-rows-2 gap-[10px]">
-                {blogs[i + 1] && (
-                  <>
-                    <Blogimage
-                      image={blogs[i + 1]?.image}
-                      title={blogs[i + 1]?.title}
-                    />
-                    <Smalldesc title={blogs[i + 1].title} />
-                  </>
-                )}
-
-                {blogs[i + 2] && (
-                  <>
-                    <Blogimage
-                      image={blogs[i + 2]?.image}
-                      title={blogs[i + 2]?.title}
-                    />
-                    <Smalldesc title={blogs[i + 2].title} />
-                  </>
-                )}
-              </div>
-              {/* blog 4th and 5th */}
-              <div className="grid grid-cols-2 grid-rows-2 gap-[10px]">
-                {blogs[i + 3] && (
-                  <>
-                    <Blogimage
-                      image={blogs[i + 3]?.image}
-                      title={blogs[i + 3]?.title}
-                    />
-                    <Smalldesc title={blogs[i + 3].title} />
-                  </>
-                )}
-
-                {blogs[i + 4] && (
-                  <>
-                    <Blogimage
-                      image={blogs[i + 4]?.image}
-                      title={blogs[i + 4]?.title}
-                    />
-                    <Smalldesc title={blogs[i + 4].title} />
-                  </>
-                )}
-              </div>
-              {/* blog 6th */}
-              {blogs[i + 5] && (
-                <>
-                  <Blogimage
-                    image={blogs[i + 5]?.image}
-                    title={blogs[i + 5]?.title}
-                  />
-                  {/* blog 6th description */}
-                  <Fulldesc
-                    title={blogs[i + 6]?.title}
-                    desc={blogs[i + 5]?.desc}
-                  />
-                </>
-              )}
-            </div>
-          );
-        }
-      })}
+      <Blogscomp />
 
       {/* footer */}
       <footer className="bg-[linear-gradient(110deg,#79818c,#263242)] h-[300px] mt-[50px]">

@@ -33,6 +33,9 @@
   background-image: linear-gradient(0deg, #10e89c, #0593f7);
 }
 
+html {
+  scroll-behavior: smooth;
+}
 body {
   overflow-x: hidden;
   color: rgba(0, 0, 0, 0.8);
@@ -40,4 +43,17 @@ body {
 
 .test {
   border: 1px solid red;
+}
+
+.uploadloader {
+  animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    rotate: 0deg;
+  }
+  100% {
+    rotate: 360deg;
+  }
 }
