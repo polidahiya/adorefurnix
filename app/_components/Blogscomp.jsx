@@ -22,13 +22,15 @@ function Blogscomp() {
 
   return (
     <>
-      <h2 className="text-center font-bold text-[40px] mt-[80px]" id="blogs">Blogs</h2>
+      <h2 className="text-center font-bold text-[25px] md:text-[40px] mt-[80px]" id="blogs">
+        Blogs
+      </h2>
       {blogs.map((blog, i) => {
         if (i % 6 == 0) {
           return (
             <div
               key={i}
-              className="px-[10px] md:px-[200px] grid gap-[20px] grid-cols-3 mt-[50px] "
+              className="px-[10px] md:px-[200px] grid gap-[20px] grid-cols-3 mt-[20px] md:mt-[50px] "
             >
               {/* blog1 image */}
               {blogs[i] && (
@@ -85,16 +87,16 @@ function Blogscomp() {
 
       {/* loading */}
       {showloading && (
-        <div className="text-center mt-[50px]">
+        <div className="text-center my-[20px] ">
           <div className="w-8 h-8 border-4 border-dashed rounded-full animate-spin border-zinc-400 mx-auto"></div>
-          <h2 className="text-zinc-600 dark:text-zinc-400 mt-4">Loading...</h2>
+          <h2 className="text-zinc-600 dark:text-zinc-400 mt-4 text-[10px] md:text-[16px]">Loading...</h2>
         </div>
       )}
 
       {/* get more button */}
       <center>
         <button
-          className="text-white rounded-full py-[5px] px-[20px] font-bold bg-[linear-gradient(90deg,#10e89c,#0593f7)] mt-[50px]"
+          className="text-white text-[12px] md:text-[16px] rounded-full py-[5px] px-[20px] font-bold bg-[linear-gradient(90deg,#10e89c,#0593f7)] mt-0 md:mt-[50px]"
           onClick={async () => {
             setshowloading(true);
             setnumberofblogs((pre) => pre + 1);
@@ -113,25 +115,36 @@ function Showfullblog({ fullblog, setfullblog }) {
   if (fullblog) {
     return (
       <div className="fixed flex items-center justify-center top-0 left-0 h-screen w-full z-30">
-        <div className="relative w-full h-full md:w-[calc(100%-50px)] md:h-[90%] bg-white md:rounded-[20px] p-[10px]">
+        <div className="relative w-full h-full md:w-[calc(100%-50px)] md:h-[calc(100%-50px)] bg-white  md:rounded-[20px] p-[10px]">
           <div className="w-full h-full overflow-y-scroll">
-            <center>
-              <h2 className="font-bold text-[25px] mt-[10px] max-w-[80%]">
-                {fullblog.title}
-              </h2>
-            </center>
-            <div className="mt-[30px] text-justify p-[10px]">
+            <h2 className="absolute top-0 left-0 md:rounded-t-[20px] md:whitespace-nowrap md:text-ellipsis overflow-hidden text-center bg-white font-bold text-[14px] md:text-[25px] w-full py-[20px] px-[50px] md:px-[100px]">
+              {fullblog.title}
+            </h2>
+            {/* date */}
+            <div className="flex px-[10px] items-center  text-slate-400 mt-[80px] text-[12px] md:text-[16px]">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="#94a3b8"
+                className="h-[30px]"
+                viewBox="-3 0 19 19"
+              >
+                <path d="M11.882 3.187a.476.476 0 01.475.475v11.063a.476.476 0 01-.475.475H1.118a.476.476 0 01-.475-.475V3.662a.476.476 0 01.475-.475h1.328v.721a1.425 1.425 0 002.85 0v-.72H7.71v.72a1.425 1.425 0 002.85 0v-.72zm-.634 3.37H1.752v7.535h9.496zm-7.384.821H2.621V8.67h1.243zm0 2.292H2.621v1.292h1.243zm0 2.292H2.621v1.291h1.243zm.561-8.054V2.475a.554.554 0 10-1.108 0v1.433a.554.554 0 101.108 0zm1.613 3.47H4.794V8.67h1.244zm0 2.292H4.794v1.292h1.244zm0 2.292H4.794v1.291h1.244zm2.174-4.584H6.968V8.67h1.244zm0 2.292H6.968v1.292h1.244zm0 2.292H6.968v1.291h1.244zm1.477-8.054V2.475a.554.554 0 00-1.108 0v1.433a.554.554 0 001.108 0zm.696 3.47H9.142V8.67h1.243zm0 2.292H9.142v1.292h1.243zm0 2.292H9.142v1.291h1.243z"></path>
+              </svg>
+              {fullblog.date}
+            </div>
+            <div className=" text-justify p-[10px]">
               <img
                 src={fullblog.image}
                 alt={fullblog.title}
-                className="aspect-square w-[30%] object-cover object-center float-left mr-[10px] rounded-[20px]"
+                className="aspect-square w-full md:w-[30%] object-cover object-center float-left md:mr-[10px] rounded-[20px]"
               />
-              {fullblog.desc}
+              <span className="text-[14px] md:text-[16px]">{fullblog.desc}</span>
             </div>
+            <div  className="flex px-[10px] items-center  justify-center text-slate-400 my-[30px]">Adorefurnix.com</div>
           </div>
           {/* close button */}
           <button
-            className="absolute top-[20px] left-[20px] flex items-center justify-center rounded-[10px] aspect-square h-[40px] p-[8px]  bg-[linear-gradient(90deg,#10e89c,#0593f7)]"
+            className="absolute top-[20px] left-[20px] flex items-center justify-center rounded-[10px] aspect-square h-[30px] md:h-[40px] p-[8px]  bg-[linear-gradient(90deg,#10e89c,#0593f7)]"
             onClick={() => {
               setfullblog(null);
             }}
@@ -155,7 +168,7 @@ function Showfullblog({ fullblog, setfullblog }) {
         </div>
         {/* close button */}
         <button
-          className="absolute h-full w-full bg-black bg-opacity-30 z-[-1]"
+          className="absolute h-full w-full bg-black bg-opacity-80 z-[-1]"
           onClick={() => {
             setfullblog(null);
           }}

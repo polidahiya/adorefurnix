@@ -18,7 +18,7 @@ function Blogimage({ setfullblog, blog }) {
           Read more
         </div>
       </div>
-      <div className="absolute left-0 top-0 bg-white rounded-br-[2vw] text-[12px] py-[5px] px-[15px] font-bold group-hover:translate-y-[-120%] duration-300 bg-[linear-gradient(90deg,#10e89c,#0593f7)] text-white">
+      <div className="absolute left-0 top-0 bg-white rounded-br-[2vw] text-[6px] md:text-[12px] md:py-[5px] px-[5px] md:px-[15px] font-bold group-hover:translate-y-[-120%] duration-300 bg-[linear-gradient(90deg,#10e89c,#0593f7)] text-white">
         {blog.date}
       </div>
     </div>
