@@ -1,5 +1,6 @@
+"use client";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Heart from "../_svgs/Heart";
 
@@ -11,10 +12,23 @@ function Productcard(props) {
     );
   }
 
+  const [showproduct, setshowproduct] = useState(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setshowproduct(true);
+    }, props.index * 100);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  });
   return (
     <Link
       href={"/"}
-      className="relative w-full shadow-[4px_4px_5px_#bababa7f] rounded-[10px] overflow-hidden"
+      className={`relative w-full shadow-[4px_4px_5px_#bababa7f] rounded-[10px] overflow-hidden bg-white duration-300 ${
+        showproduct ? "opacity-100 scale-100" : "opacity-0 scale-75"
+      }`}
     >
       {/* discount */}
       {props.preprice && (
@@ -77,7 +91,7 @@ function Productcard(props) {
         alt=""
         width={300}
         height={300}
-        className="aspect-[4/3] w-full object-cover object-center"
+        className="aspect-[4/3] w-full object-cover object-center rounded-b-[10px]"
       ></Image>
       <div className="p-[10px]">
         <h3 className="text-center  font-bold">{props?.name}</h3>

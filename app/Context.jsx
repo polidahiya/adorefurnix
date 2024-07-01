@@ -5,6 +5,9 @@ import { createContext, useContext, useState } from "react";
 const AppContext = createContext({});
 
 export function Appwrapper({ children }) {
+  const [filters, setfilters] = useState({
+    pricerange: 0,
+  });
   // admin contexts
   const [addproduct, setaddproduct] = useState({
     category: "Living Room",
@@ -33,13 +36,17 @@ export function Appwrapper({ children }) {
   return (
     <AppContext.Provider
       value={{
+        filters,
+        setfilters,
+        // admin
         addproduct,
         setaddproduct,
         updateproduct,
         setupdateproduct,
         deletedimages,
         setdeletedimages,
-        adminproductrefresher, setadminproductrefresher
+        adminproductrefresher,
+        setadminproductrefresher,
       }}
     >
       {children}

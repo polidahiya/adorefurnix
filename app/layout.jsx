@@ -1,4 +1,5 @@
 import "./globals.css";
+import { Appwrapper } from "./Context";
 
 export const metadata = {
   title: "Adorefurnix",
@@ -8,7 +9,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <Appwrapper>
+        <body>{children}</body>
+      </Appwrapper>
     </html>
   );
 }

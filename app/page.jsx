@@ -21,9 +21,24 @@ export default function Home() {
             width={200}
           ></Image>
           <ul className="absolute hidden md:flex top-0 left-[50%] translate-x-[-50%] h-full items-center justify-center gap-[50px] text-[18px] text-white">
-            <Link className="text-white hover:bg-clip-text hover:text-transparent hover:font-bold hover:bg-[linear-gradient(90deg,#10e89c,#0593f7)]" href="#home">Home</Link>
-            <Link className="text-white hover:bg-clip-text hover:text-transparent hover:font-bold hover:bg-[linear-gradient(90deg,#10e89c,#0593f7)]" href="#blogs">Blogs</Link>
-            <Link className="text-white hover:bg-clip-text hover:text-transparent hover:font-bold hover:bg-[linear-gradient(90deg,#10e89c,#0593f7)]" href="#categories">Categories</Link>
+            <Link
+              className="text-white hover:bg-clip-text hover:text-transparent hover:font-bold hover:bg-theme"
+              href="#home"
+            >
+              Home
+            </Link>
+            <Link
+              className="text-white hover:bg-clip-text hover:text-transparent hover:font-bold hover:bg-theme"
+              href="#blogs"
+            >
+              Blogs
+            </Link>
+            <Link
+              className="text-white hover:bg-clip-text hover:text-transparent hover:font-bold hover:bg-theme"
+              href="#categories"
+            >
+              Categories
+            </Link>
           </ul>
           <div></div>
         </nav>
@@ -54,7 +69,7 @@ export default function Home() {
       {/* promices */}
       <Promices />
       {/* categories */}
-      <Categories/>
+      <Categories />
 
       {/* best selling products */}
       <Bestselling />
@@ -65,7 +80,7 @@ export default function Home() {
       <Blogscomp />
 
       {/* footer */}
-      <footer className="bg-[linear-gradient(110deg,#79818c,#263242)] h-[300px] mt-[50px]">
+      <footer className=" bg-graygradient h-[300px] mt-[50px]">
         This i foolter
       </footer>
     </div>

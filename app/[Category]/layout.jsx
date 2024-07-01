@@ -4,11 +4,11 @@ export const metadata = {
   description: "Get solid wood furniture in Delhi and NCR",
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children, params }) {
   return (
-    <div>
-      <Navbar />
-      <div>{children}</div>
-    </div>
+    <>
+      <Navbar params={params}/>
+      <>{children}</>
+    </>
   );
 }
