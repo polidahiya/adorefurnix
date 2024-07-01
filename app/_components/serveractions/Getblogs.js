@@ -1,5 +1,5 @@
 "use server";
-import { blogscollection } from "../Mongodb";
+import { blogscollection } from "../../Mongodb";
 
 export const Getblogs = async (numberofblogs) => {
   let blogdata = await blogscollection

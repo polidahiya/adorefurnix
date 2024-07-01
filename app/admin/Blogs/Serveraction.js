@@ -1,5 +1,5 @@
 "use server";
-import { blogscollection, ObjectId } from "../_components/Mongodb";
+import { blogscollection, ObjectId } from "../../Mongodb";
 import { v2 as cloudinary } from "cloudinary";
 
 cloudinary.config({

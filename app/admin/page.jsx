@@ -1,14 +1,4 @@
-import React from "react";
-import Showblogs from "./Showblogs";
-import Addblog from "./Addblog";
-
-function page() {
-  return (
-    <div>
-      <Addblog />
-      {/* <Showblogs /> */}
-    </div>
-  );
+export default function Adminhome() {
+  console.log("hello page");
+  return <div>this is the hello page</div>;
 }
-
-export default page;

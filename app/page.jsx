@@ -2,15 +2,16 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import Blogscomp from "./_components/Blogscomp";
-import Promices from "./_components/Promices";
-import Bestselling from "./_components/Bestselling";
-import Collage from "./_components/Collage";
+import Blogscomp from "./_components/Homepage/Blogscomp";
+import Promices from "./_components/Homepage/Promices";
+import Bestselling from "./_components/Homepage/Bestselling";
+import Collage from "./_components/Homepage/Collage";
+import Categories from "./_components/Homepage/Categories";
 
 export default function Home() {
   return (
     <div>
-      <div className="relative w-full box-content h-fit">
+      <div className="relative w-full box-content h-fit " id="home">
         <nav className="absolute top-0 left-0 h-[50px] md:h-[80px] w-full flex items-center justify-between p-[10px] md:px-[40px] z-10 ">
           <Image
             className="h-[30px] w-auto md:h-[50px] "
@@ -20,13 +21,9 @@ export default function Home() {
             width={200}
           ></Image>
           <ul className="absolute hidden md:flex top-0 left-[50%] translate-x-[-50%] h-full items-center justify-center gap-[50px] text-[18px] text-white">
-            <li className="bg-clip-text text-transparent font-bold bg-[linear-gradient(90deg,#10e89c,#0593f7)]">
-              Home
-            </li>
-            <Link href="#blogs">Blogs</Link>
-            <li>Home</li>
-            <li>Home</li>
-            <li>Car</li>
+            <Link className="text-white hover:bg-clip-text hover:text-transparent hover:font-bold hover:bg-[linear-gradient(90deg,#10e89c,#0593f7)]" href="#home">Home</Link>
+            <Link className="text-white hover:bg-clip-text hover:text-transparent hover:font-bold hover:bg-[linear-gradient(90deg,#10e89c,#0593f7)]" href="#blogs">Blogs</Link>
+            <Link className="text-white hover:bg-clip-text hover:text-transparent hover:font-bold hover:bg-[linear-gradient(90deg,#10e89c,#0593f7)]" href="#categories">Categories</Link>
           </ul>
           <div></div>
         </nav>
@@ -56,6 +53,9 @@ export default function Home() {
       </div>
       {/* promices */}
       <Promices />
+      {/* categories */}
+      <Categories/>
+
       {/* best selling products */}
       <Bestselling />
       {/* collage */}

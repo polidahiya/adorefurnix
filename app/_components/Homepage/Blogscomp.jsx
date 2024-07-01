@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Getblogs } from "./serveractions/Getblogs";
+import { Getblogs } from "../serveractions/Getblogs";
 import Blogimage from "./blogs/Blogimage";
 import Fulldesc from "./blogs/Fulldesc";
 import Smalldesc from "./blogs/Smalldesc";

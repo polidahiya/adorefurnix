@@ -7,6 +7,8 @@ const client = new MongoClient(db_link);
 
 client.connect();
 const db = client.db("Adorefurnix");
+const Productscollection = db.collection("Products");
+const Admindatacollection = db.collection("Admindata");
 const blogscollection = db.collection("blogs");
 
-export { blogscollection, ObjectId };
+export { blogscollection, Admindatacollection, Productscollection, ObjectId };
