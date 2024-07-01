@@ -9,19 +9,19 @@ function Categories() {
         Shop By Categories
       </h3>
       <div className="grid grid-cols-5 gap-[5px] md:gap-[20px] p-[5px] md:px-[20px] mt-[30px]">
-        {categorylist.map((item, i) => {
+        {Object.keys(categorylist).map((item, i) => {
           return (
             <Link
-              href={item.name}
+              href={item}
               key={i}
               className="min-h-[100px]  w-full rounded-[10px] md:rounded-[15px] overflow-hidden border border-slate-300 hover:shadow-[4px_4px_5px_#bababa7f] duration-200"
             >
               <img
-                src={item.image}
-                alt={item.name}
+                src={categorylist[item].image}
+                alt={item}
                 className="w-full aspect-[4/3] object-cover object-center"
               />
-              <h4 className="text-center py-[5px] md:py-[10px]">{item.name}</h4>
+              <h4 className="text-center py-[5px] md:py-[10px]">{item}</h4>
             </Link>
           );
         })}

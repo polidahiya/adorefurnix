@@ -22,7 +22,7 @@ export const Adminverification = async () => {
   let token = cookies().get("admintoken").value;
   let result = await verifyToken(token);
 
-  if (result.email == "admin@vishal.com") {
+  if (result.email == "adorefurnix@admin.com") {
     return true
   }
 };

@@ -1,6 +1,6 @@
 "use server";
 import { cookies } from "next/headers";
-import verifyToken from "@/app/Verifytoken";
+import { Adminverification } from "@/app/Verifytoken";
 import jwt from "jsonwebtoken";
 import { Admindatacollection } from "../Mongodb";
 // import { data, orders, users } from "@/components/mongodb";
@@ -9,14 +9,9 @@ import { Admindatacollection } from "../Mongodb";
 // auto login
 export async function autologin() {
   try {
-    if (!cookies().get("admintoken")) {
-      return { message: "Please enter password" };
-    }
+    let result = await Adminverification();
 
-    let token = cookies().get("admintoken").value;
-    let result = await verifyToken(token);
-
-    if (result.email == "adorefurnix@admin.com") {
+    if (result) {
       return { message: "Login successfull" };
     } else {
       return { message: "Invalid user" };
