@@ -1,15 +1,16 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import Imagescomp from "./Imagescomp";
 
 function page() {
   return (
     <div className="p-[10px] ">
       <div className="flex items-start">
         {/* image component */}
-        <div className=" w-[40%] h-[200px] test"></div>
+        {/* <Imagescomp /> */}
         {/* details */}
-        <div className="w-[60%] p-[10px] ">
+        <div className="w-[50%] p-[10px] ">
           <div className=" flex gap-[10px] text-[#87878] text-[14px] ">
             <Link href={"/"}>Home</Link> {">"}
             <Link href={"/"}>Category</Link> {">"}

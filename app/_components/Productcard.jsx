@@ -4,12 +4,21 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Heart from "../_svgs/Heart";
 
-function Productcard(props) {
-  let discountper = null;
-  if (props.preprice) {
-    discountper = Math.floor(
-      ((props.preprice - props.price) / props.preprice) * 100
-    );
+function Productcard({
+  index,
+  id,
+  category,
+  subcat,
+  name,
+  price,
+  discount,
+  available,
+  image,
+  liked,
+}) {
+  let discountprice = null;
+  if (discount > 0) {
+    discountprice = Math.floor((price * (100 - discount)) / 100);
   }
 
   const [showproduct, setshowproduct] = useState(false);
@@ -17,31 +26,32 @@ function Productcard(props) {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setshowproduct(true);
-    }, props.index * 100);
+    }, index * 100);
 
     return () => {
       clearTimeout(timeout);
     };
-  });
+  }, []);
+
   return (
     <Link
-      href={"/"}
-      className={`relative w-full shadow-[4px_4px_5px_#bababa7f] rounded-[10px] overflow-hidden bg-white duration-300 ${
+      href={`/${category}/${subcat}/${id}`}
+      className={`relative w-full max-w-[350px] shadow-[4px_4px_5px_#bababa7f] rounded-[10px] overflow-hidden bg-white duration-300 ${
         showproduct ? "opacity-100 scale-100" : "opacity-0 scale-75"
       }`}
     >
       {/* discount */}
-      {props.preprice && (
+      {discountprice && (
         <div className="absolute top-[10px] left-[10px] bg-green-600 text-white p-[5px] rounded-[5px]">
-          {discountper}
+          {discount}
           {"%"} OFF
         </div>
       )}
       {/* availabe */}
-      {!props.available && (
+      {!available && (
         <div
           className={`absolute  left-[10px] bg-red-600 text-white p-[5px] rounded-[5px]
-             ${discountper ? "top-[50px]" : "top-[10px]"}`}
+             ${discountprice ? "top-[50px]" : "top-[10px]"}`}
         >
           Out of Stock!
         </div>
@@ -78,7 +88,7 @@ function Productcard(props) {
           // }`}
           styles={`h-[25px]  w-[25px]  translate-y-[1px]
             ${
-              props.liked
+              liked
                 ? "fill-red-500 stroke-none"
                 : "fill-white stroke-[5px] stroke-red-600  "
             }
@@ -87,21 +97,19 @@ function Productcard(props) {
       </button>
 
       <Image
-        src={props.image}
-        alt=""
+        src={image}
+        alt={name}
         width={300}
         height={300}
         className="aspect-[4/3] w-full object-cover object-center rounded-b-[10px]"
       ></Image>
       <div className="p-[10px]">
-        <h3 className="text-center  font-bold">{props?.name}</h3>
+        <h3 className="text-center  font-bold">{name}</h3>
         <div className="flex items-center gap-[10px] text-[18px]">
-          {props.preprice && (
-            <span className="line-through text-slate-400">
-              ₹{props.preprice}
-            </span>
+          {discountprice && (
+            <span className="line-through text-slate-400">₹{price}</span>
           )}
-          <span className="">₹{props.price}</span>
+          <span className="">₹{discountprice ? discountprice : price}</span>
         </div>
       </div>
     </Link>
