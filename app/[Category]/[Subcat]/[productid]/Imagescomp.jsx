@@ -1,8 +1,8 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Image from "next/image";
 
-function Imagescomp() {
+function Imagescomp({filteredproducts,color}) {
   const [dotnum, setdotnum] = useState(0);
   const imagesscrollref = useRef();
 
@@ -47,7 +47,7 @@ function Imagescomp() {
   }
 
   return (
-    <div className="relative lg:sticky top-0 lg:top-[90px] aspect-[2/1]  w-[100%] lg:w-[50%] max-h-[400px] lg:max-h-full ">
+    <div className="relative  aspect-[4/3]  w-[100%]  max-h-[400px] lg:max-h-full border border-slate-300">
       <div
         className="h-full w-full flex overflow-x-scroll overflow-y-hidden snap-x snap-mandatory scroll-smooth"
         onScroll={(e) => {
@@ -60,20 +60,20 @@ function Imagescomp() {
         }}
         ref={imagesscrollref}
       >
-        {images.map((image, i) => (
-          <Mainimage key={i} image={image} name={name} />
+        {filteredproducts.colorpalets[color].images.map((image, i) => (
+          <Mainimage key={i} image={image} name={filteredproducts.name} />
         ))}
       </div>
       {/* mini images */}
       <div className="hidden md:flex absolute top-0 left-[10px] w-[70px] h-full  flex-col justify-center gap-[10px] ">
-        {images.map((image, i) => {
+        {filteredproducts.colorpalets[color].images.map((image, i) => {
           return (
             <Image
-              className={`w-full aspect-square  object-contain bg-bg1  cursor-pointer   border ${
-                dotnum == i ? "  outline outline-cyan-500" : " border-slate-300"
+              className={`w-full aspect-square  object-cover bg-slate-200  cursor-pointer    ${
+                dotnum == i ? "  border-[2px] border-cyan-500" : "border-[2px] border-slate-300"
               }`}
-              src={"/" + image}
-              alt={name}
+              src={image}
+              alt={filteredproducts.name}
               height={100}
               width={100}
               key={i}
@@ -90,25 +90,17 @@ function Imagescomp() {
       <button
         className="absolute right-[20px] top-[20px] "
         title="Add to favourites"
-        onClick={async () => {
-          let res = await likeproduct(productid, liked);
-          if (res) {
-            if (res.message == "Added to favourites") {
-              setliked(true);
-            }
-            if (res.message == "Removed from favourites") {
-              setliked(false);
-            }
-
-            setnotifictionarr([
-              ...notifictionarr,
-              {
-                id: new Date() + new Date().getMilliseconds(),
-                content: res.message,
-              },
-            ]);
-          }
-        }}
+        // onClick={async () => {
+        //   let res = await likeproduct(productid, liked);
+        //   if (res) {
+        //     if (res.message == "Added to favourites") {
+        //       setliked(true);
+        //     }
+        //     if (res.message == "Removed from favourites") {
+        //       setliked(false);
+        //     }
+        //   }
+        // }}
       >
         {/* <Heart
           styles={`h-[30px]  w-[30px]  ${
@@ -129,7 +121,7 @@ function Imagescomp() {
       {/* dotts */}
       <div className="absolute bottom-0 left-0 z-10 w-full ">
         <div className="absolute bottom-[5px] left-[50%] flex gap-[10px] translate-x-[-50%]">
-          {images.map((dotts, i) => {
+          {filteredproducts.colorpalets[color].images.map((dotts, i) => {
             return (
               <div
                 key={i}
@@ -151,15 +143,15 @@ function Mainimage({ image, name }) {
       {/* {loading && <Imageloading />} */}
       <Image
         className="min-w-[100%] h-full snap-start snap-always object-contain"
-        src={"/" + image}
+        src={image}
         alt={name}
         height={400}
         width={754}
         loading="eager"
         quality={100}
-        onLoad={() => {
-          setloading(false);
-        }}
+        // onLoad={() => {
+        //   setloading(false);
+        // }}
       ></Image>
     </div>
   );

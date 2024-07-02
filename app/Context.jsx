@@ -7,7 +7,9 @@ const AppContext = createContext({});
 export function Appwrapper({ children }) {
   const [filters, setfilters] = useState({
     pricerange: 0,
+    selectedcolor:0
   });
+  
   // admin contexts
   const [addproduct, setaddproduct] = useState({
     category: "Living Room",

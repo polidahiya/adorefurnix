@@ -87,7 +87,7 @@ function Showproducts() {
       <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-[20px] p-[20px]">
         {products.map((item, i) => {
           const discount = Math.floor(
-            (item.price * (100 - item.discount)) / 100
+            (item.price / (100 - item.discount)) * 100
           );
           return (
             <div
@@ -123,10 +123,10 @@ function Showproducts() {
                 <div className="flex items-center gap-[10px] text-[18px]">
                   {item.discount != 0 && (
                     <span className="line-through text-slate-400">
-                      ₹{item.price}
+                      ₹{discount}
                     </span>
                   )}
-                  <span className="">₹{discount}</span>
+                  <span className="">₹{item.price}</span>
                 </div>
               </div>
               {/* delete product button */}
