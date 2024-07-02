@@ -1,5 +1,6 @@
 "use client";
 import React, { useRef } from "react";
+import Image from "next/image";
 
 function Imagescomp() {
   const [dotnum, setdotnum] = useState(0);
