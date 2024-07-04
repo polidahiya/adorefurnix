@@ -1,12 +1,7 @@
-"use client";
 import React from "react";
 import Image from "next/image";
 
-import { AppContextfn } from "@/app/Context";
-
-export const Renderproducts = () => {
-  const { cart, setcart } = AppContextfn();
-
+export default function Products({cart, setcart}) {
   return (
     <>
       {Object.keys(cart).map((item, i) => {
@@ -100,7 +95,15 @@ export const Renderproducts = () => {
                   <button className="h-full border border-slate-300 px-[20px] rounded-full">
                     Save for Later
                   </button>
-                  <button className="h-full border border-slate-300 px-[20px] rounded-full">
+                  <button
+                    className="h-full border border-slate-300 px-[20px] rounded-full"
+                    onClick={() => {
+                      const newcart = { ...cart };
+                      delete newcart[item];
+
+                      setcart(newcart);
+                    }}
+                  >
                     Remove
                   </button>
                 </div>
@@ -111,4 +114,4 @@ export const Renderproducts = () => {
       })}
     </>
   );
-};
+}

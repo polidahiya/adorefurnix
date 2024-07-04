@@ -1,7 +1,12 @@
+"use client";
 import React from "react";
-import { Renderproducts } from "./Publiccomps";
+import { AppContextfn } from "@/app/Context";
 
-function page() {
+import Products from "./Products";
+
+export default function Page() {
+  const { cart, setcart } = AppContextfn();
+
   return (
     <div className="p-[20px] flex gap-[10px] bg-bg1">
       <div className="w-full">
@@ -18,9 +23,8 @@ function page() {
         </div>
         {/* products */}
         <div className=" border border-slate-300 bg-white mt-[10px] ">
-          
-            <Renderproducts />
-        
+          <Products cart={cart} setcart={setcart} />
+
           <div className="sticky bottom-0 flex justify-end w-full  bg-white shadow-[0px_-2px_10px_#e1e1e1] p-[10px]">
             <button className="flex items-center gap-[10px] px-[40px] py-[10px] border border-slate-300 rounded-[5px] bg-theme text-white">
               <div className="h-[30px] aspect-square rounded-full  border-r-2 border-l-2 border-white animate-spin"></div>
@@ -116,5 +120,3 @@ function Secureicon() {
     </svg>
   );
 }
-
-export default page;
