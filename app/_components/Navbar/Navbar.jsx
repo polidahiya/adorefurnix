@@ -1,10 +1,13 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { categorylist } from "../commondata";
+import { categorylist } from "../../commondata";
+import Searchbox from "../Searchbox";
+import Cartsvg from "../../_svgs/Cartsvg";
+import { Cartproductcount } from "./Publiccomps";
 
 function Navbar({ params }) {
-  const category = params.Category.replace(/%20/g, " ").replace(/%26/g, "&");
+  const category = params?.Category?.replace(/%20/g, " ")?.replace(/%26/g, "&");
 
   return (
     <nav className="sticky bg-graygradient top-0 left-0 w-full p-[10px] md:px-[40px] z-40 ">
@@ -22,22 +25,17 @@ function Navbar({ params }) {
         </div>
         <div className="w-full h-full ">
           {/* search bar */}
-          <div className="h-full min-w-[500px]  p-[2px] border border-gray-300 rounded-[10px]">
-            <div className="flex h-full w-full rounded-[8px] overflow-hidden">
-              <input
-                type="text"
-                name=""
-                id=""
-                className="w-full px-[20px] outline-none"
-                placeholder="Search your Products here!"
-              />
-              <button className="w-[50px] bg-white border-l border-l-black">
-                Q
-              </button>
-            </div>
-          </div>
+          <Searchbox />
         </div>
-        <div className="w-full h-full "></div>
+        <div className="w-full h-full flex items-center justify-end ">
+          <Link
+            href="/main/cart"
+            className="relative flex items-center justify-center h-full aspect-square "
+          >
+            <Cartsvg styles="fill-white h-[20px]" />
+            <Cartproductcount />
+          </Link>
+        </div>
       </div>
       <div className="flex items-center justify-between mt-[20px]">
         {Object.keys(categorylist).map((item, i) => {

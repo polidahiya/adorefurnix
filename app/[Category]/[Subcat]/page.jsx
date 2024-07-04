@@ -27,7 +27,9 @@ async function page({ params }) {
     <div>
       <Secondnav category={category} selectedsubcat={subcat} />
 
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-[20px] p-[20px]">
+      <div
+        className={`grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] place-items-center gap-[20px] p-[20px]`}
+      >
         {filteredproducts.map((item, i) => {
           return (
             <Productcard

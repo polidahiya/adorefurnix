@@ -23,11 +23,13 @@ async function page({ params }) {
     <div>
       <Secondnav category={category} />
 
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-[20px] p-[20px]">
+      <div
+        className={`grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] place-items-center gap-[20px] p-[20px]`}
+      >
         {filteredproducts.map((item, i) => {
           return (
             <Productcard
-              key={i}
+              key={i + new Date().getMilliseconds()}
               index={i}
               id={item._id}
               category={item.category}

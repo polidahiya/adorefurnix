@@ -7,6 +7,7 @@ import Promices from "./_components/Homepage/Promices";
 import Bestselling from "./_components/Homepage/Bestselling";
 import Collage from "./_components/Homepage/Collage";
 import Categories from "./_components/Homepage/Categories";
+import Searchbox from "./_components/Searchbox";
 
 export default function Home() {
   return (
@@ -14,7 +15,7 @@ export default function Home() {
       <div className="relative w-full box-content h-fit " id="home">
         <nav className="absolute top-0 left-0 h-[50px] md:h-[80px] w-full flex items-center justify-between p-[10px] md:px-[40px] z-10 ">
           <Image
-            className="h-[30px] w-auto md:h-[50px] "
+            className="h-[30px] w-auto md:h-[40px] "
             src="/logo3.png"
             alt="adorefurnix logo"
             height={50}
@@ -48,6 +49,11 @@ export default function Home() {
             Hamari collection itni pyaari h ki sabko unhe ghar me rakhne ka man
             kare
           </h2>
+          <center>
+            <div className="w-[500px] h-[40px] mt-[30px]">
+              <Searchbox />
+            </div>
+          </center>
         </div>
 
         {/* bg image */}

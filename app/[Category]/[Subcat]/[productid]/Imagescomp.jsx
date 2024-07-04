@@ -15,13 +15,6 @@ function Imagescomp({filteredproducts,color}) {
       navigator.clipboard
         .writeText(link)
         .then(function () {
-          setnotifictionarr([
-            ...notifictionarr,
-            {
-              id: new Date() + new Date().getMilliseconds(),
-              content: "Link copied!",
-            },
-          ]);
         })
         .catch(function (err) {
           fallbackCopyTextToClipboard(link);
@@ -37,17 +30,10 @@ function Imagescomp({filteredproducts,color}) {
     textArea.select();
     document.execCommand("copy");
     document.body.removeChild(textArea);
-    setnotifictionarr([
-      ...notifictionarr,
-      {
-        id: new Date() + new Date().getMilliseconds(),
-        content: "Link copied!",
-      },
-    ]);
   }
 
   return (
-    <div className="relative  aspect-[4/3]  w-[100%]  max-h-[400px] lg:max-h-full border border-slate-300">
+    <div className="relative  aspect-[4/3]  w-[100%]  max-h-[400px] lg:max-h-full ">
       <div
         className="h-full w-full flex overflow-x-scroll overflow-y-hidden snap-x snap-mandatory scroll-smooth"
         onScroll={(e) => {
@@ -77,7 +63,7 @@ function Imagescomp({filteredproducts,color}) {
               height={100}
               width={100}
               key={i}
-              quality={1}
+              quality={50}
               onClick={() => {
                 imagesscrollref.current.scrollLeft =
                   imagesscrollref.current.clientWidth * i;

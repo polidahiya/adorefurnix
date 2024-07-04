@@ -6,8 +6,8 @@ import { categorylist } from "@/app/commondata";
 import { notFound } from "next/navigation";
 import Coloroption from "./Coloroption";
 import Promices from "@/app/_components/Homepage/Promices";
-import Cartsvg from "@/app/_svgs/Cartsvg";
 import Productcard from "@/app/_components/Productcard";
+import { Addtocartbuttons } from "./Publiccomps";
 
 async function page({ params, searchParams }) {
   const category = params.Category.replace(/%20/g, " ").replace(/%26/g, "&");
@@ -55,9 +55,6 @@ async function page({ params, searchParams }) {
             filteredproducts={filteredproducts}
             color={searchParams?.color || 0}
           />
-          <button className="flex items-center justify-center gap-[20px] w-full h-[40px] bg-[#ff9f00] text-white mt-[20px]">
-            <Cartsvg styles="fill-white" /> <span>Add to Cart</span>
-          </button>
         </div>
         {/* details */}
         <div className="w-[50%] p-[10px] px-[20px]">
@@ -93,14 +90,16 @@ async function page({ params, searchParams }) {
             </span>
           </div>
           <div className="font-bold mt-[10px]">
-            <span className="text-[30px] ">₹{filteredproducts.price}</span>
+            <span className="text-[30px] ">
+              ₹{parseInt(filteredproducts.price, 10).toLocaleString("en-IN")}
+            </span>
             {pricebeforediscount && (
               <>
                 <span className="line-through text-[#878787] ml-3">
-                  {pricebeforediscount}
+                  {parseInt(pricebeforediscount, 10).toLocaleString("en-IN")}
                 </span>
                 <span className="text-[#388e3c] ml-3">
-                  {filteredproducts.discount}% off
+                  {filteredproducts.discount}% Off
                 </span>
               </>
             )}
@@ -108,7 +107,7 @@ async function page({ params, searchParams }) {
           {/* colors */}
           <Coloroption
             filteredproducts={filteredproducts}
-            color={searchParams?.color || 0}
+            color={searchParams.color || 0}
           />
           {/* dimension */}
           <div className="flex gap-[10px] mt-[30px] font-semibold">
@@ -129,35 +128,41 @@ async function page({ params, searchParams }) {
               })}
             </div>
           </div>
-          {/*  */}
+          {/* add to cart buttons */}
+          <Addtocartbuttons
+            filteredproducts={filteredproducts}
+            color={searchParams.color || 0}
+          />
         </div>
       </div>
       <Promices />
       {/* similar products */}
-      <div className="bg-slate-100 px-[10px] py-[20px]">
-        <h2 className="text-[22px] font-bold">Similar Products</h2>
-        <div className="flex items-center gap-[20px]  mt-[20px] max-w-full overflow-x-scroll pb-[20px]">
-          {similarproducts.map((item, i) => {
-            return (
-              <Productcard
-                key={i}
-                index={i}
-                id={item._id}
-                category={item.category}
-                subcat={item.subcat}
-                name={item.name}
-                price={item.price}
-                discount={item.discount}
-                available={item.available}
-                image={item.colorpalets[0].images[0]}
-                rating={item.rating}
-                liked={false}
-                customwidth="min-w-[250px] w-[250px]"
-              />
-            );
-          })}
+      {similarproducts.length > 0 && (
+        <div className="bg-slate-100 px-[10px] py-[20px]">
+          <h2 className="text-[22px] font-bold">Similar Products</h2>
+          <div className="flex items-center gap-[20px]  mt-[20px] max-w-full overflow-x-scroll pb-[20px]">
+            {similarproducts.map((item, i) => {
+              return (
+                <Productcard
+                  key={i}
+                  index={i}
+                  id={item._id}
+                  category={item.category}
+                  subcat={item.subcat}
+                  name={item.name}
+                  price={item.price}
+                  discount={item.discount}
+                  available={item.available}
+                  image={item.colorpalets[0].images[0]}
+                  rating={item.rating}
+                  liked={false}
+                  customwidth="min-w-[250px] w-[250px]"
+                />
+              );
+            })}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

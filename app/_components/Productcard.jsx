@@ -114,12 +114,12 @@ function Productcard({
             {" / "}5
           </span>
         </div>
-        <div className="font-bold">
-          <span className="text-[20px]">₹{price}</span>
+        <div className="font-bold mt-[10px]">
+          <span className="text-[20px]">₹{parseInt(price, 10).toLocaleString('en-IN')}</span>
           {pricebeforediscount && (
             <>
               <span className="line-through text-[#878787] ml-3">
-                {pricebeforediscount}
+                { parseInt(pricebeforediscount, 10).toLocaleString('en-IN')}
               </span>
               <span className="text-[#388e3c] ml-3">{discount}% off</span>
             </>
