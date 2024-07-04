@@ -1,10 +1,12 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
-export default function Products({cart, setcart}) {
+export default function Products({ cart, setcart }) {
   return (
     <>
       {Object.keys(cart).map((item, i) => {
+        const color = item.split(",")[1];
         const product = cart[item];
 
         let pricebeforediscount = null;
@@ -17,13 +19,18 @@ export default function Products({cart, setcart}) {
           <div key={i} className="flex flex-col gap-[20px] w-full p-[20px]">
             {i != 0 && <hr />}
             <div className="flex gap-[20px] h-[150px]">
-              <Image
-                src={product.colorpalets[product.selectedcolor].images[0]}
-                alt={product.name}
-                height={200}
-                width={200}
-                className="h-full aspect-square object-contain object-center"
-              />
+              <Link
+                href={`/${product.category}/${product.subcat}/${product._id}?color=${color}`}
+                className="h-full aspect-square border border-slate-300"
+              >
+                <Image
+                  src={product.colorpalets[product.selectedcolor].images[0]}
+                  alt={product.name}
+                  height={200}
+                  width={200}
+                  className="h-full w-full object-contain object-center"
+                />
+              </Link>
               <div className="flex flex-col h-full w-full ">
                 <h2 className="font-bold text-[18px] text-ellipsis overflow-hidden whitespace-nowrap">
                   {product.name}
@@ -38,13 +45,18 @@ export default function Products({cart, setcart}) {
                   {pricebeforediscount && (
                     <span className="text-gray-500 line-through">
                       ₹
-                      {parseInt(pricebeforediscount, 10).toLocaleString(
-                        "en-IN"
-                      )}
+                      {parseInt(
+                        pricebeforediscount * product.quantity,
+                        10
+                      ).toLocaleString("en-IN")}
                     </span>
                   )}
                   <span className="text-[20px] text-black">
-                    ₹{parseInt(product.price, 10).toLocaleString("en-IN")}
+                    ₹
+                    {parseInt(
+                      product.price * product.quantity,
+                      10
+                    ).toLocaleString("en-IN")}
                   </span>
                   {pricebeforediscount && (
                     <span className="text-[14px] text-green-500 font-semibold">

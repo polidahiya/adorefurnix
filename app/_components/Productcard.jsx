@@ -16,7 +16,6 @@ function Productcard({
   image,
   rating,
   liked,
-  customwidth
 }) {
   let pricebeforediscount = null;
   if (discount > 0) {
@@ -38,9 +37,7 @@ function Productcard({
   return (
     <Link
       href={`/${category}/${subcat}/${id}`}
-      className={`relative  max-w-[350px] shadow-[4px_4px_5px_#bababa7f] rounded-[10px] overflow-hidden bg-white duration-300 ${
-        showproduct ? "opacity-100 scale-100" : "opacity-0 scale-75"
-      } ${customwidth?customwidth:"w-full"}`}
+      className={`relative  max-w-[350px] shadow-[4px_4px_5px_#bababa7f] rounded-[10px] overflow-hidden bg-white duration-300 `}
     >
       {/* discount */}
       {pricebeforediscount && (

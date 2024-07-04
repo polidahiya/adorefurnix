@@ -37,18 +37,31 @@ function Navbar({ params }) {
           </Link>
         </div>
       </div>
-      <div className="flex items-center justify-between mt-[20px]">
+      <div className=" flex items-center justify-between h-[40px] mt-[20px]">
         {Object.keys(categorylist).map((item, i) => {
           return (
-            <Link
-              key={i}
-              href={"/" + item}
-              className={` text-white px-[20px] py-[5px] rounded-full text-[14px] whitespace-nowrap ${
-                category == item ? "bg-theme " : ""
-              }`}
-            >
-              {item}
-            </Link>
+            <div key={i} className={`group h-full`}>
+              <Link
+                key={i}
+                href={"/" + item}
+                className={`h-full w-full flex items-center justify-center  text-[14px] text-white  px-[20px] py-[5px] rounded-full ${
+                  category == item ? "bg-theme " : ""
+                }`}
+              >
+                {item}
+              </Link>
+              <div className="fixed top-[110px] left-[50%] translate-x-[-50%] w-[calc(100%-40px)]  hidden lg:group-hover:block">
+                <div className="min-h-16 w-full flex  bg-white border border-slate-300 mt-[20px]">
+                  {categorylist[item].subcat.map((subcat, j) => {
+                    return (
+                      <div key={j} className="">
+                        {subcat.name}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
           );
         })}
       </div>
