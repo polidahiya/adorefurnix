@@ -21,7 +21,7 @@ async function page({ params }) {
 
   return (
     <div>
-      <Secondnav category={category} />
+      {/* <Secondnav category={category} /> */}
 
       <div
         className={`grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] place-items-center gap-[20px] p-[20px]`}

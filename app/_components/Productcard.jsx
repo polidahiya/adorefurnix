@@ -37,7 +37,7 @@ function Productcard({
   return (
     <Link
       href={`/${category}/${subcat}/${id}`}
-      className={`relative  max-w-[350px] shadow-[4px_4px_5px_#bababa7f] rounded-[10px] overflow-hidden bg-white duration-300 `}
+      className={`relative w-full  max-w-[350px] shadow-[4px_4px_5px_#bababa7f] rounded-[10px] overflow-hidden bg-white duration-300 `}
     >
       {/* discount */}
       {pricebeforediscount && (

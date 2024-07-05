@@ -14,6 +14,8 @@ export const categorylist = {
     subcat: [
       { image: "/categoriesimages/bedroom.jpg", name: "King Size Bed" },
       { image: "/categoriesimages/bedroom.jpg", name: "Queen Size Bed" },
+      { image: "/categoriesimages/bedroom.jpg", name: "Single Bed" },
+      { image: "/categoriesimages/bedroom.jpg", name: "Kids Bed" },
       { image: "/categoriesimages/bedroom.jpg", name: "Wardrobe" },
       { image: "/categoriesimages/bedroom.jpg", name: "Bedside Table" },
       { image: "/categoriesimages/bedroom.jpg", name: "Chest of Drawers" },
