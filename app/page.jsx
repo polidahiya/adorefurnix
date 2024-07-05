@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -44,13 +43,12 @@ export default function Home() {
           <div></div>
         </nav>
         {/*  */}
-        <div className="absolute top-[60px] md:top-[150px]">
+        <div className="absolute top-[60px] md:top-[150px] w-full z-40">
           <h2 className="text-[3vw] font-semibold max-w-[70%] text-center mx-auto text-white">
-            Hamari collection itni pyaari h ki sabko unhe ghar me rakhne ka man
-            kare
+           Uplift you Lifestyle
           </h2>
           <center>
-            <div className="w-[500px] h-[40px] mt-[30px]">
+            <div className="w-[70%] max-w-[650px] h-[35px] md:h-[40px] mt-[10px] md:mt-[30px] ">
               <Searchbox />
             </div>
           </center>

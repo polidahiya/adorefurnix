@@ -48,8 +48,8 @@ async function page({ params, searchParams }) {
 
   return (
     <div className=" ">
-      <div className="flex items-start p-[10px]">
-        <div className="w-[50%] lg:sticky lg:top-[130px]">
+      <div className="flex flex-col lg:flex-row items-start p-[10px]">
+        <div className="w-full lg:w-[50%] lg:sticky lg:top-[130px]">
           {/* image component */}
           <Imagescomp
             filteredproducts={filteredproducts}
@@ -57,8 +57,8 @@ async function page({ params, searchParams }) {
           />
         </div>
         {/* details */}
-        <div className="w-[50%] p-[10px] px-[20px]">
-          <div className=" flex gap-[10px] text-[#87878] text-[14px] ">
+        <div className="w-full lg:w-[50%] p-[10px] px-[20px]">
+          <div className=" sticky top-[60px] lg:top-[120px] bg-white flex gap-[10px] text-[#87878] text-[14px] z-20  whitespace-nowrap ">
             <Link className="lg:hover:text-cyan-500" href={"/"}>
               Home
             </Link>{" "}
@@ -74,7 +74,7 @@ async function page({ params, searchParams }) {
               {subcat}
             </Link>{" "}
             {">"}
-            <span>{filteredproducts.name}</span>
+            <span className="text-ellipsis overflow-hidden">{filteredproducts.name}</span>
           </div>
           <h1 className="py-[10px] font-semibold">{filteredproducts.name}</h1>
           <div className="">
@@ -156,7 +156,6 @@ async function page({ params, searchParams }) {
                   image={item.colorpalets[0].images[0]}
                   rating={item.rating}
                   liked={false}
-                  customwidth="min-w-[250px] w-[250px]"
                 />
               );
             })}

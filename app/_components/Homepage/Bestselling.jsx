@@ -25,7 +25,7 @@ function Bestselling() {
 
   return (
     <>
-      <h3 className="text-[25px] text-center block lg:hidden font-bold">
+      <h3 className="text-[25px] text-center block lg:hidden font-bold mt-[30px]">
         Best Selling Products{" "}
       </h3>
       <div className="flex items-center gap-[20px] px-[10px] md:px-[40px] mt-[10px] md:mt-[50px]">
@@ -53,7 +53,7 @@ function Bestselling() {
                 src={item.image}
                 alt=""
               />
-              <div className="bg-white rounded-[20px] md:rounded-[30px] p-[10px] md:p-[20px] shadow-[4px_4px_5px_#bababa7f]">
+              <div className="bg-white rounded-[10px] md:rounded-[30px] p-[10px] md:p-[20px] shadow-[4px_4px_5px_#bababa7f]">
                 <div>
                   <span className="text-[14px] md:text-[20px] font-bold ">
                     {item.name}

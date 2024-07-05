@@ -1,10 +1,12 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import Searchbox from "../Searchbox";
 import Cartsvg from "../../_svgs/Cartsvg";
-import { Cartproductcount } from "./Publiccomps";
+import { Cartproductcount, Showmobilecategorymenubutton } from "./Publiccomps";
 import Navcategories from "./Navcategories";
+import { Centralnav } from "./Publiccomps";
+import { Showsearchbutton } from "./Publiccomps";
+import { Exitblackscreen } from "./Publiccomps";
 
 function Navbar({ params }) {
   const category = params?.Category?.replace(/%20/g, " ")?.replace(/%26/g, "&");
@@ -12,7 +14,7 @@ function Navbar({ params }) {
   return (
     <nav className="sticky bg-graygradient top-0 left-0 w-full p-[10px] md:px-[40px] z-40 ">
       <div className="relative flex h-[40px] items-center justify-between ">
-        <div className="w-full h-full ">
+        <div className="flex items-center gap-[10px] w-full h-full">
           <Link href="/" className="h-full w-fit flex ">
             <Image
               className=" w-auto h-full "
@@ -23,11 +25,11 @@ function Navbar({ params }) {
             ></Image>
           </Link>
         </div>
-        <div className="w-full h-full ">
-          {/* search bar */}
-          <Searchbox />
-        </div>
-        <div className="w-full h-full flex items-center justify-end ">
+        {/* searchbar */}
+        <Centralnav />
+
+        <div className="w-full h-full flex items-center justify-end gap-[10px]">
+          <Showsearchbutton />
           <Link
             href="/main/cart"
             className="relative flex items-center justify-center h-full aspect-square "
@@ -35,18 +37,14 @@ function Navbar({ params }) {
             <Cartsvg styles="fill-white h-[20px]" />
             <Cartproductcount />
           </Link>
+          <Showmobilecategorymenubutton />
         </div>
+        <Exitblackscreen/>
       </div>
       {/* categories */}
-      <Navcategories category={category}/>
+      <Navcategories category={category} />
     </nav>
   );
 }
 
 export default Navbar;
-
-// ${
-//   selectedsubcat == subcat.name
-//     ? "bg-theme bg-clip-text text-transparent"
-//     : ""
-// }

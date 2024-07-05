@@ -4,113 +4,19 @@ import Link from "next/link";
 import Searchsvg from "../_svgs/Searchsvg";
 import Seacrchsuggestionarrowsvg from "../_svgs/Seacrchsuggestionarrowsvg";
 import { useRouter } from "next/navigation";
+import { AppContextfn } from "../Context";
 
 function Searchbox() {
   const router = useRouter();
-  const searchinputref = useRef();
+
+  const { setshowsearch ,searchinputref} = AppContextfn();
   const [search, setSearch] = useState("");
   const [showsuggestions, setshowsuggestions] = useState([false, false]);
 
   const suggesionsarray = [
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
     "banana",
     "cherry",
     "date",
-    "elderberry",
-    "fig",
-    "grape",
-    "honeydew",
-    "kiwi",
-    "lemon",
-    "mango",
-    "nectarine",
-    "orange",
-    "papaya",
-    "quince",
-    "raspberry",
-    "strawberry",
-    "tangerine",
-    "ugli",
-    "vanilla",
-    "watermelon",
-    "xigua",
-    "yam",
-    "zucchini",
-    "almond",
-    "blueberry",
-    "coconut",
-    "dragonfruit",
-    "eggplant",
-    "feijoa",
-    "guava",
-    "huckleberry",
-    "imbe",
-    "jackfruit",
-    "kumquat",
-    "lime",
-    "mulberry",
-    "nectar",
-    "olive",
-    "pineapple",
-    "quinoa",
-    "rambutan",
-    "soursop",
-    "tomato",
-    "ugli",
-    "violet",
-    "wheat",
-    "xylocarp",
-    "yuzu",
-    "zebra",
-    "apricot",
-    "blackberry",
-    "cantaloupe",
-    "durian",
-    "elder",
-    "fig",
-    "grapefruit",
-    "honeyberry",
-    "ita",
-    "jabuticaba",
-    "kiwano",
-    "loquat",
-    "melon",
-    "nance",
-    "olive",
-    "persimmon",
-    "quandong",
-    "rosehip",
-    "sugarcane",
-    "tomatillo",
-    "umbu",
-    "victor",
-    "walnut",
-    "ximenia",
-    "yellow",
-    "ziziphus",
-    "acerola",
-    "bilberry",
-    "clementine",
-    "damson",
-    "elderflower",
-    "fennel",
-    "goumi",
-    "hawthorn",
-    "inkberry",
-    "jostaberry",
-    "kaffir",
-    "loganberry",
-    "medlar",
-    "nance",
-    "osage",
-    "peach",
-    "quassia",
-    "rowan",
-    "sapote",
-    "tamarind",
-    "umbu",
-    "voavanga",
-    "watercress",
     "xigua",
     "yacon",
     "zostera",
@@ -147,12 +53,12 @@ function Searchbox() {
   useEffect(() => {
     if (typeof window != undefined) {
       const params = new URLSearchParams(window.location.search);
-      setSearch(params.get("query") || "")
+      setSearch(params.get("query") || "");
     }
   }, []);
 
   return (
-    <div className="relative h-full min-w-[500px]  p-[2px] border border-gray-300 rounded-[10px]">
+    <div className="relative  h-full w-full  p-[2px] border border-gray-300 rounded-[10px]">
       <div className="flex h-full w-full rounded-[8px] overflow-hidden">
         <input
           ref={searchinputref}
@@ -178,13 +84,14 @@ function Searchbox() {
             setTimeout(() => {
               closesuggestions();
             }, 100);
+            setshowsearch(false);
           }}
         />
         <Link
           href={search?.trim() != "" ? `/main/Search?query=${search}` : "#"}
           className="flex items-center justify-center w-[50px] bg-white border-l border-l-black "
         >
-          <Searchsvg styles="h-[25px] " />
+          <Searchsvg styles="h-[20px] stroke-black" />
         </Link>
       </div>
       {/* suggestions */}
@@ -206,7 +113,9 @@ function Searchbox() {
                       href={`/main/Search?query=${item}`}
                       className="w-full flex items-center justify-between h-[40px] lg:hover:bg-slate-100 pl-[20px] pr-[10px] "
                     >
-                      <p className="  text-start max-w-[calc(100%-50px)] text-ellipsis overflow-hidden whitespace-nowrap">{item}</p>
+                      <p className="  text-start max-w-[calc(100%-50px)] text-ellipsis overflow-hidden whitespace-nowrap">
+                        {item}
+                      </p>
                       <Seacrchsuggestionarrowsvg styles="h-[20px] stroke-slate-600 rotate-[-90deg]" />
                     </Link>
                     <hr />

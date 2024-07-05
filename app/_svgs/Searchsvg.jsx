@@ -1,6 +1,6 @@
 import React from "react";
 
-function Searchicon({ styles }) {
+function Icon({styles}) {
   return (
     <svg
       className={styles}
@@ -8,29 +8,14 @@ function Searchicon({ styles }) {
       fill="none"
       viewBox="0 0 24 24"
     >
-      <g>
-        <g clipPath="url(#clip0_15_152)">
-          <path fill="#fff" d="M0 0H24V24H0z"></path>
-          <circle
-            cx="10.5"
-            cy="10.5"
-            r="6.5"
-            stroke="#000"
-            strokeLinejoin="round"
-          ></circle>
-          <path
-            fill="#000"
-            d="M19.646 20.354a.5.5 0 00.708-.708l-.708.708zm.708-.708l-5-5-.708.708 5 5 .708-.708z"
-          ></path>
-        </g>
-        <defs>
-          <clipPath id="clip0_15_152">
-            <path fill="#fff" d="M0 0H24V24H0z"></path>
-          </clipPath>
-        </defs>
-      </g>
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M16.672 16.641L21 21m-2-10a8 8 0 11-16 0 8 8 0 0116 0z"
+      ></path>
     </svg>
   );
 }
 
-export default React.memo(Searchicon);
+export default React.memo(Icon);

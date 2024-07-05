@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState,useRef } from "react";
 
 const AppContext = createContext({});
 
@@ -10,6 +10,10 @@ export function Appwrapper({ children }) {
   });
 
   const [cart, setcart] = useState({});
+  const [showcat, setshowcat] = useState(false);
+  const [showsearch, setshowsearch] = useState(false);
+  const searchinputref = useRef();
+
 
   // admin contexts
   const [addproduct, setaddproduct] = useState({
@@ -43,6 +47,11 @@ export function Appwrapper({ children }) {
         setfilters,
         cart,
         setcart,
+        showcat,
+        setshowcat,
+        showsearch,
+        setshowsearch,
+        searchinputref,
         // admin
         addproduct,
         setaddproduct,
