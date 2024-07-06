@@ -5,7 +5,7 @@ import { categorylist } from "@/app/commondata";
 import { notFound } from "next/navigation";
 import { Cachedproducts } from "@/app/_components/serveractions/Getcachedata";
 
-async function page({ params }) {
+async function page({ params,searchParams }) {
   const category = params.Category.replace(/%20/g, " ").replace(/%26/g, "&");
   const subcat = params.Subcat.replace(/%20/g, " ").replace(/%26/g, "&");
 
@@ -25,7 +25,7 @@ async function page({ params }) {
 
   return (
     <div>
-      <Secondnav category={category} selectedsubcat={subcat} />
+      <Secondnav category={category} subcat={subcat} searchParams={searchParams}/>
 
       <div
         className={`grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] place-items-center gap-[20px] p-[20px]`}

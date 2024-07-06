@@ -5,7 +5,7 @@ import Secondnav from "./_Components/Secondnav";
 import { categorylist } from "../commondata";
 import { Cachedproducts } from "../_components/serveractions/Getcachedata";
 
-async function page({ params }) {
+async function page({ params,searchParams }) {
   const category = params.Category.replace(/%20/g, " ").replace(/%26/g, "&");
 
   // not found code
@@ -21,7 +21,7 @@ async function page({ params }) {
 
   return (
     <div>
-      {/* <Secondnav category={category} /> */}
+      <Secondnav category={category} searchParams={searchParams}/>
 
       <div
         className={`grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] place-items-center gap-[20px] p-[20px]`}

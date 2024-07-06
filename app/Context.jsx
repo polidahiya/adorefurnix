@@ -5,10 +5,6 @@ import { createContext, useContext, useState,useRef } from "react";
 const AppContext = createContext({});
 
 export function Appwrapper({ children }) {
-  const [filters, setfilters] = useState({
-    pricerange: 0,
-  });
-
   const [cart, setcart] = useState({});
   const [showcat, setshowcat] = useState(false);
   const [showsearch, setshowsearch] = useState(false);
@@ -43,8 +39,6 @@ export function Appwrapper({ children }) {
   return (
     <AppContext.Provider
       value={{
-        filters,
-        setfilters,
         cart,
         setcart,
         showcat,

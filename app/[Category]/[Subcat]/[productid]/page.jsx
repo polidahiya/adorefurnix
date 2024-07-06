@@ -8,6 +8,7 @@ import Coloroption from "./Coloroption";
 import Promices from "@/app/_components/Homepage/Promices";
 import Productcard from "@/app/_components/Productcard";
 import { Addtocartbuttons } from "./Publiccomps";
+import Rating from "@/app/_components/Ratingstars";
 
 async function page({ params, searchParams }) {
   const category = params.Category.replace(/%20/g, " ").replace(/%26/g, "&");
@@ -76,19 +77,9 @@ async function page({ params, searchParams }) {
             {">"}
             <span className="text-ellipsis overflow-hidden">{filteredproducts.name}</span>
           </div>
-          <h1 className="py-[10px] font-semibold">{filteredproducts.name}</h1>
-          <div className="">
-            <span className="font-semibold text-slate-400">Rating</span> :
-            {new Array(Number(filteredproducts.rating))
-              .fill(null)
-              .map((star, i) => {
-                return "⭐";
-              })}{" "}
-            <span className="p-[3px] px-[10px] bg-green-600 text-white rounded-[5px] font-semibold ">
-              {filteredproducts.rating}
-              {" / "}5
-            </span>
-          </div>
+          <h1 className="text-[25px] py-[10px] font-semibold">{filteredproducts.name}</h1>
+          <Rating rating={filteredproducts.rating} />
+       
           <div className="font-bold mt-[10px]">
             <span className="text-[30px] ">
               ₹{parseInt(filteredproducts.price, 10).toLocaleString("en-IN")}

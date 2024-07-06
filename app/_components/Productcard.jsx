@@ -3,6 +3,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Heart from "../_svgs/Heart";
+import Rating from "./Ratingstars";
 
 function Productcard({
   index,
@@ -37,8 +38,8 @@ function Productcard({
   return (
     <Link
       href={`/${category}/${subcat}/${id}`}
-      className={`relative w-full  max-w-[350px] min-w-[250px] shadow-[4px_4px_5px_#bababa7f] rounded-[10px] overflow-hidden bg-white duration-300 ${
-        showproduct?"opacity-100 scale-100":"opacity-0 scale-75"
+      className={`relative w-full  max-w-[350px] min-w-[250px] shadow-md rounded-[10px] overflow-hidden bg-white duration-300 ${
+        showproduct ? "opacity-100 scale-100" : "opacity-0 scale-75"
       }`}
     >
       {/* discount */}
@@ -58,39 +59,22 @@ function Productcard({
         </div>
       )}
       {/* like button */}
-      <button
-        className="absolute right-[10px] top-[10px] bg-white rounded-full p-[3px] "
-        title="Add to favourites"
-        // onClick={async () => {
-        //   let res = await likeproduct(productid, liked);
-        //   if (res) {
-        //     if (res.message == "Added to favourites") {
-        //       setliked(true);
-        //     }
-        //     if (res.message == "Removed from favourites") {
-        //       setliked(false);
-        //     }
-
-        //     setnotifictionarr([
-        //       ...notifictionarr,
-        //       {
-        //         id: new Date() + new Date().getMilliseconds(),
-        //         content: res.message,
-        //       },
-        //     ]);
-        //   }
-        // }}
-      >
-        <Heart
-          styles={`h-[25px]  w-[25px]  translate-y-[1px]
+      {liked && (
+        <button
+          className="absolute right-[10px] top-[10px] bg-white rounded-full p-[3px] "
+          title="Add to favourites"
+        >
+          <Heart
+            styles={`h-[25px]  w-[25px]  translate-y-[1px]
             ${
               liked
                 ? "fill-red-500 stroke-none"
                 : "fill-white stroke-[5px] stroke-red-600  "
             }
               `}
-        />
-      </button>
+          />
+        </button>
+      )}
 
       <Image
         src={image}
@@ -103,24 +87,17 @@ function Productcard({
         <h3 className="py-[10px] font-semibold text-center w-full whitespace-nowrap text-ellipsis overflow-hidden">
           {name}
         </h3>
-        <div className="">
-          <span className="font-semibold text-slate-400">Rating</span> :
-          {new Array(Number(rating)).fill(null).map((star, i) => {
-            return "⭐";
-          })}{" "}
-          <span className="p-[3px] px-[10px] bg-green-600 text-white rounded-[5px] font-semibold ">
-            {rating}
-            {" / "}5
+        <Rating rating={rating} />
+        <div className=" mt-[10px]">
+          <span className="font-bold text-[20px]">
+            ₹{parseInt(price, 10).toLocaleString("en-IN")}
           </span>
-        </div>
-        <div className="font-bold mt-[10px]">
-          <span className="text-[20px]">₹{parseInt(price, 10).toLocaleString('en-IN')}</span>
           {pricebeforediscount && (
             <>
               <span className="line-through text-[#878787] ml-3">
-                { parseInt(pricebeforediscount, 10).toLocaleString('en-IN')}
+              ₹{parseInt(pricebeforediscount, 10).toLocaleString("en-IN")}
               </span>
-              <span className="text-[#388e3c] ml-3">{discount}% off</span>
+              <span className="font-bold text-[#388e3c] ml-3">{discount}% off</span>
             </>
           )}
         </div>
@@ -129,4 +106,6 @@ function Productcard({
   );
 }
 // bg-[#c1d0e4]
+
+
 export default Productcard;
