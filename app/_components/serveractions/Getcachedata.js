@@ -17,6 +17,9 @@ export async function Cachedproducts() {
     lastproductfetchtime = currentTime;
   }
   cachedproducts.map((item) => (item._id = item._id.toString()));
+  // cachedproducts.forEach(element => {
+  //   console.log(element.name);
+  // });
 
   return cachedproducts;
 }

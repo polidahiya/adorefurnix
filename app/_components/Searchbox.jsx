@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Searchsvg from "../_svgs/Searchsvg";
 import Seacrchsuggestionarrowsvg from "../_svgs/Seacrchsuggestionarrowsvg";
@@ -9,22 +9,79 @@ import { AppContextfn } from "../Context";
 function Searchbox() {
   const router = useRouter();
 
-  const { setshowsearch ,searchinputref} = AppContextfn();
+  const { setshowsearch, searchinputref } = AppContextfn();
   const [search, setSearch] = useState("");
   const [showsuggestions, setshowsuggestions] = useState([false, false]);
 
   const suggesionsarray = [
-    "banana",
-    "cherry",
-    "date",
-    "xigua",
-    "yacon",
-    "zostera",
+    "Living Room",
+    "Sofa sets",
+    "Sofa cum bed",
+    "Wing chairs",
+    "Ottoman",
+    "Chairs",
+    "Bedroom",
+    "King Size Bed",
+    "Queen Size Bed",
+    "Single Bed",
+    "Kids Bed",
+    "Wardrobe",
+    "Bedside Table",
+    "Chest of Drawers",
+    "Dressing Tables",
+    "Dining",
+    "2-Seater Dining Set",
+    "4-Seater Dining Set",
+    "6-Seater Dining Set",
+    "Tables",
+    "Coffee Tables",
+    "End Tables",
+    "Console Tables",
+    "Nesting Tables",
+    "Storage",
+    "Shoe Rack",
+    "Tv and Entertainment Unit",
+    "Cabinet",
+    "Book Shelf",
+    "Crockery Cabinet",
+    "Bar Furniture",
+    "Bar Units",
+    "Bar Cabinets",
+    "Bar Trolly",
+    "Bar Wall hanging Shelf",
+    "Bar Chairs & Stools",
+    "Study and Bookshelf",
+    "Study Tables",
+    "BookShelf",
+    "Computer Tables",
+    "Office Furniture",
+    "Office Chairs",
+    "Study & Laptop Tables",
+    "Office Sofa",
+    "Home Decor & More",
+    // 
+    "Merlin mose full cushion bed",
+    "Premium Ureka 3+1+1 sofa set",
+    "Mahira 3 seater sofa",
+    "Macle Sofa 3+2 seater",
+    "Rosle Sofa 2+2 seater",
+    "Kyle L shape sofa set 5 seater",
+    "Pyrin 3+2 seater sofa set",
+    "Flora kids bed",
+    "Wing chair",
+    "Louts wing chair",
+    "Sofa cum bed in full upholstery",
+    "Sofa cum bed full cushion",
+    "Round Ottoman",
+    "Ottoman cylindrical",
+    "Ottoman square",
+    "Upholstery chairs",
+    "Chair upholstery with metal legs",
   ];
 
   const filtersearch = (words) => {
     let temp;
-    const permanentowrds = ["table", "bed", "sofa", "tshirt", "helllo"];
+    const permanentowrds = ["King Size Bed", "4-Seater Dining Set", "Coffee Tables", "Flora kids bed", "Home Decor & More"];
     if (words.trim() == "") {
       return permanentowrds;
     }
@@ -108,7 +165,12 @@ function Searchbox() {
               .slice(0, 5)
               .map((item, i) => {
                 return (
-                  <div key={i}>
+                  <div
+                    key={i}
+                    onClick={() => {
+                      setSearch(item);
+                    }}
+                  >
                     <Link
                       href={`/main/Search?query=${item}`}
                       className="w-full flex items-center justify-between h-[40px] lg:hover:bg-slate-100 pl-[20px] pr-[10px] "
