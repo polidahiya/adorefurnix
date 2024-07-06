@@ -103,7 +103,7 @@ export const filterlist = [
   {
     name: "No Filter",
     min: 0,
-    max: 0,
+    max: 500000,
   },
   {
     name: "Less than 10k",

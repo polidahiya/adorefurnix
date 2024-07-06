@@ -3,9 +3,10 @@ import { notFound } from "next/navigation";
 import Productcard from "../_components/Productcard";
 import Secondnav from "./_Components/Secondnav";
 import { categorylist } from "../commondata";
+import { filterlist } from "../commondata";
 import { Cachedproducts } from "../_components/serveractions/Getcachedata";
 
-async function page({ params,searchParams }) {
+async function page({ params, searchParams }) {
   const category = params.Category.replace(/%20/g, " ").replace(/%26/g, "&");
 
   // not found code
@@ -14,14 +15,14 @@ async function page({ params,searchParams }) {
   }
 
   // get products
-  const allproducts = await Cachedproducts();
-  const filteredproducts = allproducts.filter(
-    (item) => item.category == category
+  const filteredproducts = await Manageproducts(
+    category,
+    searchParams.pricerange
   );
 
   return (
     <div>
-      <Secondnav category={category} searchParams={searchParams}/>
+      <Secondnav category={category} searchParams={searchParams} />
 
       <div
         className={`grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] place-items-center gap-[20px] p-[20px]`}
@@ -47,6 +48,39 @@ async function page({ params,searchParams }) {
       </div>
     </div>
   );
+}
+
+let cachedproducts = null;
+let lastproductfetchtime = null;
+
+async function Manageproducts(category, pricerange) {
+  const allproducts = await Cachedproducts();
+  if (pricerange == undefined) {
+    pricerange = 0;
+  }
+  // filter
+  const filteredproducts = allproducts.filter((item) => {
+    return (
+      item.category === category &&
+      (pricerange == 0 ||
+        (item.price >= filterlist[pricerange].min &&
+          item.price <= filterlist[pricerange].max))
+    );
+  });
+
+  // rendomize
+  const currentTime = new Date().getTime();
+  const cachetime = 10 * 60 * 1000;
+  if (
+    !cachedproducts ||
+    !lastproductfetchtime ||
+    currentTime - lastproductfetchtime >= cachetime
+  ) {
+    filteredproducts.sort(() => Math.random() - 0.5);
+    lastproductfetchtime = currentTime;
+  }
+
+  return filteredproducts;
 }
 
 export default page;

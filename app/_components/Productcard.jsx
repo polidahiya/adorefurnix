@@ -44,7 +44,7 @@ function Productcard({
     >
       {/* discount */}
       {pricebeforediscount && (
-        <div className="absolute top-[10px] left-[10px] bg-green-600 text-white p-[5px] rounded-[5px]">
+        <div className="absolute top-[10px] left-[10px] bg-green-600 text-white text-[14px] py-[5px] px-[10px] rounded-[5px]">
           {discount}
           {"%"} OFF
         </div>
@@ -52,7 +52,7 @@ function Productcard({
       {/* availabe */}
       {!available && (
         <div
-          className={`absolute  left-[10px] bg-red-600 text-white p-[5px] rounded-[5px]
+          className={`absolute  left-[10px] bg-red-600 text-white text-[14px] py-[5px] px-[10px] rounded-[5px]
              ${pricebeforediscount ? "top-[50px]" : "top-[10px]"}`}
         >
           Out of Stock!
