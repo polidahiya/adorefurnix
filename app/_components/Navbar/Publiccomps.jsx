@@ -36,16 +36,16 @@ export const Showmobilecategorymenubutton = () => {
   );
 };
 
-export const Centralnav = () => {
+export const Centralnav = ({productsname}) => {
   const { showsearch } = AppContextfn();
   return (
     <div
-      className={`absolute top-[calc(100%+10px)] md:static w-full h-full md:block ${
+      className={`absolute top-[calc(100%+10px)] md:static w-full h-full lg:min-w-[500px] md:block ${
         showsearch ? "block" : "hidden"
       }`}
     >
       {/* search bar */}
-      <Searchbox />
+      <Searchbox productsname={productsname}/>
     </div>
   );
 };

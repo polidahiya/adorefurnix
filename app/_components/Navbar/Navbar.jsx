@@ -8,7 +8,7 @@ import { Centralnav } from "./Publiccomps";
 import { Showsearchbutton } from "./Publiccomps";
 import { Exitblackscreen } from "./Publiccomps";
 
-function Navbar({ params }) {
+function Navbar({ params,productsname }) {
   const category = params?.Category?.replace(/%20/g, " ")?.replace(/%26/g, "&");
 
   return (
@@ -26,7 +26,7 @@ function Navbar({ params }) {
           </Link>
         </div>
         {/* searchbar */}
-        <Centralnav />
+        <Centralnav productsname={productsname}/>
 
         <div className="w-full h-full flex items-center justify-end gap-[10px]">
           <Showsearchbutton />

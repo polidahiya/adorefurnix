@@ -2,7 +2,7 @@
 import React from "react";
 import { categorylist } from "@/app/commondata";
 import Link from "next/link";
-import Subcategorycard from "../Subcategorycard";
+// import Subcategorycard from "../Subcategorycard";
 import { AppContextfn } from "@/app/Context";
 
 function Navcategories({ category }) {
@@ -26,7 +26,7 @@ function Navcategories({ category }) {
             >
               {item}
             </Link>
-            {categorylist[item].subcat.length > 0 && (
+            {/* {categorylist[item].subcat.length > 0 && (
               <div className="fixed top-[110px] left-[50%] translate-x-[-50%] w-full opacity-0 pointer-events-none translate-y-[50px]  lg:group-hover:opacity-100 lg:group-hover:pointer-events-auto lg:group-hover:translate-y-0 duration-300 ">
                 <div className="w-full  flex items-center justify-center flex-wrap gap-[20px]  bg-graygradient mt-[12px] overflow-hidden p-[20px]">
                   {categorylist[item].subcat.map((subcat, j) => {
@@ -42,7 +42,7 @@ function Navcategories({ category }) {
                   })}
                 </div>
               </div>
-            )}
+            )} */}
           </div>
         );
       })}

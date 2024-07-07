@@ -6,7 +6,7 @@ import Seacrchsuggestionarrowsvg from "../_svgs/Seacrchsuggestionarrowsvg";
 import { useRouter } from "next/navigation";
 import { AppContextfn } from "../Context";
 
-function Searchbox() {
+function Searchbox({ productsname }) {
   const router = useRouter();
 
   const { setshowsearch, searchinputref } = AppContextfn();
@@ -59,29 +59,19 @@ function Searchbox() {
     "Study & Laptop Tables",
     "Office Sofa",
     "Home Decor & More",
-    // 
-    "Merlin mose full cushion bed",
-    "Premium Ureka 3+1+1 sofa set",
-    "Mahira 3 seater sofa",
-    "Macle Sofa 3+2 seater",
-    "Rosle Sofa 2+2 seater",
-    "Kyle L shape sofa set 5 seater",
-    "Pyrin 3+2 seater sofa set",
-    "Flora kids bed",
-    "Wing chair",
-    "Louts wing chair",
-    "Sofa cum bed in full upholstery",
-    "Sofa cum bed full cushion",
-    "Round Ottoman",
-    "Ottoman cylindrical",
-    "Ottoman square",
-    "Upholstery chairs",
-    "Chair upholstery with metal legs",
+    ,
+    ...productsname,
   ];
 
   const filtersearch = (words) => {
     let temp;
-    const permanentowrds = ["King Size Bed", "4-Seater Dining Set", "Coffee Tables", "Flora kids bed", "Home Decor & More"];
+    const permanentowrds = [
+      "King Size Bed",
+      "4-Seater Dining Set",
+      "Coffee Tables",
+      "Flora kids bed",
+      "Home Decor & More",
+    ];
     if (words.trim() == "") {
       return permanentowrds;
     }

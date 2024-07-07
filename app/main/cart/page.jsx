@@ -26,7 +26,7 @@ export default function Page() {
 
   if (cartlength != 0) {
     return (
-      <div className="p-[20px] flex gap-[10px] bg-bg1 min-h-[calc(100vh-111px)]">
+      <div className="p-[5px] md:p-[20px] flex flex-col lg:flex-row gap-[10px] bg-bg1 min-h-[calc(100vh-111px)]">
         <div className="w-full">
           {/* location */}
           {/* https://api.postalpincode.in/pincode/122505 */}
@@ -53,7 +53,7 @@ export default function Page() {
           </div>
         </div>
         {/* price details */}
-        <div className=" min-w-[400px] ">
+        <div className=" md:min-w-[400px] ">
           <div className="sticky top-[132px] w-full">
             <div className=" w-full bg-white border border-slate-300 ">
               <h2 className="text-[20px] font-bold px-[20px] py-[15px]">
@@ -112,7 +112,7 @@ export default function Page() {
                 </p>
               </div>
             </div>
-            <div className="flex gap-[10px] mt-[30px] px-[10px]">
+            <div className="flex items-center gap-[10px] mt-[30px] pb-[30px] md:pb-0 px-[10px]">
               <Secureicon />
               <span>
                 Safe and Secure Payments. Easy returns. 100% Authentic products.
@@ -124,14 +124,14 @@ export default function Page() {
     );
   } else {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[calc(100vh-111px)] ">
+      <div className="flex flex-col items-center justify-center min-h-[calc(100vh-60px)] lg:min-h-[calc(100vh-111px)] p-[20px]">
         <Image
           src="/no-cart.png"
           alt="Empty cart image"
           height={300}
           width={300}
         ></Image>
-        <p className="mt-[30px] font-bold text-[20px]">
+        <p className="mt-[30px] font-bold text-[20px] text-center">
           Your Cart is Empty, Add Some Products.
         </p>
         <Link

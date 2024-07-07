@@ -1,6 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import Deletesvg from "@/app/_svgs/Deletesvg";
+import Bookmark from "@/app/_svgs/Bookmark";
 
 export default function Products({ cart, setcart }) {
   return (
@@ -18,17 +20,17 @@ export default function Products({ cart, setcart }) {
         return (
           <div key={i} className="flex flex-col gap-[20px] w-full p-[20px]">
             {i != 0 && <hr />}
-            <div className="flex gap-[20px] h-[150px]">
+            <div className="flex flex-col md:flex-row gap-[20px] md:h-[150px]">
               <Link
                 href={`/${product.category}/${product.subcat}/${product._id}?color=${color}`}
-                className="h-full aspect-square border border-slate-300"
+                className="w-full md:w-auto aspect-[2/1] md:h-full  md:aspect-square border border-slate-300"
               >
                 <Image
                   src={product.colorpalets[product.selectedcolor].images[0]}
                   alt={product.name}
                   height={200}
                   width={200}
-                  className="h-full w-full object-contain object-center"
+                  className="h-full w-full aspect-[2/1] md:aspect-square object-contain object-center"
                 />
               </Link>
               <div className="flex flex-col h-full w-full ">
@@ -64,8 +66,8 @@ export default function Products({ cart, setcart }) {
                     </span>
                   )}
                 </p>
-                <div className="flex gap-[20px] mt-auto">
-                  <div className="flex items-center gap-[5px] h-[30px]">
+                <div className="flex gap-[20px] h-[30px] mt-[20px] md:mt-auto">
+                  <div className="flex items-center gap-[5px] h-full">
                     <button
                       className="h-full aspect-square rounded-[5px] border border-slate-300"
                       onClick={() => {
@@ -104,8 +106,9 @@ export default function Products({ cart, setcart }) {
                       +
                     </button>
                   </div>
-                  <button className="h-full border border-slate-300 px-[20px] rounded-full">
-                    Save for Later
+                  <button className="h-full border border-slate-300 px-[20px] rounded-full ml-auto md:ml-0">
+                    <span className="hidden md:block">Save for Later</span>
+                    <Bookmark styles="md:hidden h-[25px] aspect-square fill-none" />
                   </button>
                   <button
                     className="h-full border border-slate-300 px-[20px] rounded-full"
@@ -116,7 +119,8 @@ export default function Products({ cart, setcart }) {
                       setcart(newcart);
                     }}
                   >
-                    Remove
+                    <span className="hidden md:block">Remove</span>
+                    <Deletesvg styles="md:hidden h-[25px] aspect-square fill-none" />
                   </button>
                 </div>
               </div>

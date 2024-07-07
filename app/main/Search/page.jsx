@@ -87,7 +87,7 @@ async function page({ searchParams }) {
     );
   } else {
     return (
-      <div className="h-[calc(100vh-120px)] flex items-center justify-center">
+      <div className=" h-[calc(100vh-60px)] lg:h-[calc(100vh-120px)] flex items-center justify-center">
         <Productnotfound />
       </div>
     );

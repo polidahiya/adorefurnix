@@ -7,8 +7,11 @@ import Bestselling from "./_components/Homepage/Bestselling";
 import Collage from "./_components/Homepage/Collage";
 import Categories from "./_components/Homepage/Categories";
 import Searchbox from "./_components/Searchbox";
+import { Cachedproducts } from "./_components/serveractions/Getcachedata";
 
-export default function Home() {
+export default async function Home() {
+  const products = await Cachedproducts();
+  const productsname = products.map((item) => item.name);
   return (
     <div>
       <div className="relative w-full box-content h-fit " id="home">
@@ -45,11 +48,11 @@ export default function Home() {
         {/*  */}
         <div className="absolute top-[60px] md:top-[150px] w-full z-40">
           <h2 className="text-[3vw] font-semibold max-w-[70%] text-center mx-auto text-white">
-           Uplift you Lifestyle
+            Uplift you Lifestyle
           </h2>
           <center>
             <div className="w-[70%] max-w-[650px] h-[35px] md:h-[40px] mt-[10px] md:mt-[30px] ">
-              <Searchbox />
+              <Searchbox productsname={productsname}/>
             </div>
           </center>
         </div>
@@ -82,11 +85,6 @@ export default function Home() {
 
       {/* blogs */}
       <Blogscomp />
-
-      {/* footer */}
-      <footer className=" bg-graygradient h-[300px] mt-[50px]">
-        This i foolter
-      </footer>
     </div>
   );
 }
