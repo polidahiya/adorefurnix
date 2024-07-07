@@ -12,6 +12,7 @@ function Searchbox({ productsname }) {
   const { setshowsearch, searchinputref } = AppContextfn();
   const [search, setSearch] = useState("");
   const [showsuggestions, setshowsuggestions] = useState([false, false]);
+  const [arrowselectedsuggest, setarrowselectedsuggest] = useState(null);
 
   const suggesionsarray = [
     "Living Room",
@@ -97,6 +98,8 @@ function Searchbox({ productsname }) {
     }, 300);
   };
 
+  const fivefiltersuggestion = filtersearch(search).slice(0, 5);
+
   useEffect(() => {
     if (typeof window != undefined) {
       const params = new URLSearchParams(window.location.search);
@@ -115,10 +118,41 @@ function Searchbox({ productsname }) {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           onKeyDown={(e) => {
-            if (e.key === "Enter" && search.trim() != "") {
-              //   settogglemobilesearch(!togglemobilesearch);
-              router.push(`/main/Search?query=${search}`);
+            if (e.key === "Enter") {
+              if (arrowselectedsuggest == null) {
+                if (search.trim() != "")
+                  router.push(`/main/Search?query=${search}`);
+              } else {
+                setSearch(fivefiltersuggestion[arrowselectedsuggest]);
+                router.push(
+                  `/main/Search?query=${fivefiltersuggestion[arrowselectedsuggest]}`
+                );
+              }
               searchinputref.current.blur();
+            }
+            //
+
+            if (e.key == "ArrowDown") {
+              if (arrowselectedsuggest == null) {
+                setarrowselectedsuggest(0);
+              } else {
+                if (arrowselectedsuggest != fivefiltersuggestion.length - 1) {
+                  setarrowselectedsuggest((pre) => pre + 1);
+                } else {
+                  setarrowselectedsuggest(0);
+                }
+              }
+            }
+            if (e.key == "ArrowUp") {
+              if (arrowselectedsuggest == null) {
+                setarrowselectedsuggest(fivefiltersuggestion.length - 1);
+              } else {
+                if (arrowselectedsuggest != 0) {
+                  setarrowselectedsuggest((pre) => pre - 1);
+                } else {
+                  setarrowselectedsuggest(fivefiltersuggestion.length - 1);
+                }
+              }
             }
           }}
           onFocus={() => {
@@ -126,12 +160,13 @@ function Searchbox({ productsname }) {
             setTimeout(() => {
               setshowsuggestions([true, true]);
             }, 100);
+            setarrowselectedsuggest(null);
           }}
           onBlur={() => {
             setTimeout(() => {
               closesuggestions();
+              setshowsearch(false);
             }, 100);
-            setshowsearch(false);
           }}
         />
         <Link
@@ -151,29 +186,30 @@ function Searchbox({ productsname }) {
           }`}
         >
           <div className=" h-full w-full rounded-[8px] overflow-hidden bg-white  ">
-            {filtersearch(search)
-              .slice(0, 5)
-              .map((item, i) => {
-                return (
-                  <div
-                    key={i}
-                    onClick={() => {
-                      setSearch(item);
-                    }}
+            {fivefiltersuggestion.map((item, i) => {
+              return (
+                <div
+                  key={i}
+                  onClick={() => {
+                    setSearch(item);
+                  }}
+                  className={`${
+                    arrowselectedsuggest == i ? "bg-slate-200" : ""
+                  }`}
+                >
+                  <Link
+                    href={`/main/Search?query=${item}`}
+                    className="w-full flex items-center justify-between h-[40px] lg:hover:bg-slate-100 pl-[20px] pr-[10px] "
                   >
-                    <Link
-                      href={`/main/Search?query=${item}`}
-                      className="w-full flex items-center justify-between h-[40px] lg:hover:bg-slate-100 pl-[20px] pr-[10px] "
-                    >
-                      <p className="  text-start max-w-[calc(100%-50px)] text-ellipsis overflow-hidden whitespace-nowrap">
-                        {item}
-                      </p>
-                      <Seacrchsuggestionarrowsvg styles="h-[20px] stroke-slate-600 rotate-[-90deg]" />
-                    </Link>
-                    <hr />
-                  </div>
-                );
-              })}
+                    <p className="  text-start max-w-[calc(100%-50px)] text-ellipsis overflow-hidden whitespace-nowrap">
+                      {item}
+                    </p>
+                    <Seacrchsuggestionarrowsvg styles="h-[20px] stroke-slate-600 rotate-[-90deg]" />
+                  </Link>
+                  <hr />
+                </div>
+              );
+            })}
           </div>
         </div>
       )}
