@@ -42,6 +42,31 @@ body {
   /* background-image: url(/public/categoriesimages/homedecoreandmore.webp); */
 }
 
+/* inuput fields */
+.forminput:focus + label,
+.forminput:valid + label {
+  -webkit-transform: translateY(-80%);
+  -ms-transform: translateY(-80%);
+  transform: translateY(-80%);
+  font-size: 12px;
+}
+
+.forminput:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+  -webkit-transition: background-color 5000s ease-in-out 0s;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.forminput:-moz-autofill {
+  -moz-box-shadow: 0 0 0px 1000px white inset;
+  -moz-transition: background-color 5000s ease-in-out 0s;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.forminput:-moz-focusring {
+  outline: 1px dotted transparent;
+}
+
 .test {
   border: 1px solid red;
 }

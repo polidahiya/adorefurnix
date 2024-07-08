@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState,useRef } from "react";
+import { createContext, useContext, useState, useRef } from "react";
 
 const AppContext = createContext({});
 
@@ -8,8 +8,12 @@ export function Appwrapper({ children }) {
   const [cart, setcart] = useState({});
   const [showcat, setshowcat] = useState(false);
   const [showsearch, setshowsearch] = useState(false);
+  const [toggleusermenu, settoggleusermenu] = useState({
+    show: false,
+    effect: false,
+  });
   const searchinputref = useRef();
-
+  const [redirectloginlink, setredirectloginlink] = useState("");
 
   // admin contexts
   const [addproduct, setaddproduct] = useState({
@@ -44,8 +48,12 @@ export function Appwrapper({ children }) {
         showcat,
         setshowcat,
         showsearch,
+        toggleusermenu,
+        settoggleusermenu,
         setshowsearch,
         searchinputref,
+        redirectloginlink,
+        setredirectloginlink,
         // admin
         addproduct,
         setaddproduct,

@@ -131,3 +131,6 @@ export const filterlist = [
     max: 500000,
   },
 ];
+
+// login time
+export const logintime = [3600 * 24 * 2, "48h"];

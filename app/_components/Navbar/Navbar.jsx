@@ -7,14 +7,16 @@ import Navcategories from "./Navcategories";
 import { Centralnav } from "./Publiccomps";
 import { Showsearchbutton } from "./Publiccomps";
 import { Exitblackscreen } from "./Publiccomps";
+import { Logedinusermenu } from "./Publiccomps";
 
-function Navbar({ params,productsname }) {
+function Navbar({ params, productsname, token, userdata }) {
   const category = params?.Category?.replace(/%20/g, " ")?.replace(/%26/g, "&");
 
   return (
     <nav className="sticky bg-graygradient top-0 left-0 w-full p-[10px] md:px-[40px] z-40 ">
       <div className="relative flex h-[40px] items-center justify-between ">
         <div className="flex items-center gap-[10px] w-full h-full">
+          <Showmobilecategorymenubutton />
           <Link href="/" className="h-full w-fit flex ">
             <Image
               className=" w-auto h-full "
@@ -26,9 +28,9 @@ function Navbar({ params,productsname }) {
           </Link>
         </div>
         {/* searchbar */}
-        <Centralnav productsname={productsname}/>
+        <Centralnav productsname={productsname} />
 
-        <div className="w-full h-full flex items-center justify-end gap-[10px]">
+        <div className="w-full h-full flex items-center justify-end gap-0 md:gap-[10px]">
           <Showsearchbutton />
           <Link
             href="/main/cart"
@@ -37,9 +39,18 @@ function Navbar({ params,productsname }) {
             <Cartsvg styles="fill-white h-[20px]" />
             <Cartproductcount />
           </Link>
-          <Showmobilecategorymenubutton />
+          {token ? (
+            <Logedinusermenu userdata={userdata}/>
+          ) : (
+            <Link
+              href="/main/loginlogout"
+              className="flex items-center justify-center bg-theme text-white h-full px-[20px] rounded-full "
+            >
+              Login
+            </Link>
+          )}
         </div>
-        <Exitblackscreen/>
+        <Exitblackscreen />
       </div>
       {/* categories */}
       <Navcategories category={category} />

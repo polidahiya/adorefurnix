@@ -47,12 +47,12 @@ export default async function Home() {
         </nav>
         {/*  */}
         <div className="absolute top-[60px] md:top-[150px] w-full z-40">
-          <h2 className="text-[3vw] font-semibold max-w-[70%] text-center mx-auto text-white">
-            Uplift you Lifestyle
+          <h2 className="text-[3vw] font-semibold max-w-[70%] text-center mx-auto italic text-white">
+            Furnish with Love, Live with Elegance
           </h2>
           <center>
             <div className="w-[70%] max-w-[650px] h-[35px] md:h-[40px] mt-[10px] md:mt-[30px] ">
-              <Searchbox productsname={productsname}/>
+              <Searchbox productsname={productsname} />
             </div>
           </center>
         </div>

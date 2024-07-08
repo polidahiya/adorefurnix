@@ -12,7 +12,7 @@ module.exports = {
         theme: "linear-gradient(90deg,#10e89c,#0593f7)",
       },
       colors: {
-        // theme2:"linear-gradient(90deg,#10e89c,#0593f7)"
+        theme:"#10e89c",
         bg1: "#f1f3f6",
       },
     },
