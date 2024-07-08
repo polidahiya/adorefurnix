@@ -9,7 +9,7 @@ import Usersvg from "@/app/_svgs/Usersvg";
 function Userdetails() {
   const router = useRouter();
 
-  const { redirectloginlink } = AppContextfn();
+  const { redirectloginlink, setmessagefn } = AppContextfn();
 
   const [toggleform, settoggleform] = useState(false);
   const [togglepassword, settogglepassword] = useState(true);
@@ -18,6 +18,7 @@ function Userdetails() {
   const passwordref = useRef("");
   const phonenumref = useRef("");
   const addressref = useRef("");
+  const [showloading, setshowloading] = useState(false);
 
   const fieldcheck = () => {
     // if fields are empty
@@ -25,7 +26,7 @@ function Userdetails() {
     for (let i = 0; i < refarray.length; i++) {
       if (refarray[i]?.current?.value == "") {
         refarray[i]?.current?.focus();
-        // shownotification("Please fill this field");
+        setmessagefn("Please fill this field");
         return false;
       }
     }
@@ -33,12 +34,12 @@ function Userdetails() {
     if (toggleform) {
       if (nameref.current.value.length < 3) {
         nameref.current.focus();
-        // shownotification("Name is too short");
+        setmessagefn("Name is too short");
         return false;
       }
       if (nameref.current.value.length > 50) {
         nameref.current.focus();
-        // shownotification("Name is too big");
+        setmessagefn("Name is too big");
         return false;
       }
     }
@@ -47,7 +48,7 @@ function Userdetails() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(emailref.current.value)) {
       emailref.current.focus();
-      // shownotification("Invalid email");
+      setmessagefn("Invalid email");
       return false;
     }
 
@@ -56,7 +57,7 @@ function Userdetails() {
       const mobileregex = /^\d{10}$/;
       if (!mobileregex.test(phonenumref.current.value)) {
         emailref.current.focus();
-        // shownotification("Invalid mobile number");
+        setmessagefn("Invalid mobile number");
         return false;
       }
     }
@@ -67,15 +68,13 @@ function Userdetails() {
 
     if (passwordref.current.value.length < minLength) {
       passwordref.current.focus();
-      // shownotification(
-      //   "Password is too short ( " + minLength + " chars min )*"
-      // );
+      setmessagefn("Password is too short ( " + minLength + " chars min )*");
       return false;
     }
 
     if (passwordref.current.value.length > maxLength) {
       passwordref.current.focus();
-      // shownotification("Password is too big ( " + maxLength + " chars min )*");
+      setmessagefn("Password is too big ( " + maxLength + " chars min )*");
       return false;
     }
 
@@ -88,6 +87,7 @@ function Userdetails() {
     if (!filedcheckvalue) {
       return;
     }
+    setshowloading(true);
     // send data
     if (toggleform) {
       // signup
@@ -101,20 +101,11 @@ function Userdetails() {
 
       const reply = await signup(userdata);
 
-      // setnotifictionarr([
-      //   ...notifictionarr,
-      //   {
-      //     id: new Date() + new Date().getMilliseconds(),
-      //     content: reply?.message,
-      //   },
-      // ]);
+      setmessagefn(reply?.message);
+      setshowloading(false);
 
       if (reply.message == "Signup successfully") {
-        if (redirectloginlink) {
-          router.push(redirectloginlink);
-        } else {
-          router.push("/");
-        }
+        router.push(redirectloginlink);
       }
     } else {
       // login
@@ -122,23 +113,14 @@ function Userdetails() {
         email: emailref.current.value,
         password: passwordref.current.value,
       };
-
+      
       const reply = await login(userdata);
-
-      // setnotifictionarr([
-      //   ...notifictionarr,
-      //   {
-      //     id: new Date() + new Date().getMilliseconds(),
-      //     content: reply?.message,
-      //   },
-      // ]);
-
+      
+      setmessagefn(reply?.message);
+      setshowloading(false);
+      
       if (reply.message == "Login successfull") {
-        if (redirectloginlink) {
-          router.push(redirectloginlink);
-        } else {
-          router.push("/");
-        }
+        router.push(redirectloginlink);
       }
     }
   };
@@ -247,9 +229,12 @@ function Userdetails() {
       {/* login or signup button */}
       <center>
         <button
-          className="px-[100px] py-[5px] bg-theme text-white rounded-full mt-[20px] "
+          className="flex items-center justify-center gap-[10px] px-[100px] py-[5px] bg-theme text-white rounded-full mt-[20px] "
           onClick={authenticateuser}
         >
+          {showloading && (
+            <div className="h-[20px] aspect-square rounded-full  border-r-2 border-l-2 border-white animate-spin"></div>
+          )}
           {toggleform ? "Signup" : "Login"}
         </button>
       </center>

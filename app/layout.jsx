@@ -1,6 +1,7 @@
 import "./globals.css";
 import { Appwrapper } from "./Context";
 import Footer from "./_components/Footer";
+import Message from "./_components/Message";
 
 export const metadata = {
   title: "Adorefurnix",
@@ -12,6 +13,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <Appwrapper>
         <body className="antialiased ">
+          <Message />
           <div>{children}</div>
           {/* footer */}
           <Footer />

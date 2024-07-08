@@ -1,7 +1,6 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import { AppContextfn } from "@/app/Context";
-import Menusvg from "@/app/_svgs/Menusvg";
 import Searchbox from "../Searchbox";
 import Searchsvg from "@/app/_svgs/Searchsvg";
 import Usersvg from "@/app/_svgs/Usersvg";
@@ -30,16 +29,30 @@ export const Cartproductcount = () => {
 };
 
 export const Showmobilecategorymenubutton = () => {
-  const { setshowcat, setshowsearch } = AppContextfn();
+  const { showcat, setshowcat, setshowsearch } = AppContextfn();
   return (
     <button
-      className="lg:hidden h-full"
       onClick={() => {
         setshowcat((pre) => !pre);
         setshowsearch(false);
       }}
+      className="lg:hidden h-[calc(100%-2px)] aspect-square flex flex-col justify-center items-center border-[1.5px] border-white"
     >
-      <Menusvg styles="h-[80%] aspect-square" />
+      <span
+        className={`bg-white block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ${
+          showcat ? "rotate-45 translate-y-1" : "-translate-y-0.5"
+        }`}
+      ></span>
+      <span
+        className={`bg-white block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm my-0.5 ${
+          showcat ? "opacity-0" : "opacity-100"
+        }`}
+      ></span>
+      <span
+        className={`bg-white block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ${
+          showcat ? "-rotate-45 -translate-y-1" : "translate-y-0.5"
+        }`}
+      ></span>
     </button>
   );
 };
@@ -76,104 +89,123 @@ export const Showsearchbutton = () => {
   );
 };
 
-export const Logedinusermenu = ({ userdata }) => {
+export const Logedinusermenu = ({ token, userdata }) => {
   const router = useRouter();
-  const { toggleusermenu, settoggleusermenu } = AppContextfn();
+  const {
+    toggleusermenu,
+    settoggleusermenu,
+    setmessagefn,
+    setredirectloginlink,
+  } = AppContextfn();
 
-  return (
-    <>
-      {/* usermenu svg */}
-      <button
-        className="relative h-full aspect-square z-20"
-        onClick={() => {
-          settoggleusermenu((pre) => ({ ...pre, show: true }));
-          setTimeout(() => {
-            settoggleusermenu((pre) => ({ ...pre, effect: true }));
-          }, 100);
-        }}
-      >
-        <Usersvg styles="h-full aspect-square fill-white stroke-white p-[4px]" />
-      </button>
-      {/* cancle button */}
-      {toggleusermenu.show && (
+  if (token) {
+    return (
+      <>
+        {/* usermenu svg */}
         <button
-          className="fixed top-0 left-0 h-screen w-screen cursor-default"
+          className="relative h-full aspect-square z-20"
           onClick={() => {
-            settoggleusermenu((pre) => ({ ...pre, effect: false }));
+            settoggleusermenu((pre) => ({ ...pre, show: true }));
             setTimeout(() => {
-              settoggleusermenu((pre) => ({ ...pre, show: false }));
-            }, 300);
+              settoggleusermenu((pre) => ({ ...pre, effect: true }));
+            }, 100);
           }}
-        ></button>
-      )}
-      {/* menu */}
-      {toggleusermenu.show && (
-        <div
-          className={`absolute top-[60px] lg:top-[50px] right-0 lg:right-[-10px]  w-[250px]  bg-white border border-slate-300 rounded-[10px] p-[10px] shadow-lg duration-300 ${
-            toggleusermenu.effect
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 translate-y-[20px]"
-          }`}
         >
-          <center>
-            <Usersvg styles="h-[30px] border border-slate-300   mt-[20px] aspect-square fill-white" />
-          </center>
-          <div className="text-center ">{JSON.parse(userdata).username}</div>
-          <div className="text-center text-[12px] text-cyan-500 mt-[5px]">
-            {JSON.parse(userdata).email}
-          </div>
-          <div
-            className="flex flex-col gap-[2px] w-full mt-[30px]"
+          <Usersvg styles="h-full aspect-square fill-white stroke-white p-[4px]" />
+        </button>
+        {/* cancle button */}
+        {toggleusermenu.show && (
+          <button
+            className="fixed top-0 left-0 h-screen w-screen cursor-default "
             onClick={() => {
-              settoggleusermenu((pre) => ({ ...pre, show: false }));
+              settoggleusermenu((pre) => ({ ...pre, effect: false }));
+              setTimeout(() => {
+                settoggleusermenu((pre) => ({ ...pre, show: false }));
+              }, 300);
             }}
+          ></button>
+        )}
+        {/* menu */}
+        {toggleusermenu.show && (
+          <div
+            className={`absolute top-[60px] lg:top-[50px] right-0 lg:right-[-10px]  w-[250px]  bg-white border border-slate-300 rounded-[10px] p-[10px] shadow-lg duration-300 ${
+              toggleusermenu.effect
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-[20px]"
+            }`}
           >
-            <Link
-              href={`/main/orderdetails`}
-              className="p-[5px] flex items-center gap-[10px] lg:hover:bg-slate-100 cursor-pointer"
-            >
-              <Navorderssvg styles="h-[25px]" />
-              Orders Detail
-            </Link>
-            <hr />
-            <Link
-              href={`/main/likedproducts`}
-              className="p-[5px] flex items-center gap-[10px] lg:hover:bg-slate-100 cursor-pointer"
-            >
-              <Heart styles="h-[25px] w-[25px] fill-red-500 " />
-              Liked Products
-            </Link>
-            <hr />
-            <Link
-              href={`/main/updateuserdetails`}
-              className="p-[5px] flex items-center gap-[10px] lg:hover:bg-slate-100 cursor-pointer"
-            >
-              <Updateusersvg styles="h-[25px]" />
-              Update User Details
-            </Link>
-            <hr />
+            <center>
+              <Usersvg styles="h-[30px] border border-slate-300 rounded-full  mt-[20px] aspect-square fill-white" />
+            </center>
+            <div className="text-center ">{JSON.parse(userdata).username}</div>
+            <div className="text-center text-[12px] text-cyan-500 mt-[5px] ">
+              {JSON.parse(userdata).email}
+            </div>
             <div
-              className="p-[5px] flex items-center gap-[10px] lg:hover:bg-slate-100 cursor-pointer"
-              onClick={async () => {
-                let res = await logout();
-                // setnotifictionarr([
-                //   ...notifictionarr,
-                //   {
-                //     id: new Date() + new Date().getMilliseconds(),
-                //     content: res?.message,
-                //   },
-                // ]);
-                router.push("/");
+              className="flex flex-col gap-[2px] w-full mt-[30px]"
+              onClick={() => {
+                settoggleusermenu((pre) => ({ ...pre, show: false }));
               }}
             >
-              <Logoutsvg styles="h-[25px]" />
-              Logout
+              <Link
+                href={`/main/orderdetails`}
+                className="p-[5px] flex items-center gap-[10px] lg:hover:bg-slate-100 cursor-pointer"
+              >
+                <Navorderssvg styles="h-[25px]" />
+                Orders Detail
+              </Link>
+              <hr />
+              <Link
+                href={`/main/likedproducts`}
+                className="p-[5px] flex items-center gap-[10px] lg:hover:bg-slate-100 cursor-pointer"
+              >
+                <Heart styles="h-[25px] w-[25px] fill-red-500 " />
+                Liked Products
+              </Link>
+              <hr />
+              <Link
+                href={`/main/updateuserdetails`}
+                className="p-[5px] flex items-center gap-[10px] lg:hover:bg-slate-100 cursor-pointer"
+              >
+                <Updateusersvg styles="h-[25px]" />
+                Update User Details
+              </Link>
+              <hr />
+              <div
+                className="p-[5px] flex items-center gap-[10px] lg:hover:bg-slate-100 cursor-pointer"
+                onClick={async () => {
+                  let res = await logout();
+
+                  setmessagefn(res?.message);
+                  router.push("/");
+                }}
+              >
+                <Logoutsvg styles="h-[25px]" />
+                Logout
+              </div>
             </div>
           </div>
-        </div>
-      )}
-    </>
-  );
+        )}
+      </>
+    );
+  } else {
+    return (
+      <button
+        onClick={() => {
+          const link = new URL(window.location.href);
+          setredirectloginlink(link.pathname);
+          console.log(link.pathname);
+        }}
+      >
+        <Link
+          href="/main/loginlogout"
+          className="flex items-center justify-center bg-theme text-white h-[30px] px-[10px] md:px-[20px] rounded-full"
+        >
+          Login
+        </Link>
+      </button>
+    );
+  }
 };
 
 export const Exitblackscreen = () => {

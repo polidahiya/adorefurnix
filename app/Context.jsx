@@ -13,7 +13,14 @@ export function Appwrapper({ children }) {
     effect: false,
   });
   const searchinputref = useRef();
-  const [redirectloginlink, setredirectloginlink] = useState("");
+  const [redirectloginlink, setredirectloginlink] = useState("/");
+  const [messagearray, setmessagearray] = useState([]);
+  const setmessagefn = (message) => {
+    setmessagearray([
+      ...messagearray,
+      { id: Math.random() + new Date().getMilliseconds(), message: message },
+    ]);
+  };
 
   // admin contexts
   const [addproduct, setaddproduct] = useState({
@@ -54,6 +61,9 @@ export function Appwrapper({ children }) {
         searchinputref,
         redirectloginlink,
         setredirectloginlink,
+        messagearray,
+        setmessagearray,
+        setmessagefn,
         // admin
         addproduct,
         setaddproduct,

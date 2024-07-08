@@ -59,7 +59,7 @@ async function page({ params, searchParams }) {
         </div>
         {/* details */}
         <div className="w-full lg:w-[50%] p-[10px] px-[20px]">
-          <div className=" sticky top-[60px] lg:top-[120px] bg-white flex gap-[10px] text-[#87878] text-[14px] z-20  whitespace-nowrap ">
+          <div className=" sticky top-[60px] lg:top-[110px] bg-white flex gap-[10px] text-[#87878] text-[14px] z-20  whitespace-nowrap ">
             <Link className="lg:hover:text-cyan-500" href={"/"}>
               Home
             </Link>{" "}

@@ -15,6 +15,7 @@ function Navbar({ params, productsname, token, userdata }) {
   return (
     <nav className="sticky bg-graygradient top-0 left-0 w-full p-[10px] md:px-[40px] z-40 ">
       <div className="relative flex h-[40px] items-center justify-between ">
+        {/* firstcomp */}
         <div className="flex items-center gap-[10px] w-full h-full">
           <Showmobilecategorymenubutton />
           <Link href="/" className="h-full w-fit flex ">
@@ -30,6 +31,7 @@ function Navbar({ params, productsname, token, userdata }) {
         {/* searchbar */}
         <Centralnav productsname={productsname} />
 
+        {/* third comp */}
         <div className="w-full h-full flex items-center justify-end gap-0 md:gap-[10px]">
           <Showsearchbutton />
           <Link
@@ -39,16 +41,7 @@ function Navbar({ params, productsname, token, userdata }) {
             <Cartsvg styles="fill-white h-[20px]" />
             <Cartproductcount />
           </Link>
-          {token ? (
-            <Logedinusermenu userdata={userdata}/>
-          ) : (
-            <Link
-              href="/main/loginlogout"
-              className="flex items-center justify-center bg-theme text-white h-full px-[20px] rounded-full "
-            >
-              Login
-            </Link>
-          )}
+          <Logedinusermenu userdata={userdata} token={token} />
         </div>
         <Exitblackscreen />
       </div>

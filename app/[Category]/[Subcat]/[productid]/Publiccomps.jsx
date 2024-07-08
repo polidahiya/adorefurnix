@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 export function Addtocartbuttons({ filteredproducts, color }) {
   const router = useRouter();
 
-  const { cart, setcart } = AppContextfn();
+  const { cart, setcart, setmessagefn } = AppContextfn();
   const [availableincart, setavailableincart] = useState(false);
 
   useEffect(() => {
@@ -25,6 +25,12 @@ export function Addtocartbuttons({ filteredproducts, color }) {
       <button
         className="flex items-center justify-center gap-[10px] w-full h-[40px] bg-[#ff9f00] text-white"
         onClick={() => {
+          // check available
+          if (!filteredproducts.available) {
+            setmessagefn("Product is not available");
+            return;
+          }
+          //
           if (availableincart) {
             router.push("/main/cart");
             return;
@@ -39,6 +45,7 @@ export function Addtocartbuttons({ filteredproducts, color }) {
               quantity: 1,
             },
           }));
+          setmessagefn("Added to Cart");
         }}
       >
         <Cartsvg styles="fill-white h-[16px]" />{" "}
@@ -47,6 +54,12 @@ export function Addtocartbuttons({ filteredproducts, color }) {
       <button
         className="flex items-center justify-center gap-[10px] w-full h-[40px] bg-[#fb641b] text-white"
         onClick={() => {
+          // check available
+          if (!filteredproducts.available) {
+            setmessagefn("Product is not available");
+            return;
+          }
+          //
           if (!availableincart) {
             const editedproduct = { ...filteredproducts };
             delete editedproduct.desc;

@@ -9,7 +9,7 @@ function Navcategories({ category }) {
   const { showcat,setshowcat } = AppContextfn();
 
   return (
-    <div className={`overflow-hidden lg:flex items-center flex-wrap justify-between lg:h-[40px] mt-[20px] ${showcat?"block":"hidden"}`}>
+    <div className={`overflow-hidden flex flex-col lg:flex-row lg:items-center justify-between lg:h-[30px] lg:mt-[20px] duration-300 ${showcat?"h-[270px] mt-[20px]":"h-0"}`}>
       {Object.keys(categorylist).map((item, i) => {
         return (
           <div key={i} className={`group h-full`}
@@ -19,7 +19,7 @@ function Navcategories({ category }) {
             <Link
               key={i}
               href={"/" + item}
-              className={`h-full w-full flex items-center justify-center  text-[14px] text-white  px-[20px] py-[5px] rounded-full ${
+              className={`h-[30px] w-full flex items-center justify-center  text-[14px] text-white  px-[20px] py-[5px] rounded-full ${
                 category == item ? "bg-theme " : ""
               }`}
              

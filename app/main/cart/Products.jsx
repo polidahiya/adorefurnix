@@ -3,8 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import Deletesvg from "@/app/_svgs/Deletesvg";
 import Bookmark from "@/app/_svgs/Bookmark";
+import { AppContextfn } from "@/app/Context";
 
 export default function Products({ cart, setcart }) {
+  const { setmessagefn } = AppContextfn();
+
   return (
     <>
       {Object.keys(cart).map((item, i) => {
@@ -117,6 +120,7 @@ export default function Products({ cart, setcart }) {
                       delete newcart[item];
 
                       setcart(newcart);
+                      setmessagefn("Product Removed")
                     }}
                   >
                     <span className="hidden md:block">Remove</span>
