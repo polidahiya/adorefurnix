@@ -109,10 +109,10 @@ export default function Products({ cart, setcart }) {
                       +
                     </button>
                   </div>
-                  <button className="h-full border border-slate-300 px-[20px] rounded-full ml-auto md:ml-0">
+                  {/* <button className="h-full border border-slate-300 px-[20px] rounded-full ml-auto md:ml-0">
                     <span className="hidden md:block">Save for Later</span>
                     <Bookmark styles="md:hidden h-[25px] aspect-square fill-none" />
-                  </button>
+                  </button> */}
                   <button
                     className="h-full border border-slate-300 px-[20px] rounded-full"
                     onClick={() => {
