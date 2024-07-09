@@ -31,7 +31,7 @@ function Promices() {
           >
             {item.image}
             <div className="flex flex-col justify-between items-center md:items-start py-[5px]">
-              <h2 className="text-[12px] md:text-[25px] font-bold">
+              <h2 className="text-[12px] md:text-[25px] font-bold italic font-serif">
                 {item.heading}
               </h2>
               <p className="text-[8px] md:text-[16px] font-semibold text-slate-500">

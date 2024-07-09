@@ -19,7 +19,7 @@ function Navcategories({ category }) {
             <Link
               key={i}
               href={"/" + item}
-              className={`h-[30px] w-full flex items-center justify-center  text-[14px] text-white  px-[20px] py-[5px] rounded-full ${
+              className={`h-[30px] w-full flex items-center justify-center  text-[14px] text-white  px-[20px] py-[5px] rounded-full text-center ${
                 category == item ? "bg-theme " : ""
               }`}
              

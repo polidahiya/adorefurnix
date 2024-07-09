@@ -22,7 +22,7 @@ function Blogscomp() {
 
   return (
     <>
-      <h2 className="text-center font-bold text-[25px] md:text-[40px] mt-[80px]" id="blogs">
+      <h2 className="text-center font-bold text-[25px] md:text-[40px] mt-[80px] italic font-serif" id="blogs">
         Blogs
       </h2>
       {blogs.map((blog, i) => {
@@ -96,7 +96,7 @@ function Blogscomp() {
       {/* get more button */}
       <center>
         <button
-          className="text-white text-[12px] md:text-[16px] rounded-full py-[5px] px-[20px] font-bold bg-[linear-gradient(90deg,#10e89c,#0593f7)] mt-0 md:mt-[50px]"
+          className="text-white text-[12px] md:text-[16px] rounded-full py-[5px] px-[20px] font-bold bg-[linear-gradient(90deg,#10e89c,#0593f7)] mt-0 md:my-[50px]"
           onClick={async () => {
             setshowloading(true);
             setnumberofblogs((pre) => pre + 1);

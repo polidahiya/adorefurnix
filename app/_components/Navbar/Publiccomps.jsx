@@ -36,7 +36,7 @@ export const Showmobilecategorymenubutton = () => {
         setshowcat((pre) => !pre);
         setshowsearch(false);
       }}
-      className="lg:hidden h-[calc(100%-2px)] aspect-square flex flex-col justify-center items-center border-[1.5px] border-white"
+      className="lg:hidden h-[calc(100%-4px)] aspect-square flex flex-col justify-center items-center "
     >
       <span
         className={`bg-white block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ${
@@ -103,7 +103,7 @@ export const Logedinusermenu = ({ token, userdata }) => {
       <>
         {/* usermenu svg */}
         <button
-          className="relative h-full aspect-square z-20"
+          className="relative h-full aspect-square z-20 "
           onClick={() => {
             settoggleusermenu((pre) => ({ ...pre, show: true }));
             setTimeout(() => {
@@ -112,6 +112,69 @@ export const Logedinusermenu = ({ token, userdata }) => {
           }}
         >
           <Usersvg styles="h-full aspect-square fill-white stroke-white p-[4px]" />
+          {/* menu */}
+          {toggleusermenu.show && (
+            <div
+              className={`absolute top-[calc(100%+10px)] right-0  w-[250px]  bg-white border border-slate-300 rounded-[10px] p-[10px] shadow-lg duration-300 ${
+                toggleusermenu.effect
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-[20px]"
+              }`}
+            >
+              <center>
+                <Usersvg styles="h-[30px] border border-slate-300 rounded-full  mt-[20px] aspect-square fill-white" />
+              </center>
+              <div className="text-center ">
+                {JSON.parse(userdata).username}
+              </div>
+              <div className="text-center text-[12px] text-cyan-500 mt-[5px] ">
+                {JSON.parse(userdata).email}
+              </div>
+              <div
+                className="flex flex-col gap-[2px] w-full mt-[30px]"
+                onClick={() => {
+                  settoggleusermenu((pre) => ({ ...pre, show: false }));
+                }}
+              >
+                <Link
+                  href={`/main/orderdetails`}
+                  className="p-[5px] flex items-center gap-[10px] lg:hover:bg-slate-100 cursor-pointer"
+                >
+                  <Navorderssvg styles="h-[25px]" />
+                  Orders Detail
+                </Link>
+                <hr />
+                <Link
+                  href={`/main/likedproducts`}
+                  className="p-[5px] flex items-center gap-[10px] lg:hover:bg-slate-100 cursor-pointer"
+                >
+                  <Heart styles="h-[25px] w-[25px] fill-red-500 " />
+                  Liked Products
+                </Link>
+                <hr />
+                <Link
+                  href={`/main/updateuserdetails`}
+                  className="p-[5px] flex items-center gap-[10px] lg:hover:bg-slate-100 cursor-pointer"
+                >
+                  <Updateusersvg styles="h-[25px]" />
+                  Update User Details
+                </Link>
+                <hr />
+                <div
+                  className="p-[5px] flex items-center gap-[10px] lg:hover:bg-slate-100 cursor-pointer"
+                  onClick={async () => {
+                    let res = await logout();
+
+                    setmessagefn(res?.message);
+                    router.push("/");
+                  }}
+                >
+                  <Logoutsvg styles="h-[25px]" />
+                  Logout
+                </div>
+              </div>
+            </div>
+          )}
         </button>
         {/* cancle button */}
         {toggleusermenu.show && (
@@ -124,67 +187,6 @@ export const Logedinusermenu = ({ token, userdata }) => {
               }, 300);
             }}
           ></button>
-        )}
-        {/* menu */}
-        {toggleusermenu.show && (
-          <div
-            className={`absolute top-[60px] lg:top-[50px] right-0 lg:right-[-10px]  w-[250px]  bg-white border border-slate-300 rounded-[10px] p-[10px] shadow-lg duration-300 ${
-              toggleusermenu.effect
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-[20px]"
-            }`}
-          >
-            <center>
-              <Usersvg styles="h-[30px] border border-slate-300 rounded-full  mt-[20px] aspect-square fill-white" />
-            </center>
-            <div className="text-center ">{JSON.parse(userdata).username}</div>
-            <div className="text-center text-[12px] text-cyan-500 mt-[5px] ">
-              {JSON.parse(userdata).email}
-            </div>
-            <div
-              className="flex flex-col gap-[2px] w-full mt-[30px]"
-              onClick={() => {
-                settoggleusermenu((pre) => ({ ...pre, show: false }));
-              }}
-            >
-              <Link
-                href={`/main/orderdetails`}
-                className="p-[5px] flex items-center gap-[10px] lg:hover:bg-slate-100 cursor-pointer"
-              >
-                <Navorderssvg styles="h-[25px]" />
-                Orders Detail
-              </Link>
-              <hr />
-              <Link
-                href={`/main/likedproducts`}
-                className="p-[5px] flex items-center gap-[10px] lg:hover:bg-slate-100 cursor-pointer"
-              >
-                <Heart styles="h-[25px] w-[25px] fill-red-500 " />
-                Liked Products
-              </Link>
-              <hr />
-              <Link
-                href={`/main/updateuserdetails`}
-                className="p-[5px] flex items-center gap-[10px] lg:hover:bg-slate-100 cursor-pointer"
-              >
-                <Updateusersvg styles="h-[25px]" />
-                Update User Details
-              </Link>
-              <hr />
-              <div
-                className="p-[5px] flex items-center gap-[10px] lg:hover:bg-slate-100 cursor-pointer"
-                onClick={async () => {
-                  let res = await logout();
-
-                  setmessagefn(res?.message);
-                  router.push("/");
-                }}
-              >
-                <Logoutsvg styles="h-[25px]" />
-                Logout
-              </div>
-            </div>
-          </div>
         )}
       </>
     );

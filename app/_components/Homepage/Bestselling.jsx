@@ -25,13 +25,13 @@ function Bestselling() {
 
   return (
     <>
-      <h3 className="text-[25px] text-center block lg:hidden font-bold mt-[30px]">
+      <h3 className="text-[25px] text-center block lg:hidden font-bold mt-[30px] italic font-serif">
         Best Selling Products{" "}
       </h3>
       <div className="flex items-center gap-[20px] px-[10px] md:px-[40px] mt-[10px] md:mt-[50px]">
         <div className="min-w-[300px] hidden lg:block">
           <h3
-            className="text-[40px] font-bold p-0"
+            className="text-[40px] font-bold p-0 italic font-serif"
             style={{ lineHeight: "45px" }}
           >
             Best Selling Products{" "}

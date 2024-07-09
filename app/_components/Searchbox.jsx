@@ -108,8 +108,8 @@ function Searchbox({ productsname }) {
   }, []);
 
   return (
-    <div className="relative  h-full w-full  p-[2px] border border-gray-300 rounded-[10px]">
-      <div className="flex h-full w-full rounded-[8px] overflow-hidden">
+    <div className="relative  h-full w-full  p-[2px] border border-gray-300 rounded-full">
+      <div className="flex h-full w-full rounded-full overflow-hidden bg-white p-[2px]">
         <input
           ref={searchinputref}
           type="text"
@@ -171,9 +171,10 @@ function Searchbox({ productsname }) {
         />
         <Link
           href={search?.trim() != "" ? `/main/Search?query=${search}` : "#"}
-          className="flex items-center justify-center w-[50px] bg-white border-l border-l-black "
+          className="flex items-center justify-center bg-theme h-full aspect-square md:aspect-auto md:gap-[5px] md:px-[10px] rounded-full"
         >
-          <Searchsvg styles="h-[20px] stroke-black" />
+          <Searchsvg styles="h-[20px] stroke-white" />
+          <span className="text-white hidden md:block">Search</span>
         </Link>
       </div>
       {/* suggestions */}

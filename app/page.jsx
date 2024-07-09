@@ -8,14 +8,23 @@ import Collage from "./_components/Homepage/Collage";
 import Categories from "./_components/Homepage/Categories";
 import Searchbox from "./_components/Searchbox";
 import { Cachedproducts } from "./_components/serveractions/Getcachedata";
+import Cartsvg from "./_svgs/Cartsvg";
+import { Cartproductcount } from "./_components/Navbar/Publiccomps";
+import { Logedinusermenu } from "./_components/Navbar/Publiccomps";
+import { cookies } from "next/headers";
 
 export default async function Home() {
+  // cookies
+  const token = cookies()?.get("token")?.value;
+  const userdata = cookies()?.get("userdata")?.value;
+
+  // 
   const products = await Cachedproducts();
   const productsname = products.map((item) => item.name);
   return (
     <div>
       <div className="relative w-full box-content h-fit " id="home">
-        <nav className="absolute top-0 left-0 h-[50px] md:h-[80px] w-full flex items-center justify-between p-[10px] md:px-[40px] z-10 ">
+        <nav className="absolute top-0 left-0 h-[40px] w-full flex items-center justify-between md:px-[40px] mt-[20px] z-10 ">
           <Image
             className="h-[30px] w-auto md:h-[40px] "
             src="/logo3.png"
@@ -43,11 +52,20 @@ export default async function Home() {
               Categories
             </Link>
           </ul>
-          <div></div>
+          <div className="flex items-center justify-end gap-[10px] h-full ">
+            <Link
+              href="/main/cart"
+              className="relative flex items-center justify-center h-full aspect-square "
+            >
+              <Cartsvg styles="fill-white h-[20px]" />
+              <Cartproductcount />
+            </Link>
+            <Logedinusermenu userdata={userdata} token={token} />
+          </div>
         </nav>
         {/*  */}
         <div className="absolute top-[60px] md:top-[150px] w-full z-40">
-          <h2 className="text-[3vw] font-semibold max-w-[70%] text-center mx-auto italic text-white">
+          <h2 className="text-[3vw]  max-w-[70%] text-center mx-auto italic text-white font-serif">
             Furnish with Love, Live with Elegance
           </h2>
           <center>

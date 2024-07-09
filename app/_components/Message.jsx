@@ -46,7 +46,7 @@ function Notif({ item }) {
 
   return (
     <div
-      className={`fixed top-[60px] lg:top-[120px] left-[50%] translate-x-[-50%]  h-[40px] rounded-full flex items-center justify-center bg-white border border-slate-300 z-[50]  shadow-md
+      className={`fixed top-[70px] lg:top-[120px] left-[50%] translate-x-[-50%]  h-[40px] rounded-full flex items-center justify-center bg-white border border-slate-300 z-[50]  shadow-md
     ${
       effect[0]
         ? "opacity-100 translate-y-0 duration-150"
