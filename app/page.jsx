@@ -24,7 +24,7 @@ export default async function Home() {
   return (
     <div>
       <div className="relative w-full box-content h-fit " id="home">
-        <nav className="absolute top-0 left-0 h-[40px] w-full flex items-center justify-between md:px-[40px] mt-[20px] z-10 ">
+        <nav className="absolute top-0 left-0 h-[40px] w-full flex items-center justify-between px-[10px] md:px-[40px] mt-[10px] md:mt-[20px] z-20 ">
           <Image
             className="h-[30px] w-auto md:h-[40px] "
             src="/logo3.png"
@@ -64,7 +64,7 @@ export default async function Home() {
           </div>
         </nav>
         {/*  */}
-        <div className="absolute top-[60px] md:top-[150px] w-full z-40">
+        <div className="absolute top-[60px] md:top-[150px] w-full z-10">
           <h2 className="text-[3vw]  max-w-[70%] text-center mx-auto italic text-white font-serif">
             Furnish with Love, Live with Elegance
           </h2>
@@ -85,7 +85,7 @@ export default async function Home() {
         ></img>
         {/* gradient */}
         <div
-          className="absolute bottom-0 left-0 w-full h-[50px] md:h-[150px] z-10"
+          className="absolute bottom-0 left-0 w-full h-[50px] md:h-[150px] z-[1]"
           style={{
             backgroundImage: "linear-gradient(0deg, white, transparent)",
           }}

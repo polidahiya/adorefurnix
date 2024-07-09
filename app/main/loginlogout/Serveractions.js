@@ -82,7 +82,7 @@ export async function logout() {
 
 
 function addtoken(data, userdata) {
-  const token = jwt.sign(data, "this-world-is-toxic", {
+  const token = jwt.sign(data, "this-world-is-toxic-adorefurnix", {
     expiresIn: logintime[1],
   });
 

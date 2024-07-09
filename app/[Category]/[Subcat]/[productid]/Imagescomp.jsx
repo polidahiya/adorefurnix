@@ -1,21 +1,29 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Heart from "@/app/_svgs/Heart";
+import {
+  likeproduct,
+  isliked,
+} from "@/app/_components/serveractions/Likedproducts";
+import { AppContextfn } from "@/app/Context";
 
-function Imagescomp({filteredproducts,color}) {
+function Imagescomp({ filteredproducts, color, token }) {
+  const { setmessagefn } = AppContextfn();
   const [dotnum, setdotnum] = useState(0);
   const imagesscrollref = useRef();
+  const [liked, setliked] = useState(false);
 
   let link;
   if (typeof window !== "undefined") {
     link = new URL(location.href);
   }
+
   function sharepage() {
     if (navigator.clipboard) {
       navigator.clipboard
         .writeText(link)
-        .then(function () {
-        })
+        .then(function () {})
         .catch(function (err) {
           fallbackCopyTextToClipboard(link);
         });
@@ -31,6 +39,19 @@ function Imagescomp({filteredproducts,color}) {
     document.execCommand("copy");
     document.body.removeChild(textArea);
   }
+
+  // check liked
+  // check liked
+  useEffect(() => {
+    if (token) {
+      (async () => {
+        let res = await isliked(filteredproducts._id);
+        if (!res) return;
+
+        setliked(res);
+      })();
+    }
+  }, []);
 
   return (
     <div className="relative  aspect-[4/3]  w-[100%]  max-h-[400px] lg:max-h-full ">
@@ -56,7 +77,9 @@ function Imagescomp({filteredproducts,color}) {
           return (
             <Image
               className={`w-full aspect-square  object-cover bg-slate-200  cursor-pointer    ${
-                dotnum == i ? "  border-[2px] border-cyan-500" : "border-[2px] border-slate-300"
+                dotnum == i
+                  ? "  border-[2px] border-cyan-500"
+                  : "border-[2px] border-slate-300"
               }`}
               src={image}
               alt={filteredproducts.name}
@@ -74,27 +97,34 @@ function Imagescomp({filteredproducts,color}) {
       </div>
       {/* like button */}
       <button
-        className="absolute right-[20px] top-[20px] "
+        className="absolute right-[20px] top-[20px] rounded-full bg-white  p-[5px] box-content border border-slate-300"
         title="Add to favourites"
-        // onClick={async () => {
-        //   let res = await likeproduct(productid, liked);
-        //   if (res) {
-        //     if (res.message == "Added to favourites") {
-        //       setliked(true);
-        //     }
-        //     if (res.message == "Removed from favourites") {
-        //       setliked(false);
-        //     }
-        //   }
-        // }}
+        onClick={async () => {
+          if (!token) {
+            setmessagefn("Please login first");
+            return;
+          }
+          let res = await likeproduct(filteredproducts._id, liked);
+          if (res) {
+            if (res.message == "Added to favourites") {
+              setliked(true);
+              setmessagefn(res?.message);
+            }
+            if (res.message == "Removed from favourites") {
+              setliked(false);
+              setmessagefn(res?.message);
+            }
+            setmessagefn(res?.message);
+          }
+        }}
       >
-        {/* <Heart
-          styles={`h-[30px]  w-[30px]  ${
+        <Heart
+          styles={`h-[30px]  w-[30px] translate-y-[2px]  ${
             liked
               ? "fill-red-500 stroke-none"
-              : "fill-white stroke-[5px] stroke-textcolor "
+              : "fill-white stroke-[5px] stroke-red-500"
           }`}
-        /> */}
+        />
       </button>
       {/* share button */}
       <button

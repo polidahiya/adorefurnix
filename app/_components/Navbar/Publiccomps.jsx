@@ -98,24 +98,33 @@ export const Logedinusermenu = ({ token, userdata }) => {
     setredirectloginlink,
   } = AppContextfn();
 
+  const showmenu = () => {
+    settoggleusermenu((pre) => ({ ...pre, show: true }));
+    setTimeout(() => {
+      settoggleusermenu((pre) => ({ ...pre, effect: true }));
+    }, 100);
+  };
+
+  const hidemenu = () => {
+    settoggleusermenu((pre) => ({ ...pre, effect: false }));
+    setTimeout(() => {
+      settoggleusermenu((pre) => ({ ...pre, show: false }));
+    }, 300);
+  };
+
   if (token) {
     return (
       <>
         {/* usermenu svg */}
         <button
-          className="relative h-full aspect-square z-20 "
-          onClick={() => {
-            settoggleusermenu((pre) => ({ ...pre, show: true }));
-            setTimeout(() => {
-              settoggleusermenu((pre) => ({ ...pre, effect: true }));
-            }, 100);
-          }}
+          className="relative h-full aspect-square z-30  "
+          onClick={showmenu}
         >
           <Usersvg styles="h-full aspect-square fill-white stroke-white p-[4px]" />
           {/* menu */}
           {toggleusermenu.show && (
             <div
-              className={`absolute top-[calc(100%+10px)] right-0  w-[250px]  bg-white border border-slate-300 rounded-[10px] p-[10px] shadow-lg duration-300 ${
+              className={`absolute top-[calc(100%+10px)] right-0  w-[250px]  bg-white border border-slate-300 rounded-[10px] p-[10px] shadow-lg duration-300 z-30 ${
                 toggleusermenu.effect
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-[20px]"
@@ -124,16 +133,16 @@ export const Logedinusermenu = ({ token, userdata }) => {
               <center>
                 <Usersvg styles="h-[30px] border border-slate-300 rounded-full  mt-[20px] aspect-square fill-white" />
               </center>
-              <div className="text-center ">
+              <div className="text-center mt-[5px]">
                 {JSON.parse(userdata).username}
               </div>
-              <div className="text-center text-[12px] text-cyan-500 mt-[5px] ">
+              <div className="text-center text-[12px] text-cyan-500 ">
                 {JSON.parse(userdata).email}
               </div>
               <div
                 className="flex flex-col gap-[2px] w-full mt-[30px]"
                 onClick={() => {
-                  settoggleusermenu((pre) => ({ ...pre, show: false }));
+                  setTimeout(hidemenu, 100);
                 }}
               >
                 <Link
@@ -180,12 +189,7 @@ export const Logedinusermenu = ({ token, userdata }) => {
         {toggleusermenu.show && (
           <button
             className="fixed top-0 left-0 h-screen w-screen cursor-default "
-            onClick={() => {
-              settoggleusermenu((pre) => ({ ...pre, effect: false }));
-              setTimeout(() => {
-                settoggleusermenu((pre) => ({ ...pre, show: false }));
-              }, 300);
-            }}
+            onClick={hidemenu}
           ></button>
         )}
       </>

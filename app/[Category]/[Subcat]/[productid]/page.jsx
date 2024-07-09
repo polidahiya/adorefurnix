@@ -9,11 +9,15 @@ import Promices from "@/app/_components/Homepage/Promices";
 import Productcard from "@/app/_components/Productcard";
 import { Addtocartbuttons } from "./Publiccomps";
 import Rating from "@/app/_components/Ratingstars";
+import { cookies } from "next/headers";
 
 async function page({ params, searchParams }) {
   const category = params.Category.replace(/%20/g, " ").replace(/%26/g, "&");
   const subcat = params.Subcat.replace(/%20/g, " ").replace(/%26/g, "&");
   const productid = params.productid.replace(/%20/g, " ").replace(/%26/g, "&");
+
+  // token
+  const token = cookies()?.get("token")?.value;
 
   // all product
   const allproducts = await Cachedproducts();
@@ -55,6 +59,7 @@ async function page({ params, searchParams }) {
           <Imagescomp
             filteredproducts={filteredproducts}
             color={searchParams?.color || 0}
+            token={token}
           />
         </div>
         {/* details */}
@@ -75,11 +80,15 @@ async function page({ params, searchParams }) {
               {subcat}
             </Link>{" "}
             {">"}
-            <span className="text-ellipsis overflow-hidden">{filteredproducts.name}</span>
+            <span className="text-ellipsis overflow-hidden">
+              {filteredproducts.name}
+            </span>
           </div>
-          <h1 className="text-[25px] py-[10px] font-semibold">{filteredproducts.name}</h1>
+          <h1 className="text-[25px] py-[10px] font-semibold">
+            {filteredproducts.name}
+          </h1>
           <Rating rating={filteredproducts.rating} />
-       
+
           <div className="font-bold mt-[10px]">
             <span className="text-[30px] ">
               ₹{parseInt(filteredproducts.price, 10).toLocaleString("en-IN")}

@@ -16,13 +16,24 @@ async function verifyToken(token) {
 
 export const Adminverification = async () => {
   if (!cookies().get("admintoken")) {
-    return false
+    return false;
   }
 
   let token = cookies().get("admintoken").value;
   let result = await verifyToken(token);
 
   if (result.email == "adorefurnix@admin.com") {
-    return true
+    return true;
   }
+};
+
+export const Userification = async () => {
+  if (!cookies().get("token")) {
+    return false;
+  }
+
+  let token = cookies().get("token").value;
+  let result = await verifyToken(token);
+
+  return { email: result.email };
 };
