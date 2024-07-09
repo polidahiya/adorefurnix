@@ -112,22 +112,24 @@ async function page({ params, searchParams }) {
           {/* dimension */}
           <div className="flex gap-[10px] mt-[30px] font-semibold">
             <span className=" text-slate-400">Dimension :</span>
-            {filteredproducts.Dimensions}
+            {filteredproducts.Dimensions || <span className="text-red-500">Not Available{"*"}</span>}
           </div>
           {/* description */}
-          <div className="flex gap-[10px] mt-[30px] font-semibold">
-            <span className=" text-slate-400">Description :</span>
-            <div>
-              {filteredproducts.desc.map((item, i) => {
-                return (
-                  <div key={i} className="flex items-center gap-[10px]">
-                    <span className="h-[10px] aspect-square rounded-full bg-slate-300"></span>{" "}
-                    {item}
-                  </div>
-                );
-              })}
+          {filteredproducts.desc != 0 && (
+            <div className="flex gap-[10px] mt-[30px] font-semibold">
+              <span className=" text-slate-400">Description :</span>
+              <div>
+                {filteredproducts.desc.map((item, i) => {
+                  return (
+                    <div key={i} className="flex items-center gap-[10px]">
+                      <span className="h-[10px] aspect-square rounded-full bg-slate-300"></span>{" "}
+                      {item}
+                    </div>
+                  );
+                })}
+              </div>
             </div>
-          </div>
+          )}
           {/* add to cart buttons */}
           <Addtocartbuttons
             filteredproducts={filteredproducts}
@@ -139,7 +141,7 @@ async function page({ params, searchParams }) {
       {/* similar products */}
       {similarproducts.length > 0 && (
         <div className="bg-slate-100 px-[10px] py-[20px]">
-          <h2 className="text-[22px] font-bold">Similar Products</h2>
+          <h2 className="text-[22px] font-bold text-center md:text-start w-full">Similar Products</h2>
           <div className="flex items-center gap-[20px]  mt-[20px] max-w-full overflow-x-scroll pb-[20px]">
             {similarproducts.map((item, i) => {
               return (
@@ -155,7 +157,6 @@ async function page({ params, searchParams }) {
                   available={item.available}
                   image={item.colorpalets[0].images[0]}
                   rating={item.rating}
-                  liked={false}
                 />
               );
             })}

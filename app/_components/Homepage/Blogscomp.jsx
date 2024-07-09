@@ -1,9 +1,10 @@
 "use client";
-import React, { useEffect, useState } from "react";
 import { Getblogs } from "../serveractions/Getblogs";
+import Componentloading from "../Componentloading";
+import React, { useEffect, useState } from "react";
+import Smalldesc from "./blogs/Smalldesc";
 import Blogimage from "./blogs/Blogimage";
 import Fulldesc from "./blogs/Fulldesc";
-import Smalldesc from "./blogs/Smalldesc";
 
 function Blogscomp() {
   const [blogs, setblogs] = useState([]);
@@ -22,7 +23,10 @@ function Blogscomp() {
 
   return (
     <>
-      <h2 className="text-center font-bold text-[25px] md:text-[40px] mt-[80px] italic font-serif" id="blogs">
+      <h2
+        className="text-center font-bold text-[25px] md:text-[40px] mt-[80px] italic font-serif"
+        id="blogs"
+      >
         Blogs
       </h2>
       {blogs.map((blog, i) => {
@@ -86,17 +90,12 @@ function Blogscomp() {
       })}
 
       {/* loading */}
-      {showloading && (
-        <div className="text-center my-[20px] ">
-          <div className="w-8 h-8 border-4 border-dashed rounded-full animate-spin border-zinc-400 mx-auto"></div>
-          <h2 className="text-zinc-600 dark:text-zinc-400 mt-4 text-[10px] md:text-[16px]">Loading...</h2>
-        </div>
-      )}
+      {showloading && <Componentloading />}
 
       {/* get more button */}
       <center>
         <button
-          className="text-white text-[12px] md:text-[16px] rounded-full py-[5px] px-[20px] font-bold bg-[linear-gradient(90deg,#10e89c,#0593f7)] mt-0 md:my-[50px]"
+          className="text-white text-[12px] md:text-[16px] rounded-full py-[5px] px-[20px] font-bold bg-[linear-gradient(90deg,#10e89c,#0593f7)] my-[50px]"
           onClick={async () => {
             setshowloading(true);
             setnumberofblogs((pre) => pre + 1);
@@ -138,9 +137,13 @@ function Showfullblog({ fullblog, setfullblog }) {
                 alt={fullblog.title}
                 className="aspect-square w-full md:w-[30%] object-cover object-center float-left md:mr-[10px] rounded-[20px]"
               />
-              <span className="text-[14px] md:text-[16px]">{fullblog.desc}</span>
+              <span className="text-[14px] md:text-[16px]">
+                {fullblog.desc}
+              </span>
             </div>
-            <div  className="flex px-[10px] items-center  justify-center text-slate-400 my-[30px]">Adorefurnix.com</div>
+            <div className="flex px-[10px] items-center  justify-center text-slate-400 my-[30px]">
+              Adorefurnix.com
+            </div>
           </div>
           {/* close button */}
           <button

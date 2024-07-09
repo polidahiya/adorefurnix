@@ -2,7 +2,6 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import Heart from "../_svgs/Heart";
 import Rating from "./Ratingstars";
 
 function Productcard({
@@ -16,7 +15,6 @@ function Productcard({
   available,
   image,
   rating,
-  liked,
 }) {
   let pricebeforediscount = null;
   if (discount > 0) {
@@ -58,23 +56,7 @@ function Productcard({
           Out of Stock!
         </div>
       )}
-      {/* like button */}
-      {liked && (
-        <button
-          className="absolute right-[10px] top-[10px] bg-white rounded-full p-[3px] "
-          title="Add to favourites"
-        >
-          <Heart
-            styles={`h-[25px]  w-[25px]  translate-y-[1px]
-            ${
-              liked
-                ? "fill-red-500 stroke-none"
-                : "fill-white stroke-[5px] stroke-red-600  "
-            }
-              `}
-          />
-        </button>
-      )}
+      
 
       <Image
         src={image}
@@ -95,9 +77,11 @@ function Productcard({
           {pricebeforediscount && (
             <>
               <span className="line-through text-[#878787] ml-3">
-              ₹{parseInt(pricebeforediscount, 10).toLocaleString("en-IN")}
+                ₹{parseInt(pricebeforediscount, 10).toLocaleString("en-IN")}
               </span>
-              <span className="font-bold text-[#388e3c] ml-3">{discount}% off</span>
+              <span className="font-bold text-[#388e3c] ml-3">
+                {discount}% off
+              </span>
             </>
           )}
         </div>
@@ -106,6 +90,5 @@ function Productcard({
   );
 }
 // bg-[#c1d0e4]
-
 
 export default Productcard;

@@ -54,7 +54,6 @@ async function page({ params, searchParams }) {
                 available={item.available}
                 image={item.colorpalets[0].images[0]}
                 rating={item.rating}
-                liked={false}
               />
             );
           })}

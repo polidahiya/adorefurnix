@@ -7,6 +7,7 @@ import {
   isliked,
 } from "@/app/_components/serveractions/Likedproducts";
 import { AppContextfn } from "@/app/Context";
+import Linksvg from "@/app/_svgs/Linksvg";
 
 function Imagescomp({ filteredproducts, color, token }) {
   const { setmessagefn } = AppContextfn();
@@ -40,7 +41,6 @@ function Imagescomp({ filteredproducts, color, token }) {
     document.body.removeChild(textArea);
   }
 
-  // check liked
   // check liked
   useEffect(() => {
     if (token) {
@@ -97,42 +97,42 @@ function Imagescomp({ filteredproducts, color, token }) {
       </div>
       {/* like button */}
       <button
-        className="absolute right-[20px] top-[20px] rounded-full bg-white  p-[5px] box-content border border-slate-300"
-        title="Add to favourites"
-        onClick={async () => {
-          if (!token) {
-            setmessagefn("Please login first");
-            return;
-          }
-          let res = await likeproduct(filteredproducts._id, liked);
-          if (res) {
-            if (res.message == "Added to favourites") {
-              setliked(true);
+          className="absolute right-[50px] top-[10px] bg-white rounded-full p-[3px] border border-slate-300"
+          title="Add to favourites"
+          onClick={async () => {
+            if (!token) {
+              setmessagefn("Please login first");
+              return;
+            }
+            let res = await likeproduct(filteredproducts._id, liked);
+            if (res) {
+              if (res.message == "Added to favourites") {
+                setliked(true);
+              }
+              if (res.message == "Removed from favourites") {
+                setliked(false);
+              }
               setmessagefn(res?.message);
             }
-            if (res.message == "Removed from favourites") {
-              setliked(false);
-              setmessagefn(res?.message);
+          }}
+        >
+          <Heart
+            styles={`h-[25px]  w-[25px]  translate-y-[1px]
+            ${
+              liked
+                ? "fill-red-500 stroke-none"
+                : "fill-white stroke-[5px] stroke-red-600  "
             }
-            setmessagefn(res?.message);
-          }
-        }}
-      >
-        <Heart
-          styles={`h-[30px]  w-[30px] translate-y-[2px]  ${
-            liked
-              ? "fill-red-500 stroke-none"
-              : "fill-white stroke-[5px] stroke-red-500"
-          }`}
-        />
-      </button>
+              `}
+          />
+        </button>
       {/* share button */}
       <button
-        className="absolute right-[20px]  top-[60px]"
+        className="absolute right-[10px]  top-[10px] rounded-full bg-white  p-[3px] box-content border border-slate-300"
         title="Copy Link"
         onClick={sharepage}
       >
-        {/* <Linksvg styles="h-[30px] aspect-square fill-none stroke-textcolor" /> */}
+        <Linksvg styles="h-[25px] aspect-square fill-none stroke-slate-500" />
       </button>
       {/* dotts */}
       <div className="absolute bottom-0 left-0 z-10 w-full ">
@@ -164,7 +164,6 @@ function Mainimage({ image, name }) {
         height={400}
         width={754}
         loading="eager"
-        quality={100}
         // onLoad={() => {
         //   setloading(false);
         // }}
