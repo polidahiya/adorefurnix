@@ -16,12 +16,13 @@ export const Placeorder = async (ordersdata) => {
     let ordersarray = [];
     Object.keys(ordersdata).forEach((order) => {
       let neworders = { ...ordersdata[order] };
-      delete neworders.category;
-      delete neworders.subcat;
       delete neworders.Dimensions;
-      delete neworders.rating;
       delete neworders.keywords;
       delete neworders.available;
+      neworders.productid = ordersdata[order]._id;
+      neworders.canceled = false;
+      neworders.status = 0;
+      delete neworders._id;
       ordersarray.push({ ...neworders, ...userdata });
     });
 
