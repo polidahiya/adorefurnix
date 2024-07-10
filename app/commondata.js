@@ -134,3 +134,11 @@ export const filterlist = [
 
 // login time
 export const logintime = [3600 * 24 * 2, "48h"];
+
+// ordere stages
+export const orderstages = [
+  "Order Placed",
+  "Order Processing",
+  "Order Shipped",
+  "Order Delivered",
+];

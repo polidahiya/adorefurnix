@@ -6,8 +6,7 @@ function page() {
   return (
     <div>
       <Categories />
-      <Showproducts/>
-      
+      <Showproducts />
     </div>
   );
 }

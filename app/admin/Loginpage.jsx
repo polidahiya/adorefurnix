@@ -1,25 +1,30 @@
 "use client";
 import React, { useEffect, useState, useRef } from "react";
 import { passwordlogin } from "./Loginaction";
+import { AppContextfn } from "../Context";
 
-function Loginpage({setshowlogin}) {
+function Loginpage({ setshowlogin }) {
+  const { setmessagefn } = AppContextfn();
   const [password, setpassword] = useState("");
   const [showpassword, setshowpassword] = useState(false);
   const passwordinput = useRef();
+  const [showloading, setshowloading] = useState(false);
 
   const loginfn = () => {
+    setshowloading(true);
     (async () => {
       if (password == "") {
-        alert("Please enter password");
+        setmessagefn("Please enter password");
+        setshowloading(false);
         return;
       }
 
       let res = await passwordlogin({ password: password });
-      console.log(res);
       if (res?.message == "Login successfull") {
         setshowlogin(false);
       }
-      alert(res.message);
+      setshowloading(false);
+      setmessagefn(res.message);
     })();
   };
 
@@ -102,12 +107,15 @@ function Loginpage({setshowlogin}) {
           </button>
         </div>
         <button
-          className="py-1 px-5 bg-slate-500 rounded-full cursor-pointer"
+          className="flex items-center justify-center gap-[10px] py-1 px-5 bg-slate-500 rounded-full cursor-pointer"
           onClick={(e) => {
             loginfn();
           }}
         >
-          Login
+          {showloading && (
+            <div className="h-[20px] aspect-square rounded-full  border-r-2 border-l-2 border-white animate-spin"></div>
+          )}
+          <span>Login</span>
         </button>
       </div>
     </div>

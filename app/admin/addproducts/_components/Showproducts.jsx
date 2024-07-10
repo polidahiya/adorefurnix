@@ -15,6 +15,7 @@ function Showproducts() {
     setupdateproduct,
     setdeletedimages,
     adminproductrefresher,
+    setmessagefn,
   } = AppContextfn();
 
   const [products, setproducts] = useState([]);
@@ -22,10 +23,10 @@ function Showproducts() {
   useEffect(() => {
     (async () => {
       const res = await Getliveproducts(categorystate);
-      if (res.message) {
-        alert(res.message);
+      if (res?.message) {
+        setmessagefn(res?.message);
       } else {
-        setproducts(res.products);
+        setproducts(res?.products);
       }
     })();
   }, [categorystate, adminproductrefresher]);
@@ -138,7 +139,7 @@ function Showproducts() {
                     products.filter((product) => item._id !== product._id)
                   );
                   if (res?.message) {
-                    alert(res.message);
+                    setmessagefn(res.message);
                   }
                 }}
               >

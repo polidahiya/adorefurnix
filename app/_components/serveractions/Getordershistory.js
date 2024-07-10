@@ -33,13 +33,16 @@ export const Cancelorder = async (id) => {
       return { message: "Please login first" };
     }
 
-    let result = await orderscollection.findOneAndUpdate(
-      { id: new ObjectId(id) },
+    let result = await orderscollection.updateOne(
+      { _id: new ObjectId(id) },
       { $set: { canceled: true } }
     );
-    console.log(result);
 
-    return { message: "Order Canceled" };
+    if (result.modifiedCount != 0) {
+      return { message: "Order Canceled" };
+    }else{
+      return { message: "Server Error" };
+    }
   } catch (error) {
     console.log(error);
     return { message: "Server Error" };

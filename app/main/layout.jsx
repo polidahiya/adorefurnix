@@ -1,6 +1,7 @@
 import Navbar from "../_components/Navbar/Navbar";
 import { Cachedproducts } from "../_components/serveractions/Getcachedata";
 import { cookies } from "next/headers";
+import Footer from "../_components/Footer";
 
 export default async function RootLayout({ children, params }) {
   const products = await Cachedproducts();
@@ -17,6 +18,7 @@ export default async function RootLayout({ children, params }) {
         userdata={userdata}
       />
       {children}
+      <Footer />
     </div>
   );
 }

@@ -13,6 +13,7 @@ function Categories() {
     deletedimages,
     setdeletedimages,
     setadminproductrefresher,
+    setmessagefn,
   } = AppContextfn();
   const [uploadloading, setuploadloading] = useState(false);
 
@@ -50,11 +51,10 @@ function Categories() {
       ],
     });
   };
-  // console.log(addproduct);
-  console.log(deletedimages);
+
   return (
     <>
-      <h2 className="text-center mt-[30px] text-[20px] font-bold">
+      <h2 className="text-center mt-[30px] text-[20px] font-bold ">
         Select a category
       </h2>
       <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-[10px] p-[20px]">
@@ -460,9 +460,8 @@ function Categories() {
               // update show products
               setadminproductrefresher((pre) => pre + 1);
             }
-            if (res?.message) {
-              alert(res.message);
-            }
+            setmessagefn(res?.message);
+
             resetfields();
             setupdateproduct(false);
             setuploadloading(false);

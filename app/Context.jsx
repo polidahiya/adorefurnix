@@ -16,12 +16,6 @@ export function Appwrapper({ children }) {
   const [redirectloginlink, setredirectloginlink] = useState("/");
   const [toggleorderplacedmenu, settoggleorderplacedmenu] = useState(false);
   const [messagearray, setmessagearray] = useState([]);
-  const setmessagefn = (message) => {
-    setmessagearray([
-      ...messagearray,
-      { id: Math.random() + new Date().getMilliseconds(), message: message },
-    ]);
-  };
 
   // admin contexts
   const [addproduct, setaddproduct] = useState({
@@ -43,10 +37,17 @@ export function Appwrapper({ children }) {
       },
     ],
   });
-
   const [updateproduct, setupdateproduct] = useState(false);
   const [deletedimages, setdeletedimages] = useState([]);
   const [adminproductrefresher, setadminproductrefresher] = useState(0);
+  
+  // funtions
+  const setmessagefn = (message) => {
+    setmessagearray([
+      ...messagearray,
+      { id: Math.random() + new Date().getMilliseconds(), message: message },
+    ]);
+  };
 
   return (
     <AppContext.Provider

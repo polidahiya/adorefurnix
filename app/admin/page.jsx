@@ -1,4 +1,13 @@
+import React from "react";
+import Selectordertype from "./Selectordertype";
+
 export default function Adminhome() {
-  console.log("hello page");
-  return <div>this is the hello page</div>;
+  return (
+    <div>
+      <Selectordertype selected={0}/>
+      <div>
+        
+      </div>
+    </div>
+  );
 }
