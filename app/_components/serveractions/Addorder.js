@@ -22,6 +22,7 @@ export const Placeorder = async (ordersdata) => {
       neworders.productid = ordersdata[order]._id;
       neworders.canceled = false;
       neworders.status = 0;
+      neworders.date = new Date();
       delete neworders._id;
       ordersarray.push({ ...neworders, ...userdata });
     });
@@ -38,3 +39,4 @@ export const Placeorder = async (ordersdata) => {
     return { message: "Server Error" };
   }
 };
+

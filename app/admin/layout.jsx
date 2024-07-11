@@ -34,7 +34,7 @@ export default function RootLayout({ children }) {
           <Loginpage setshowlogin={setshowlogin} />
         ) : (
           <div>
-            <nav className="sticky top-0 flex items-center gap-[10px] md:gap-[30px]  h-[50px] shadow-md px-[10px] z-10 bg-white">
+            <nav className="sticky top-0 flex items-center gap-[10px] md:gap-[30px]  h-[50px] shadow-md px-[10px] z-20 bg-white">
               <Link
                 href="/admin/"
                 className="border border-slate-300 rounded-[10px] py-[5px] px-[5px] lg:px-[20px]"

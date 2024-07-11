@@ -3,9 +3,9 @@ import Link from "next/link";
 
 function Selectordertype({ selected }) {
   return (
-    <div className="sticky top-[50px] bg-white w-full flex items-center justify-evenly  p-[10px] shadow-md">
+    <div className="sticky top-[50px] bg-white w-full flex items-center justify-evenly  p-[10px] shadow-md z-20 border-t border-t-slate-300">
       <Link
-        href="/"
+        href="/admin"
         className={`border border-slate-300 px-[10px] py-[5px] rounded-[10px] ${
           selected == 0 && "bg-theme text-white"
         }`}
