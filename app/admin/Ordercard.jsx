@@ -63,6 +63,9 @@ function Ordercard({ item }) {
         ></Image>
         <div className="flex flex-col items-start gap-[5px] w-full">
           <div>
+            <span className="text-slate-400">Order Id</span> : {item?._id}
+          </div>
+          <div>
             <span className="text-slate-400">User Name</span> : {item?.username}
           </div>
           <div>
@@ -98,6 +101,12 @@ function Ordercard({ item }) {
             <span className="text-slate-400">Order Date and Time</span> :{" "}
             {formatedate(item?.date)}
           </div>
+          {item?.delivered_date && (
+            <div>
+              <span className="text-slate-400">Delivered Date</span> :{" "}
+              {formatedate(item?.delivered_date)}
+            </div>
+          )}
           <div className="flex items-end gap-[10px] w-full">
             <textarea
               className="h-full w-full border border-slate-300 min-h-[50px] rounded-xl px-[5px]"

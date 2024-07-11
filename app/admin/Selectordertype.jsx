@@ -1,41 +1,53 @@
 import React from "react";
-import Link from "next/link";
+import Refreshsvg from "../_svgs/Refreshsvg";
 
-function Selectordertype({ selected }) {
+function Selectordertype({ ordertype, setordertype }) {
   return (
     <div className="sticky top-[50px] bg-white w-full flex items-center justify-evenly  p-[10px] shadow-md z-20 border-t border-t-slate-300">
-      <Link
-        href="/admin"
+      <button
         className={`border border-slate-300 px-[10px] py-[5px] rounded-[10px] ${
-          selected == 0 && "bg-theme text-white"
+          ordertype == 0 && "bg-theme text-white"
         }`}
+        onClick={() => {
+          setordertype(0);
+        }}
       >
         All orders
-      </Link>
-      <Link
-        href="/admin/Processing"
+      </button>
+      <button
         className={`border border-slate-300 px-[10px] py-[5px] rounded-[10px] ${
-          selected == 1 && "bg-theme text-white"
+          ordertype == 1 && "bg-theme text-white"
         }`}
+        onClick={() => {
+          setordertype(1);
+        }}
       >
         Processing orders
-      </Link>
-      <Link
-        href="/admin/Shipped"
+      </button>
+      <button
         className={`border border-slate-300 px-[10px] py-[5px] rounded-[10px] ${
-          selected == 2 && "bg-theme text-white"
+          ordertype == 2 && "bg-theme text-white"
         }`}
+        onClick={() => {
+          setordertype(2);
+        }}
       >
         Shipped orders
-      </Link>
-      <Link
-        href="/admin/Delivered"
+      </button>
+      <button
         className={`border border-slate-300 px-[10px] py-[5px] rounded-[10px] ${
-          selected == 3 && "bg-theme text-white"
+          ordertype == 3 && "bg-theme text-white"
         }`}
+        onClick={() => {
+          setordertype(3);
+        }}
       >
         Delivered orders
-      </Link>
+      </button>
+      {/* refresh orders */}
+      <button className="border border-slate-300 px-[10px] py-[5px] rounded-[10px] " title="Refresh Orderes">
+        <Refreshsvg styles="h-[25px] " />
+      </button>
     </div>
   );
 }

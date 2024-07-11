@@ -9,14 +9,15 @@ import Componentloading from "../_components/Componentloading";
 export default function Adminhome() {
   const [orders, setorders] = useState([]);
   const [loading, setloading] = useState(true);
+  const [ordertype, setordertype] = useState(0);
 
   useEffect(() => {
     (async () => {
-      const ordersres = await getadminorders(0);
+      const ordersres = await getadminorders(ordertype);
       setorders([...ordersres]);
       setloading(false);
     })();
-  }, []);
+  }, [ordertype]);
 
   if (loading) {
     return (
@@ -27,7 +28,7 @@ export default function Adminhome() {
   } else {
     return (
       <div>
-        <Selectordertype selected={0} />
+        <Selectordertype ordertype={ordertype} setordertype={setordertype} />
         {orders.length != 0 ? (
           <div className={`p-[20px]`}>
             {orders.map((item) => {

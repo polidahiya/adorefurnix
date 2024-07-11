@@ -13,7 +13,7 @@ function Navbar({ params, productsname, token, userdata }) {
   const category = params?.Category?.replace(/%20/g, " ")?.replace(/%26/g, "&");
 
   return (
-    <nav className="sticky bg-graygradient top-0 left-0 w-full p-[10px] md:px-[40px] z-40 ">
+    <nav className="sticky bg-graygradient top-0 left-0 w-full p-[10px] md:px-[40px] z-40">
       <div className="relative flex h-[40px] items-center justify-between ">
         {/* firstcomp */}
         <div className="flex items-center gap-[10px] w-full h-full">
