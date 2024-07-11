@@ -6,7 +6,7 @@ import Ordercard from "../Ordercard";
 import Productnotfound from "@/app/_components/Productnotfound";
 import Componentloading from "@/app/_components/Componentloading";
 
-export default function shippinghome() {
+export default function Shippinghome() {
   const [orders, setorders] = useState([]);
   const [loading, setloading] = useState(true);
 
