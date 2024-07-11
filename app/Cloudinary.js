@@ -1,8 +1,8 @@
 import { v2 as cloudinary } from "cloudinary";
 cloudinary.config({
-  cloud_name: "drnfvc0jt",
-  api_key: "928453627132392",
-  api_secret: "V2_dFHYxOmT9cSsPYuJHkIKYIGo",
+  cloud_name: process.env.cloudinary_cloud_name,
+  api_key: process.env.cloudinary_api_key,
+  api_secret: process.env.cloudinary_api_secret,
 });
 
 // Helper function to upload a single image

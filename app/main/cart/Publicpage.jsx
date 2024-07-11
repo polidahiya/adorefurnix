@@ -51,8 +51,17 @@ export default function Page({ userdata }) {
           <div className="w-full">
             <div className="flex items-center gap-[10px] bg-white border border-slate-300 p-[10px]">
               <span>Payment Mode : </span>
-              <button className="border border-slate-300 px-[20px] py-[5px] rounded-[5px] opacity-75 cursor-not-allowed">Upi</button>
-              <button className="border border-slate-300 px-[20px] py-[5px] rounded-[5px] text-theme">Cash On Delivery</button>
+              <button
+                className="border border-slate-300 px-[20px] py-[5px] rounded-[5px] opacity-75 cursor-not-allowed"
+                onClick={() => {
+                  setmessagefn("Current unavailable");
+                }}
+              >
+                Upi
+              </button>
+              <button className="border border-slate-300 px-[20px] py-[5px] rounded-[5px] text-theme">
+                Cash On Delivery
+              </button>
             </div>
             {/* products */}
             <div className=" border border-slate-300 bg-white mt-[10px]">
