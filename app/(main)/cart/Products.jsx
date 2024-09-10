@@ -1,12 +1,15 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Deletesvg from "@/app/_svgs/Deletesvg";
-import Bookmark from "@/app/_svgs/Bookmark";
 import { AppContextfn } from "@/app/Context";
 
 export default function Products({ cart, setcart }) {
   const { setmessagefn } = AppContextfn();
+
+  // Fallback image URL
+  const fallbackImage = "/default-fallback-image.png";
 
   return (
     <>
@@ -20,28 +23,39 @@ export default function Products({ cart, setcart }) {
             (product.price / (100 - product.discount)) * 100
           );
         }
+
+        // State to handle image loading errors
+        const [imgSrc, setImgSrc] = useState(
+          product.colorpalets[product.selectedcolor].images[0]
+        );
+
+        const handleImageError = () => {
+          setImgSrc(fallbackImage);
+        };
+
         return (
           <div key={i} className="flex flex-col gap-[20px] w-full p-[20px]">
-            {i != 0 && <hr />}
+            {i !== 0 && <hr />}
             <div className="flex flex-col md:flex-row gap-[20px] md:h-[150px]">
               <Link
                 href={`/${product.category}/${product.subcat}/${product._id}?color=${color}`}
                 className="w-full md:w-auto aspect-[2/1] md:h-full  md:aspect-square border border-slate-300"
               >
                 <Image
-                  src={product.colorpalets[product.selectedcolor].images[0]}
+                  src={imgSrc}
                   alt={product.name}
                   height={200}
                   width={200}
                   className="h-full w-full aspect-[2/1] md:aspect-square object-contain object-center"
+                  onError={handleImageError} // Handle image error
                 />
               </Link>
-              <div className="flex flex-col h-full w-full ">
+              <div className="flex flex-col h-full w-full">
                 <h2 className="font-bold text-[18px] text-ellipsis overflow-hidden whitespace-nowrap">
                   {product.name}
                 </h2>
-                <p className=" font-bold text-gray-500">
-                  By :{" "}
+                <p className="font-bold text-gray-500">
+                  By:{" "}
                   <span className="bg-theme bg-clip-text text-transparent">
                     AdoreFurnix
                   </span>
@@ -65,7 +79,7 @@ export default function Products({ cart, setcart }) {
                   </span>
                   {pricebeforediscount && (
                     <span className="text-[14px] text-green-500 font-semibold">
-                      {product.discount + "%"} OFF
+                      {product.discount}% OFF
                     </span>
                   )}
                 </p>
@@ -109,10 +123,6 @@ export default function Products({ cart, setcart }) {
                       +
                     </button>
                   </div>
-                  {/* <button className="h-full border border-slate-300 px-[20px] rounded-full ml-auto md:ml-0">
-                    <span className="hidden md:block">Save for Later</span>
-                    <Bookmark styles="md:hidden h-[25px] aspect-square fill-none" />
-                  </button> */}
                   <button
                     className="h-full border border-slate-300 px-[20px] rounded-full"
                     onClick={() => {
@@ -120,7 +130,7 @@ export default function Products({ cart, setcart }) {
                       delete newcart[item];
 
                       setcart(newcart);
-                      setmessagefn("Product Removed")
+                      setmessagefn("Product Removed");
                     }}
                   >
                     <span className="hidden md:block">Remove</span>

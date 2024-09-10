@@ -16,12 +16,11 @@ function Productcard({
   image,
   rating,
 }) {
-  let pricebeforediscount = null;
-  if (discount > 0) {
-    pricebeforediscount = Math.floor((price / (100 - discount)) * 100);
-  }
-
   const [showproduct, setshowproduct] = useState(false);
+  const [imgSrc, setImgSrc] = useState(image);
+
+  // Fallback image URL
+  const fallbackImage = "/default-fallback-image.png";
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -31,46 +30,55 @@ function Productcard({
     return () => {
       clearTimeout(timeout);
     };
-  }, []);
+  }, [index]);
+
+  const handleImageError = () => {
+    setImgSrc(fallbackImage);
+  };
+
+  let pricebeforediscount = null;
+  if (discount > 0) {
+    pricebeforediscount = Math.floor((price / (100 - discount)) * 100);
+  }
 
   return (
     <Link
       href={`/${category}/${subcat}/${id}`}
-      className={`relative w-full  max-w-[350px] min-w-[250px] shadow-md rounded-[10px] overflow-hidden bg-white duration-300 ${
+      className={`relative w-full max-w-[350px] min-w-[250px] shadow-md rounded-[10px] overflow-hidden bg-white duration-300 ${
         showproduct ? "opacity-100 scale-100" : "opacity-0 scale-75"
       }`}
     >
       {/* discount */}
       {pricebeforediscount && (
         <div className="absolute top-[10px] left-[10px] bg-green-600 text-white text-[14px] py-[5px] px-[10px] rounded-[5px]">
-          {discount}
-          {"%"} OFF
+          {discount}% OFF
         </div>
       )}
-      {/* availabe */}
+      {/* available */}
       {!available && (
         <div
-          className={`absolute  left-[10px] bg-red-600 text-white text-[14px] py-[5px] px-[10px] rounded-[5px]
+          className={`absolute left-[10px] bg-red-600 text-white text-[14px] py-[5px] px-[10px] rounded-[5px]
              ${pricebeforediscount ? "top-[50px]" : "top-[10px]"}`}
         >
           Out of Stock!
         </div>
       )}
-      
 
       <Image
-        src={image}
+        src={imgSrc}
         alt={name}
         width={300}
         height={300}
         className="aspect-[4/3] w-full object-cover object-center rounded-b-[10px]"
-      ></Image>
+        onError={handleImageError} // Handle image error
+      />
+
       <div className="p-[10px]">
         <h3 className="py-[10px] font-semibold text-center w-full whitespace-nowrap text-ellipsis overflow-hidden">
           {name}
         </h3>
         <Rating rating={rating} />
-        <div className=" mt-[10px]">
+        <div className="mt-[10px]">
           <span className="font-bold text-[20px]">
             ₹{parseInt(price, 10).toLocaleString("en-IN")}
           </span>
@@ -89,6 +97,5 @@ function Productcard({
     </Link>
   );
 }
-// bg-[#c1d0e4]
 
 export default Productcard;

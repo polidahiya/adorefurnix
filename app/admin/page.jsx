@@ -1,5 +1,5 @@
 "use client";
-import { getadminorders } from "../_components/serveractions/Adminorders";
+import { getadminorders } from "../_serveractions/Adminorders";
 import Selectordertype from "./Selectordertype";
 import React, { useEffect, useState } from "react";
 import Ordercard from "./Ordercard";

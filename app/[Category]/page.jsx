@@ -4,7 +4,7 @@ import Productcard from "../_components/Productcard";
 import Secondnav from "./_Components/Secondnav";
 import { categorylist } from "../commondata";
 import { filterlist } from "../commondata";
-import { Cachedproducts } from "../_components/serveractions/Getcachedata";
+import { Cachedproducts } from "../_serveractions/Getcachedata";
 import Productnotfound from "../_components/Productnotfound";
 
 async function page({ params, searchParams }) {

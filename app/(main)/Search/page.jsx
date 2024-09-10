@@ -1,6 +1,6 @@
 import React from "react";
 import Productcard from "@/app/_components/Productcard";
-import { Cachedproducts } from "@/app/_components/serveractions/Getcachedata";
+import { Cachedproducts } from "@/app/_serveractions/Getcachedata";
 import Productnotfound from "@/app/_components/Productnotfound";
 
 async function page({ searchParams }) {
@@ -8,6 +8,7 @@ async function page({ searchParams }) {
 
   let allproducts = await Cachedproducts();
 
+  // searching cahched products
   words.split(" ").forEach((word, i) => {
     if (word.trim() !== "") {
       allproducts = allproducts.filter((product) => {
@@ -60,25 +61,26 @@ async function page({ searchParams }) {
       return 0;
     }
   });
+
   if (allproducts.length != 0) {
     return (
       <div
         className={`grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] place-items-center gap-[20px] p-[20px]`}
       >
-        {allproducts.map((item, i) => {
+        {allproducts?.map((item, i) => {
           return (
             <Productcard
-              key={i}
+              key={new Date().getMilliseconds() + i}
               index={i}
-              id={item._id}
-              category={item.category}
-              subcat={item.subcat}
-              name={item.name}
-              price={item.price}
-              discount={item.discount}
-              available={item.available}
-              image={item.colorpalets[0].images[0]}
-              rating={item.rating}
+              id={item?._id}
+              category={item?.category}
+              subcat={item?.subcat}
+              name={item?.name}
+              price={item?.price}
+              discount={item?.discount}
+              available={item?.available}
+              image={item?.colorpalets[0].images[0]}
+              rating={item?.rating}
             />
           );
         })}

@@ -3,7 +3,7 @@ import Secondnav from "../_Components/Secondnav";
 import Productcard from "@/app/_components/Productcard";
 import { categorylist, filterlist } from "@/app/commondata";
 import { notFound } from "next/navigation";
-import { Cachedproducts } from "@/app/_components/serveractions/Getcachedata";
+import { Cachedproducts } from "@/app/_serveractions/Getcachedata";
 import Productnotfound from "@/app/_components/Productnotfound";
 
 async function page({ params, searchParams }) {

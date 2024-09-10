@@ -1,6 +1,7 @@
 import React from "react";
 import { categorylist } from "@/app/commondata";
-import Subcategorycard from "../Subcategorycard";
+import Link from "next/link";
+import Image from "next/image";
 
 function Categories() {
   return (
@@ -11,13 +12,22 @@ function Categories() {
       <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-[5px] md:gap-[20px] p-[5px] md:px-[20px] mt-[30px]">
         {Object.keys(categorylist).map((item, i) => {
           return (
-            <Subcategorycard
+            <Link
               key={i}
-              styles=" w-full rounded-[10px] md:rounded-[15px] overflow-hidden border border-slate-300 lg:hover:shadow-[4px_4px_5px_#bababa7f] duration-200"
-              link={`/${item}`}
-              imgsrc={categorylist[item].image}
-              proname={item}
-            />
+              href={`/${item}`}
+              className={`item w-full rounded-[10px] md:rounded-[15px] overflow-hidden  lg:shadow-[0px_0px_10px_#bababa7f] ${""}`}
+            >
+              <Image
+                src={categorylist[item].image}
+                width={300}
+                height={300}
+                alt={item}
+                className="w-full aspect-[4/3] object-cover object-center rounded-[10px] md:rounded-[15px]"
+              ></Image>
+              <div className="text-center text-[13px] md:text-[16px] py-[5px] md:py-[10px]">
+                {item}
+              </div>
+            </Link>
           );
         })}
       </div>

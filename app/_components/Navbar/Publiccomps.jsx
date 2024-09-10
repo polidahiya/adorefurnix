@@ -9,7 +9,7 @@ import Navorderssvg from "@/app/_svgs/Navorderssvg";
 import Heart from "@/app/_svgs/Heart";
 import Updateusersvg from "@/app/_svgs/Updateusersvg";
 import Logoutsvg from "@/app/_svgs/Logoutsvg";
-import { logout } from "@/app/main/loginlogout/Serveractions";
+import { logout } from "@/app/(main)/loginlogout/Serveractions";
 import { useRouter } from "next/navigation";
 
 export const Cartproductcount = () => {
@@ -146,7 +146,7 @@ export const Logedinusermenu = ({ token, userdata }) => {
                 }}
               >
                 <Link
-                  href={`/main/orderdetails`}
+                  href={`/orderdetails`}
                   className="p-[5px] flex items-center gap-[10px] lg:hover:bg-slate-100 cursor-pointer"
                 >
                   <Navorderssvg styles="h-[25px]" />
@@ -154,7 +154,7 @@ export const Logedinusermenu = ({ token, userdata }) => {
                 </Link>
                 <hr />
                 <Link
-                  href={`/main/likedproducts`}
+                  href={`/likedproducts`}
                   className="p-[5px] flex items-center gap-[10px] lg:hover:bg-slate-100 cursor-pointer"
                 >
                   <Heart styles="h-[25px] w-[25px] fill-red-500 " />
@@ -162,7 +162,7 @@ export const Logedinusermenu = ({ token, userdata }) => {
                 </Link>
                 <hr />
                 <Link
-                  href={`/main/updateuserdetails`}
+                  href={`/updateuserdetails`}
                   className="p-[5px] flex items-center gap-[10px] lg:hover:bg-slate-100 cursor-pointer"
                 >
                   <Updateusersvg styles="h-[25px]" />
@@ -199,12 +199,13 @@ export const Logedinusermenu = ({ token, userdata }) => {
       <button
         onClick={() => {
           const link = new URL(window.location.href);
+          console.log(link.pathname.replace("%20", " "));
+
           setredirectloginlink(link.pathname);
-          console.log(link.pathname);
         }}
       >
         <Link
-          href="/main/loginlogout"
+          href="/loginlogout"
           className="flex items-center justify-center bg-theme text-white h-[30px] px-[10px] md:px-[20px] rounded-full"
         >
           Login

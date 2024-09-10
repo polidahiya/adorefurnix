@@ -1,5 +1,5 @@
 "use client";
-import { Getblogs } from "../serveractions/Getblogs";
+import { Getblogs } from "../../_serveractions/Getblogs";
 import Componentloading from "../Componentloading";
 import React, { useEffect, useState } from "react";
 import Smalldesc from "./blogs/Smalldesc";

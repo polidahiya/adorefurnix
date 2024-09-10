@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Getblogs } from "@/app/_components/serveractions/Getblogs";
+import { Getblogs } from "@/app/_serveractions/Getblogs";
 import { Deleteblog } from "./Serveraction";
 
 function Showblogs() {

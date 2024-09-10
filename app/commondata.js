@@ -132,6 +132,63 @@ export const filterlist = [
   },
 ];
 
+// fixed search options
+export const searchoptions = [
+  "Living Room",
+  "Sofa sets",
+  "Sofa cum bed",
+  "Wing chairs",
+  "Ottoman",
+  "Chairs",
+  "Bedroom",
+  "King Size Bed",
+  "Queen Size Bed",
+  "Single Bed",
+  "Kids Bed",
+  "Wardrobe",
+  "Bedside Table",
+  "Chest of Drawers",
+  "Dressing Tables",
+  "Dining",
+  "2-Seater Dining Set",
+  "4-Seater Dining Set",
+  "6-Seater Dining Set",
+  "Tables",
+  "Coffee Tables",
+  "End Tables",
+  "Console Tables",
+  "Nesting Tables",
+  "Storage",
+  "Shoe Rack",
+  "Tv and Entertainment Unit",
+  "Cabinet",
+  "Book Shelf",
+  "Crockery Cabinet",
+  "Bar Furniture",
+  "Bar Units",
+  "Bar Cabinets",
+  "Bar Trolly",
+  "Bar Wall hanging Shelf",
+  "Bar Chairs & Stools",
+  "Study and Bookshelf",
+  "Study Tables",
+  "BookShelf",
+  "Computer Tables",
+  "Office Furniture",
+  "Office Chairs",
+  "Study & Laptop Tables",
+  "Office Sofa",
+  "Home Decor & More",
+];
+
+export const permanentsearchoptions = [
+  "King Size Bed",
+  "4-Seater Dining Set",
+  "Coffee Tables",
+  "Flora kids bed",
+  "Home Decor & More",
+];
+
 // login time
 export const logintime = [3600 * 24 * 2, "48h"];
 

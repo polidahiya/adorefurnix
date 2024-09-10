@@ -1,5 +1,5 @@
 import React from "react";
-import Userdetails from "./components/Userdetails";
+import Userdetails from "./_components/Userdetails";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 

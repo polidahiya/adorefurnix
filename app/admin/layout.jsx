@@ -6,7 +6,7 @@ import Loginpage from "./Loginpage";
 import Link from "next/link";
 import Image from "next/image";
 import Componentloading from "../_components/Componentloading";
-import { refreshsitenow } from "../_components/serveractions/Getcachedata";
+import { refreshsitenow } from "../_serveractions/Getcachedata";
 import { AppContextfn } from "../Context";
 import Refreshsvg from "../_svgs/Refreshsvg";
 

@@ -3,8 +3,13 @@ import Page from "./Publicpage";
 import { cookies } from "next/headers";
 
 function page() {
+  const token = cookies()?.get("token")?.value;
   const userdata = cookies()?.get("userdata")?.value;
-  return <Page userdata={userdata}/>;
+  let parseduserdata;
+  if (userdata) {
+    parseduserdata = JSON.parse(userdata);
+  }
+  return <Page userdata={parseduserdata} token={token} />;
 }
 
 export default page;

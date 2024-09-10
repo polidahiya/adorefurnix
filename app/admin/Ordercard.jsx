@@ -5,7 +5,7 @@ import {
   updatenote,
   deleteorder,
   changestatus,
-} from "../_components/serveractions/Adminorders";
+} from "../_serveractions/Adminorders";
 
 import { AppContextfn } from "../Context";
 import Deletesvg from "../_svgs/Deletesvg";

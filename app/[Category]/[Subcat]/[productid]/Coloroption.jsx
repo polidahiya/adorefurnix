@@ -1,27 +1,24 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
 function Coloroption({ filteredproducts, color }) {
   return (
     <div className="flex gap-[50px] mt-[30px]">
-      <span className="font-semibold text-slate-400">Color :</span>
-      <div className="flex gap-[10px]">
+      <span className="font-semibold text-slate-400 whitespace-nowrap">
+        Color :
+      </span>
+      <div className="flex gap-[10px] overflow-x-scroll flex-wrap p-[20px]">
         {filteredproducts.colorpalets.map((item, i) => {
           return (
             <Link
               href={`/${filteredproducts.category}/${filteredproducts.subcat}/${filteredproducts._id}?color=${i}`}
               key={i}
-              className={`relative p-[5px] border-[2px]  cursor-pointer
-                ${color == i ? "border-cyan-500" : "border-slate-300"}`}
+              className={`relative p-[5px]  cursor-pointer shadow-[0px_0px_5px_#bababa7f] rounded-[10px]
+                ${color == i ? "outline outline-cyan-500" : ""}`}
             >
-              <Image
-                src={item.images[0]}
-                className="h-[100px] aspect-square  object-contain object-center "
-                alt="sdjfjds"
-                height={100}
-                width={100}
-              ></Image>
+              <Comp image={item.images[0]} />
               <p className="text-center">{item.name}</p>
               <div
                 className={`absolute top-[5px] right-[5px] w-[20px] aspect-square rounded-full`}
@@ -32,6 +29,22 @@ function Coloroption({ filteredproducts, color }) {
         })}
       </div>
     </div>
+  );
+}
+
+function Comp({ image }) {
+  const [safeimage, setsafeimage] = useState(image);
+  return (
+    <Image
+      src={safeimage}
+      className="h-[100px] min-w-[100px] object-contain object-center rounded-[5px]"
+      alt="sdjfjds"
+      height={100}
+      width={100}
+      onError={() => {
+        setsafeimage("/default-fallback-image.png");
+      }}
+    ></Image>
   );
 }
 

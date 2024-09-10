@@ -1,16 +1,19 @@
 "use client";
-import { Placeorder } from "@/app/_components/serveractions/Addorder";
+import { Placeorder } from "@/app/_serveractions/Addorder";
 import Ordersplacednotif from "./Ordersplacednotif";
 import { AppContextfn } from "@/app/Context";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Products from "./Products";
 import Image from "next/image";
 import Link from "next/link";
+import { Paymentfn } from "./Payment";
+import Componentloading from "@/app/_components/Componentloading";
 
-export default function Page({ userdata }) {
+export default function Page({ userdata, token }) {
   const { cart, setcart, settoggleorderplacedmenu, setmessagefn } =
     AppContextfn();
-  const [showloading, setshowloading] = useState(false);
+
+  const [loading, setloading] = useState(false);
 
   let cartlength = 0;
   Object.keys(cart).forEach((item) => {
@@ -27,25 +30,27 @@ export default function Page({ userdata }) {
     totaldiscount += (beforediscount - price) * quantity;
   });
 
-  const placeorderfn = async () => {
-    if (showloading) {
-      return;
-    }
-    setshowloading(true);
+  // adding razorpay
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+    script.async = true;
+    document.body.appendChild(script);
 
-    const res = await Placeorder(cart);
-    if (res?.message == "Order Placed") {
-      settoggleorderplacedmenu(true);
-      setcart({});
-    } else {
-      setmessagefn(res?.message);
-    }
-    setshowloading(false);
-  };
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
   return (
     <>
       <Ordersplacednotif />
+      {loading && (
+        <div className="absolute top-0 left-0 h-full w-full flex items-center justify-center bg-black bg-opacity-[10%] z-[10]">
+          <Componentloading />
+        </div>
+      )}
+
       {cartlength != 0 ? (
         <div className="p-[5px] md:p-[20px] flex flex-col lg:flex-row gap-[10px] bg-bg1 min-h-[calc(100vh-111px)]">
           <div className="w-full">
@@ -70,19 +75,40 @@ export default function Page({ userdata }) {
               <div className="sticky bottom-0 flex w-full gap-[10px] bg-white shadow-[0px_-2px_10px_#e1e1e1] p-[10px]">
                 {userdata && (
                   <Link
-                    href="/main/updateuserdetails"
+                    href="/updateuserdetails"
                     className="w-full flex items-center px-[20px] border border-slate-300 rounded-[5px] whitespace-nowrap overflow-hidden text-ellipsis text-slate-400"
                   >
-                    Address : {JSON.parse(userdata)?.address}
+                    Address : {userdata?.address}
                   </Link>
                 )}
                 <button
                   className="flex items-center gap-[10px] px-[40px] py-[10px] border border-slate-300 rounded-[5px] bg-theme  text-white ml-auto whitespace-nowrap"
-                  onClick={placeorderfn}
+                  onClick={() => {
+                    if (!token) {
+                      setmessagefn("Please Login");
+                      return;
+                    }
+
+                    Paymentfn(
+                      userdata,
+                      totalprice - totaldiscount,
+                      "INR",
+                      async () => {
+                        setloading(true);
+
+                        const res = await Placeorder(cart);
+                        if (res?.message == "Order Placed") {
+                          settoggleorderplacedmenu(true);
+                          setcart({});
+                        } else {
+                          setmessagefn(res?.message);
+                        }
+                        setloading(false);
+                      },
+                      setmessagefn
+                    );
+                  }}
                 >
-                  {showloading && (
-                    <div className="h-[20px] aspect-square rounded-full  border-r-2 border-l-2 border-white animate-spin"></div>
-                  )}
                   Place Order
                 </button>
               </div>

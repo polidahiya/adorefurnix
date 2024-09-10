@@ -7,7 +7,7 @@ import Bestselling from "./_components/Homepage/Bestselling";
 import Collage from "./_components/Homepage/Collage";
 import Categories from "./_components/Homepage/Categories";
 import Searchbox from "./_components/Searchbox";
-import { Cachedproducts } from "./_components/serveractions/Getcachedata";
+import { Cachedproducts } from "./_serveractions/Getcachedata";
 import Cartsvg from "./_svgs/Cartsvg";
 import { Cartproductcount } from "./_components/Navbar/Publiccomps";
 import { Logedinusermenu } from "./_components/Navbar/Publiccomps";
@@ -18,9 +18,9 @@ export default async function Home() {
   const token = cookies()?.get("token")?.value;
   const userdata = cookies()?.get("userdata")?.value;
 
-  // 
+  //
   const products = await Cachedproducts();
-  const productsname = products.map((item) => item.name);
+  const productsname = products?.map((item) => item?.name);
   return (
     <div>
       <div className="relative w-full box-content h-fit " id="home">
@@ -54,7 +54,7 @@ export default async function Home() {
           </ul>
           <div className="flex items-center justify-end gap-[10px] h-full ">
             <Link
-              href="/main/cart"
+              href="/cart"
               className="relative flex items-center justify-center h-full aspect-square "
             >
               <Cartsvg styles="fill-white h-[20px]" />

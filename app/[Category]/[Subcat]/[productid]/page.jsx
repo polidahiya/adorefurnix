@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Imagescomp from "./Imagescomp";
-import { Cachedproducts } from "@/app/_components/serveractions/Getcachedata";
+import { Cachedproducts } from "@/app/_serveractions/Getcachedata";
 import { categorylist } from "@/app/commondata";
 import { notFound } from "next/navigation";
 import Coloroption from "./Coloroption";
@@ -24,9 +24,9 @@ async function page({ params, searchParams }) {
 
   // not found code
   if (
-    !Object.keys(categorylist).includes(category) ||
-    !categorylist[category].subcat.map((item) => item.name).includes(subcat) ||
-    !allproducts.map((item) => item._id).includes(productid)
+    !Object.keys(categorylist)?.includes(category) ||
+    !categorylist[category]?.subcat?.map((item) => item.name)?.includes(subcat) ||
+    !allproducts?.map((item) => item._id)?.includes(productid)
   ) {
     notFound();
   }
@@ -64,7 +64,7 @@ async function page({ params, searchParams }) {
         </div>
         {/* details */}
         <div className="w-full lg:w-[50%] p-[10px] px-[20px]">
-          <div className=" sticky top-[60px] lg:top-[110px] bg-white flex gap-[10px] text-[#87878] text-[14px] z-20  whitespace-nowrap ">
+          <div className=" sticky top-[60px] lg:top-[110px] bg-white flex gap-[10px] text-[#87878] text-[14px] z-20  whitespace-nowrap cursor-pointer">
             <Link className="lg:hover:text-cyan-500" href={"/"}>
               Home
             </Link>{" "}
@@ -111,13 +111,13 @@ async function page({ params, searchParams }) {
           />
           {/* dimension */}
           <div className="flex gap-[10px] mt-[30px] font-semibold">
-            <span className=" text-slate-400">Dimension :</span>
+            <span className=" text-slate-400 whitespace-nowrap">Dimension :</span>
             {filteredproducts.Dimensions || <span className="text-red-500">Not Available{"*"}</span>}
           </div>
           {/* description */}
           {filteredproducts.desc != 0 && (
             <div className="flex gap-[10px] mt-[30px] font-semibold">
-              <span className=" text-slate-400">Description :</span>
+              <span className=" text-slate-400 whitespace-nowrap">Description :</span>
               <div>
                 {filteredproducts.desc.map((item, i) => {
                   return (

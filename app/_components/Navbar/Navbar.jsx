@@ -35,7 +35,7 @@ function Navbar({ params, productsname, token, userdata }) {
         <div className="w-full h-full flex items-center justify-end gap-0 md:gap-[10px]">
           <Showsearchbutton />
           <Link
-            href="/main/cart"
+            href="/cart"
             className="relative flex items-center justify-center h-full aspect-square "
           >
             <Cartsvg styles="fill-white h-[20px]" />

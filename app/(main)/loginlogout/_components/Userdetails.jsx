@@ -18,7 +18,7 @@ function Userdetails() {
   const passwordref = useRef("");
   const phonenumref = useRef("");
   const addressref = useRef("");
-  const [showloading, setshowloading] = useState(false);
+  const [loading, setloading] = useState(false);
 
   const fieldcheck = () => {
     // if fields are empty
@@ -87,7 +87,7 @@ function Userdetails() {
     if (!filedcheckvalue) {
       return;
     }
-    setshowloading(true);
+    setloading(true);
     // send data
     if (toggleform) {
       // signup
@@ -102,10 +102,12 @@ function Userdetails() {
       const reply = await signup(userdata);
 
       setmessagefn(reply?.message);
-      setshowloading(false);
+      setloading(false);
 
       if (reply.message == "Signup successfully") {
-        router.push(redirectloginlink);
+        setTimeout(() => {
+          router.push(redirectloginlink);
+        }, 1000);
       }
     } else {
       // login
@@ -113,14 +115,16 @@ function Userdetails() {
         email: emailref.current.value,
         password: passwordref.current.value,
       };
-      
+
       const reply = await login(userdata);
-      
+
       setmessagefn(reply?.message);
-      setshowloading(false);
-      
+      setloading(false);
+
       if (reply.message == "Login successfull") {
-        router.push(redirectloginlink);
+        setTimeout(() => {
+          router.push(redirectloginlink);
+        }, 1000);
       }
     }
   };
@@ -130,7 +134,7 @@ function Userdetails() {
       <Image
         src="/minlogo.png"
         alt="rentbean.in logo image"
-        className=" top-[20px] left-[30px] h-[50px] w-[50px]"
+        className=" top-[20px] left-[30px] h-[50px] w-[50px] invert"
         width={156}
         height={60}
       ></Image>
@@ -232,7 +236,7 @@ function Userdetails() {
           className="flex items-center justify-center gap-[10px] px-[100px] py-[5px] bg-theme text-white rounded-full mt-[20px] "
           onClick={authenticateuser}
         >
-          {showloading && (
+          {loading && (
             <div className="h-[20px] aspect-square rounded-full  border-r-2 border-l-2 border-white animate-spin"></div>
           )}
           {toggleform ? "Signup" : "Login"}

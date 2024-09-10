@@ -32,7 +32,7 @@ export function Addtocartbuttons({ filteredproducts, color }) {
           }
           //
           if (availableincart) {
-            router.push("/main/cart");
+            router.push("/cart");
             return;
           }
           const editedproduct = { ...filteredproducts };
@@ -73,7 +73,7 @@ export function Addtocartbuttons({ filteredproducts, color }) {
             }));
           }
 
-          router.push("/main/cart");
+          router.push("/cart");
         }}
       >
         <Lighteningsvg styles="fill-white h-[20px]" /> <span>Buy Now</span>

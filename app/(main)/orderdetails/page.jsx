@@ -1,6 +1,6 @@
 "use client";
-import { getordershistory } from "@/app/_components/serveractions/Getordershistory";
-import { Cancelorder } from "@/app/_components/serveractions/Getordershistory";
+import { getordershistory } from "@/app/_serveractions/Getordershistory";
+import { Cancelorder } from "@/app/_serveractions/Getordershistory";
 import Componentloading from "@/app/_components/Componentloading";
 import Productnotfound from "@/app/_components/Productnotfound";
 import Productcard from "@/app/_components/Productcard";

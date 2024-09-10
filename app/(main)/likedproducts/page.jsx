@@ -1,7 +1,7 @@
 "use client";
-import { getLikedProducts } from "@/app/_components/serveractions/Likedproducts";
-import { Cachedproducts } from "@/app/_components/serveractions/Getcachedata";
-import { likeproduct } from "@/app/_components/serveractions/Likedproducts";
+import { getLikedProducts } from "@/app/_serveractions/Likedproducts";
+import { Cachedproducts } from "@/app/_serveractions/Getcachedata";
+import { likeproduct } from "@/app/_serveractions/Likedproducts";
 import Componentloading from "@/app/_components/Componentloading";
 import Productnotfound from "@/app/_components/Productnotfound";
 import Productcard from "@/app/_components/Productcard";
