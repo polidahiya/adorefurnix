@@ -6,9 +6,9 @@ import {
   FaCcVisa,
   FaCcMastercard,
   FaCcAmex,
-  FaPaypal,
+  // FaPaypal,
   FaGooglePay,
-  FaApplePay,
+  // FaApplePay,
 } from "react-icons/fa";
 import { AiFillBank } from "react-icons/ai";
 // import { IoMdCash } from "react-icons/io";
@@ -17,6 +17,7 @@ import { FaFacebook } from "react-icons/fa";
 import { RiInstagramFill } from "react-icons/ri";
 import { BsTwitterX } from "react-icons/bs";
 import { MdOutlineArrowRightAlt } from "react-icons/md";
+import { sociallinks } from "../commondata";
 
 function Footer() {
   const list1 = [
@@ -46,22 +47,20 @@ function Footer() {
             className="h-[40px] w-[160px] "
           ></Image>
           <p className="mt-[30px]  mb-[20px] text-justify lg:text-start">
-            Adorefurnix specializes in the wholesale and manufacturing of a
-            diverse range of high-quality furniture items. We inspire our
-            customers through a unique blend of innovative design, exceptional
-            craftsmanship, and a deep understanding of cultural nuances. Explore
-            our extensive collection to find the perfect pieces that combine
-            style and functionality for every space.
+            Our mission is to provide high-quality, handcrafted wooden furniture
+            and home decor that enhances your living space. We strive to offer
+            exceptional value and create pieces that you&apos;ll cherish for years to
+            come.
           </p>
           <div className="w-full flex items-center gap-[20px] text-[25px] mt-auto">
             <p className="text-[16px] font-bold">Socials : </p>
-            <Link href={"/"} title="Facebook">
+            <Link href={sociallinks.facebook} target="_blank" title="Facebook">
               <FaFacebook className="text-[20px]" />
             </Link>
-            <Link href={"/"} title="Instagram">
+            <Link href={sociallinks.insta} target="_blank" title="Instagram">
               <RiInstagramFill className="text-[20px]" />
             </Link>
-            <Link href={"/"} title="X">
+            <Link href={sociallinks.twitter} target="_blank" title="X">
               <BsTwitterX className="text-[20px]" />
             </Link>
           </div>
@@ -102,9 +101,9 @@ function Footer() {
           <FaCcVisa size={15} title="Visa" />
           <FaCcMastercard size={15} title="MasterCard" />
           <FaCcAmex size={15} title="American Express" />
-          <FaPaypal size={15} title="PayPal" />
+          {/* <FaPaypal size={15} title="PayPal" /> */}
           <FaGooglePay size={30} title="Google Pay" />
-          <FaApplePay size={30} title="Apple Pay" />
+          {/* <FaApplePay size={30} title="Apple Pay" /> */}
           <AiFillBank size={15} title="Net Banking" />
           {/* <IoMdCash size={15} title="Cash on Delivery" /> */}
           <SiPaytm size={30} title="Paytm Wallet" />

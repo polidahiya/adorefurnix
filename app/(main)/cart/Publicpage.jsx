@@ -60,15 +60,21 @@ export default function Page({ userdata, token }) {
                 <div className="w-full flex items-center px-[20px] whitespace-nowrap overflow-hidden text-ellipsis text-slate-400">
                   Address : {userdata?.address}
                 </div>
-                <Link href="/updateuserdetails"
-                className="flex gap-[5px] items-center  bg-theme text-white p-[5px] px-[20px] rounded-[5px]">
+                <Link
+                  href="/updateuserdetails"
+                  className="flex gap-[5px] items-center  bg-theme text-white p-[5px] px-[20px] rounded-[5px]"
+                >
                   <MdOutlineEditNote className="text-[25px]" />
                   Change
                 </Link>
               </div>
             )}
             {/* products */}
-            <div className=" border border-slate-300 bg-white mt-[10px]">
+            <div
+              className={` border border-slate-300 bg-white  ${
+                userdata && "mt-[10px]"
+              }`}
+            >
               {Object.keys(cart).map((item, i) => {
                 return (
                   <Products

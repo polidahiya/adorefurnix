@@ -8,6 +8,7 @@
   font-family: "Mulish", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
+  /* background-image: url("../../adorefurnix/public/categoriesimages/subcats/OfficeSofa.webp"); */
 }
 
 :root {
@@ -81,5 +82,48 @@ body {
   }
   100% {
     rotate: 360deg;
+  }
+}
+
+
+/* about us heading */
+.aboutusheading {
+  background: url(/images/bg2.jpg);
+  background-size: contain;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  text-align: center;
+  margin: 0;
+  padding: 10px 0 0 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-filter: hue-rotate(0deg);
+  filter: hue-rotate(0deg);
+  -webkit-animation: rotatehue 200s infinite linear;
+  animation: rotatehue 200s infinite linear;
+}
+@-webkit-keyframes rotatehue {
+  0% {
+    -webkit-filter: hue-rotate(0deg) saturate(2);
+    filter: hue-rotate(0deg) saturate(2);
+    background-position: -200% 50%;
+  }
+  100% {
+    -webkit-filter: hue-rotate(360deg) saturate(2);
+    filter: hue-rotate(360deg) saturate(2);
+    background-position: 200% 50%;
+  }
+}
+@keyframes rotatehue {
+  0% {
+    -webkit-filter: hue-rotate(0deg) saturate(2);
+    filter: hue-rotate(0deg) saturate(2);
+    background-position: -200% 50%;
+  }
+  100% {
+    -webkit-filter: hue-rotate(360deg) saturate(2);
+    filter: hue-rotate(360deg) saturate(2);
+    background-position: 200% 50%;
   }
 }

@@ -3,34 +3,32 @@ import { mail } from "@/app/commondata";
 
 function page() {
   return (
-    <div id="content" class="container mx-auto p-4">
-      <div class=" mx-auto bg-white shadow-md rounded-lg overflow-hidden">
-        <div id="primary" class="p-6">
+    <div id="content" className="container mx-auto p-4">
+      <div className=" mx-auto bg-white shadow-md rounded-lg overflow-hidden">
+        <div id="primary" className="p-6">
           <main id="main">
-            <article
-              class="prose lg:prose-xl mx-auto"
-            >
-              <header class="mb-6">
-                <h1 class="text-3xl font-bold mb-4" itemprop="headline">
+            <article className="prose lg:prose-xl mx-auto">
+              <header className="mb-6">
+                <h1 className="text-3xl font-bold mb-4" itemprop="headline">
                   Privacy Policy
                 </h1>
               </header>
 
-              <div class="entry-content" itemprop="text">
+              <div className="entry-content" itemprop="text">
                 <p>
-                  <strong>Adorefurnix</strong> is Proprietorship based and
-                  uses highest security standards to ensure its customers about
+                  <strong>Adorefurnix</strong> is Proprietorship based and uses
+                  highest security standards to ensure its customers about
                   secure online transactions. Being the data controller we are
                   responsible to secure your data and committed to practice
                   advanced firewall technology for the order processes.
                 </p>
 
-                <h3 class="text-xl font-semibold mt-6 mb-2">
+                <h3 className="text-xl font-semibold mt-6 mb-2">
                   Respecting Your Privacy
                 </h3>
                 <p>
-                  Adorefurnix is committed to respect your privacy. Therefore
-                  we set the highest ethical standards to protect your sensitive
+                  Adorefurnix is committed to respect your privacy. Therefore we
+                  set the highest ethical standards to protect your sensitive
                   information.
                 </p>
                 <p>
@@ -39,10 +37,10 @@ function page() {
                   about our privacy policy, please contact our Customer Support.
                 </p>
 
-                <h3 class="text-xl font-semibold mt-6 mb-2">
+                <h3 className="text-xl font-semibold mt-6 mb-2">
                   Type of information we collect
                 </h3>
-                <ol class="list-decimal list-inside pl-5">
+                <ol className="list-decimal list-inside pl-5">
                   <li>
                     We may collect your contact details, such as your name,
                     email address, phone number, postal address and delivery
@@ -70,31 +68,33 @@ function page() {
                   </li>
                 </ol>
 
-                <h3 class="text-xl font-semibold mt-6 mb-2">
+                <h3 className="text-xl font-semibold mt-6 mb-2">
                   How we use or share it
                 </h3>
                 <p>
                   We conduct the business in an ethical manner; hence we collect
                   the personal information of our users or customers only to
-                  cater to the best products and services at {mail}.
-                  We do not sell, trade, share, or transfer your information to
-                  any third parties.
+                  cater to the best products and services at {mail}. We do not
+                  sell, trade, share, or transfer your information to any third
+                  parties.
                 </p>
 
-                <h3 class="text-xl font-semibold mt-6 mb-2">User Consent</h3>
+                <h3 className="text-xl font-semibold mt-6 mb-2">
+                  User Consent
+                </h3>
                 <p>
                   When you access the website or fill in your details to buy the
-                  products or services offered at the website, Adorefurnix
-                  will accept it as your consent with the privacy policy. For
-                  users who are not comfortable with the clause and conditions
-                  to share their personally identifiable information, it is
+                  products or services offered at the website, Adorefurnix will
+                  accept it as your consent with the privacy policy. For users
+                  who are not comfortable with the clause and conditions to
+                  share their personally identifiable information, it is
                   requested to abort the use of the website. We also provide an
                   opt-out option to our registered users to unsubscribe from all
                   non-essential emails and communication from us and our
                   partners.
                 </p>
 
-                <h3 class="text-xl font-semibold mt-6 mb-2">
+                <h3 className="text-xl font-semibold mt-6 mb-2">
                   More Information
                 </h3>
                 <p>
@@ -102,14 +102,14 @@ function page() {
                   practices, feel free to contact our Customer Support.
                 </p>
 
-                <p class="italic mt-4">
-                  Note: The privacy policy of {mail} may be subject
-                  to change at any time to include or exclude clauses, thus
-                  users are requested to visit this page in a timely manner to
-                  stay aware of the changes. The above privacy policy does not
-                  apply to our affiliates, partners, and any third party
-                  associated with us; for further interaction, kindly review the
-                  privacy statement of the respective.
+                <p className="italic mt-4">
+                  Note: The privacy policy of {mail} may be subject to change at
+                  any time to include or exclude clauses, thus users are
+                  requested to visit this page in a timely manner to stay aware
+                  of the changes. The above privacy policy does not apply to our
+                  affiliates, partners, and any third party associated with us;
+                  for further interaction, kindly review the privacy statement
+                  of the respective.
                 </p>
               </div>
             </article>
