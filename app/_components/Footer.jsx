@@ -11,7 +11,7 @@ import {
   FaApplePay,
 } from "react-icons/fa";
 import { AiFillBank } from "react-icons/ai";
-import { IoMdCash } from "react-icons/io";
+// import { IoMdCash } from "react-icons/io";
 import { SiPaytm, SiPhonepe } from "react-icons/si";
 import { FaFacebook } from "react-icons/fa";
 import { RiInstagramFill } from "react-icons/ri";
@@ -20,12 +20,12 @@ import { MdOutlineArrowRightAlt } from "react-icons/md";
 
 function Footer() {
   const list1 = [
-    { name: "About", link: "/" },
-    { name: "Blogs", link: "/" },
-    { name: "Contact Us", link: "/" },
-    { name: "Privacy Policy", link: "/" },
-    { name: "Return and Refunds", link: "/" },
-    { name: "Terms & Conditions", link: "/" },
+    { name: "About", link: "/About" },
+    { name: "Blogs", link: "/#blogs" },
+    { name: "Contact Us", link: "/Contact" },
+    { name: "Privacy Policy", link: "/PrivacyPolicy" },
+    { name: "Return and Refunds", link: "/ReturnandRefunds" },
+    { name: "Terms & Conditions", link: "/Terms&Conditions" },
   ];
   const list2 = [
     { name: "Living Room", link: "/Living%20Room" },
@@ -36,7 +36,7 @@ function Footer() {
     { name: "More", link: "/#categories" },
   ];
   return (
-    <footer className="bg-graygradient text-white px-[50px] p-[20px] pt-[50px] lg:pt-[20px] text-[14px]">
+    <footer className="bg-graygradient text-white px-[30px] md:px-[50px] p-[20px] pt-[30px] lg:pt-[20px] text-[14px]">
       <section className=" flex gap-[50px] flex-col md:flex-row">
         <div className="flex-1 flex flex-col items-start">
           <Image
@@ -45,10 +45,13 @@ function Footer() {
             height={52}
             className="h-[40px] w-[160px] "
           ></Image>
-          <p className="mt-[30px]  mb-[20px]">
-            Urbanfry Homes is dedicatedly into wholesale & manufacturing of
-            Solid Wood Items & now online inspiring customers through a unique
-            combination of product, creativity & cultural understanding.
+          <p className="mt-[30px]  mb-[20px] text-justify lg:text-start">
+            Adorefurnix specializes in the wholesale and manufacturing of a
+            diverse range of high-quality furniture items. We inspire our
+            customers through a unique blend of innovative design, exceptional
+            craftsmanship, and a deep understanding of cultural nuances. Explore
+            our extensive collection to find the perfect pieces that combine
+            style and functionality for every space.
           </p>
           <div className="w-full flex items-center gap-[20px] text-[25px] mt-auto">
             <p className="text-[16px] font-bold">Socials : </p>
@@ -86,7 +89,6 @@ function Footer() {
             ))}
           </div>
         </div>
-       
       </section>
       <Divider />
       <section className="flex items-center justify-between flex-col-reverse lg:flex-row">

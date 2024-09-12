@@ -1,3 +1,5 @@
+export const mail="adorefurinx.com"
+export const mobile="+911234567890"
 export const categorylist = {
   "Living Room": {
     image: "/categoriesimages/livingroom.jpg",
