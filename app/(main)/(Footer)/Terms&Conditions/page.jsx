@@ -41,7 +41,7 @@ const page = () => {
               <li className="mb-2">Browsing the content on the website.</li>
             </ol>
             <p className="mb-4">
-              The Company shall not be required to notify you about the modifications made in the terms; the revised terms should be determined by checking the website regularly. Use of services and facilities on the website is subject to the current version of the policy, so it is the user's sole responsibility to stay informed about any updates.
+              The Company shall not be required to notify you about the modifications made in the terms; the revised terms should be determined by checking the website regularly. Use of services and facilities on the website is subject to the current version of the policy, so it is the user&apos;s sole responsibility to stay informed about any updates.
             </p>
           </section>
 
