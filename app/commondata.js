@@ -10,11 +10,11 @@ export const categorylist = {
   "Living Room": {
     image: "/categoriesimages/livingroom.jpg",
     subcat: [
-      { image: "/categoriesimages/livingroom.jpg", name: "Sofa sets" },
-      { image: "/categoriesimages/livingroom.jpg", name: "Sofa cum bed" },
-      { image: "/categoriesimages/livingroom.jpg", name: "Wing chairs" },
-      { image: "/categoriesimages/livingroom.jpg", name: "Ottoman" },
-      { image: "/categoriesimages/livingroom.jpg", name: "Chairs" },
+      { image: "/categoriesimages/subcats/sofasets.webp", name: "Sofa sets" },
+      { image: "/categoriesimages/subcats/sofacumbed.jpg", name: "sofacumbed.jpg" },
+      { image: "/categoriesimages/subcats/wingchair.jpg", name: "Wing chairs" },
+      { image: "/categoriesimages/subcats/ottoman.jpg", name: "Ottoman" },
+      { image: "/categoriesimages/subcats/charis.jpg", name: "Chairs" },
     ],
   },
   Bedroom: {
@@ -52,7 +52,7 @@ export const categorylist = {
     subcat: [
       { image: "/categoriesimages/subcats/ShoeRack.webp", name: "Shoe Rack" },
       {
-        image: "/categoriesimages/subcats/",
+        image: "/categoriesimages/subcats/tvandentertainmentunits.webp",
         name: "Tv and Entertainment Unit",
       },
       { image: "/categoriesimages/subcats/Cabinet.jpg", name: "Cabinet" },
