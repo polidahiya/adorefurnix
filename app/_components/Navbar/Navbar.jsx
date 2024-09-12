@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import Cartsvg from "../../_svgs/Cartsvg";
+import { FaCartShopping } from "react-icons/fa6";
 import { Cartproductcount, Showmobilecategorymenubutton } from "./Publiccomps";
 import Navcategories from "./Navcategories";
 import { Centralnav } from "./Publiccomps";
@@ -38,7 +38,7 @@ function Navbar({ params, productsname, token, userdata }) {
             href="/cart"
             className="relative flex items-center justify-center h-full aspect-square "
           >
-            <Cartsvg styles="fill-white h-[20px]" />
+            <FaCartShopping className="text-[25px] text-white " />
             <Cartproductcount />
           </Link>
           <Logedinusermenu userdata={userdata} token={token} />

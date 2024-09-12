@@ -1,11 +1,11 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import Searchsvg from "../_svgs/Searchsvg";
-import Seacrchsuggestionarrowsvg from "../_svgs/Seacrchsuggestionarrowsvg";
+import { FiSearch } from "react-icons/fi";
 import { useRouter } from "next/navigation";
 import { AppContextfn } from "../Context";
 import { searchoptions, permanentsearchoptions } from "../commondata";
+import { FiArrowUpLeft } from "react-icons/fi";
 
 function Searchbox({ productsname }) {
   const router = useRouter();
@@ -79,7 +79,9 @@ function Searchbox({ productsname }) {
           highlighted: (
             <>
               {beforeMatch}
-              <span className="bg-slate-200">{match}</span>
+              <span className="bg-slate-200 rounded-[3px] px-[1px]">
+                {match}
+              </span>
               {afterMatch}
             </>
           ),
@@ -163,10 +165,10 @@ function Searchbox({ productsname }) {
         />
         <Link
           href={search.trim() !== "" ? `/Search?query=${search}` : "#"}
-          className="flex items-center justify-center bg-theme h-full aspect-square md:aspect-auto md:gap-[5px] md:px-[10px] rounded-full"
+          className="flex items-center justify-center bg-theme h-full aspect-square md:aspect-auto md:gap-[5px] md:px-[10px] rounded-full text-white"
         >
-          <Searchsvg styles="h-[20px] stroke-white" />
-          <span className="text-white hidden md:block">Search</span>
+          <FiSearch className="text-[20px]" />
+          <span className=" hidden md:block">Search</span>
         </Link>
       </div>
       {/* suggestions */}
@@ -185,9 +187,7 @@ function Searchbox({ productsname }) {
                 onClick={() => {
                   setSearch(item.original);
                 }}
-                className={`${
-                  arrowselectedsuggest === i ? "bg-slate-200" : ""
-                }`}
+                className={`${arrowselectedsuggest === i && "bg-slate-200"}`}
               >
                 <Link
                   href={`/Search?query=${item.original}`}
@@ -196,7 +196,7 @@ function Searchbox({ productsname }) {
                   <p className="text-start max-w-[calc(100%-50px)] text-ellipsis overflow-hidden whitespace-nowrap">
                     {item.highlighted}
                   </p>
-                  <Seacrchsuggestionarrowsvg styles="h-[20px] stroke-slate-600 rotate-[-90deg]" />
+                  <FiArrowUpLeft className="text-[18px]" />
                 </Link>
                 <hr />
               </div>

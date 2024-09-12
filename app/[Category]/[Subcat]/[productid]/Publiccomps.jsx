@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { AppContextfn } from "@/app/Context";
-import Cartsvg from "@/app/_svgs/Cartsvg";
-import Lighteningsvg from "@/app/_svgs/Lighteningsvg";
+import { FaCartShopping } from "react-icons/fa6";
+import { BsLightningChargeFill } from "react-icons/bs";
 import { useRouter } from "next/navigation";
 
 export function Addtocartbuttons({ filteredproducts, color }) {
@@ -48,7 +48,7 @@ export function Addtocartbuttons({ filteredproducts, color }) {
           setmessagefn("Added to Cart");
         }}
       >
-        <Cartsvg styles="fill-white h-[16px]" />{" "}
+        <FaCartShopping className="text-[20px]" />{" "}
         <span>{availableincart ? "Go" : "Add"} to Cart</span>
       </button>
       <button
@@ -76,7 +76,8 @@ export function Addtocartbuttons({ filteredproducts, color }) {
           router.push("/cart");
         }}
       >
-        <Lighteningsvg styles="fill-white h-[20px]" /> <span>Buy Now</span>
+        
+        <BsLightningChargeFill className="text-[20px]" /> <span>Buy Now</span>
       </button>
     </div>
   );

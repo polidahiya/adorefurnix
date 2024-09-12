@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Paymentfn } from "./Payment";
 import Componentloading from "@/app/_components/Componentloading";
+import { MdOutlineEditNote } from "react-icons/md";
 
 export default function Page({ userdata, token }) {
   const { cart, setcart, settoggleorderplacedmenu, setmessagefn } =
@@ -54,20 +55,18 @@ export default function Page({ userdata, token }) {
       {cartlength != 0 ? (
         <div className="p-[5px] md:p-[20px] flex flex-col lg:flex-row gap-[10px] bg-bg1 min-h-[calc(100vh-111px)]">
           <div className="w-full">
-            <div className="flex items-center gap-[10px] bg-white border border-slate-300 p-[10px]">
-              <span>Payment Mode : </span>
-              <button
-                className="border border-slate-300 px-[20px] py-[5px] rounded-[5px] opacity-75 cursor-not-allowed"
-                onClick={() => {
-                  setmessagefn("Current unavailable");
-                }}
-              >
-                Upi
-              </button>
-              <button className="border border-slate-300 px-[20px] py-[5px] rounded-[5px] text-theme">
-                Cash On Delivery
-              </button>
-            </div>
+            {userdata && (
+              <div className=" flex items-center justify-between gap-[10px] bg-white border border-slate-300 p-[10px]">
+                <div className="w-full flex items-center px-[20px] whitespace-nowrap overflow-hidden text-ellipsis text-slate-400">
+                  Address : {userdata?.address}
+                </div>
+                <Link href="/updateuserdetails"
+                className="flex gap-[5px] items-center  bg-theme text-white p-[5px] px-[20px] rounded-[5px]">
+                  <MdOutlineEditNote className="text-[25px]" />
+                  Change
+                </Link>
+              </div>
+            )}
             {/* products */}
             <div className=" border border-slate-300 bg-white mt-[10px]">
               {Object.keys(cart).map((item, i) => {
@@ -83,14 +82,6 @@ export default function Page({ userdata, token }) {
               })}
 
               <div className="sticky bottom-0 flex w-full gap-[10px] bg-white shadow-[0px_-2px_10px_#e1e1e1] p-[10px]">
-                {userdata && (
-                  <Link
-                    href="/updateuserdetails"
-                    className="w-full flex items-center px-[20px] border border-slate-300 rounded-[5px] whitespace-nowrap overflow-hidden text-ellipsis text-slate-400"
-                  >
-                    Address : {userdata?.address}
-                  </Link>
-                )}
                 <button
                   className="flex items-center gap-[10px] px-[40px] py-[10px] border border-slate-300 rounded-[5px] bg-theme  text-white ml-auto whitespace-nowrap"
                   onClick={() => {
@@ -125,95 +116,107 @@ export default function Page({ userdata, token }) {
             </div>
           </div>
           {/* price details */}
-          <div className=" md:min-w-[400px] ">
-            <div className="sticky top-[132px] w-full">
-              <div className=" w-full bg-white border border-slate-300 ">
-                <h2 className="text-[20px] font-bold px-[20px] py-[15px]">
-                  Order Summary
-                </h2>
-                <hr />
-                <div className="flex flex-col gap-[20px] p-[20px]">
-                  <div className="flex items-center justify-between  ">
-                    <span>
-                      Price {"("}
-                      {cartlength} {cartlength == 1 ? "item" : "items"}
-                      {")"}
-                    </span>
-                    <span>
-                      ₹{parseInt(totalprice, 10).toLocaleString("en-IN")}
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-between  ">
-                    <span>Discount</span>
-                    <span>
-                      {" "}
-                      - ₹{parseInt(totaldiscount, 10).toLocaleString("en-IN")}
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-between  ">
-                    <span>Delivery Charges</span>
-                    <span>
-                      <span className="line-through">
-                        ₹{parseInt(40 * cartlength, 10).toLocaleString("en-IN")}
-                      </span>
-                      <span className="text-green-600"> Free</span>
-                    </span>
-                  </div>
-                  <hr className="" />
-                  <div className="flex items-center justify-between  font-bold">
-                    <span>Total Amount</span>
-                    <span>
-                      {" "}
-                      ₹
-                      {parseInt(totalprice - totaldiscount, 10).toLocaleString(
-                        "en-IN"
-                      )}
-                    </span>
-                  </div>
-                  <hr className="" />
-                  <p className=" text-green-500 font-bold text-center">
-                    You will save{" "}
-                    <span>
-                      ₹
-                      {parseInt(
-                        totaldiscount + cartlength * 40,
-                        10
-                      ).toLocaleString("en-IN")}
-                    </span>{" "}
-                    on this order
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-center gap-[10px] mt-[30px] pb-[30px] md:pb-0 px-[10px]">
-                <Secureicon />
-                <span>
-                  Safe and Secure Payments. Easy returns. 100% Authentic
-                  products.
-                </span>
-              </div>
-            </div>
-          </div>
+          <Pricedetails
+            cartlength={cartlength}
+            totalprice={totalprice}
+            totaldiscount={totaldiscount}
+          />
         </div>
       ) : (
-        <div className="flex flex-col items-center justify-center min-h-[calc(100vh-60px)] lg:min-h-[calc(100vh-111px)] p-[20px]">
-          <Image
-            src="/no-cart.png"
-            alt="Empty cart image"
-            height={300}
-            width={300}
-          ></Image>
-          <p className="mt-[30px] font-bold text-[20px] text-center">
-            Your Cart is Empty, Add Some Products.
-          </p>
-          <Link
-            href="/"
-            className="py-[10px] px-[50px] bg-theme text-white mt-[20px] rounded-full"
-          >
-            Home
-          </Link>
-        </div>
+        <Emptycart />
       )}
     </>
+  );
+}
+
+function Pricedetails({ cartlength, totalprice, totaldiscount }) {
+  return (
+    <div className=" md:min-w-[400px] ">
+      <div className="sticky top-[130px] w-full">
+        <div className=" w-full bg-white border border-slate-300 ">
+          <h2 className="text-[20px] font-bold px-[20px] py-[15px]">
+            Order Summary
+          </h2>
+          <hr />
+          <div className="flex flex-col gap-[20px] p-[20px]">
+            <div className="flex items-center justify-between  ">
+              <span>
+                Price {"("}
+                {cartlength} {cartlength == 1 ? "item" : "items"}
+                {")"}
+              </span>
+              <span>₹{parseInt(totalprice, 10).toLocaleString("en-IN")}</span>
+            </div>
+            <div className="flex items-center justify-between  ">
+              <span>Discount</span>
+              <span>
+                {" "}
+                - ₹{parseInt(totaldiscount, 10).toLocaleString("en-IN")}
+              </span>
+            </div>
+            <div className="flex items-center justify-between  ">
+              <span>Delivery Charges</span>
+              <span>
+                <span className="line-through">
+                  ₹{parseInt(40 * cartlength, 10).toLocaleString("en-IN")}
+                </span>
+                <span className="text-green-600"> Free</span>
+              </span>
+            </div>
+            <hr className="" />
+            <div className="flex items-center justify-between  font-bold">
+              <span>Total Amount</span>
+              <span>
+                {" "}
+                ₹
+                {parseInt(totalprice - totaldiscount, 10).toLocaleString(
+                  "en-IN"
+                )}
+              </span>
+            </div>
+            <hr className="" />
+            <p className=" text-green-500 font-bold text-center">
+              You will save{" "}
+              <span>
+                ₹
+                {parseInt(totaldiscount + cartlength * 40, 10).toLocaleString(
+                  "en-IN"
+                )}
+              </span>{" "}
+              on this order
+            </p>
+          </div>
+        </div>
+        <div className="flex items-center gap-[10px] mt-[30px] pb-[30px] md:pb-0 px-[10px]">
+          <Secureicon />
+          <span>
+            Safe and Secure Payments. Easy returns. 100% Authentic products.
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Emptycart() {
+  return (
+    <div className="flex flex-col items-center justify-center min-h-[calc(100vh-60px)] lg:min-h-[calc(100vh-111px)] p-[20px]">
+      <Image
+        src="/no-cart.png"
+        alt="Empty cart image"
+        height={300}
+        width={300}
+      ></Image>
+      <p className="mt-[30px] font-bold text-[20px] text-center">
+        Your Cart is Empty, Add Some Products.
+      </p>
+      <Link
+        href="/"
+        className="py-[10px] px-[50px] bg-theme text-white mt-[20px] rounded-full"
+      >
+        Home
+      </Link>
+    </div>
   );
 }
 

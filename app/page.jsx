@@ -7,10 +7,11 @@ import Bestselling from "./_components/Homepage/Bestselling";
 import Collage from "./_components/Homepage/Collage";
 import Categories from "./_components/Homepage/Categories";
 import Searchbox from "./_components/Searchbox";
+import { FaCartShopping } from "react-icons/fa6";
 import { Cachedproducts } from "./_serveractions/Getcachedata";
-import Cartsvg from "./_svgs/Cartsvg";
 import { Cartproductcount } from "./_components/Navbar/Publiccomps";
 import { Logedinusermenu } from "./_components/Navbar/Publiccomps";
+import Footer from "./_components/Footer";
 import { cookies } from "next/headers";
 
 export default async function Home() {
@@ -57,7 +58,8 @@ export default async function Home() {
               href="/cart"
               className="relative flex items-center justify-center h-full aspect-square "
             >
-              <Cartsvg styles="fill-white h-[20px]" />
+              <FaCartShopping className="text-[25px] text-white " />
+
               <Cartproductcount />
             </Link>
             <Logedinusermenu userdata={userdata} token={token} />
@@ -103,6 +105,8 @@ export default async function Home() {
 
       {/* blogs */}
       <Blogscomp />
+      {/* footer */}
+      <Footer />
     </div>
   );
 }

@@ -2,7 +2,6 @@
 import React from "react";
 import { AppContextfn } from "@/app/Context";
 import Searchbox from "../Searchbox";
-import Searchsvg from "@/app/_svgs/Searchsvg";
 import Usersvg from "@/app/_svgs/Usersvg";
 import Link from "next/link";
 import Navorderssvg from "@/app/_svgs/Navorderssvg";
@@ -11,6 +10,8 @@ import Updateusersvg from "@/app/_svgs/Updateusersvg";
 import Logoutsvg from "@/app/_svgs/Logoutsvg";
 import { logout } from "@/app/(main)/loginlogout/Serveractions";
 import { useRouter } from "next/navigation";
+import { FiSearch } from "react-icons/fi";
+
 
 export const Cartproductcount = () => {
   const { cart } = AppContextfn();
@@ -84,7 +85,8 @@ export const Showsearchbutton = () => {
         }, 100);
       }}
     >
-      <Searchsvg styles="stroke-white h-[70%] aspect-square" />
+      
+      <FiSearch className="h-full text-[25px] text-white aspect-square " />
     </button>
   );
 };
