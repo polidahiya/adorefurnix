@@ -6,42 +6,45 @@ import Qualitysvg from "@/app/_svgs/Qualitysvg";
 function Promices() {
   const services = [
     {
-      image: <Paymentsvg styles="h-[40px] w-[40px] md:h-[80px] md:w-[80px]" />,
-      heading: "Flexible payment",
-      para: "This is a test paragraph",
+      image: <Paymentsvg styles="h-12 w-12 md:h-24 md:w-24" />,
+      heading: "Flexible Payment Options",
+      para: "Choose from a variety of payment methods including credit cards, digital wallets, and bank transfers. Our secure payment gateway ensures a smooth and reliable transaction experience.",
     },
     {
-      image: <Deliverysvg styles="h-[40px] w-[40px] md:h-[80px] md:w-[80px]" />,
-      heading: "Hassle free delivery",
-      para: "This is a test paragraph",
+      image: <Deliverysvg styles="h-12 w-12 md:h-24 md:w-24" />,
+      heading: "Hassle-Free Delivery",
+      para: "Experience prompt and efficient delivery services. We offer flexible delivery options such as same-day and next-day delivery. Track your orders easily with our intuitive tracking system.",
     },
     {
-      image: <Qualitysvg styles="h-[40px] w-[40px] md:h-[80px] md:w-[80px]" />,
-      heading: "Quality assured",
-      para: "This is a test paragraph",
+      image: <Qualitysvg styles="h-12 w-12 md:h-24 md:w-24" />,
+      heading: "Quality Assured",
+      para: "We guarantee top-notch quality in every product we deliver. Our quality assurance process includes stringent checks to ensure you receive only the best products.",
     },
   ];
+
   return (
-    <div className="h-[200px] flex items-center justify-evenly ">
-      {services.map((item, i) => {
-        return (
-          <div
-            key={i}
-            className="flex flex-col md:flex-row items-center gap-[10px]"
-          >
-            {item.image}
-            <div className="flex flex-col justify-between items-center md:items-start py-[5px]">
-              <h2 className="text-[12px] md:text-[25px] font-bold italic font-serif">
+    <section className="py-12 px-6 md:px-12 lg:px-24 bg-white">
+      <div className="container mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          {services.map((item, i) => (
+            <div
+              key={i}
+              className="flex flex-col items-center text-center p-6 rounded-lg shadow-lg bg-gray-50 transition-transform transform hover:scale-105"
+            >
+              <div className="flex items-center justify-center mb-4">
+                {item.image}
+              </div>
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">
                 {item.heading}
-              </h2>
-              <p className="text-[8px] md:text-[16px] font-semibold text-slate-500">
+              </h3>
+              <p className="text-gray-600">
                 {item.para}
               </p>
             </div>
-          </div>
-        );
-      })}
-    </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 

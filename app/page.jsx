@@ -93,18 +93,19 @@ export default async function Home() {
           }}
         ></div>
       </div>
-      {/* promices */}
-      <Promices />
-      {/* categories */}
+
       <Categories />
 
-      {/* best selling products */}
       <Bestselling />
-      {/* collage */}
       <Collage />
+      <div>
+        <h2 className="text-center font-bold text-[25px] md:text-[40px] italic font-serif mt-24 ">
+          Why Choose Us?
+        </h2>
+        <Promices />
+      </div>
 
-      {/* blogs */}
-      <Blogscomp />
+      {/* <Blogscomp /> */}
       {/* footer */}
       <Footer />
     </div>
