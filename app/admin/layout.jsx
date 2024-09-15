@@ -8,7 +8,7 @@ import Image from "next/image";
 import Componentloading from "../_components/Componentloading";
 import { refreshsitenow } from "../_serveractions/Getcachedata";
 import { AppContextfn } from "../Context";
-import Refreshsvg from "../_svgs/Refreshsvg";
+import { BiRefresh } from "react-icons/bi";
 
 export default function RootLayout({ children }) {
   const { setmessagefn } = AppContextfn();
@@ -39,7 +39,7 @@ export default function RootLayout({ children }) {
           <Loginpage setshowlogin={setshowlogin} />
         ) : (
           <div>
-            <nav className="sticky top-0 flex items-center gap-[10px] md:gap-[30px]  h-[50px] shadow-md px-[10px] md:px-[40px] z-20 bg-graygradient">
+            <nav className="sticky top-0 flex items-center gap-[5px] md:gap-[10px]  h-[50px] shadow-md p-[7px] px-[10px] md:px-[40px] z-20 bg-graygradient">
               <Link href="/">
                 <Image
                   src="/logo3.png"
@@ -49,32 +49,39 @@ export default function RootLayout({ children }) {
                 ></Image>
               </Link>
               <Link
+              className="h-full rounded-[5px] px-[10px] bg-white grid place-content-center "
                 href="/admin/"
-                className="bg-white rounded-[10px] py-[5px] px-[5px] lg:px-[20px]"
               >
                 Orders
               </Link>
               <Link
+              className="h-full rounded-[5px] px-[10px] bg-white grid place-content-center "
                 href="/admin/Blogs"
-                className="bg-white rounded-[10px] py-[5px] px-[5px] lg:px-[20px]"
               >
                 Add Blogs
               </Link>
               <Link
+              className="h-full rounded-[5px] px-[10px] bg-white grid place-content-center "
                 href="/admin/addproducts"
-                className="bg-white rounded-[10px] py-[5px] px-[5px] lg:px-[20px]"
               >
                 Add Products
               </Link>
+              <Link
+              className="h-full rounded-[5px] px-[10px] bg-white grid place-content-center "
+                href="/admin/contactmessages"
+              >
+                Contact messsages
+              </Link>
+              {/* refresh site page */}
               <button
-                className="bg-white rounded-[10px] p-[5px]  ml-auto"
+                className="h-full aspect-square bg-white rounded-[5px]  ml-auto grid place-content-center"
                 onClick={async () => {
                   const res = await refreshsitenow();
                   setmessagefn(res?.message);
                 }}
                 title="Refresh site Data Now"
               >
-                <Refreshsvg styles="h-[25px]" />
+                <BiRefresh />
               </button>
             </nav>
             {children}

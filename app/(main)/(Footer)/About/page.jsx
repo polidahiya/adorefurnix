@@ -25,7 +25,7 @@ const About = () => {
             to your home.
           </p>
           <p className="mb-4">
-            Founded in 2020, we pride ourselves on our commitment to quality
+            Founded in 2018, we pride ourselves on our commitment to quality
             craftsmanship and exceptional customer service. Each piece of
             furniture is carefully designed and crafted by skilled artisans who
             share our dedication to excellence. Whether you&apos;re looking for a

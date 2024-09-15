@@ -10,6 +10,7 @@ export default function Adminhome() {
   const [orders, setorders] = useState([]);
   const [loading, setloading] = useState(true);
   const [ordertype, setordertype] = useState(0);
+  const [refresh, setrefresh] = useState(0);
 
   useEffect(() => {
     (async () => {
@@ -17,7 +18,7 @@ export default function Adminhome() {
       setorders([...ordersres]);
       setloading(false);
     })();
-  }, [ordertype]);
+  }, [ordertype, refresh]);
 
   if (loading) {
     return (
@@ -28,7 +29,11 @@ export default function Adminhome() {
   } else {
     return (
       <div>
-        <Selectordertype ordertype={ordertype} setordertype={setordertype} />
+        <Selectordertype
+          ordertype={ordertype}
+          setordertype={setordertype}
+          setrefresh={setrefresh}
+        />
         {orders.length != 0 ? (
           <div className={`p-[20px]`}>
             {orders.map((item) => {

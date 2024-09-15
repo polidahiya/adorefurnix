@@ -1,5 +1,7 @@
 export const mail = "adorefurnix@gmail.com";
 export const mobile = "+91 95822 14574";
+export const address = "Plot no. 1081 sector 3A, Gurgaon Haryana 122001";
+
 export const sociallinks = {
   insta: "https://www.instagram.com/adorefurnix?igsh=emc0cmUwcHVsdXR2",
   facebook: "https://www.facebook.com/share/VN5R1yTY3ZHarwW9/?mibextid=qi2Omg",
@@ -11,7 +13,10 @@ export const categorylist = {
     image: "/categoriesimages/livingroom.jpg",
     subcat: [
       { image: "/categoriesimages/subcats/sofasets.webp", name: "Sofa sets" },
-      { image: "/categoriesimages/subcats/sofacumbed.jpg", name: "sofacumbed.jpg" },
+      {
+        image: "/categoriesimages/subcats/sofacumbed.jpg",
+        name: "Sofa cum bed",
+      },
       { image: "/categoriesimages/subcats/wingchair.jpg", name: "Wing chairs" },
       { image: "/categoriesimages/subcats/ottoman.jpg", name: "Ottoman" },
       { image: "/categoriesimages/subcats/charis.jpg", name: "Chairs" },
@@ -20,31 +25,64 @@ export const categorylist = {
   Bedroom: {
     image: "/categoriesimages/bedroom.jpg",
     subcat: [
-      { image: "/categoriesimages/subcats/kingbed.webp", name: "King Size Bed" },
-      { image: "/categoriesimages/subcats/queenbed.jpeg", name: "Queen Size Bed" },
+      {
+        image: "/categoriesimages/subcats/kingbed.webp",
+        name: "King Size Bed",
+      },
+      {
+        image: "/categoriesimages/subcats/queenbed.jpeg",
+        name: "Queen Size Bed",
+      },
       { image: "/categoriesimages/subcats/singlebed.webp", name: "Single Bed" },
       { image: "/categoriesimages/subcats/kidsbed.webp", name: "Kids Bed" },
       { image: "/categoriesimages/subcats/wardrobe.jpg", name: "Wardrobe" },
-      { image: "/categoriesimages/subcats/bedsidetable.jpg", name: "Bedside Table" },
-      { image: "/categoriesimages/subcats/chestofdrawers.avif", name: "Chest of Drawers" },
-      { image: "/categoriesimages/subcats/dressingtable.jpg", name: "Dressing Tables" },
+      {
+        image: "/categoriesimages/subcats/bedsidetable.jpg",
+        name: "Bedside Table",
+      },
+      {
+        image: "/categoriesimages/subcats/chestofdrawers.avif",
+        name: "Chest of Drawers",
+      },
+      {
+        image: "/categoriesimages/subcats/dressingtable.jpg",
+        name: "Dressing Tables",
+      },
     ],
   },
   Dining: {
     image: "/categoriesimages/Dining.jpg",
     subcat: [
-      { image: "/categoriesimages/subcats/2-SeaterDiningSet.webp", name: "2-Seater Dining Set" },
-      { image: "/categoriesimages/subcats/4-SeaterDiningSet.webp", name: "4-Seater Dining Set" },
-      { image: "/categoriesimages/subcats/6-SeaterDiningSet.jpg", name: "6-Seater Dining Set" },
+      {
+        image: "/categoriesimages/subcats/2-SeaterDiningSet.webp",
+        name: "2-Seater Dining Set",
+      },
+      {
+        image: "/categoriesimages/subcats/4-SeaterDiningSet.webp",
+        name: "4-Seater Dining Set",
+      },
+      {
+        image: "/categoriesimages/subcats/6-SeaterDiningSet.jpg",
+        name: "6-Seater Dining Set",
+      },
     ],
   },
   Tables: {
     image: "/categoriesimages/tables.jpg",
     subcat: [
-      { image: "/categoriesimages/subcats/CoffeeTables.avif", name: "Coffee Tables" },
+      {
+        image: "/categoriesimages/subcats/CoffeeTables.avif",
+        name: "Coffee Tables",
+      },
       { image: "/categoriesimages/subcats/EndTables.webp", name: "End Tables" },
-      { image: "/categoriesimages/subcats/ConsoleTables.jpg", name: "Console Tables" },
-      { image: "/categoriesimages/subcats/NestingTables.webp", name: "Nesting Tables" },
+      {
+        image: "/categoriesimages/subcats/ConsoleTables.jpg",
+        name: "Console Tables",
+      },
+      {
+        image: "/categoriesimages/subcats/NestingTables.webp",
+        name: "Nesting Tables",
+      },
     ],
   },
   Storage: {
@@ -57,14 +95,20 @@ export const categorylist = {
       },
       { image: "/categoriesimages/subcats/Cabinet.jpg", name: "Cabinet" },
       { image: "/categoriesimages/subcats/BookShelf.jpg", name: "Book Shelf" },
-      { image: "/categoriesimages/subcats/CrockeryCabinet.jpg", name: "Crockery Cabinet" },
+      {
+        image: "/categoriesimages/subcats/CrockeryCabinet.jpg",
+        name: "Crockery Cabinet",
+      },
     ],
   },
   "Bar Furniture": {
     image: "/categoriesimages/barfurniture.jpg",
     subcat: [
       { image: "/categoriesimages/subcats/BarUnits.png", name: "Bar Units" },
-      { image: "/categoriesimages/subcats/BarCabinets.webp", name: "Bar Cabinets" },
+      {
+        image: "/categoriesimages/subcats/BarCabinets.webp",
+        name: "Bar Cabinets",
+      },
       { image: "/categoriesimages/subcats/BarTrolly.webp", name: "Bar Trolly" },
       {
         image: "/categoriesimages/subcats/BarWallhangingShelf.jpg",
@@ -79,7 +123,10 @@ export const categorylist = {
   "Study and Bookshelf": {
     image: "/categoriesimages/studybookshelf.jpg",
     subcat: [
-      { image: "/categoriesimages/subcats/StudyTables.jpg", name: "Study Tables" },
+      {
+        image: "/categoriesimages/subcats/StudyTables.jpg",
+        name: "Study Tables",
+      },
       { image: "/categoriesimages/subcats/BookShelf.jpg", name: "BookShelf" },
       {
         image: "/categoriesimages/subcats/ComputerTables.jpg",
@@ -98,7 +145,10 @@ export const categorylist = {
         image: "/categoriesimages/subcats/Study&LaptopTables.webp",
         name: "Study & Laptop Tables",
       },
-      { image: "/categoriesimages/subcats/OfficeSofa.webp", name: "Office Sofa" },
+      {
+        image: "/categoriesimages/subcats/OfficeSofa.webp",
+        name: "Office Sofa",
+      },
     ],
   },
   "Home Decor & More": {

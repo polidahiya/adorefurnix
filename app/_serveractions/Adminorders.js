@@ -58,7 +58,7 @@ export const deleteorder = async (documentId) => {
     const filter = { _id: new ObjectId(documentId) };
 
     const result = await orderscollection.deleteOne(filter);
-    console.log(result);
+    
     if (result.deletedCount === 1) {
       return { message: "Deleted Successfully" };
     } else {

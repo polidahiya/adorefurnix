@@ -11,6 +11,7 @@ const userscollection = db.collection("users");
 const Admindatacollection = db.collection("Admindata");
 const blogscollection = db.collection("blogs");
 const orderscollection = db.collection("orders");
+const contactmessages = db.collection("contactmessages");
 
 export {
   blogscollection,
@@ -18,5 +19,6 @@ export {
   Productscollection,
   userscollection,
   orderscollection,
+  contactmessages,
   ObjectId,
 };
