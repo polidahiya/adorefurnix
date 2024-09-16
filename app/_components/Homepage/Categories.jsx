@@ -30,6 +30,9 @@ function Categories() {
             </Link>
           );
         })}
+        <div
+          className={`item w-full rounded-[10px] md:rounded-[15px] overflow-hidden  lg:shadow-[0px_0px_10px_#bababa7f] hover:scale-[103%] duration-200`}
+        ></div>
       </div>
     </div>
   );
