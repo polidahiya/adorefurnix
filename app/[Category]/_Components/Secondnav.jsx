@@ -17,6 +17,7 @@ function Secondnav({ category, subcat, searchParams }) {
       ? categoryarray[0]
       : categoryarray[currentcategoryindex + 1]
   }`;
+  
   const backbardlink = `/${
     currentcategoryindex == 0
       ? categoryarray[categoryarray.length - 1]
