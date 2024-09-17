@@ -11,7 +11,7 @@ import Logoutsvg from "@/app/_svgs/Logoutsvg";
 import { logout } from "@/app/(main)/loginlogout/Serveractions";
 import { useRouter } from "next/navigation";
 import { FiSearch } from "react-icons/fi";
-
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 export const Cartproductcount = () => {
   const { cart } = AppContextfn();
@@ -62,7 +62,7 @@ export const Centralnav = ({ productsname }) => {
   const { showsearch } = AppContextfn();
   return (
     <div
-      className={`absolute top-[calc(100%+10px)] md:static w-full h-full lg:min-w-[500px] md:block ${
+      className={`absolute top-[calc(100%+20px)] md:static w-full h-full lg:min-w-[500px] md:block ${
         showsearch ? "block" : "hidden"
       }`}
     >
@@ -85,7 +85,6 @@ export const Showsearchbutton = () => {
         }, 100);
       }}
     >
-      
       <FiSearch className="h-full text-[25px] text-white aspect-square " />
     </button>
   );
@@ -208,7 +207,7 @@ export const Logedinusermenu = ({ token, userdata }) => {
       >
         <Link
           href="/loginlogout"
-          className="flex items-center justify-center bg-theme text-white h-[30px] px-[10px] md:px-[20px] rounded-full"
+          className="flex items-center justify-center text-white h-[30px] px-[10px] md:px-[20px] rounded-full bg-theme"
         >
           Login
         </Link>
@@ -231,3 +230,21 @@ export const Exitblackscreen = () => {
     );
   }
 };
+
+// backbutton
+export function Mobilebackbutton() {
+  const { showsearch } = AppContextfn();
+  const router = useRouter();
+
+  if (!showsearch)
+    return (
+      <button
+        className="absolute bottom-0 left-[10px] translate-y-[calc(100%+10px)] h-[40px] aspect-square bg-theme rounded-full text-[20px] text-white grid place-content-center lg:hidden"
+        onClick={() => {
+          router.back();
+        }}
+      >
+        <IoMdArrowRoundBack />
+      </button>
+    );
+}

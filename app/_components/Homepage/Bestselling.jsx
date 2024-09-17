@@ -38,7 +38,7 @@ function Bestselling() {
         <div className="grid place-content-center">
           <Link
             href={"/Search?query=Best"}
-            className="group relative flex items-center justify-center gap-[10px] px-6 py-3  text-white font-semibold rounded-full overflow-hidden"
+            className="relative group flex items-center justify-center gap-[10px] px-6 py-3  text-white font-semibold rounded-full overflow-hidden"
           >
             <span>See All Collection</span>
             <LuArrowRightCircle />

@@ -21,7 +21,7 @@ async function page({ params, searchParams }) {
   if (pricerange == undefined) {
     pricerange = 0;
   }
-  let filteredproducts = allproducts.filter((item) => {
+  let filteredproducts = allproducts?.filter((item) => {
     return (
       item.category === category &&
       (searchParams.pricerange == 0 ||

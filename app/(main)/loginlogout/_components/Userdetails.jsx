@@ -233,13 +233,14 @@ function Userdetails() {
       {/* login or signup button */}
       <center>
         <button
-          className="flex items-center justify-center gap-[10px] px-[100px] py-[5px] bg-theme text-white rounded-full mt-[20px] "
+          className="relative group flex items-center justify-center gap-[10px] px-[100px] py-[5px] text-white rounded-full mt-[20px]  overflow-hidden"
           onClick={authenticateuser}
         >
           {loading && (
-            <div className="h-[20px] aspect-square rounded-full  border-r-2 border-l-2 border-white animate-spin"></div>
+            <div className="h-[20px] aspect-square rounded-full  border-r-2 border-l-2 border-white animate-spin z-10"></div>
           )}
-          {toggleform ? "Signup" : "Login"}
+          <span className="z-10">{toggleform ? "Signup" : "Login"}</span>
+          <div className="absolute top-0 left-0 w-[200%] h-full bg-[linear-gradient(90deg,#10e89c,#0593f7,#10e89c)] group-hover:translate-x-[-50%] duration-200"></div>
         </button>
       </center>
       {/* form switcher */}

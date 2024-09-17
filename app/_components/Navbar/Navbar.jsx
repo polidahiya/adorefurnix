@@ -1,24 +1,34 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { FaCartShopping } from "react-icons/fa6";
-import { Cartproductcount, Showmobilecategorymenubutton } from "./Publiccomps";
+import {
+  Cartproductcount,
+  Showmobilecategorymenubutton,
+  Centralnav,
+} from "./Publiccomps";
 import Navcategories from "./Navcategories";
-import { Centralnav } from "./Publiccomps";
-import { Showsearchbutton } from "./Publiccomps";
-import { Exitblackscreen } from "./Publiccomps";
-import { Logedinusermenu } from "./Publiccomps";
+import {
+  Showsearchbutton,
+  Exitblackscreen,
+  Logedinusermenu,
+} from "./Publiccomps";
+import { FaCartShopping } from "react-icons/fa6";
+import { Mobilebackbutton } from "./Publiccomps";
 
 function Navbar({ params, productsname, token, userdata }) {
   const category = params?.Category?.replace(/%20/g, " ")?.replace(/%26/g, "&");
 
   return (
-    <nav className="sticky bg-graygradient top-0 left-0 w-full p-[10px] md:px-[40px] z-40">
+    <nav className="sticky bg-graygradient top-0 left-0 w-full p-[10px] lg:px-[40px] z-40">
       <div className="relative flex h-[40px] items-center justify-between ">
         {/* firstcomp */}
-        <div className="flex items-center gap-[10px] w-full h-full">
+        <div className="flex items-center gap-0 md:gap-[10px] w-full h-full">
           <Showmobilecategorymenubutton />
-          <Link href="/" className="h-full w-fit flex ">
+          <Showsearchbutton />
+          <Link
+            href="/"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[40px] md:static md:flex  md:translate-x-0 md:translate-y-0 md:h-full md:w-fit "
+          >
             <Image
               className=" w-auto h-full "
               src="/logo3.png"
@@ -33,7 +43,6 @@ function Navbar({ params, productsname, token, userdata }) {
 
         {/* third comp */}
         <div className="w-full h-full flex items-center justify-end gap-0 md:gap-[10px]">
-          <Showsearchbutton />
           <Link
             href="/cart"
             className="relative flex items-center justify-center h-full aspect-square "
@@ -47,6 +56,9 @@ function Navbar({ params, productsname, token, userdata }) {
       </div>
       {/* categories */}
       <Navcategories category={category} />
+
+      {/* backbutton */}
+      <Mobilebackbutton />
     </nav>
   );
 }
