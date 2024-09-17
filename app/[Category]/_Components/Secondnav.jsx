@@ -70,6 +70,7 @@ function Secondnav({ category, subcat, searchParams }) {
           })}
         </div>
       </div>
+      {/* subcategories */}
       <div className="w-full grid grid-cols-3 md:grid-cols-[repeat(auto-fit,minmax(150px,1fr))] place-items-center place-content-center gap-[5px] mt-[20px]">
         {categorylist[category]?.subcat.map((itemsubcat, i) => {
           return (
