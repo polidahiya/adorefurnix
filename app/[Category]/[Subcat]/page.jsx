@@ -5,6 +5,7 @@ import { categorylist, filterlist } from "@/app/commondata";
 import { notFound } from "next/navigation";
 import { Cachedproducts } from "@/app/_serveractions/Getcachedata";
 import Productnotfound from "@/app/_components/Productnotfound";
+import Subcategories from "../_Components/Subcategories";
 
 async function page({ params, searchParams }) {
   const category = params.Category.replace(/%20/g, " ").replace(/%26/g, "&");
@@ -35,15 +36,18 @@ async function page({ params, searchParams }) {
   });
 
   return (
-    <div>
+    <div className="flex flex-col lg:flex-row">
+      
       <Secondnav
         category={category}
         subcat={subcat}
         searchParams={searchParams}
       />
+      <div className="w-full">
+      <Subcategories category={category}  subcat={subcat} />
       {filteredproducts.length != 0 ? (
         <div
-          className={`grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] place-items-center gap-[20px] p-[20px]`}
+          className={`w-full grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] place-items-center gap-[20px] p-[20px]`}
         >
           {filteredproducts.map((item, i) => {
             return (
@@ -66,6 +70,7 @@ async function page({ params, searchParams }) {
       ) : (
         <Productnotfound />
       )}
+      </div>
     </div>
   );
 }

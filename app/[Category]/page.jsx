@@ -6,6 +6,7 @@ import { categorylist } from "../commondata";
 import { filterlist } from "../commondata";
 import { Cachedproducts } from "../_serveractions/Getcachedata";
 import Productnotfound from "../_components/Productnotfound";
+import Subcategories from "./_Components/Subcategories";
 
 async function page({ params, searchParams }) {
   const category = params.Category.replace(/%20/g, " ").replace(/%26/g, "&");
@@ -34,33 +35,36 @@ async function page({ params, searchParams }) {
   filteredproducts = filteredproducts.sort(() => Math.random() - 0.5);
 
   return (
-    <div>
+    <div className="flex flex-col lg:flex-row">
       <Secondnav category={category} searchParams={searchParams} />
-      {filteredproducts.length != 0 ? (
-        <div
-          className={`grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] place-items-center gap-[20px] p-[20px]`}
-        >
-          {filteredproducts.map((item, i) => {
-            return (
-              <Productcard
-                key={i + new Date().getMilliseconds()}
-                index={i}
-                id={item._id}
-                category={item.category}
-                subcat={item.subcat}
-                name={item.name}
-                price={item.price}
-                discount={item.discount}
-                available={item.available}
-                image={item.colorpalets[0].images[0]}
-                rating={item.rating}
-              />
-            );
-          })}
-        </div>
-      ) : (
-        <Productnotfound />
-      )}
+      <div className="w-full">
+        <Subcategories category={category} />
+        {filteredproducts.length != 0 ? (
+          <div
+            className={`w-full grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] place-items-center gap-[20px] p-[20px]`}
+          >
+            {filteredproducts.map((item, i) => {
+              return (
+                <Productcard
+                  key={i + new Date().getMilliseconds()}
+                  index={i}
+                  id={item._id}
+                  category={item.category}
+                  subcat={item.subcat}
+                  name={item.name}
+                  price={item.price}
+                  discount={item.discount}
+                  available={item.available}
+                  image={item.colorpalets[0].images[0]}
+                  rating={item.rating}
+                />
+              );
+            })}
+          </div>
+        ) : (
+          <Productnotfound />
+        )}
+      </div>
     </div>
   );
 }

@@ -190,6 +190,14 @@ export const filterlist = [
   },
 ];
 
+export const sortinglist = [
+  { name: "Default" },
+  { name: "Latest" },
+  { name: "Rating" },
+  { name: "Price : low to high" },
+  { name: "Price : hight to low" },
+];
+
 // fixed search options
 export const searchoptions = [
   "Living Room",
