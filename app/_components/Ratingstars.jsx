@@ -1,4 +1,5 @@
 import React from "react";
+
 export default function Rating({ rating }) {
   const numberrating = Number(rating);
   const fullStars = Math.floor(Number(numberrating));
@@ -7,7 +8,7 @@ export default function Rating({ rating }) {
 
   return (
     <div className="flex items-center gap-[5px]">
-      <span className="font-semibold ">Rating</span> :
+      <span className="font-semibold hidden md:block">Rating : </span> 
       <div className="flex items-center">
         <span className="flex ">
           {fullStars &&
@@ -15,7 +16,7 @@ export default function Rating({ rating }) {
               return (
                 <Starsvg
                   key={i}
-                  styles="h-[20px] aspect-square"
+                  styles="h-[14px] md:h-[20px] aspect-square"
                   color1="#FFC95E"
                   color2="#FFC95E"
                 />
@@ -28,7 +29,7 @@ export default function Rating({ rating }) {
               return (
                 <Starsvg
                   key={i}
-                  styles="h-[20px] aspect-square"
+                  styles="h-[14px] md:h-[20px] aspect-square"
                   color1="#d2d2d2"
                   color2="#FFC95E"
                 />
@@ -40,7 +41,7 @@ export default function Rating({ rating }) {
             return (
               <Starsvg
                 key={i}
-                styles="h-[20px] aspect-square"
+                styles="h-[14px] md:h-[20px] aspect-square"
                 color1="#d2d2d2"
                 color2="#d2d2d2"
               />
@@ -48,7 +49,7 @@ export default function Rating({ rating }) {
           })}
         </span>{" "}
       </div>
-      <span className=" px-[10px] bg-green-600 text-white rounded-[5px] font-semibold ">
+      <span className=" px-[10px] bg-green-600 text-white rounded-[5px] font-semibold hidden md:block">
         {rating}
         {" / "}5
       </span>

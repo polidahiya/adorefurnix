@@ -44,7 +44,7 @@ async function page({ params, searchParams }) {
         <Subcategories category={category} />
         {sortedproducts.length != 0 ? (
           <div
-            className={`w-full grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] place-items-center gap-[20px] p-[20px]`}
+            className={`w-full grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] md:grid-cols-[repeat(auto-fit,minmax(250px,1fr))] place-items-center gap-[10px] md:gap-[20px] p-[10px] md:p-[20px]`}
           >
             {sortedproducts.map((item, i) => {
               return (

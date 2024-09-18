@@ -10,6 +10,8 @@ import Productcard from "@/app/_components/Productcard";
 import { Addtocartbuttons } from "./Publiccomps";
 import Rating from "@/app/_components/Ratingstars";
 import { cookies } from "next/headers";
+import ProductCare from "./_comps/Productcare";
+import { AiFillProduct } from "react-icons/ai";
 
 async function page({ params, searchParams }) {
   const category = params.Category.replace(/%20/g, " ").replace(/%26/g, "&");
@@ -137,11 +139,13 @@ async function page({ params, searchParams }) {
           />
         </div>
       </div>
+
+      <ProductCare />
       <Promices />
       {/* similar products */}
       {similarproducts.length > 0 && (
-        <div className="bg-slate-100 px-[10px] py-[20px]">
-          <h2 className="text-[22px] font-bold text-center md:text-start w-full">Similar Products</h2>
+        <div className="bg-slate-100 px-[10px] md:px-[40px] py-[20px]">
+          <h2 className="flex items-center gap-[10px] text-[22px] font-bold text-center md:text-start w-full"><AiFillProduct/> Similar Products</h2>
           <div className="flex items-center gap-[20px]  mt-[20px] max-w-full overflow-x-scroll pb-[20px]">
             {similarproducts.map((item, i) => {
               return (

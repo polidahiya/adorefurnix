@@ -11,7 +11,7 @@ function Navcategories({ category }) {
 
   return (
     <div
-      className={`overflow-hidden flex flex-wrap items-start  lg:flex-nowrap lg:flex-row lg:items-center justify-between lg:h-[30px] lg:mt-[20px] duration-300 ${
+      className={` grid grid-cols-[repeat(auto-fit,minmax(100px,1fr))] md:grid-cols-[repeat(auto-fit,minmax(140px,1fr))] lg:flex lg:items-center lg:justify-between lg:h-[30px] lg:mt-[20px] overflow-hidden duration-300 ${
         showcat ? "h-[400px] md:h-[313px] mt-[20px]" : "h-0"
       }`}
     >
@@ -38,7 +38,7 @@ function Navcategories({ category }) {
                 height={100}
                 width={100}
               ></Image>
-              <span className="mt-1 lg:mt-0 whitespace-nowrap">{item}</span>
+              <span className="text-[12px] md:text-[14px] mt-1 lg:mt-0 whitespace-nowrap">{item}</span>
             </Link>
             {/* {categorylist[item].subcat.length > 0 && (
               <div className="fixed top-[90px] left-[50%] translate-x-[-50%] w-full opacity-0 pointer-events-none translate-y-[50px]  lg:group-hover:opacity-100 lg:group-hover:pointer-events-auto lg:group-hover:translate-y-0 duration-300 ">
