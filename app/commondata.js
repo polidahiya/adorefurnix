@@ -192,7 +192,7 @@ export const filterlist = [
 
 export const sortinglist = [
   { name: "Default" },
-  { name: "Latest" },
+  { name: "Discount" },
   { name: "Rating" },
   { name: "Price : low to high" },
   { name: "Price : hight to low" },

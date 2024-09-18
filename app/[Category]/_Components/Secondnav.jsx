@@ -85,7 +85,7 @@ function Secondnav({ category, subcat, searchParams }) {
         </button>
       </div>
       <section
-        className={`fixed lg:static bottom-0 left-0 w-full z-50 bg-white p-[10px] lg:p-0 duration-300 ${
+        className={`flex flex-col md:flex-row lg:flex-col md:gap-[10px] lg:gap-0 fixed lg:static bottom-0 left-0 w-full z-50 bg-white p-[10px] lg:p-0 duration-300 ${
           showfilter ? "translate-y-0" : " translate-y-full lg:translate-y-0"
         }`}
         onClick={() => {
@@ -93,7 +93,7 @@ function Secondnav({ category, subcat, searchParams }) {
         }}
       >
         {/* price range */}
-        <div className="bg-bg1 p-[10px] mt-[10px] lg:mt-0">
+        <div className="w-full bg-bg1 p-[10px] mt-[10px] lg:mt-0">
           <h2 className="text-center font-bold text-[20px] flex items-center justify-center gap-[10px]">
             <VscSettings />
             <span>Price Range</span>
@@ -123,7 +123,7 @@ function Secondnav({ category, subcat, searchParams }) {
         </div>
 
         {/* sorting */}
-        <div className="bg-bg1 p-[10px] mt-[10px] ">
+        <div className="w-full bg-bg1 p-[10px] mt-[10px] ">
           <h2 className="text-center font-bold text-[20px] flex items-center justify-center gap-[10px]">
             <TbSortAscendingSmallBig />
             <span>Sort</span>
@@ -155,7 +155,7 @@ function Secondnav({ category, subcat, searchParams }) {
       {/* blackscreen */}
       {showfilter && (
         <div
-          className="fixed top-0 left-0 h-full w-full bg-black opacity-40 z-40"
+          className="fixed top-0 left-0 h-full w-full bg-black opacity-40 z-40 lg:hidden"
           onClick={() => {
             setshowfilter(false);
           }}
