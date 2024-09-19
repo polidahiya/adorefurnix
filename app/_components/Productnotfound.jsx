@@ -4,7 +4,7 @@ function Productnotfound() {
   return (
     <div className="flex items-center justify-center min-h-[50vh]">
       <Image
-      className="brightness-110"
+        className="brightness-110"
         src="/product_not_found.jpeg"
         alt="no product found image"
         width={300}

@@ -16,7 +16,9 @@ import { FaCartShopping } from "react-icons/fa6";
 import { Mobilebackbutton } from "./Publiccomps";
 
 function Navbar({ params, productsname, token, userdata }) {
-  const category = params?.Category?.replace(/%20/g, " ")?.replace(/%26/g, "&");
+  const slug = params?.Category;
+
+  const category = slug && slug[0] ? decodeURIComponent(slug[0]) : null;
 
   return (
     <nav className="sticky bg-graygradient top-0 left-0 w-full p-[10px] lg:px-[40px] z-40">

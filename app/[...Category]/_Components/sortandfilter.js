@@ -1,4 +1,6 @@
-export const sortfn = (products, sort) => {
+import { filterlist } from "@/app/commondata";
+
+export const sortProducts = (products, sort) => {
   let sortedProducts = [...products];
 
   if (sort == 0) {
@@ -26,4 +28,17 @@ export const sortfn = (products, sort) => {
   }
 
   return sortedProducts;
+};
+
+export const filterProducts = (allproducts, category, subcat, pricerange) => {
+  return allproducts.filter((item) => {
+    const inCategory = item.category === category;
+    const inSubcat = subcat ? item.subcat === subcat : true;
+    const withinPriceRange =
+      pricerange === 0 ||
+      (item.price >= filterlist[pricerange].min &&
+        item.price <= filterlist[pricerange].max);
+
+    return inCategory && inSubcat && withinPriceRange;
+  });
 };
