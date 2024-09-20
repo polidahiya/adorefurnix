@@ -6,8 +6,8 @@ import { BiSolidCategory } from "react-icons/bi";
 function Subcategories({ category, subcat }) {
   if (categorylist[category]?.subcat.length > 0)
     return (
-      <div className="bg-bg1 mt-[10px] pt-[10px] lg:mr-[10px]">
-        <h2 className="text-center font-bold text-[20px] flex items-center justify-center gap-[10px]">
+      <div className="bg-bg1 lg:mt-[10px] pt-[10px] lg:mr-[10px]">
+        <h2 className="text-center font-bold text-[20px] items-center justify-center gap-[10px] hidden lg:flex">
           <BiSolidCategory />
           <span>Sub Categories</span>
         </h2>

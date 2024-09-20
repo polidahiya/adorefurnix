@@ -11,8 +11,8 @@ function Navcategories({ category }) {
 
   return (
     <div
-      className={` grid grid-cols-[repeat(auto-fit,minmax(100px,1fr))] md:grid-cols-[repeat(auto-fit,minmax(140px,1fr))] lg:flex lg:items-center lg:justify-between lg:h-[30px] lg:mt-[20px] overflow-hidden duration-300 ${
-        showcat ? "h-[400px] md:h-[313px] mt-[20px]" : "h-0"
+      className={`fixed bottom-0 left-0 lg:static w-full bg-white lg:bg-transparent grid grid-cols-[repeat(auto-fit,minmax(100px,1fr))] md:grid-cols-[repeat(auto-fit,minmax(140px,1fr))] lg:flex lg:items-center lg:justify-between lg:h-[30px] lg:mt-[20px] p-[10px] lg:p-0 overflow-hidden  duration-300 ${
+        showcat ? "translate-y-0 z-40" : "translate-y-full lg:translate-y-0"
       }`}
     >
       {Object.keys(categorylist).map((item, i) => {
@@ -27,8 +27,8 @@ function Navcategories({ category }) {
             <Link
               key={i}
               href={"/" + item}
-              className={`lg:h-[30px] w-full flex flex-col items-center justify-start lg:justify-center  text-[14px] text-white p-[5px]  lg:px-[10px] lg:py-[5px] rounded-[10px] lg:rounded-full text-center ${
-                category == item ? "bg-theme" : ""
+              className={`lg:h-[30px] w-full flex flex-col items-center justify-start lg:justify-center  text-[14px] lg:text-white p-[5px]  lg:px-[10px] lg:py-[5px] rounded-[10px] lg:rounded-full text-center ${
+                category == item ? "bg-theme text-white" : ""
               }`}
             >
               <Image

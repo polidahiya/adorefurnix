@@ -37,7 +37,7 @@ export const Showmobilecategorymenubutton = () => {
         setshowcat((pre) => !pre);
         setshowsearch(false);
       }}
-      className="lg:hidden h-[calc(100%-4px)] aspect-square flex flex-col justify-center items-center "
+      className="lg:hidden h-[calc(100%-4px)] aspect-square flex flex-col justify-center items-center z-40"
     >
       <span
         className={`bg-white block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ${
@@ -62,7 +62,7 @@ export const Centralnav = ({ productsname }) => {
   const { showsearch } = AppContextfn();
   return (
     <div
-      className={`absolute top-[calc(100%+20px)] md:static w-full h-full lg:min-w-[500px] md:block ${
+      className={`absolute top-[calc(100%+20px)] md:static w-full h-full lg:min-w-[500px] md:block z-40 ${
         showsearch ? "block" : "hidden"
       }`}
     >
@@ -221,7 +221,7 @@ export const Exitblackscreen = () => {
   if (showcat || showsearch) {
     return (
       <div
-        className="block lg:hidden fixed top-0 left-0 h-screen w-screen z-[-1]"
+        className="block lg:hidden fixed top-0 left-0 bg-black opacity-40 h-screen w-screen z-30"
         onClick={() => {
           setshowcat(false);
           setshowsearch(false);

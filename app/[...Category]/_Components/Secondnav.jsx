@@ -5,8 +5,11 @@ import { categorylist, filterlist, sortinglist } from "@/app/commondata";
 import { IoMdArrowDropleft, IoMdArrowDropright } from "react-icons/io";
 import { VscSettings } from "react-icons/vsc";
 import { TbSortAscendingSmallBig } from "react-icons/tb";
+import { AppContextfn } from "@/app/Context";
 
 function Secondnav({ category, subcat, searchParams }) {
+  const { setshowcat } = AppContextfn();
+
   if (searchParams.pricerange == undefined) searchParams.pricerange = 0;
   if (searchParams.sort == undefined) searchParams.sort = 0;
 
@@ -67,7 +70,12 @@ function Secondnav({ category, subcat, searchParams }) {
           <Link href={backbardlink}>
             <IoMdArrowDropleft className=" h-[40px] w-[40px]" />
           </Link>
-          <span className="text-center text-[20px] font-semibold font-serif italic whitespace-nowrap">
+          <span
+            className="text-center text-[20px] font-semibold font-serif italic whitespace-nowrap select-none"
+            onClick={() => {
+              setshowcat(true);
+            }}
+          >
             {category}
           </span>
           <Link href={forwardlink}>

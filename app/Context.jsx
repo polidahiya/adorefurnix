@@ -1,6 +1,7 @@
 "use client";
 
-import { createContext, useContext, useState, useRef } from "react";
+import Cookies from "js-cookie";
+import { createContext, useContext, useState, useRef, useEffect } from "react";
 
 const AppContext = createContext({});
 
@@ -40,7 +41,7 @@ export function Appwrapper({ children }) {
   const [updateproduct, setupdateproduct] = useState(false);
   const [deletedimages, setdeletedimages] = useState([]);
   const [adminproductrefresher, setadminproductrefresher] = useState(0);
-  
+
   // funtions
   const setmessagefn = (message) => {
     setmessagearray([
@@ -48,6 +49,14 @@ export function Appwrapper({ children }) {
       { id: Math.random() + new Date().getMilliseconds(), message: message },
     ]);
   };
+
+  useEffect(() => {
+    const cookieCart = Cookies.get("cart");
+    if (cookieCart) {
+      const parsedCart = JSON.parse(cookieCart);
+      setcart(parsedCart);
+    }
+  }, []);
 
   return (
     <AppContext.Provider
