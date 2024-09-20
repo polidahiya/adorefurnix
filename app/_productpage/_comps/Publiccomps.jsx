@@ -4,80 +4,79 @@ import { AppContextfn } from "@/app/Context";
 import { FaCartShopping } from "react-icons/fa6";
 import { BsLightningChargeFill } from "react-icons/bs";
 import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 
 export function Addtocartbuttons({ filteredproducts, color }) {
   const router = useRouter();
-
   const { cart, setcart, setmessagefn } = AppContextfn();
   const [availableincart, setavailableincart] = useState(false);
 
   useEffect(() => {
-    Object.keys(cart).forEach((item) => {
-      const [id, selectedcolor] = item.split(",");
-      if (filteredproducts._id == id && color == selectedcolor) {
-        setavailableincart(true);
-      }
-    });
-  }, [cart]);
+    const itemKey = `${filteredproducts._id},${color}`;
+    setavailableincart(!!cart[itemKey]);
+  }, [cart, filteredproducts._id, color]);
+
+  const updateCart = () => {
+    const editedproduct = { ...filteredproducts };
+    delete editedproduct.desc;
+
+    const itemKey = `${filteredproducts._id},${color}`;
+    const cartdata = {
+      ...cart,
+      [itemKey]: {
+        ...editedproduct,
+        selectedcolor: color,
+        quantity: 1,
+      },
+    };
+
+    Cookies.set("cart", JSON.stringify(cartdata), { expires: 7 });
+    setcart(cartdata);
+  };
+
+  const Addtocart = () => {
+    if (!filteredproducts.available) {
+      setmessagefn("Product is not available");
+      return;
+    }
+
+    if (availableincart) {
+      router.push("/cart");
+      return;
+    }
+
+    updateCart();
+    setmessagefn("Added to Cart");
+  };
+
+  const Buynow = () => {
+    if (!filteredproducts.available) {
+      setmessagefn("Product is not available");
+      return;
+    }
+
+    if (!availableincart) {
+      updateCart();
+    }
+
+    router.push("/cart");
+  };
 
   return (
     <div className="sticky bottom-0 top-[130px] flex gap-[10px] mt-[20px] bg-white">
       <button
         className="flex items-center justify-center gap-[10px] w-full h-[40px] bg-[#ff9f00] text-white"
-        onClick={() => {
-          // check available
-          if (!filteredproducts.available) {
-            setmessagefn("Product is not available");
-            return;
-          }
-          //
-          if (availableincart) {
-            router.push("/cart");
-            return;
-          }
-          const editedproduct = { ...filteredproducts };
-          delete editedproduct.desc;
-          setcart((pre) => ({
-            ...pre,
-            [filteredproducts._id + "," + color]: {
-              ...editedproduct,
-              selectedcolor: color,
-              quantity: 1,
-            },
-          }));
-          setmessagefn("Added to Cart");
-        }}
+        onClick={Addtocart}
       >
-        <FaCartShopping className="text-[20px]" />{" "}
+        <FaCartShopping className="text-[20px]" />
         <span>{availableincart ? "Go" : "Add"} to Cart</span>
       </button>
       <button
         className="flex items-center justify-center gap-[10px] w-full h-[40px] bg-[#fb641b] text-white"
-        onClick={() => {
-          // check available
-          if (!filteredproducts.available) {
-            setmessagefn("Product is not available");
-            return;
-          }
-          //
-          if (!availableincart) {
-            const editedproduct = { ...filteredproducts };
-            delete editedproduct.desc;
-            setcart((pre) => ({
-              ...pre,
-              [filteredproducts._id + "," + color]: {
-                ...editedproduct,
-                selectedcolor: color,
-                quantity: 1,
-              },
-            }));
-          }
-
-          router.push("/cart");
-        }}
+        onClick={Buynow}
       >
-        
-        <BsLightningChargeFill className="text-[20px]" /> <span>Buy Now</span>
+        <BsLightningChargeFill className="text-[20px]" />
+        <span>Buy Now</span>
       </button>
     </div>
   );

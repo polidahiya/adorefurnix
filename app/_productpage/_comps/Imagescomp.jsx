@@ -25,15 +25,20 @@ function ImagesComp({ filteredproducts, color, token }) {
   }, [token, filteredproducts._id]);
 
   const handleImageScroll = (e) => {
-    const index = Math.floor((e.target.scrollLeft + e.target.clientWidth / 2) / e.target.clientWidth);
+    const index = Math.floor(
+      (e.target.scrollLeft + e.target.clientWidth / 2) / e.target.clientWidth
+    );
     setActiveImageIndex(index);
   };
 
   const handleSharePage = () => {
     const link = typeof window !== "undefined" ? new URL(location.href) : "";
-    navigator.clipboard.writeText(link).then(() => {
-      setmessagefn("Link copied!");
-    }).catch(() => fallbackCopyTextToClipboard(link));
+    navigator.clipboard
+      .writeText(link)
+      .then(() => {
+        setmessagefn("Link copied!");
+      })
+      .catch(() => fallbackCopyTextToClipboard(link));
   };
 
   const fallbackCopyTextToClipboard = (text) => {
@@ -71,13 +76,20 @@ function ImagesComp({ filteredproducts, color, token }) {
         ))}
       </div>
 
-      <div className={`hidden md:flex absolute top-0 left-[10px] w-[70px] h-full flex-col gap-[10px] ${images.length > 5 ? "overflow-y-scroll" : "justify-center"}`}>
+      <div
+        className={`hidden md:flex absolute top-0 left-[10px] w-[70px] h-full flex-col gap-[10px] ${
+          images.length > 5 ? "overflow-y-scroll" : "justify-center"
+        }`}
+      >
         {images.map((image, index) => (
           <MiniImage
             key={index}
             image={image}
             alt={filteredproducts.name}
-            onClick={() => { imagesScrollRef.current.scrollLeft = imagesScrollRef.current.clientWidth * index; }}
+            onClick={() => {
+              imagesScrollRef.current.scrollLeft =
+                imagesScrollRef.current.clientWidth * index;
+            }}
             isActive={activeImageIndex === index}
           />
         ))}
@@ -88,7 +100,13 @@ function ImagesComp({ filteredproducts, color, token }) {
         title="Add to favourites"
         onClick={handleLikeToggle}
       >
-        <Heart styles={`h-[25px] w-[25px] translate-y-[1px] ${isLiked ? "fill-red-500 stroke-none" : "fill-white stroke-[5px] stroke-red-600"}`} />
+        <Heart
+          styles={`h-[25px] w-[25px] translate-y-[1px] ${
+            isLiked
+              ? "fill-red-500 stroke-none"
+              : "fill-white stroke-[5px] stroke-red-600"
+          }`}
+        />
       </button>
 
       <button
@@ -114,9 +132,9 @@ function ImagesComp({ filteredproducts, color, token }) {
   );
 }
 
-const MainImage = React.memo(({ image, name }) => {
+const MainImage = ({ image, name }) => {
   const [hasError, setHasError] = useState(false);
-  
+
   return (
     <div className="min-w-[100%] h-full">
       <Image
@@ -130,14 +148,18 @@ const MainImage = React.memo(({ image, name }) => {
       />
     </div>
   );
-});
+};
 
-const MiniImage = React.memo(({ image, alt, onClick, isActive }) => {
+const MiniImage = ({ image, alt, onClick, isActive }) => {
   const [hasError, setHasError] = useState(false);
-  
+
   return (
     <Image
-      className={`w-full aspect-square object-cover bg-slate-200 cursor-pointer ${isActive ? "border-[2px] border-cyan-500" : "border-[2px] border-slate-300"}`}
+      className={`w-full aspect-square object-cover bg-slate-200 cursor-pointer ${
+        isActive
+          ? "border-[2px] border-cyan-500"
+          : "border-[2px] border-slate-300"
+      }`}
       src={hasError ? fallbackImage : image}
       alt={alt}
       height={100}
@@ -147,6 +169,6 @@ const MiniImage = React.memo(({ image, alt, onClick, isActive }) => {
       onClick={onClick}
     />
   );
-});
+};
 
 export default ImagesComp;

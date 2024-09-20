@@ -42,6 +42,7 @@ function Footer() {
         <div className="flex-1 flex flex-col items-start">
           <Image
             src="/logo3.png"
+            alt="logo image"
             width={200}
             height={52}
             className="h-[40px] w-[160px] "
