@@ -4,39 +4,51 @@ import Image from "next/image";
 import Link from "next/link";
 import Deletesvg from "@/app/_svgs/Deletesvg";
 import { AppContextfn } from "@/app/Context";
+import Cookies from "js-cookie";
 
-export default function Products({ cart, setcart, item, i }) {
-  const { setmessagefn } = AppContextfn();
-
-  // Fallback image URL
+export default function Products({ item, i }) {
+  const { cart, setcart, setmessagefn } = AppContextfn();
   const fallbackImage = "/default-fallback-image.png";
-
   const color = item.split(",")[1];
   const product = cart[item];
 
-  let pricebeforediscount = null;
-  if (product.discount > 0) {
-    pricebeforediscount = Math.floor(
-      (product.price / (100 - product.discount)) * 100
-    );
-  }
-
-  // State to handle image loading errors
   const [imgSrc, setImgSrc] = useState(
     product.colorpalets[product.selectedcolor].images[0]
   );
 
-  const handleImageError = () => {
-    setImgSrc(fallbackImage);
+  const handleImageError = () => setImgSrc(fallbackImage);
+
+  const priceBeforeDiscount = product.discount > 0
+    ? Math.floor((product.price / (100 - product.discount)) * 100)
+    : null;
+
+  const updateCartQuantity = (increment) => {
+    setcart((prev) => {
+      const newQuantity = Math.max(1, Math.min(10, product.quantity + increment));
+      const updatedCart = {
+        ...prev,
+        [item]: { ...product, quantity: newQuantity },
+      };
+      Cookies.set("cart", JSON.stringify(updatedCart), { expires: 7 });
+      return updatedCart;
+    });
+  };
+
+  const handleRemoveProduct = () => {
+    const newCart = { ...cart };
+    delete newCart[item];
+    Cookies.set("cart", JSON.stringify(newCart), { expires: 7 });
+    setcart(newCart);
+    setmessagefn("Product Removed");
   };
 
   return (
-    <div key={i} className="flex flex-col gap-[20px] w-full p-[20px]">
+    <div className="flex flex-col gap-[20px] w-full p-[20px]">
       {i !== 0 && <hr />}
       <div className="flex flex-col md:flex-row gap-[20px] md:h-[150px]">
         <Link
           href={`/${product.category}/${product.subcat}/${product._id}?color=${color}`}
-          className="w-full md:w-auto aspect-[2/1] md:h-full  md:aspect-square border border-slate-300"
+          className="w-full md:w-auto aspect-[2/1] md:h-full md:aspect-square border border-slate-300"
         >
           <Image
             src={imgSrc}
@@ -44,7 +56,7 @@ export default function Products({ cart, setcart, item, i }) {
             height={200}
             width={200}
             className="h-full w-full aspect-[2/1] md:aspect-square object-contain object-center"
-            onError={handleImageError} // Handle image error
+            onError={handleImageError}
           />
         </Link>
         <div className="flex flex-col h-full w-full">
@@ -58,22 +70,15 @@ export default function Products({ cart, setcart, item, i }) {
             </span>
           </p>
           <p className="font-bold flex gap-[10px] items-baseline mt-[10px]">
-            {pricebeforediscount && (
+            {priceBeforeDiscount && (
               <span className="text-gray-500 line-through">
-                ₹
-                {parseInt(
-                  pricebeforediscount * product.quantity,
-                  10
-                ).toLocaleString("en-IN")}
+                ₹{(priceBeforeDiscount * product.quantity).toLocaleString("en-IN")}
               </span>
             )}
             <span className="text-[20px] text-black">
-              ₹
-              {parseInt(product.price * product.quantity, 10).toLocaleString(
-                "en-IN"
-              )}
+              ₹{(product.price * product.quantity).toLocaleString("en-IN")}
             </span>
-            {pricebeforediscount && (
+            {priceBeforeDiscount && (
               <span className="text-[14px] text-green-500 font-semibold">
                 {product.discount}% OFF
               </span>
@@ -83,18 +88,7 @@ export default function Products({ cart, setcart, item, i }) {
             <div className="flex items-center gap-[5px] h-full">
               <button
                 className="h-full aspect-square rounded-[5px] border border-slate-300"
-                onClick={() => {
-                  if (product.quantity <= 1) {
-                    return;
-                  }
-                  setcart((pre) => ({
-                    ...pre,
-                    [item]: {
-                      ...product,
-                      quantity: product.quantity - 1,
-                    },
-                  }));
-                }}
+                onClick={() => product.quantity > 1 && updateCartQuantity(-1)}
               >
                 -
               </button>
@@ -103,31 +97,14 @@ export default function Products({ cart, setcart, item, i }) {
               </span>
               <button
                 className="h-full aspect-square rounded-[5px] border border-slate-300"
-                onClick={() => {
-                  if (product.quantity >= 10) {
-                    return;
-                  }
-                  setcart((pre) => ({
-                    ...pre,
-                    [item]: {
-                      ...product,
-                      quantity: product.quantity + 1,
-                    },
-                  }));
-                }}
+                onClick={() => product.quantity < 10 && updateCartQuantity(1)}
               >
                 +
               </button>
             </div>
             <button
               className="h-full border border-slate-300 px-[20px] rounded-full"
-              onClick={() => {
-                const newcart = { ...cart };
-                delete newcart[item];
-
-                setcart(newcart);
-                setmessagefn("Product Removed");
-              }}
+              onClick={handleRemoveProduct}
             >
               <span className="hidden md:block">Remove</span>
               <Deletesvg styles="md:hidden h-[25px] aspect-square fill-none" />

@@ -1,5 +1,5 @@
 import React from "react";
-import Page from "./Publicpage";
+import Page from "./_comps/Publicpage";
 import { cookies } from "next/headers";
 
 function page() {
