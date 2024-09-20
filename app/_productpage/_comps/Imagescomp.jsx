@@ -150,6 +150,7 @@ const MainImage = ({ image, name }) => {
   );
 };
 
+
 const MiniImage = ({ image, alt, onClick, isActive }) => {
   const [hasError, setHasError] = useState(false);
 
