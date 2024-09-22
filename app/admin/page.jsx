@@ -1,54 +1,43 @@
-"use client";
 import { getadminorders } from "../_serveractions/Adminorders";
-import Selectordertype from "./Selectordertype";
-import React, { useEffect, useState } from "react";
-import Ordercard from "./Ordercard";
+import Selectordertype from "./_comps/Selectordertype";
+import Ordercard from "./_comps/_orderscard/Ordercard";
 import Productnotfound from "../_components/Productnotfound";
-import Componentloading from "../_components/Componentloading";
+import { revalidatePath } from "next/cache";
 
-export default function Adminhome() {
-  const [orders, setorders] = useState([]);
-  const [loading, setloading] = useState(true);
-  const [ordertype, setordertype] = useState(0);
-  const [refresh, setrefresh] = useState(0);
+export default async function Adminhome({ searchParams }) {
+  // refresh orders
+  const Refreshorders = async (link) => {
+    "use server";
+    revalidatePath(link);
+  };
 
-  useEffect(() => {
-    (async () => {
-      const ordersres = await getadminorders(ordertype);
-      setorders([...ordersres]);
-      setloading(false);
-    })();
-  }, [ordertype, refresh]);
+  const ordertype = Number(searchParams?.order) || 0;
+  const ordersres = await getadminorders(ordertype);
 
-  if (loading) {
+  let orders;
+  if (ordersres.status == 200) orders = ordersres.result;
+
+  if (ordersres.status != 200)
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <Componentloading />
+      <div className="h-screen w-full flex items-center justify-center text-red-500">
+        {ordersres.message}{" "}
       </div>
     );
-  } else {
-    return (
-      <div>
-        <Selectordertype
-          ordertype={ordertype}
-          setordertype={setordertype}
-          setrefresh={setrefresh}
-        />
-        {orders.length != 0 ? (
-          <div className={`p-[20px]`}>
-            {orders.map((item) => {
-              return (
-                <Ordercard
-                  key={new Date().getMilliseconds() + Math.random()}
-                  item={item}
-                />
-              );
-            })}
-          </div>
-        ) : (
-          <Productnotfound />
-        )}
+
+  return (
+    <div>
+      <Selectordertype ordertype={ordertype} Refreshorders={Refreshorders} />
+      {orders.length == 0 && <Productnotfound />}
+      <div className={`p-[20px]`}>
+        {orders.map((item, i) => {
+          return (
+            <Ordercard
+              key={new Date().getMilliseconds() + Math.random() + i}
+              item={item}
+            />
+          );
+        })}
       </div>
-    );
-  }
+    </div>
+  );
 }

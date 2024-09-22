@@ -1,7 +1,4 @@
-import {
-  Createorderid,
-  Verifypayment,
-} from "@/app/_serveractions/Razorpay";
+import { Createorderid, Verifypayment } from "@/app/_serveractions/Razorpay";
 
 const Paymentfn = async (
   userdata,
@@ -27,7 +24,7 @@ const Paymentfn = async (
       );
 
       if (res?.status == 200) {
-        callbackfn();
+        callbackfn(response?.razorpay_order_id, response?.razorpay_payment_id);
       } else {
         setmessagefn(res?.message);
       }

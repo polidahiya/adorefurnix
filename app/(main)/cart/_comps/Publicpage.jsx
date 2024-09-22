@@ -1,6 +1,5 @@
 "use client";
 import { Placeorder } from "@/app/_serveractions/Addorder";
-import Ordersplacednotif from "./Ordersplacednotif";
 import { AppContextfn } from "@/app/Context";
 import React, { useEffect, useState } from "react";
 import Products from "./Products";
@@ -10,6 +9,7 @@ import Pricedetails from "./Pricedetails";
 import Emptycart from "./Emptycart";
 import Useraddress from "./Useraddress";
 import { IoShieldCheckmark } from "react-icons/io5";
+import { FaOpencart } from "react-icons/fa6";
 import Cookies from "js-cookie";
 
 export default function Page({ userdata, token }) {
@@ -44,11 +44,11 @@ export default function Page({ userdata, token }) {
       userdata,
       totalprice - totaldiscount,
       "INR",
-      async () => {
+      async (rzorderid, rzpaymentid) => {
         setloading(true);
 
-        const res = await Placeorder(cart);
-        if (res?.message == "Order Placed") {
+        const res = await Placeorder(cart, rzorderid, rzpaymentid);
+        if (res?.status == 200) {
           settoggleorderplacedmenu(true);
 
           Cookies.set("cart", JSON.stringify({}), {
@@ -82,17 +82,21 @@ export default function Page({ userdata, token }) {
 
   return (
     <>
-      <Ordersplacednotif />
       {loading && (
-        <div className="absolute top-0 left-0 h-full w-full flex items-center justify-center bg-black bg-opacity-[10%] z-[10]">
+        <div className="fixed top-0 left-0 h-full w-full flex items-center justify-center bg-black bg-opacity-[10%] z-[10]">
           <Componentloading />
         </div>
       )}
 
       <div className="p-[5px] md:p-[20px] flex flex-col lg:flex-row gap-[10px] bg-bg1 min-h-[calc(100vh-111px)]">
         <div className="w-full">
+          <div className="h-[60px] flex items-center justify-center gap-[10px] text-[20px] font-bold font-serif italic  lg:hidden">
+            Cart
+            <FaOpencart />
+          </div>
+
           {userdata && <Useraddress userdata={userdata} />}
-          
+
           {/* products */}
           <div
             className={` border border-slate-300 bg-white  ${

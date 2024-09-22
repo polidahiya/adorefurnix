@@ -3,8 +3,6 @@ import { cookies } from "next/headers";
 import { Adminverification } from "@/app/Verifytoken";
 import jwt from "jsonwebtoken";
 import { Admindatacollection } from "../Mongodb";
-// import { data, orders, users } from "@/components/mongodb";
-// import { Data } from "../../components/Getdata";
 
 // auto login
 export async function autologin() {
@@ -12,12 +10,12 @@ export async function autologin() {
     let result = await Adminverification();
 
     if (result) {
-      return { message: "Login successfull" };
+      return { status: 200, message: "Login successfull" };
     } else {
-      return { message: "Invalid user" };
+      return { status: 400, message: "Invalid user" };
     }
   } catch (error) {
-    return { message: "Internal server error" };
+    return { status: 500, message: "Internal server error" };
   }
 }
 
@@ -30,8 +28,8 @@ export async function passwordlogin(req) {
 
     if (password == admindata?.password) {
       const token = jwt.sign(
-        { email: "adorefurnix@admin.com" },
-        "this-world-is-toxic-adorefurnix",
+        { email: process.env.admin_email },
+        process.env.jwt_secret,
         {
           expiresIn: "24h",
         }

@@ -135,10 +135,10 @@ export const Logedinusermenu = ({ token, userdata }) => {
                 <Usersvg styles="h-[30px] border border-slate-300 rounded-full  mt-[20px] aspect-square fill-white" />
               </center>
               <div className="text-center mt-[5px]">
-                {JSON.parse(userdata).username}
+                {JSON?.parse(userdata)?.username}
               </div>
               <div className="text-center text-[12px] text-cyan-500 ">
-                {JSON.parse(userdata).email}
+                {JSON?.parse(userdata)?.email}
               </div>
               <div
                 className="flex flex-col gap-[2px] w-full mt-[30px]"

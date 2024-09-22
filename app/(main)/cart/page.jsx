@@ -1,6 +1,7 @@
 import React from "react";
 import Page from "./_comps/Publicpage";
 import { cookies } from "next/headers";
+import Ordersplacednotif from "./_comps/Ordersplacednotif";
 
 function page() {
   const token = cookies()?.get("token")?.value;
@@ -9,7 +10,12 @@ function page() {
   if (userdata) {
     parseduserdata = JSON.parse(userdata);
   }
-  return <Page userdata={parseduserdata} token={token} />;
+  return (
+    <>
+      <Ordersplacednotif />
+      <Page userdata={parseduserdata} token={token} />
+    </>
+  );
 }
 
 export default page;

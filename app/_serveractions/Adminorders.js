@@ -8,17 +8,17 @@ export const getadminorders = async (status) => {
     const tokenres = await Adminverification();
 
     if (!tokenres) {
-      return { message: "Please login first" };
+      return { status: 500, message: "Please login first" };
     }
 
     let result = await orderscollection.find({ status: status }).toArray();
 
     result.map((item) => (item._id = item._id.toString()));
 
-    return result;
+    return { status: 200, result: result, message: "Server Error" };
   } catch (error) {
     console.log(error);
-    return { message: "Server Error" };
+    return { status: 500, message: "Server Error" };
   }
 };
 
@@ -58,7 +58,7 @@ export const deleteorder = async (documentId) => {
     const filter = { _id: new ObjectId(documentId) };
 
     const result = await orderscollection.deleteOne(filter);
-    
+
     if (result.deletedCount === 1) {
       return { message: "Deleted Successfully" };
     } else {
