@@ -40,38 +40,11 @@ export async function passwordlogin(req) {
         httpOnly: true,
         secure: true,
       });
-      return { message: "Login successfull" };
+      return { status: 200, message: "Login successfull" };
     } else {
-      return { message: "Wrong password" };
+      return { status: 500, message: "Wrong password" };
     }
   } catch (error) {}
-  return { message: "Server Error!" };
+  return { status: 500, message: "Server Error!" };
 }
 
-// get orders
-export async function getallorders(req) {
-  const productsdata = await Data();
-  let token = cookies().get("admintoken").value;
-
-  if (!token) {
-    return { message: "User error" };
-  }
-
-  let result = await verifyToken(token);
-
-  if (
-    result.message == "Token verified" &&
-    result.email == "admin@vishal.com"
-  ) {
-    let usersdata = await users.find({}).toArray();
-
-    let allorders = await orders
-      .find({ status: req.status })
-      .sort({ orderdate: 1 })
-      .toArray();
-
-    return { allorders: allorders };
-  } else {
-    return { message: "User error" };
-  }
-}

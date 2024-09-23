@@ -1,53 +1,52 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { categorylist } from "@/app/commondata";
 import { Getliveproducts } from "../Getliveproducts";
 import { Deleteproduct } from "../Serveraction";
 import { AppContextfn } from "@/app/Context";
+import Componentloading from "@/app/_components/Componentloading";
 
 function Showproducts() {
   const [categorystate, setcategorystate] = useState({
     category: "Living Room",
     subcat: "Sofa sets",
   });
-  const {
-    setaddproduct,
-    setupdateproduct,
-    setdeletedimages,
-    adminproductrefresher,
-    setmessagefn,
-  } = AppContextfn();
+  const { setaddproduct, setupdateproduct, setdeletedimages, setmessagefn } =
+    AppContextfn();
 
   const [products, setproducts] = useState([]);
+  const [loading, setloading] = useState(false);
 
-  useEffect(() => {
-    (async () => {
-      const res = await Getliveproducts(categorystate);
-      if (res?.message) {
-        setmessagefn(res?.message);
-      } else {
-        setproducts(res?.products);
-      }
-    })();
-  }, [categorystate, adminproductrefresher]);
+  const showproducts = async () => {
+    setloading(true);
+    const res = await Getliveproducts(categorystate);
+    if (res.status == 200) {
+      setproducts(res?.products);
+    }
+
+    setmessagefn(res?.message);
+    setloading(false);
+  };
+
+  if (loading) return <Componentloading />;
 
   return (
     <div>
       <hr />
-      <h2 className="text-center mt-[30px] text-[20px] font-bold">Products</h2>
+      <h2 className="text-center mt-[30px] text-[20px] font-bold">
+        Show Products
+      </h2>
       <h2 className="text-center mt-[30px] text-[20px] font-bold">
         Select a category
       </h2>
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-[10px] p-[20px]">
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-[10px] p-[20px]">
         {Object.keys(categorylist).map((item, i) => {
           return (
             <button
               key={i}
-              className={`border border-slate-300 rounded-[10px] p-[10px] 
+              className={`border border-slate-300 rounded-[10px] p-[5px] text-[12px] 
                 ${
-                  categorystate?.category == item
-                    ? "bg-slate-600 text-white"
-                    : ""
+                  categorystate?.category == item && "bg-slate-600 text-white"
                 }`}
               onClick={() => {
                 setcategorystate({
@@ -65,15 +64,13 @@ function Showproducts() {
       <h2 className="text-center mt-[30px] text-[20px] font-bold">
         Select Subcategory
       </h2>
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-[10px] p-[20px]">
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-[10px] p-[20px]">
         {categorylist[categorystate?.category]?.subcat?.map((item, i) => {
           return (
             <button
               key={i}
-              className={`border border-slate-300 rounded-[10px] p-[10px] ${
-                categorystate?.subcat == item.name
-                  ? "bg-slate-600 text-white"
-                  : ""
+              className={`border border-slate-300 rounded-[10px] p-[5px] text-[12px] ${
+                categorystate?.subcat == item.name && "bg-slate-600 text-white"
               }`}
               onClick={() => {
                 setcategorystate({ ...categorystate, subcat: item.name });
@@ -84,6 +81,11 @@ function Showproducts() {
           );
         })}
       </div>
+      <center>
+        <button className="bg-slate-300 rounded-md px-2" onClick={showproducts}>
+          Show Products
+        </button>
+      </center>
       {/* products */}
       <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-[20px] p-[20px]">
         {products.map((item, i) => {

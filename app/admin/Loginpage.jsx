@@ -1,11 +1,11 @@
 "use client";
 import React, { useEffect, useState, useRef } from "react";
-import { passwordlogin } from "./Loginaction";
+import { passwordlogin } from "../_serveractions/Loginaction";
 import { AppContextfn } from "@/app/Context";
 import { ImEye } from "react-icons/im";
 import { ImEyeBlocked } from "react-icons/im";
 
-function Loginpage({ setshowlogin }) {
+function Loginpage() {
   const { setmessagefn } = AppContextfn();
   const [password, setpassword] = useState("");
   const [showpassword, setshowpassword] = useState(false);
@@ -22,9 +22,6 @@ function Loginpage({ setshowlogin }) {
       }
 
       let res = await passwordlogin({ password: password });
-      if (res?.message == "Login successfull") {
-        setshowlogin(false);
-      }
       setshowloading(false);
       setmessagefn(res.message);
     })();
@@ -90,7 +87,7 @@ function Loginpage({ setshowlogin }) {
           {showloading && (
             <div className="h-[20px] aspect-square rounded-full  border-r-2 border-l-2 border-white animate-spin"></div>
           )}
-          <span>Login</span>
+          <span>{showloading ? "Logingin..." : "Login"}</span>
         </button>
       </div>
     </div>

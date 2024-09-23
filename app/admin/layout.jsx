@@ -1,7 +1,11 @@
-import { autologin } from "./Loginaction";
+import { autologin } from "../_serveractions/Loginaction";
 import Link from "next/link";
 import Image from "next/image";
 import Loginpage from "./Loginpage";
+import { FaDollyFlatbed } from "react-icons/fa";
+import { RiBloggerFill } from "react-icons/ri";
+import { IoBagAdd } from "react-icons/io5";
+import { AiFillMessage } from "react-icons/ai";
 
 export default async function RootLayout({ children }) {
   const res = await autologin();
@@ -11,10 +15,14 @@ export default async function RootLayout({ children }) {
   }
 
   const navLinks = [
-    { href: "/admin/", label: "Orders" },
-    { href: "/admin/Blogs", label: "Add Blogs" },
-    { href: "/admin/addproducts", label: "Add Products" },
-    { href: "/admin/contactmessages", label: "Contact Messages" },
+    { href: "/admin/", label: "Orders", logo: <FaDollyFlatbed /> },
+    { href: "/admin/Blogs", label: "Add Blogs", logo: <RiBloggerFill /> },
+    { href: "/admin/addproducts", label: "Add Products", logo: <IoBagAdd /> },
+    {
+      href: "/admin/contactmessages",
+      label: "Contact Messages",
+      logo: <AiFillMessage />,
+    },
   ];
 
   return (
@@ -23,9 +31,10 @@ export default async function RootLayout({ children }) {
         <Link href="/">
           <Image src="/logo3.png" alt="logo" height={40} width={150} />
         </Link>
-        {navLinks.map(({ href, label }) => (
+        {navLinks.map(({ href, label,logo }) => (
           <NavLink key={href} href={href}>
-            {label}
+            {logo}
+            <span className="hidden md:block">{label}</span>
           </NavLink>
         ))}
       </nav>
@@ -36,7 +45,7 @@ export default async function RootLayout({ children }) {
 
 const NavLink = ({ href, children }) => (
   <Link
-    className="h-full rounded-[5px] px-[10px] bg-white grid place-content-center"
+    className="flex items-center gap-[10px] h-full rounded-[5px] px-[10px] bg-white "
     href={href}
   >
     {children}

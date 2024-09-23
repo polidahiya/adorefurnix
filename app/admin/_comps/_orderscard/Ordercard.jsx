@@ -61,13 +61,10 @@ function Ordercard({ item }) {
           <hr className="my-3 border-gray-300" />
           <OrderDetail label="Product Name" value={item?.name} />
           <OrderDetail label="Product Price" value={`Rs ${item?.price}`} />
-          <OrderDetail
-            label="Razorpay order id"
-            value={`Rs ${item?.rzorderid}`}
-          />
+          <OrderDetail label="Razorpay order id" value={`${item?.rzorderid}`} />
           <OrderDetail
             label="Razorpay payment id"
-            value={`Rs ${item?.rzpaymentid}`}
+            value={`${item?.rzpaymentid}`}
           />
           <ProductColorDetail color={item?.colorpalets[item?.selectedcolor]} />
           <OrderDetail
@@ -108,7 +105,9 @@ function Ordercard({ item }) {
               }}
             >
               Change status
-              <IoMdArrowDropdown className={`${showstatusmenu && "rotate-180"}`}/>
+              <IoMdArrowDropdown
+                className={`${showstatusmenu && "rotate-180"}`}
+              />
             </button>
             {/*delete button  */}
             <button
@@ -178,10 +177,10 @@ const ProductColorDetail = ({ color }) => (
 
 const StatusMenuOption = ({ changeStatusFn }) => {
   const statusOptions = [
-    { label: 'Add to All orders', status: 0 },
-    { label: 'Add to Processing orders', status: 1 },
-    { label: 'Add to Shipped orders', status: 2 },
-    { label: 'Add to Delivered orders', status: 3 },
+    { label: "Add to All orders", status: 0 },
+    { label: "Add to Processing orders", status: 1 },
+    { label: "Add to Shipped orders", status: 2 },
+    { label: "Add to Delivered orders", status: 3 },
   ];
 
   return (

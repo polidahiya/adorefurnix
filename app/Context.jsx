@@ -2,6 +2,25 @@
 
 import Cookies from "js-cookie";
 import { createContext, useContext, useState, useRef, useEffect } from "react";
+export const uploadproductdata = {
+  category: "Living Room",
+  subcat: "Sofa sets",
+  name: "",
+  Dimensions: "",
+  price: 0,
+  rating: 5,
+  discount: 0,
+  keywords: "",
+  available: true,
+  desc: [],
+  colorpalets: [
+    {
+      color: "",
+      name: "",
+      images: [],
+    },
+  ],
+};
 
 const AppContext = createContext({});
 
@@ -19,25 +38,7 @@ export function Appwrapper({ children }) {
   const [messagearray, setmessagearray] = useState([]);
 
   // admin contexts
-  const [addproduct, setaddproduct] = useState({
-    category: "Living Room",
-    subcat: "Sofa sets",
-    name: "",
-    Dimensions: "",
-    price: 0,
-    rating: 5,
-    discount: 0,
-    keywords: "",
-    available: true,
-    desc: [],
-    colorpalets: [
-      {
-        color: "",
-        name: "",
-        images: [],
-      },
-    ],
-  });
+  const [addproduct, setaddproduct] = useState(uploadproductdata);
   const [updateproduct, setupdateproduct] = useState(false);
   const [deletedimages, setdeletedimages] = useState([]);
   const [adminproductrefresher, setadminproductrefresher] = useState(0);
