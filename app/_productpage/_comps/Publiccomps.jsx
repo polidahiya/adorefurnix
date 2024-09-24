@@ -10,6 +10,7 @@ export function Addtocartbuttons({ filteredproducts, color }) {
   const router = useRouter();
   const { cart, setcart, setmessagefn } = AppContextfn();
   const [availableincart, setavailableincart] = useState(false);
+  console.log(cart);
 
   useEffect(() => {
     const itemKey = `${filteredproducts._id},${color}`;
@@ -18,7 +19,9 @@ export function Addtocartbuttons({ filteredproducts, color }) {
 
   const updateCart = () => {
     const editedproduct = { ...filteredproducts };
-    delete editedproduct.desc;
+    delete editedproduct?.desc;
+    delete editedproduct?.available;
+    delete editedproduct?.keywords;
 
     const itemKey = `${filteredproducts._id},${color}`;
     const cartdata = {

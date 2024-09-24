@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { categorylist, filterlist, sortinglist } from "@/app/commondata";
-import { IoMdArrowDropleft, IoMdArrowDropright } from "react-icons/io";
+import { FaChevronRight } from "react-icons/fa6";
 import { VscSettings } from "react-icons/vsc";
 import { TbSortAscendingSmallBig } from "react-icons/tb";
 import { AppContextfn } from "@/app/Context";
@@ -68,7 +68,7 @@ function Secondnav({ category, subcat, searchParams }) {
       <div className=" relative flex items-center justify-end h-[40px] bg-white lg:hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-2 ">
           <Link href={backbardlink}>
-            <IoMdArrowDropleft className=" h-[40px] w-[40px]" />
+            <FaChevronRight className=" h-[40px] w-[40px] p-[13px] rotate-180" />
           </Link>
           <span
             className="text-center text-[20px] font-semibold font-serif italic whitespace-nowrap select-none"
@@ -79,7 +79,7 @@ function Secondnav({ category, subcat, searchParams }) {
             {category}
           </span>
           <Link href={forwardlink}>
-            <IoMdArrowDropright className=" h-[40px] w-[40px]" />
+            <FaChevronRight className=" h-[40px] w-[40px] p-[13px] " />
           </Link>
         </div>
 

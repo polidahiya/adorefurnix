@@ -16,9 +16,6 @@ export const Placeorder = async (ordersdata, rzorderid, rzpaymentid) => {
     let ordersarray = [];
     Object.keys(ordersdata).forEach((order) => {
       let neworders = { ...ordersdata[order] };
-      delete neworders.Dimensions;
-      delete neworders.keywords;
-      delete neworders.available;
       neworders.productid = ordersdata[order]._id;
       neworders.canceled = false;
       neworders.status = 0;

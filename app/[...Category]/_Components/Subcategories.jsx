@@ -11,7 +11,7 @@ function Subcategories({ category, subcat }) {
           <BiSolidCategory />
           <span>Sub Categories</span>
         </h2>
-        <div className="w-full grid grid-cols-[repeat(auto-fit,minmax(100px,1fr))] md:grid-cols-[repeat(auto-fit,minmax(150px,1fr))] place-items-center place-content-center p-[10px] gap-[5px] mt-[10px]">
+        <div className="w-full grid grid-cols-[repeat(auto-fit,minmax(80px,1fr))] md:grid-cols-[repeat(auto-fit,minmax(150px,1fr))] place-items-center place-content-center p-[10px] gap-[5px] mt-[10px]">
           {categorylist[category]?.subcat.map((itemsubcat, i) => {
             return (
               <Link
@@ -29,7 +29,7 @@ function Subcategories({ category, subcat }) {
                   alt={itemsubcat.name}
                   className="w-full aspect-[4/3] object-cover object-center rounded-[5px] md:rounded-[10px]"
                 ></Image>
-                <div className="h-full w-full  text-center p-[5px]  text-[14px] text-ellipsis whitespace-nowrap overflow-hidden">
+                <div className="h-full w-full  text-center p-[5px]  text-[10px] md:text-[12px] lg:text-[14px] text-ellipsis whitespace-nowrap overflow-hidden">
                   {itemsubcat.name}
                 </div>
               </Link>
