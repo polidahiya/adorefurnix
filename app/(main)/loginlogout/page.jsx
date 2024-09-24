@@ -3,7 +3,7 @@ import Userdetails from "./_components/Userdetails";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 
-function page({ params }) {
+function page() {
   let token = cookies().get("token");
   if (token) redirect("/");
   return (
@@ -20,3 +20,5 @@ function page({ params }) {
 }
 
 export default page;
+
+

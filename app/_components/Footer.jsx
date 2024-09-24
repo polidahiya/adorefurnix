@@ -24,6 +24,7 @@ function Footer() {
     { name: "About", link: "/About" },
     { name: "Blogs", link: "/#blogs" },
     { name: "Contact Us", link: "/Contact" },
+    { name: "Shipping Policy", link: "/ShippingPolicy" },
     { name: "Privacy Policy", link: "/PrivacyPolicy" },
     { name: "Return and Refunds", link: "/ReturnandRefunds" },
     { name: "Terms & Conditions", link: "/Terms&Conditions" },
@@ -50,8 +51,8 @@ function Footer() {
           <p className="mt-[30px]  mb-[20px] text-justify lg:text-start">
             Our mission is to provide high-quality, handcrafted wooden furniture
             and home decor that enhances your living space. We strive to offer
-            exceptional value and create pieces that you&apos;ll cherish for years to
-            come.
+            exceptional value and create pieces that you&apos;ll cherish for
+            years to come.
           </p>
           <div className="w-full flex items-center gap-[20px] text-[25px] mt-auto">
             <p className="text-[16px] font-bold">Socials : </p>

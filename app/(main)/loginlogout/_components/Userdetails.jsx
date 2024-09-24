@@ -1,10 +1,12 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { AppContextfn } from "@/app/Context";
 import { signup, login } from "../Serveractions";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Usersvg from "@/app/_svgs/Usersvg";
+import { IoIosEye } from "react-icons/io";
+import { IoIosEyeOff } from "react-icons/io";
 
 function Userdetails() {
   const router = useRouter();
@@ -13,119 +15,56 @@ function Userdetails() {
 
   const [toggleform, settoggleform] = useState(false);
   const [togglepassword, settogglepassword] = useState(true);
-  const nameref = useRef("");
-  const emailref = useRef("");
-  const passwordref = useRef("");
-  const phonenumref = useRef("");
-  const addressref = useRef("");
+  const nameref = useRef(null);
+  const emailref = useRef(null);
+  const passwordref = useRef(null);
+  const phonenumref = useRef(null);
+  const addressref = useRef(null);
   const [loading, setloading] = useState(false);
 
-  const fieldcheck = () => {
-    // if fields are empty
-    const refarray = [nameref, emailref, passwordref, phonenumref, addressref];
-    for (let i = 0; i < refarray.length; i++) {
-      if (refarray[i]?.current?.value == "") {
-        refarray[i]?.current?.focus();
-        setmessagefn("Please fill this field");
-        return false;
-      }
-    }
-    // name check
-    if (toggleform) {
-      if (nameref.current.value.length < 3) {
-        nameref.current.focus();
-        setmessagefn("Name is too short");
-        return false;
-      }
-      if (nameref.current.value.length > 50) {
-        nameref.current.focus();
-        setmessagefn("Name is too big");
-        return false;
-      }
-    }
-
-    // email check
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(emailref.current.value)) {
-      emailref.current.focus();
-      setmessagefn("Invalid email");
-      return false;
-    }
-
-    // mobile check
-    if (toggleform) {
-      const mobileregex = /^\d{10}$/;
-      if (!mobileregex.test(phonenumref.current.value)) {
-        emailref.current.focus();
-        setmessagefn("Invalid mobile number");
-        return false;
-      }
-    }
-
-    // password check
-    const minLength = 8;
-    const maxLength = 100;
-
-    if (passwordref.current.value.length < minLength) {
-      passwordref.current.focus();
-      setmessagefn("Password is too short ( " + minLength + " chars min )*");
-      return false;
-    }
-
-    if (passwordref.current.value.length > maxLength) {
-      passwordref.current.focus();
-      setmessagefn("Password is too big ( " + maxLength + " chars min )*");
-      return false;
-    }
-
-    // pass test
-    return true;
-  };
-
   const authenticateuser = async () => {
-    const filedcheckvalue = fieldcheck();
-    if (!filedcheckvalue) {
-      return;
-    }
+    const filedcheckvalue = fieldcheck({
+      nameref,
+      emailref,
+      passwordref,
+      phonenumref,
+      addressref,
+      setmessagefn,
+      toggleform,
+    });
+
+    if (!filedcheckvalue) return;
+
     setloading(true);
-    // send data
-    if (toggleform) {
-      // signup
-      let userdata = {
-        username: nameref.current.value,
-        email: emailref.current.value,
-        password: passwordref.current.value,
-        phonenum: phonenumref.current.value,
-        address: addressref.current.value,
-      };
 
-      const reply = await signup(userdata);
+    const userdata = toggleform
+      ? {
+          username: nameref.current.value,
+          email: emailref.current.value,
+          password: passwordref.current.value,
+          phonenum: phonenumref.current.value,
+          address: addressref.current.value,
+        }
+      : {
+          email: emailref.current.value,
+          password: passwordref.current.value,
+        };
 
+    const apiCall = toggleform ? signup : login;
+
+    try {
+      const reply = await apiCall(userdata);
       setmessagefn(reply?.message);
-      setloading(false);
 
-      if (reply.message == "Signup successfully") {
+      if (reply?.status === 200) {
         setTimeout(() => {
-          router.push(redirectloginlink);
+          router.replace(redirectloginlink || "/");
         }, 1000);
       }
-    } else {
-      // login
-      let userdata = {
-        email: emailref.current.value,
-        password: passwordref.current.value,
-      };
-
-      const reply = await login(userdata);
-
-      setmessagefn(reply?.message);
+    } catch (error) {
+      setmessagefn("An error occurred. Please try again.");
+    } finally {
       setloading(false);
-
-      if (reply.message == "Login successfull") {
-        setTimeout(() => {
-          router.push(redirectloginlink);
-        }, 1000);
-      }
     }
   };
 
@@ -145,88 +84,36 @@ function Userdetails() {
         </div>
       </center>
       <div className="mt-[20px] lg:grid lg:grid-cols-2 lg:gap-x-[30px] ">
-        {toggleform && (
-          <div className=" relative h-[35px] w-full my-[30px] lg:my-[15px] bg-transparent">
-            <input
-              ref={nameref}
-              className="forminput absolute h-full w-full top-0 left-0 flex items-center outline-none  border-b border-b-theme box-content bg-white text-black"
-              type="text"
-              required
-            />
-            <label
-              className="formlabel absolute h-full w-full top-0 left-0 z-10 flex items-center bg-white  pointer-events-none duration-150"
-              htmlFor="name"
+        {toggleform && <Inputfiels refval={nameref} type="text" lable="Name" />}
+        <Inputfiels refval={emailref} type="email" lable="Email" />
+        <Inputfiels
+          refval={passwordref}
+          type={togglepassword ? "password" : "text"}
+          lable="Password"
+          extraelem={
+            <button
+              className="absolute top-[50%] right-[10px] translate-y-[-50%] z-[11] text-[20px]"
+              onClick={() => {
+                settogglepassword(!togglepassword);
+              }}
             >
-              Name
-            </label>
-          </div>
-        )}
-        <div className="relative h-[35px] w-full my-[30px] lg:my-[15px] bg-transparent">
-          <input
-            ref={emailref}
-            className="forminput absolute h-full w-full top-0 left-0 flex items-center outline-none  border-b border-b-theme box-content bg-white text-black"
-            type="email"
-            required
-          />
-          <label
-            className="formlabel absolute h-full w-full top-0 left-0 z-10 flex items-center bg-white  pointer-events-none duration-150"
-            htmlFor="name"
-          >
-            Email
-          </label>
-        </div>
-        <div className="relative h-[35px] w-full my-[30px] lg:my-[15px] bg-transparent">
-          <input
-            ref={passwordref}
-            className="forminput absolute h-full w-full top-0 left-0 flex items-center outline-none  border-b border-b-theme box-content bg-white text-black"
-            type={togglepassword ? "password" : "text"}
-            required
-          />
-          <label
-            className="formlabel absolute h-full w-full top-0 left-0 z-10 flex items-center bg-white  pointer-events-none duration-150"
-            htmlFor="name"
-          >
-            Password
-          </label>
-          <button
-            className="absolute top-[50%] right-[10px] translate-y-[-50%] z-[11]"
-            onClick={() => {
-              settogglepassword(!togglepassword);
-            }}
-          >
-            {togglepassword ? "Show" : "Hide"}
-          </button>
-        </div>
+              {togglepassword ? <IoIosEyeOff /> : <IoIosEye />}
+            </button>
+          }
+        />
         {toggleform && (
           <>
-            <div className="relative h-[35px] w-full my-[30px] lg:my-[15px] bg-transparent">
-              <input
-                ref={phonenumref}
-                className="forminput absolute h-full w-full top-0 left-0 flex items-center outline-none  border-b border-b-theme box-content bg-white text-black"
-                type="number"
-                required
-              />
-              <label
-                className="formlabel absolute h-full w-full top-0 left-0 z-10 flex items-center bg-white  pointer-events-none duration-150"
-                htmlFor="name"
-              >
-                Mobile Number
-              </label>
-            </div>
-            <div className="relative h-[35px] w-full my-[30px] lg:my-[15px] bg-transparent col-span-2">
-              <input
-                ref={addressref}
-                className="forminput absolute h-full w-full top-0 left-0 flex items-center outline-none  border-b border-b-theme box-content bg-white text-black"
-                type="text"
-                required
-              />
-              <label
-                className="formlabel absolute h-full w-full top-0 left-0 z-10 flex items-center bg-white  pointer-events-none duration-150"
-                htmlFor="name"
-              >
-                Address
-              </label>
-            </div>
+            <Inputfiels
+              refval={phonenumref}
+              type="number"
+              lable="Mobile Number"
+            />
+            <Inputfiels
+              refval={addressref}
+              type="text"
+              lable="Address"
+              extrastyle="col-span-2"
+            />
           </>
         )}
       </div>
@@ -258,5 +145,94 @@ function Userdetails() {
     </div>
   );
 }
+
+function Inputfiels({ refval, type, lable, extraelem, extrastyle }) {
+  return (
+    <div
+      className={`relative h-[35px] w-full my-[30px] lg:my-[15px] bg-transparent ${extrastyle}`}
+    >
+      <input
+        ref={refval}
+        className="forminput absolute h-full w-full top-0 left-0 flex items-center outline-none  border-b border-b-theme box-content bg-white text-black"
+        type={type}
+        required
+      />
+      <label className="formlabel absolute h-full w-full top-0 left-0 z-10 flex items-center bg-white  pointer-events-none duration-150">
+        {lable}
+      </label>
+      {extraelem}
+    </div>
+  );
+}
+
+const fieldcheck = ({
+  nameref,
+  emailref,
+  passwordref,
+  phonenumref,
+  addressref,
+  setmessagefn,
+  toggleform,
+}) => {
+  // if fields are empty
+  const refarray = [nameref, emailref, passwordref, phonenumref, addressref];
+  for (let i = 0; i < refarray.length; i++) {
+    if (refarray[i]?.current?.value == "") {
+      refarray[i]?.current?.focus();
+      setmessagefn("Please fill this field");
+      return false;
+    }
+  }
+  // name check
+  if (toggleform) {
+    if (nameref.current.value.length < 3) {
+      nameref.current.focus();
+      setmessagefn("Name is too short");
+      return false;
+    }
+    if (nameref.current.value.length > 50) {
+      nameref.current.focus();
+      setmessagefn("Name is too big");
+      return false;
+    }
+  }
+
+  // email check
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(emailref.current.value)) {
+    emailref.current.focus();
+    setmessagefn("Invalid email");
+    return false;
+  }
+
+  // mobile check
+  if (toggleform) {
+    const mobileregex = /^\d{10}$/;
+    if (!mobileregex.test(phonenumref.current.value)) {
+      emailref.current.focus();
+      setmessagefn("Invalid mobile number");
+      return false;
+    }
+  }
+
+  // password check
+  const minLength = 8;
+  const maxLength = 100;
+
+  if (passwordref.current.value.length < minLength) {
+    passwordref.current.focus();
+    setmessagefn("Password is too short ( " + minLength + " chars min )*");
+    return false;
+  }
+
+  if (passwordref.current.value.length > maxLength) {
+    passwordref.current.focus();
+    setmessagefn("Password is too big ( " + maxLength + " chars min )*");
+    return false;
+  }
+
+  // pass test
+  return true;
+};
 
 export default Userdetails;

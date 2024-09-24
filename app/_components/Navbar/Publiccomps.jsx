@@ -113,32 +113,34 @@ export const Logedinusermenu = ({ token, userdata }) => {
     }, 300);
   };
 
+  const parsedUserData = userdata ? JSON.parse(userdata) : null;
+
   if (token) {
     return (
       <>
-        {/* usermenu svg */}
+        {/* User menu button */}
         <button
-          className="relative h-full aspect-square z-30  "
+          className="relative h-full aspect-square z-30"
           onClick={showmenu}
         >
           <Usersvg styles="h-full aspect-square fill-white stroke-white p-[4px]" />
-          {/* menu */}
+          {/* Menu */}
           {toggleusermenu.show && (
             <div
-              className={`absolute top-[calc(100%+10px)] right-0  w-[250px]  bg-white border border-slate-300 rounded-[10px] p-[10px] shadow-lg duration-300 z-30 ${
+              className={`absolute top-[calc(100%+10px)] right-0 w-[250px] bg-white border border-slate-300 rounded-[10px] p-[10px] shadow-lg duration-300 z-30 ${
                 toggleusermenu.effect
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-[20px]"
               }`}
             >
               <center>
-                <Usersvg styles="h-[30px] border border-slate-300 rounded-full  mt-[20px] aspect-square fill-white" />
+                <Usersvg styles="h-[30px] border border-slate-300 rounded-full mt-[20px] aspect-square fill-white" />
               </center>
               <div className="text-center mt-[5px]">
-                {JSON?.parse(userdata)?.username}
+                {parsedUserData?.username || "User Name"}
               </div>
-              <div className="text-center text-[12px] text-cyan-500 ">
-                {JSON?.parse(userdata)?.email}
+              <div className="text-center text-[12px] text-cyan-500">
+                {parsedUserData?.email || "User Email"}
               </div>
               <div
                 className="flex flex-col gap-[2px] w-full mt-[30px]"
@@ -158,7 +160,7 @@ export const Logedinusermenu = ({ token, userdata }) => {
                   href={`/likedproducts`}
                   className="p-[5px] flex items-center gap-[10px] lg:hover:bg-slate-100 cursor-pointer"
                 >
-                  <Heart styles="h-[25px] w-[25px] fill-red-500 " />
+                  <Heart styles="h-[25px] w-[25px] fill-red-500" />
                   Liked Products
                 </Link>
                 <hr />
@@ -173,10 +175,9 @@ export const Logedinusermenu = ({ token, userdata }) => {
                 <div
                   className="p-[5px] flex items-center gap-[10px] lg:hover:bg-slate-100 cursor-pointer"
                   onClick={async () => {
-                    let res = await logout();
-
+                    const res = await logout();
                     setmessagefn(res?.message);
-                    router.push("/");
+                    if (res.status === 200) router.push("/");
                   }}
                 >
                   <Logoutsvg styles="h-[25px]" />
@@ -186,10 +187,10 @@ export const Logedinusermenu = ({ token, userdata }) => {
             </div>
           )}
         </button>
-        {/* cancle button */}
+        {/* Overlay to close menu */}
         {toggleusermenu.show && (
           <button
-            className="fixed top-0 left-0 h-screen w-screen cursor-default "
+            className="fixed top-0 left-0 h-screen w-screen cursor-default"
             onClick={hidemenu}
           ></button>
         )}
@@ -200,8 +201,6 @@ export const Logedinusermenu = ({ token, userdata }) => {
       <button
         onClick={() => {
           const link = new URL(window.location.href);
-          console.log(link.pathname.replace("%20", " "));
-
           setredirectloginlink(link.pathname);
         }}
       >

@@ -175,7 +175,7 @@ const ProductColorDetail = ({ color }) => (
   </div>
 );
 
-const StatusMenuOption = ({ changeStatusFn }) => {
+const StatusMenuOption = ({ changestatusfn }) => {
   const statusOptions = [
     { label: "Add to All orders", status: 0 },
     { label: "Add to Processing orders", status: 1 },
@@ -189,7 +189,7 @@ const StatusMenuOption = ({ changeStatusFn }) => {
         <button
           key={status}
           className="w-full p-[5px] lg:hover:bg-slate-100"
-          onClick={() => changeStatusFn(status)}
+          onClick={() => changestatusfn(status)}
         >
           {label}
         </button>

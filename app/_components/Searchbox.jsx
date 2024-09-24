@@ -100,7 +100,7 @@ function Searchbox({ productsname }) {
   };
 
   return (
-    <div className="relative h-full w-full p-[2px] border border-gray-300 rounded-full">
+    <div className="relative h-full w-full p-[2px] border border-white border-opacity-60 rounded-full">
       <div className="flex h-full w-full rounded-full overflow-hidden bg-white p-[2px]">
         <input
           ref={searchinputref}
@@ -118,9 +118,9 @@ function Searchbox({ productsname }) {
                 if (search.trim() !== "")
                   router.push(`/Search?query=${search}`);
               } else {
-                setSearch(finalsuggestion[arrowselectedsuggest]);
+                setSearch(finalsuggestion[arrowselectedsuggest]?.original);
                 router.push(
-                  `/Search?query=${finalsuggestion[arrowselectedsuggest]}`
+                  `/Search?query=${finalsuggestion[arrowselectedsuggest]?.original}`
                 );
               }
               searchinputref.current.blur();

@@ -45,7 +45,7 @@ function Productcard({
   return (
     <Link
       href={`/${category}/${subcat}/${id}`}
-      className={`relative h-full w-full md:max-w-[350px] md:min-w-[270px] shadow-md rounded-[10px] overflow-hidden bg-white duration-300 ${
+      className={`relative h-full w-full min-w-[200px] md:max-w-[350px] md:min-w-[270px] shadow-md rounded-[10px] overflow-hidden bg-white duration-300 ${
         showproduct ? "opacity-100 scale-100" : "opacity-0 scale-75"
       }`}
     >
