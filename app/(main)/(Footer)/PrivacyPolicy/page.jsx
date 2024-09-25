@@ -18,7 +18,7 @@ function page() {
                 <p>
                   <strong>Adorefurnix</strong> is a proprietorship owned by{" "}
                   <strong>Vishal</strong>. We use the highest security standards
-                  to ensure our customers' secure online transactions. As the data
+                  to ensure our customers&apos; secure online transactions. As the data
                   controller, we are responsible for securing your data and are
                   committed to practicing advanced firewall technology for order
                   processes.

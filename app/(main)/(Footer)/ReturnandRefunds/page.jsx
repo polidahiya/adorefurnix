@@ -134,7 +134,7 @@ const page = () => {
                   <li>
                     With time, solid woods may develop minor cracks called
                     checks, which are not considered faults and are not covered
-                    by the warranty as these checks do not affect the product's
+                    by the warranty as these checks do not affect the product&apos;s
                     lifespan.
                   </li>
                   <li>

@@ -1,4 +1,3 @@
-import React from 'react';
 
 const Invoice = () => {
   return (
@@ -38,7 +37,7 @@ const Invoice = () => {
           <p><span className="font-semibold">Date: </span>9-Apr-24</p>
         </div>
         <div>
-          <p><span className="font-semibold">Buyer's Order No.: </span>15849</p>
+          <p><span className="font-semibold">Buyer&apos;s Order No.: </span>15849</p>
           <p><span className="font-semibold">Mode/Terms of Payment: </span>Cash on Delivery</p>
         </div>
       </div>
@@ -88,7 +87,7 @@ const Invoice = () => {
 
       {/* Bank Details */}
       <div className="mb-8 text-sm text-gray-700">
-        <p className="font-bold">Company's Bank Details:</p>
+        <p className="font-bold">Company&apos;s Bank Details:</p>
         <p>Bank Name: HDFC BANK</p>
         <p>A/c No.: 50200059153550</p>
         <p>Branch & IFS Code: SECTOR 59 GURGAON & HDFC0003663</p>

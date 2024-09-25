@@ -16,14 +16,14 @@ const ShippingPolicy = () => {
               </header>
               <div className="entry-content">
                 <p className="mb-6 text-lg leading-relaxed text-gray-700">
-                  Adorefurnix is committed to delivering the customer's order
+                  Adorefurnix is committed to delivering the customer&apos;s order
                   accurately, in good condition, and always on time as promised
                   by the website.
                 </p>
                 <ol className="list-decimal list-inside mb-6 text-lg leading-relaxed text-gray-700">
                   <li>
                     We offer FREE Shipping for all products ordered through our
-                    site, if the customer's delivery location falls under the
+                    site, if the customer&apos;s delivery location falls under the
                     serviceable city/town and the pin code.
                   </li>
                   <li>
@@ -33,7 +33,7 @@ const ShippingPolicy = () => {
                     they need to place multiple orders.
                   </li>
                   <li>
-                    We make our best efforts to ship each item in the customer's
+                    We make our best efforts to ship each item in the customer&apos;s
                     order within 15 to 21 working days from the date of order
                     placement. However, in some cases, it may take longer, up to
                     30 working days, as we may have to arrange dispatch from
