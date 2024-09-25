@@ -1,22 +1,19 @@
 import React from "react";
-import { mail,mobile } from "@/app/commondata";
+import { mail, mobile } from "@/app/commondata";
 
 const page = () => {
   return (
-    <div id="content" className="site-content  py-8">
-      <div className="ast-container  mx-auto px-4 sm:px-6 lg:px-8">
-        <div id="primary" className="content-area primary">
-          <main id="main" className="site-main">
-            <article className="post-5652 page type-page status-publish ast-article-single bg-white shadow-lg rounded-lg overflow-hidden">
-              <header className="entry-header  border-b border-gray-200 p-6">
-                <h1
-                  className="entry-title text-4xl font-extrabold text-gray-900"
-                  itemProp="headline"
-                >
+    <div id="content" className="container mx-auto p-4">
+      <div className="mx-auto bg-white shadow-md rounded-lg overflow-hidden">
+        <div id="primary" className="p-6">
+          <main id="main">
+            <article className="prose lg:prose-xl mx-auto">
+              <header className="mb-6">
+                <h1 className="text-3xl font-bold mb-4">
                   Return and Refunds – Adorefurnix
                 </h1>
               </header>
-              <div className="entry-content p-6">
+              <div className="entry-content">
                 <p className="mb-6 text-lg leading-relaxed text-gray-700">
                   How to cancel an order placed on Adorefurnix?
                 </p>
@@ -24,11 +21,11 @@ const page = () => {
                   <li>
                     Cancellation in case of wrong product: If the product does
                     not comply with the specifications as per your original
-                    order, raise the issue immediately &amp; report it to us.
+                    order, raise the issue immediately & report it to us.
                   </li>
                   <li>
                     For more details, please get in touch with us on our
-                    customer care number or write to us at&nbsp;
+                    customer care number or write to us at{" "}
                     <a
                       href={"mailto:" + mail}
                       className="text-blue-600 hover:underline"
@@ -137,7 +134,7 @@ const page = () => {
                   <li>
                     With time, solid woods may develop minor cracks called
                     checks, which are not considered faults and are not covered
-                    by the warranty as these checks do not affect the product&apos;s
+                    by the warranty as these checks do not affect the product's
                     lifespan.
                   </li>
                   <li>

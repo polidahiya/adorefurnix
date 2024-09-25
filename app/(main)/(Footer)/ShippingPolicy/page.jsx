@@ -4,27 +4,27 @@ import { mail, mobile } from "@/app/commondata";
 
 const ShippingPolicy = () => {
   return (
-    <div id="content" className="site-content py-8">
-      <div className="ast-container mx-auto px-4 sm:px-6 lg:px-8">
-        <div id="primary" className="content-area primary">
-          <main id="main" className="site-main">
-            <article className="post-5652 page type-page status-publish ast-article-single bg-white shadow-lg rounded-lg overflow-hidden">
-              <header className="entry-header border-b border-gray-200 p-6">
-                <h1 className="entry-title text-4xl font-extrabold text-gray-900">
-                  Shipping Policy {"-"} Adorefurnix
+    <div id="content" className="container mx-auto p-4">
+      <div className="mx-auto bg-white shadow-md rounded-lg overflow-hidden">
+        <div id="primary" className="p-6">
+          <main id="main">
+            <article className="prose lg:prose-xl mx-auto">
+              <header className="mb-6">
+                <h1 className="text-3xl font-bold mb-4">
+                  Shipping Policy - Adorefurnix
                 </h1>
               </header>
-              <div className="entry-content p-6">
+              <div className="entry-content">
                 <p className="mb-6 text-lg leading-relaxed text-gray-700">
-                  Adorefurnix is committed to delivering the customer{"'"}s
-                  order accurately, in good condition, and always on time as
-                  promised by the website.
+                  Adorefurnix is committed to delivering the customer's order
+                  accurately, in good condition, and always on time as promised
+                  by the website.
                 </p>
                 <ol className="list-decimal list-inside mb-6 text-lg leading-relaxed text-gray-700">
                   <li>
                     We offer FREE Shipping for all products ordered through our
-                    site, if the customer{"'"}s delivery location falls under
-                    the serviceable city/town and the pin code.
+                    site, if the customer's delivery location falls under the
+                    serviceable city/town and the pin code.
                   </li>
                   <li>
                     Each order may be shipped only to a single destination
@@ -33,14 +33,14 @@ const ShippingPolicy = () => {
                     they need to place multiple orders.
                   </li>
                   <li>
-                    We make our best efforts to ship each item in the customer
-                    {"'"}s order within 15 to 21 working days from the date of
-                    order placement. However, in some cases, it may take longer,
-                    up to 30 working days, as we may have to arrange dispatch
-                    from our factory. In the unlikely event that we are not able
-                    to ship any order completely within 30 working days, we
-                    shall cancel the remaining unshipped part of the order and
-                    send an email informing the customer about the same. In such
+                    We make our best efforts to ship each item in the customer's
+                    order within 15 to 21 working days from the date of order
+                    placement. However, in some cases, it may take longer, up to
+                    30 working days, as we may have to arrange dispatch from
+                    our factory. In the unlikely event that we are not able to
+                    ship any order completely within 30 working days, we shall
+                    cancel the remaining unshipped part of the order and send
+                    an email informing the customer about the same. In such
                     cases, the payment against the unshipped part of the order
                     shall be refunded in the same mode and manner that the
                     customer had made the payment.
@@ -69,8 +69,7 @@ const ShippingPolicy = () => {
                   </li>
                   <li>
                     Customers may track the shipping status of their orders on
-                    the stylespafurniture.com website, by clicking at the Track
-                    Order section.
+                    the {mail} website, by clicking at the Track Order section.
                   </li>
                   <li>
                     All items will be shipped with an invoice mentioning the

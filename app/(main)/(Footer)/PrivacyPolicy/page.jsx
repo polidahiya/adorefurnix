@@ -4,7 +4,7 @@ import { mail } from "@/app/commondata";
 function page() {
   return (
     <div id="content" className="container mx-auto p-4">
-      <div className=" mx-auto bg-white shadow-md rounded-lg overflow-hidden">
+      <div className="mx-auto bg-white shadow-md rounded-lg overflow-hidden">
         <div id="primary" className="p-6">
           <main id="main">
             <article className="prose lg:prose-xl mx-auto">
@@ -16,19 +16,20 @@ function page() {
 
               <div className="entry-content" itemprop="text">
                 <p>
-                  <strong>Adorefurnix</strong> is Proprietorship based and uses
-                  highest security standards to ensure its customers about
-                  secure online transactions. Being the data controller we are
-                  responsible to secure your data and committed to practice
-                  advanced firewall technology for the order processes.
+                  <strong>Adorefurnix</strong> is a proprietorship owned by{" "}
+                  <strong>Vishal</strong>. We use the highest security standards
+                  to ensure our customers' secure online transactions. As the data
+                  controller, we are responsible for securing your data and are
+                  committed to practicing advanced firewall technology for order
+                  processes.
                 </p>
 
                 <h3 className="text-xl font-semibold mt-6 mb-2">
                   Respecting Your Privacy
                 </h3>
                 <p>
-                  Adorefurnix is committed to respect your privacy. Therefore we
-                  set the highest ethical standards to protect your sensitive
+                  Adorefurnix is committed to respecting your privacy. Therefore,
+                  we set the highest ethical standards to protect your sensitive
                   information.
                 </p>
                 <p>
@@ -43,18 +44,18 @@ function page() {
                 <ol className="list-decimal list-inside pl-5">
                   <li>
                     We may collect your contact details, such as your name,
-                    email address, phone number, postal address and delivery
+                    email address, phone number, postal address, and delivery
                     address (if different).
                   </li>
                   <li>
                     We may require your banking details such as credit card
-                    number, card holder name, expiration date and CVV or other
+                    number, cardholder name, expiration date, and CVV or other
                     details necessary for Internet banking.
                   </li>
                   <li>
-                    We will collect your session and log in information, which
-                    include your IP address, operating system, browser type,
-                    browser language, date and time of request.
+                    We will collect your session and log-in information, which
+                    includes your IP address, operating system, browser type,
+                    browser language, date, and time of request.
                   </li>
                   <li>
                     We will also collect sign-in information for third-party
@@ -62,9 +63,9 @@ function page() {
                     Pinterest, etc.
                   </li>
                   <li>
-                    We shall ask for email communication by any user, for
-                    product inquiry, order and transaction details, for any
-                    complaints and disputes, etc.
+                    We shall ask for email communication from any user, for
+                    product inquiries, order and transaction details, for any
+                    complaints, and disputes, etc.
                   </li>
                 </ol>
 
@@ -72,7 +73,7 @@ function page() {
                   How we use or share it
                 </h3>
                 <p>
-                  We conduct the business in an ethical manner; hence we collect
+                  We conduct our business in an ethical manner; hence we collect
                   the personal information of our users or customers only to
                   cater to the best products and services at {mail}. We do not
                   sell, trade, share, or transfer your information to any third
@@ -85,8 +86,8 @@ function page() {
                 <p>
                   When you access the website or fill in your details to buy the
                   products or services offered at the website, Adorefurnix will
-                  accept it as your consent with the privacy policy. For users
-                  who are not comfortable with the clause and conditions to
+                  accept it as your consent to the privacy policy. For users
+                  who are not comfortable with the clauses and conditions to
                   share their personally identifiable information, it is
                   requested to abort the use of the website. We also provide an
                   opt-out option to our registered users to unsubscribe from all
@@ -104,7 +105,7 @@ function page() {
 
                 <p className="italic mt-4">
                   Note: The privacy policy of {mail} may be subject to change at
-                  any time to include or exclude clauses, thus users are
+                  any time to include or exclude clauses; thus, users are
                   requested to visit this page in a timely manner to stay aware
                   of the changes. The above privacy policy does not apply to our
                   affiliates, partners, and any third party associated with us;
