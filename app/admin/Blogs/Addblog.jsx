@@ -18,15 +18,12 @@ function Addblog() {
     list: ["List 1", "List 2", "List 3"],
   };
 
-  const [blogdata, setblogdata] = useState([
-    mainheading,
-    heading,
-    image,
-    paragraph,
-    list,
-  ]);
+  const [blogdata, setblogdata] = useState([mainheading]);
 
-  const [activelem, setactivelem] = useState(null);
+  const [activelem, setactivelem] = useState({
+    type: "mainheading",
+    blogitemindex: 0,
+  });
   console.log(activelem);
 
   const textarearef = useRef();
@@ -36,32 +33,33 @@ function Addblog() {
     setblogdata((pre) => {
       let temp = [...pre];
       temp.push(comp);
+
+      if (comp?.type == "list") {
+        setactivelem({
+          type: comp?.type,
+          blogitemindex: temp.length - 1,
+          listitemindex: list.list.length - 1,
+        });
+        settextarea(comp?.list?.at(-1));
+      } else {
+        setactivelem({ type: comp?.type, blogitemindex: temp.length - 1 });
+        settextarea(comp?.text);
+      }
+
       return temp;
     });
-    settextarea("");
-    setactivelem(null);
   };
 
   useEffect(() => {
     if (blogdata.at(-1).type !== "image")
       setblogdata((pre) => {
         let temp = [...pre];
-        if (activelem) {
-          if (activelem.type == "list") {
-            let list = temp[activelem.blogitemindex];
-            list.list[activelem.listitemindex] = textarea;
-          } else {
-            temp[activelem.blogitemindex].text = textarea;
-          }
+        if (activelem.type == "list") {
+          let list = temp[activelem.blogitemindex];
+          list.list[activelem.listitemindex] = textarea;
         } else {
-          if (temp.at(-1).type == "list") {
-            let list = temp.at(-1);
-            list.list[list.list.length - 1] = textarea;
-          } else {
-            temp.at(-1).text = textarea;
-          }
+          temp[activelem.blogitemindex].text = textarea;
         }
-
         return temp;
       });
   }, [textarea]);
