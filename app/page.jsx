@@ -65,6 +65,7 @@ export default async function Home() {
 
       <Bestselling />
       <Collage />
+      <Blogscomp />
       <div>
         <h2 className="text-center font-bold text-[25px] md:text-[40px] italic font-serif mt-24 ">
           Why Choose Us?
@@ -72,8 +73,6 @@ export default async function Home() {
         <Promices />
       </div>
 
-      {/* <Blogscomp /> */}
-      {/* footer */}
       <Footer />
     </div>
   );

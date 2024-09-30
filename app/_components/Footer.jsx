@@ -22,7 +22,7 @@ import { sociallinks } from "../commondata";
 function Footer() {
   const list1 = [
     { name: "About", link: "/About" },
-    { name: "Blogs", link: "/#blogs" },
+    { name: "Blogs", link: "/Blogs" },
     { name: "Contact Us", link: "/Contact" },
     { name: "Shipping Policy", link: "/ShippingPolicy" },
     { name: "Privacy Policy", link: "/PrivacyPolicy" },

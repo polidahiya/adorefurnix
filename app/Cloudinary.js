@@ -6,10 +6,10 @@ cloudinary.config({
 });
 
 // Helper function to upload a single image
-export const uploadImage = (buffer) => {
+export const uploadImage = (buffer, folder = "Adorefurnix") => {
   return new Promise((resolve, reject) => {
     const uploadStream = cloudinary.uploader.upload_stream(
-      { folder: "Adorefurnix" },
+      { folder: folder },
       (error, result) => {
         if (error) {
           reject(error);
@@ -23,10 +23,11 @@ export const uploadImage = (buffer) => {
 };
 
 // delete image from url
-export const Deleteiamgefromurl = (url) => {
+export const Deleteiamgefromurl = (url, folder = "Adorefurnix") => {
   const parts = url.split("/");
   const fileName = parts[parts.length - 1];
   const publicId = fileName.split(".")[0];
-  console.log(url, publicId);
-  cloudinary.uploader.destroy("Adorefurnix/" + publicId);
+  const file=folder + "/" + publicId
+  console.log(file);
+  cloudinary.uploader.destroy(file);
 };

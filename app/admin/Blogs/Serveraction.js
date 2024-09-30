@@ -1,68 +1,95 @@
 "use server";
 import { blogscollection, ObjectId } from "../../Mongodb";
-import { v2 as cloudinary } from "cloudinary";
+import { Deleteiamgefromurl, uploadImage } from "@/app/Cloudinary";
+import { Adminverification } from "@/app/Verifytoken";
 
-cloudinary.config({
-  cloud_name: "drnfvc0jt",
-  api_key: "928453627132392",
-  api_secret: "V2_dFHYxOmT9cSsPYuJHkIKYIGo",
-});
-
-export const Addimage = async (formdata) => {
+export const Addblogaction = async (formdata, editmode, deletedimages) => {
   try {
-    // Extracting form data entries
-    const title = formdata.get("title");
-    const desc = formdata.get("desc");
-    const image = formdata.get("image"); // Assuming 'image' is the name of the file input
+    const verification = await Adminverification();
 
-    // Helper function to upload a single image
-    const uploadImage = (buffer) => {
-      return new Promise((resolve, reject) => {
-        const uploadStream = cloudinary.uploader.upload_stream(
-          { folder: "Adorefurnix" },
-          (error, result) => {
-            if (error) {
-              reject(error);
-            } else {
-              resolve(result);
-            }
-          }
-        );
-        uploadStream.end(buffer);
+    if (!verification) {
+      return { status: 400, message: "Invalid user" };
+    }
+
+    if (editmode.mode) {
+      deletedimages.forEach((image) =>
+        Deleteiamgefromurl(image, "Adorefurnix/blog")
+      );
+    }
+
+    let blogdata = [];
+
+    const formDataArray = [];
+
+    for (const [key, item] of formdata) {
+      const [type, index] = key.split("-");
+
+      if (type === "image") {
+        if (item instanceof File) {
+          const arrayBuffer = await item.arrayBuffer();
+          const buffer = Buffer.from(arrayBuffer);
+          const res = await uploadImage(buffer, "Adorefurnix/blog");
+          formDataArray.push({
+            index: parseInt(index),
+            data: { type: "image", content: res.url },
+          });
+        } else {
+          formDataArray.push({
+            index: parseInt(index),
+            data: JSON.parse(item),
+          });
+        }
+      } else {
+        formDataArray.push({ index: parseInt(index), data: JSON.parse(item) });
+      }
+    }
+
+    formDataArray.sort((a, b) => a.index - b.index);
+
+    blogdata = formDataArray.map((item) => item.data);
+
+    if (editmode.mode) {
+      await blogscollection.updateOne(
+        { _id: new ObjectId(editmode.id) },
+        { $set: { blogdata: blogdata, date: getCurrentDateFormatted() } }
+      );
+    } else {
+      await blogscollection.insertOne({
+        blogdata: blogdata,
+        date: getCurrentDateFormatted(),
       });
+    }
+
+    return {
+      status: 200,
+      message: `Blog ${editmode.mode ? "updated" : "added"} successfully`,
     };
-
-    // Convert the image file to a buffer
-    const arrayBuffer = await image.arrayBuffer();
-    const buffer = Buffer.from(arrayBuffer);
-
-    // Upload the image and get the URL
-    const cloudinaryres = await uploadImage(buffer);
-
-    console.log("Image URL:", cloudinaryres);
-
-    // Add to MongoDB
-    const updateproduct = await blogscollection.insertOne({
-      title,
-      desc,
-      image: cloudinaryres.url,
-      publicid: cloudinaryres.public_id,
-      date: getCurrentDateFormatted(),
-    });
-
-    return { message: "Updated successfully" };
   } catch (error) {
     console.log(error);
-    return { message: "Server error", error };
+    return { status: 500, message: "Server error!" };
   }
 };
 
-export const Deleteblog = async (id) => {
+export const Deleteblog = async (blog) => {
   try {
-    await blogscollection.findOneAndDelete({ _id: new ObjectId(id) });
-    return { message: "Deleted successfully" };
+    const verification = await Adminverification();
+
+    if (!verification) {
+      return { status: 400, message: "Invalid user" };
+    }
+    // delete images
+    blog?.blogdata.forEach((blog) => {
+      if (blog?.type == "image")
+        Deleteiamgefromurl(blog?.content, "Adorefurnix/blog");
+    });
+
+    await blogscollection.findOneAndDelete({
+      _id: new ObjectId(blog._id),
+    });
+
+    return { status: 200, message: "Deleted successfully" };
   } catch (error) {
-    return { message: "Server Error" };
+    return { status: 500, message: "Server Error" };
   }
 };
 
