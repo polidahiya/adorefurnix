@@ -44,7 +44,7 @@ function Navbar({ params, productsname, token, userdata }) {
         <Centralnav productsname={productsname} />
 
         {/* third comp */}
-        <div className="w-full h-full flex items-center justify-end gap-0 md:gap-[10px]">
+        <div className="w-full h-full flex items-center justify-end gap-[5px] md:gap-[10px]">
           <Link
             href="/cart"
             className="relative flex items-center justify-center h-full aspect-square "

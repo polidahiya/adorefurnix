@@ -7,31 +7,13 @@ import { VscSettings } from "react-icons/vsc";
 import { TbSortAscendingSmallBig } from "react-icons/tb";
 import { AppContextfn } from "@/app/Context";
 
-function Secondnav({ category, subcat, searchParams }) {
-  const { setshowcat } = AppContextfn();
-
+function Secondnav({ category, subcat, searchParams, lengthofproducts }) {
   if (searchParams.pricerange == undefined) searchParams.pricerange = 0;
   if (searchParams.sort == undefined) searchParams.sort = 0;
 
   const [showfilter, setshowfilter] = useState(false);
 
-  const categoryarray = Object.keys(categorylist);
-  const currentcategoryindex = categoryarray.indexOf(category);
-
-  const forwardlink = `/${
-    currentcategoryindex == categoryarray.length - 1
-      ? categoryarray[0]
-      : categoryarray[currentcategoryindex + 1]
-  }`;
-
-  const backbardlink = `/${
-    currentcategoryindex == 0
-      ? categoryarray[categoryarray.length - 1]
-      : categoryarray[currentcategoryindex - 1]
-  }`;
-
   // filter link
-
   const generateLink = (params) => {
     const { category, subcat, searchParams } = params;
     const basePath = `/${category}${subcat ? "/" + subcat : ""}`;
@@ -64,34 +46,25 @@ function Secondnav({ category, subcat, searchParams }) {
 
   return (
     <div className="lg:w-[300px]  p-[10px]">
-      {/* mobile backbutton */}
-      <div className=" relative flex items-center justify-end h-[40px] bg-white lg:hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-2 ">
-          <Link href={backbardlink}>
-            <FaChevronRight className=" h-[40px] w-[40px] p-[13px] rotate-180" />
-          </Link>
-          <span
-            className="text-center text-[20px] font-semibold font-serif italic whitespace-nowrap select-none"
-            onClick={() => {
-              setshowcat(true);
-            }}
-          >
-            {category}
+      <div className=" flex items-center justify-center h-[50px] bg-white lg:hidden">
+        {category == "Search" ? (
+          <span className="text-center text-[20px] font-semibold font-serif italic whitespace-nowrap select-none">
+            Search {"(" + lengthofproducts + ")"}
           </span>
-          <Link href={forwardlink}>
-            <FaChevronRight className=" h-[40px] w-[40px] p-[13px] " />
-          </Link>
-        </div>
-
-        <button
-          className="h-full aspect-square text-[20px] grid place-content-center rounded-full text-white bg-theme"
-          onClick={() => {
-            setshowfilter((pre) => !pre);
-          }}
-        >
-          <VscSettings />
-        </button>
+        ) : (
+          <Mobilecategorybuttons category={category} />
+        )}
       </div>
+
+      {/* mobile filter button */}
+      <button
+        className="fixed top-[70px] right-[10px] h-[40px] aspect-square text-[20px] grid place-content-center rounded-full text-white bg-theme"
+        onClick={() => {
+          setshowfilter((pre) => !pre);
+        }}
+      >
+        <VscSettings />
+      </button>
       <section
         className={`flex flex-col md:flex-row lg:flex-col md:gap-[10px] lg:gap-0 fixed lg:static bottom-0 left-0 w-full z-50 bg-white p-[10px] lg:p-0 duration-300 ${
           showfilter ? "translate-y-0" : " translate-y-full lg:translate-y-0"
@@ -172,5 +145,41 @@ function Secondnav({ category, subcat, searchParams }) {
     </div>
   );
 }
+
+const Mobilecategorybuttons = ({ category }) => {
+  const { setshowcat } = AppContextfn();
+  const categoryarray = Object.keys(categorylist);
+  const currentcategoryindex = categoryarray.indexOf(category);
+  const forwardlink = `/${
+    currentcategoryindex == categoryarray.length - 1
+      ? categoryarray[0]
+      : categoryarray[currentcategoryindex + 1]
+  }`;
+
+  const backbardlink = `/${
+    currentcategoryindex == 0
+      ? categoryarray[categoryarray.length - 1]
+      : categoryarray[currentcategoryindex - 1]
+  }`;
+
+  return (
+    <div className="flex items-center gap-2 ">
+      <Link href={backbardlink}>
+        <FaChevronRight className=" h-[40px] w-[40px] p-[13px] rotate-180" />
+      </Link>
+      <span
+        className="text-center text-[20px] font-semibold font-serif italic whitespace-nowrap select-none"
+        onClick={() => {
+          setshowcat(true);
+        }}
+      >
+        {category}
+      </span>
+      <Link href={forwardlink}>
+        <FaChevronRight className=" h-[40px] w-[40px] p-[13px] " />
+      </Link>
+    </div>
+  );
+};
 
 export default Secondnav;

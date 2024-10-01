@@ -115,88 +115,7 @@ export const Logedinusermenu = ({ token, userdata }) => {
 
   const parsedUserData = userdata ? JSON.parse(userdata) : null;
 
-  if (token) {
-    return (
-      <>
-        {/* User menu button */}
-        <button
-          className="relative h-full aspect-square z-30"
-          onClick={showmenu}
-        >
-          <Usersvg styles="h-full aspect-square fill-white stroke-white p-[4px]" />
-          {/* Menu */}
-          {toggleusermenu.show && (
-            <div
-              className={`absolute top-[calc(100%+10px)] right-0 w-[250px] bg-white border border-slate-300 rounded-[10px] p-[10px] shadow-lg duration-300 z-30 ${
-                toggleusermenu.effect
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-[20px]"
-              }`}
-            >
-              <center>
-                <Usersvg styles="h-[30px] border border-slate-300 rounded-full mt-[20px] aspect-square fill-white" />
-              </center>
-              <div className="text-center mt-[5px]">
-                {parsedUserData?.username || "User Name"}
-              </div>
-              <div className="text-center text-[12px] text-cyan-500">
-                {parsedUserData?.email || "User Email"}
-              </div>
-              <div
-                className="flex flex-col gap-[2px] w-full mt-[30px]"
-                onClick={() => {
-                  setTimeout(hidemenu, 100);
-                }}
-              >
-                <Link
-                  href={`/orderdetails`}
-                  className="p-[5px] flex items-center gap-[10px] lg:hover:bg-slate-100 cursor-pointer"
-                >
-                  <Navorderssvg styles="h-[25px]" />
-                  Orders Detail
-                </Link>
-                <hr />
-                <Link
-                  href={`/likedproducts`}
-                  className="p-[5px] flex items-center gap-[10px] lg:hover:bg-slate-100 cursor-pointer"
-                >
-                  <Heart styles="h-[25px] w-[25px] fill-red-500" />
-                  Liked Products
-                </Link>
-                <hr />
-                <Link
-                  href={`/updateuserdetails`}
-                  className="p-[5px] flex items-center gap-[10px] lg:hover:bg-slate-100 cursor-pointer"
-                >
-                  <Updateusersvg styles="h-[25px]" />
-                  Update User Details
-                </Link>
-                <hr />
-                <div
-                  className="p-[5px] flex items-center gap-[10px] lg:hover:bg-slate-100 cursor-pointer"
-                  onClick={async () => {
-                    const res = await logout();
-                    setmessagefn(res?.message);
-                    if (res.status === 200) router.push("/");
-                  }}
-                >
-                  <Logoutsvg styles="h-[25px]" />
-                  Logout
-                </div>
-              </div>
-            </div>
-          )}
-        </button>
-        {/* Overlay to close menu */}
-        {toggleusermenu.show && (
-          <button
-            className="fixed top-0 left-0 h-screen w-screen cursor-default"
-            onClick={hidemenu}
-          ></button>
-        )}
-      </>
-    );
-  } else {
+  if (!token) {
     return (
       <button
         onClick={() => {
@@ -213,6 +132,84 @@ export const Logedinusermenu = ({ token, userdata }) => {
       </button>
     );
   }
+  
+  return (
+    <>
+      {/* User menu button */}
+      <button className="relative h-full aspect-square z-30" onClick={showmenu}>
+        <Usersvg styles="h-full aspect-square fill-white stroke-white p-[4px]" />
+        {/* Menu */}
+        {toggleusermenu.show && (
+          <div
+            className={`absolute top-[calc(100%+10px)] right-0 w-[250px] bg-white border border-slate-300 rounded-[10px] p-[10px] shadow-lg duration-300 z-30 ${
+              toggleusermenu.effect
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-[20px]"
+            }`}
+          >
+            <center>
+              <Usersvg styles="h-[30px] border border-slate-300 rounded-full mt-[20px] aspect-square fill-white" />
+            </center>
+            <div className="text-center mt-[5px]">
+              {parsedUserData?.username || "User Name"}
+            </div>
+            <div className="text-center text-[12px] text-cyan-500">
+              {parsedUserData?.email || "User Email"}
+            </div>
+            <div
+              className="flex flex-col gap-[2px] w-full mt-[30px]"
+              onClick={() => {
+                setTimeout(hidemenu, 100);
+              }}
+            >
+              <Link
+                href={`/orderdetails`}
+                className="p-[5px] flex items-center gap-[10px] lg:hover:bg-slate-100 cursor-pointer"
+              >
+                <Navorderssvg styles="h-[25px]" />
+                Orders Detail
+              </Link>
+              <hr />
+              <Link
+                href={`/likedproducts`}
+                className="p-[5px] flex items-center gap-[10px] lg:hover:bg-slate-100 cursor-pointer"
+              >
+                <Heart styles="h-[25px] w-[25px] fill-red-500" />
+                Liked Products
+              </Link>
+              <hr />
+              <Link
+                href={`/updateuserdetails`}
+                className="p-[5px] flex items-center gap-[10px] lg:hover:bg-slate-100 cursor-pointer"
+              >
+                <Updateusersvg styles="h-[25px]" />
+                Update User Details
+              </Link>
+              <hr />
+              <div
+                className="p-[5px] flex items-center gap-[10px] lg:hover:bg-slate-100 cursor-pointer"
+                onClick={async () => {
+                  const res = await logout();
+                  setmessagefn(res?.message);
+                  if (res.status === 200) router.push("/");
+                }}
+              >
+                <Logoutsvg styles="h-[25px]" />
+                Logout
+              </div>
+            </div>
+          </div>
+        )}
+      </button>
+      {/* Overlay to close menu */}
+      {toggleusermenu.show && (
+        <button
+          className="fixed top-0 left-0 h-screen w-screen cursor-default"
+          onClick={hidemenu}
+        ></button>
+      )}
+    </>
+  );
 };
 
 export const Exitblackscreen = () => {

@@ -47,12 +47,15 @@ async function page({ params, searchParams }) {
     searchParams.sort || 0
   );
 
+  const lengthofproducts=sortedProducts.length
+
   return (
     <div className="flex flex-col lg:flex-row">
       <Secondnav
         category={category}
         subcat={subcat}
         searchParams={searchParams}
+        lengthofproducts={lengthofproducts}
       />
       <div className="w-full">
         <Subcategories category={category} subcat={subcat} />
@@ -122,7 +125,7 @@ function searchProducts(allproducts, searchQuery) {
   return allproducts.sort((a, b) => {
     const nameA = a?.name?.toLowerCase();
     const nameB = b?.name?.toLowerCase();
-    const lowerQuery = searchQuery.toLowerCase();
+    const lowerQuery = searchQuery?.toLowerCase();
 
     if (nameA.includes(lowerQuery) && !nameB.includes(lowerQuery)) {
       return -1;
