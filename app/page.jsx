@@ -97,7 +97,7 @@ function Navbar({ userdata, token }) {
         </Link>
         <Link
           className="text-white hover:bg-clip-text hover:text-transparent hover:font-bold hover:bg-theme"
-          href="#blogs"
+          href="/Blogs"
         >
           Blogs
         </Link>

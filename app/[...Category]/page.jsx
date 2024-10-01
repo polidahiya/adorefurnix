@@ -6,7 +6,7 @@ import { categorylist } from "../commondata";
 import { Cachedproducts } from "../_serveractions/Getcachedata";
 import Productnotfound from "../_components/Productnotfound";
 import Subcategories from "./_Components/Subcategories";
-import { sortProducts, filterProducts } from "./_Components/sortandfilter";
+import { sortProducts, pricefilter } from "./_Components/sortandfilter";
 import Productpage from "../_productpage/Productpage";
 
 async function page({ params, searchParams }) {
@@ -18,24 +18,34 @@ async function page({ params, searchParams }) {
 
   if (productid)
     return (
-      <Productpage category={category} subcat={subcat} productid={productid}  color={searchParams?.color || 0}/>
+      <Productpage
+        category={category}
+        subcat={subcat}
+        productid={productid}
+        color={searchParams?.color || 0}
+      />
     );
 
-  // Validate category and subcategory
-  validateCategoryAndSubcategory(category, subcat);
-
   // Get products
-  const allproducts = await Cachedproducts();
+  let allproducts = await Cachedproducts();
   const pricerange = searchParams.pricerange || 0;
+  let producttorender;
+
+  if (category == "Search") {
+    const searchQuery = searchParams?.query;
+    producttorender = searchProducts(allproducts, searchQuery);
+  } else {
+    validateCategoryAndSubcategory(category, subcat);
+    producttorender = categoriesedproducts(allproducts, category, subcat);
+  }
 
   // Filter products
-  const filteredProducts = filterProducts(
-    allproducts,
-    category,
-    subcat,
-    pricerange
+  const pricerangedproducts = pricefilter(producttorender, pricerange);
+
+  const sortedProducts = sortProducts(
+    pricerangedproducts,
+    searchParams.sort || 0
   );
-  const sortedProducts = sortProducts(filteredProducts, searchParams.sort || 0);
 
   return (
     <div className="flex flex-col lg:flex-row">
@@ -56,7 +66,75 @@ async function page({ params, searchParams }) {
   );
 }
 
-function validateCategoryAndSubcategory(category, subcat) {
+const ProductGrid = ({ products }) => (
+  <div className="w-full grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] md:grid-cols-[repeat(auto-fit,minmax(250px,1fr))] place-items-center gap-[10px] md:gap-[20px] p-[10px] md:p-[20px]">
+    {products.map((item, i) => (
+      <Productcard
+        key={i + new Date().getMilliseconds() + Math.random()} // More stable key
+        index={i}
+        id={item._id}
+        image={item.colorpalets[0]?.images[0]}
+        {...item}
+      />
+    ))}
+  </div>
+);
+
+function searchProducts(allproducts, searchQuery) {
+  const words = searchQuery?.split(" ") || [];
+
+  // Filtering products based on the search query
+  words.forEach((word) => {
+    if (word.trim() !== "") {
+      allproducts = allproducts.filter((product) => {
+        const nameMatch = product?.name
+          ?.toLowerCase()
+          .includes(word.toLowerCase());
+
+        const descMatch = product?.desc?.some((descItem) =>
+          descItem.toLowerCase().includes(word.toLowerCase())
+        );
+
+        const keywordsMatch = product?.keywords
+          ?.toLowerCase()
+          .includes(word.toLowerCase());
+
+        const categoryMatch = product?.category
+          ?.toLowerCase()
+          .includes(word.toLowerCase());
+
+        const subcategoryMatch = product?.subcat
+          ?.toLowerCase()
+          .includes(word.toLowerCase());
+
+        return (
+          nameMatch ||
+          descMatch ||
+          keywordsMatch ||
+          categoryMatch ||
+          subcategoryMatch
+        );
+      });
+    }
+  });
+
+  // Sorting the filtered products
+  return allproducts.sort((a, b) => {
+    const nameA = a?.name?.toLowerCase();
+    const nameB = b?.name?.toLowerCase();
+    const lowerQuery = searchQuery.toLowerCase();
+
+    if (nameA.includes(lowerQuery) && !nameB.includes(lowerQuery)) {
+      return -1;
+    } else if (!nameA.includes(lowerQuery) && nameB.includes(lowerQuery)) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+}
+
+const validateCategoryAndSubcategory = (category, subcat) => {
   if (!category || !Object.keys(categorylist).includes(category)) {
     notFound();
   }
@@ -67,22 +145,14 @@ function validateCategoryAndSubcategory(category, subcat) {
   ) {
     notFound();
   }
-}
+};
 
-function ProductGrid({ products }) {
-  return (
-    <div className="w-full grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] md:grid-cols-[repeat(auto-fit,minmax(250px,1fr))] place-items-center gap-[10px] md:gap-[20px] p-[10px] md:p-[20px]">
-      {products.map((item, i) => (
-        <Productcard
-          key={i + new Date().getMilliseconds() + Math.random()} // More stable key
-          index={i}
-          id={item._id}
-          image={item.colorpalets[0]?.images[0]}
-          {...item}
-        />
-      ))}
-    </div>
-  );
-}
+const categoriesedproducts = (allproducts, category, subcat) => {
+  return allproducts.filter((item) => {
+    const inCategory = item.category === category;
+    const inSubcat = subcat ? item.subcat === subcat : true;
+    return inCategory && inSubcat;
+  });
+};
 
 export default page;

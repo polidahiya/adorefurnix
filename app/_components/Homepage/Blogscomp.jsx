@@ -7,20 +7,13 @@ import { LuArrowRightCircle } from "react-icons/lu";
 async function Blogscomp() {
   const blogs = await Cachedblogs();
 
-  // Function to truncate paragraphs
-  const truncateText = (text, maxLength) => {
-    if (text.length > maxLength) {
-      return text.substring(0, maxLength) + "...";
-    }
-    return text;
-  };
-
   return (
     <div className="mt-[70px]">
       <center>
         <Link
           href="/Blogs"
           className="text-3xl md:text-4xl font-bold mb-4 font-serif italic"
+          title=" more blogs"
         >
           Blogs
         </Link>
@@ -33,6 +26,7 @@ async function Blogscomp() {
           const firstImage =
             blog?.blogdata?.find((item) => item.type === "image")?.content ||
             "/images/noblogimage.jpg";
+            
           const paragraphs = blog?.blogdata
             ?.filter((item) => item.type === "paragraph")
             ?.slice(0, 2); // Show only first 2 paragraphs
@@ -40,7 +34,7 @@ async function Blogscomp() {
           return (
             <div
               key={i}
-              className="flex flex-col md:flex-row items-stretch gap-5 p-5 bg-white shadow-md hover:shadow-lg transition-shadow mt-5 rounded-lg"
+              className="flex flex-col md:flex-row items-stretch gap-5 p-5 bg-white shadow-md mt-5 rounded-lg"
             >
               <div className="w-full md:w-1/3">
                 <Image
@@ -56,31 +50,30 @@ async function Blogscomp() {
                   {mainHeading}
                 </h3>
                 {paragraphs?.map((item, j) => (
-                  <p key={j} className="text-gray-600 mb-3">
-                    {truncateText(item.content, 200)}{" "}
+                  <p key={j} className="text-gray-600 mb-3 line-clamp-3">
+                    {item.content}
                   </p>
                 ))}
                 <Link
                   href={`/Blogs/${blog?._id}`}
-                  className="mt-auto bg-theme w-fit flex items-center gap-3 text-white py-2 px-4 rounded-xl"
+                  className="mt-auto bg-theme w-fit flex items-center gap-3 text-white py-1 px-4 rounded-full"
                 >
                   Read Full
-                  {/* <LuArrowRightCircle /> */}
                 </Link>
               </div>
             </div>
           );
         })}
       </section>
-      <center>
+      {/* <center>
         <Link
           href={`/Blogs`}
-          className="bg-theme w-fit flex items-center gap-3 text-white py-2 px-4 rounded-full mt-5"
+          className="bg-theme text-white w-fit flex items-center gap-3  py-2 px-4 rounded-full mt-5"
         >
-          Read More Blogs
+          More Blogs
           <LuArrowRightCircle />
         </Link>
-      </center>
+      </center> */}
     </div>
   );
 }

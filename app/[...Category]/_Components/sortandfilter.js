@@ -30,15 +30,13 @@ export const sortProducts = (products, sort) => {
   return sortedProducts;
 };
 
-export const filterProducts = (allproducts, category, subcat, pricerange) => {
-  return allproducts.filter((item) => {
-    const inCategory = item.category === category;
-    const inSubcat = subcat ? item.subcat === subcat : true;
+export const pricefilter = (products, pricerange) => {
+  return products.filter((item) => {
     const withinPriceRange =
       pricerange === 0 ||
       (item.price >= filterlist[pricerange].min &&
         item.price <= filterlist[pricerange].max);
 
-    return inCategory && inSubcat && withinPriceRange;
+    return withinPriceRange;
   });
 };
