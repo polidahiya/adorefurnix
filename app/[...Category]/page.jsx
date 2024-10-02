@@ -2,51 +2,12 @@ import React from "react";
 import { notFound } from "next/navigation";
 import Productcard from "../_components/Productcard";
 import Secondnav from "./_Components/Secondnav";
-import { categorylist } from "../commondata";
+import { categorylist, domain } from "../commondata";
 import { Cachedproducts } from "../_serveractions/Getcachedata";
 import Productnotfound from "../_components/Productnotfound";
 import Subcategories from "./_Components/Subcategories";
 import { sortProducts, pricefilter } from "./_Components/sortandfilter";
 import Productpage from "../_productpage/Productpage";
-
-export const generateMetadata = async ({ params, searchParams }) => {
-  const { Category: slug } = params;
-  const category = slug && slug[0] ? decodeURIComponent(slug[0]) : null;
-  const subcat = slug && slug[1] ? decodeURIComponent(slug[1]) : null;
-  const productid = slug && slug[2] ? decodeURIComponent(slug[2]) : null;
-  if (productid) {
-    const allproducts = await Cachedproducts();
-    const filteredProduct = allproducts.find((item) => item._id === productid);
-    const color = searchParams?.color || 0;
-    const ogimage = filteredProduct.colorpalets[color].images[0];
-    return {
-      title: filteredProduct?.name + " | Adorefurnix",
-      description: filteredProduct?.desc[0],
-      keywords: filteredProduct?.keywords,
-      openGraph: {
-        images: ogimage,
-      },
-    };
-  } else if (subcat) {
-    return {
-      title: `Get ${subcat} At Best Price Online in India | ${new Date().getFullYear()}`,
-      description: categorylist[category]?.desc,
-      // openGraph: {
-      //   images: ogimage,
-      // },
-    };
-  } else if (category != "Search") {
-    return {
-      title: `Get ${
-        categorylist[category]?.name
-      } At Best Price Online in India | ${new Date().getFullYear()}`,
-      description: categorylist[category]?.desc,
-      // openGraph: {
-      //   images: ogimage,
-      // },
-    };
-  }
-};
 
 async function page({ params, searchParams }) {
   const { Category: slug } = params;
@@ -195,6 +156,85 @@ const categoriesedproducts = (allproducts, category, subcat) => {
     const inSubcat = subcat ? item.subcat === subcat : true;
     return inCategory && inSubcat;
   });
+};
+
+export const generateMetadata = async ({ params, searchParams }) => {
+  const { Category: slug } = params;
+  const category = slug && slug[0] ? decodeURIComponent(slug[0]) : null;
+  const subcat = slug && slug[1] ? decodeURIComponent(slug[1]) : null;
+  const productid = slug && slug[2] ? decodeURIComponent(slug[2]) : null;
+
+  // Handle product-specific metadata
+  if (productid) {
+    const allProducts = await Cachedproducts();
+    const filteredProduct = allProducts.find((item) => item._id === productid);
+
+    if (filteredProduct) {
+      const colorIndex = searchParams?.color || 0;
+      const ogImage =
+        filteredProduct?.colorpalets?.[colorIndex]?.images?.[0] || null;
+
+      return {
+        title: `${filteredProduct?.name} | Adorefurnix`,
+        description:
+          filteredProduct?.desc?.[0] ||
+          "Check out this amazing product at Adorefurnix!",
+        keywords: filteredProduct?.keywords || "",
+        openGraph: {
+          images: ogImage,
+        },
+      };
+    }
+  }
+
+  // Handle subcategory-specific metadata
+  if (subcat && category) {
+    const categoryData = categorylist[category];
+    if (categoryData) {
+      const subCategoryData = categoryData.subcat.find(
+        (item) => item.name === subcat
+      );
+
+      return {
+        title: `Get ${subcat} at Best Price Online in India | ${new Date().getFullYear()}`,
+        description:
+          categoryData.desc || `Shop ${subcat} at the best prices online!`,
+        openGraph: {
+          images: subCategoryData
+            ? `${domain}${subCategoryData.image}`
+            : null,
+        },
+      };
+    }
+  }
+
+  // Handle category-specific metadata
+  if (category && category !== "Search") {
+    const categoryData = categorylist[category];
+
+    if (categoryData) {
+      return {
+        title: `Get ${
+          categoryData?.name
+        } at Best Price Online in India | ${new Date().getFullYear()}`,
+        description:
+          categoryData.desc || `Shop ${categoryData?.name} and decor online.`,
+        openGraph: {
+          images: `${domain}${categoryData.image}`,
+        },
+      };
+    }
+  }
+
+  // Default fallback metadata
+  return {
+    title: "Adorefurnix | Best Furniture & Home Decor Online",
+    description:
+      "Discover the best furniture and home decor at Adorefurnix. Shop now for exclusive deals!",
+    openGraph: {
+      images: `${domain}/minlogo.png`,
+    },
+  };
 };
 
 export default page;
