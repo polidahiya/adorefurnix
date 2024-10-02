@@ -58,13 +58,14 @@ function Secondnav({ category, subcat, searchParams, lengthofproducts }) {
 
       {/* mobile filter button */}
       <button
-        className="fixed top-[70px] right-[10px] h-[40px] aspect-square text-[20px] grid place-content-center rounded-full text-white bg-theme"
+        className="fixed top-[70px] right-[10px] h-[40px] aspect-square text-[20px] grid place-content-center rounded-full text-white bg-theme z-10"
         onClick={() => {
           setshowfilter((pre) => !pre);
         }}
       >
         <VscSettings />
       </button>
+      {/*  */}
       <section
         className={`flex flex-col md:flex-row lg:flex-col md:gap-[10px] lg:gap-0 fixed lg:static bottom-0 left-0 w-full z-50 bg-white p-[10px] lg:p-0 duration-300 ${
           showfilter ? "translate-y-0" : " translate-y-full lg:translate-y-0"

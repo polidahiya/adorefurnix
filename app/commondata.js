@@ -10,6 +10,7 @@ export const sociallinks = {
 
 export const categorylist = {
   "Living Room": {
+    name: "Living Room Furniture",
     image: "/categoriesimages/livingroom.jpg",
     subcat: [
       { image: "/categoriesimages/subcats/sofasets.webp", name: "Sofa sets" },
@@ -21,8 +22,10 @@ export const categorylist = {
       { image: "/categoriesimages/subcats/ottoman.jpg", name: "Ottoman" },
       { image: "/categoriesimages/subcats/charis.jpg", name: "Chairs" },
     ],
+    desc: "Discover our curated selection of Living Room Furniture, designed to offer comfort and style. From cozy sofa sets to multifunctional sofa cum beds, elegant wing chairs, and stylish ottomans and chairs, elevate your living space with premium options that match your home decor.",
   },
   Bedroom: {
+    name: "Bedroom Furniture",
     image: "/categoriesimages/bedroom.jpg",
     subcat: [
       {
@@ -49,8 +52,10 @@ export const categorylist = {
         name: "Dressing Tables",
       },
     ],
+    desc: "Transform your bedroom into a sanctuary with our range of Bedroom Furniture. Choose from spacious king-size beds, elegant queen-size beds, or practical single beds. We also offer kids' beds, stylish wardrobes, bedside tables, chest of drawers, and dressing tables to suit all your storage and decor needs.",
   },
   Dining: {
+    name: "Dining",
     image: "/categoriesimages/Dining.jpg",
     subcat: [
       {
@@ -66,8 +71,10 @@ export const categorylist = {
         name: "6-Seater Dining Set",
       },
     ],
+    desc: "Make every meal memorable with our modern Dining Furniture. Whether you're hosting with a cozy 2-seater dining set or a spacious 6-seater dining set, our collection offers style and functionality for every home dining space.",
   },
   Tables: {
+    name: "Tables",
     image: "/categoriesimages/tables.jpg",
     subcat: [
       {
@@ -84,8 +91,10 @@ export const categorylist = {
         name: "Nesting Tables",
       },
     ],
+    desc: "Find the perfect table for any room in our Tables collection. Choose from stylish coffee tables, space-saving nesting tables, functional end tables, and elegant console tables to complement your home decor.",
   },
   Storage: {
+    name: "Storage Furniture",
     image: "/categoriesimages/storage.avif",
     subcat: [
       { image: "/categoriesimages/subcats/ShoeRack.webp", name: "Shoe Rack" },
@@ -100,8 +109,10 @@ export const categorylist = {
         name: "Crockery Cabinet",
       },
     ],
+    desc: "Maximize your space with our versatile Storage Furniture. Our range includes shoe racks, TV and entertainment units, cabinets, bookshelves, and crockery cabinets—functional pieces designed to keep your home organized and clutter-free.",
   },
   "Bar Furniture": {
+    name: "Bar Furniture",
     image: "/categoriesimages/barfurniture.jpg",
     subcat: [
       { image: "/categoriesimages/subcats/BarUnits.png", name: "Bar Units" },
@@ -119,8 +130,10 @@ export const categorylist = {
         name: "Bar Chairs & Stools",
       },
     ],
+    desc: "Elevate your home entertainment space with our exclusive Bar Furniture collection. Explore stylish bar units, bar cabinets, bar trolleys, and wall-hanging shelves along with comfortable bar chairs & stools to create the perfect setting for your gatherings.",
   },
   "Study and Bookshelf": {
+    name: "Study and Bookshelf furniture",
     image: "/categoriesimages/studybookshelf.jpg",
     subcat: [
       {
@@ -133,8 +146,10 @@ export const categorylist = {
         name: "Computer Tables",
       },
     ],
+    desc: "Create the perfect workspace with our collection of Study Furniture. From functional study tables to computer tables and bookshelves, find everything you need to enhance your productivity and organization in style.",
   },
   "Office Furniture": {
+    name: "Office Furniture",
     image: "/categoriesimages/officefurniture.webp",
     subcat: [
       {
@@ -150,10 +165,13 @@ export const categorylist = {
         name: "Office Sofa",
       },
     ],
+    desc: "Upgrade your workspace with our premium Office Furniture selection. Featuring ergonomic office chairs, sleek study & laptop tables, and cozy office sofas, our collection is designed for both comfort and professionalism.",
   },
   "Home Decor & More": {
+    name: "Home Decor & More",
     image: "/categoriesimages/homedecoreandmore.webp",
     subcat: [],
+    desc: "Explore unique Home Decor options to add personality and charm to your living space. Our collection includes a variety of decor items that will help you create a warm and inviting home environment.",
   },
 };
 

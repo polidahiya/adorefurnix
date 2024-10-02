@@ -9,6 +9,45 @@ import Subcategories from "./_Components/Subcategories";
 import { sortProducts, pricefilter } from "./_Components/sortandfilter";
 import Productpage from "../_productpage/Productpage";
 
+export const generateMetadata = async ({ params, searchParams }) => {
+  const { Category: slug } = params;
+  const category = slug && slug[0] ? decodeURIComponent(slug[0]) : null;
+  const subcat = slug && slug[1] ? decodeURIComponent(slug[1]) : null;
+  const productid = slug && slug[2] ? decodeURIComponent(slug[2]) : null;
+  if (productid) {
+    const allproducts = await Cachedproducts();
+    const filteredProduct = allproducts.find((item) => item._id === productid);
+    const color = searchParams?.color || 0;
+    const ogimage = filteredProduct.colorpalets[color].images[0];
+    return {
+      title: filteredProduct?.name + " | Adorefurnix",
+      description: filteredProduct?.desc[0],
+      keywords: filteredProduct?.keywords,
+      openGraph: {
+        images: ogimage,
+      },
+    };
+  } else if (subcat) {
+    return {
+      title: `Get ${subcat} At Best Price Online in India | ${new Date().getFullYear()}`,
+      description: categorylist[category]?.desc,
+      // openGraph: {
+      //   images: ogimage,
+      // },
+    };
+  } else if (category != "Search") {
+    return {
+      title: `Get ${
+        categorylist[category]?.name
+      } At Best Price Online in India | ${new Date().getFullYear()}`,
+      description: categorylist[category]?.desc,
+      // openGraph: {
+      //   images: ogimage,
+      // },
+    };
+  }
+};
+
 async function page({ params, searchParams }) {
   const { Category: slug } = params;
 
@@ -47,7 +86,7 @@ async function page({ params, searchParams }) {
     searchParams.sort || 0
   );
 
-  const lengthofproducts=sortedProducts.length
+  const lengthofproducts = sortedProducts.length;
 
   return (
     <div className="flex flex-col lg:flex-row">

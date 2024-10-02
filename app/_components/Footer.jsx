@@ -18,6 +18,8 @@ import { RiInstagramFill } from "react-icons/ri";
 import { BsTwitterX } from "react-icons/bs";
 import { MdOutlineArrowRightAlt } from "react-icons/md";
 import { sociallinks } from "../commondata";
+import { FaSitemap } from "react-icons/fa";
+// import ThemeSwitcher from "./Switchtheme";
 
 function Footer() {
   const list1 = [
@@ -98,7 +100,13 @@ function Footer() {
           <strong className="font-bold">Adorefurnix.com</strong>. All rights
           reserved.
         </p>
-        <div className="flex flex-1 items-center justify-center gap-[20px] text-[25px]"></div>
+        <div className="h-full flex flex-1 items-center justify-center gap-[20px] text-[12px]">
+          <Link href="Sitemap" className="flex items-center gap-1">
+            <FaSitemap className="text-yellow-500" />
+            Site map
+          </Link>
+          {/* <ThemeSwitcher /> */}
+        </div>
         <div className="flex flex-1 items-center justify-end gap-[10px]">
           <FaCcVisa size={15} title="Visa" />
           <FaCcMastercard size={15} title="MasterCard" />

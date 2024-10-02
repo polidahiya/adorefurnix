@@ -5,6 +5,7 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: "class",
   theme: {
     extend: {
       backgroundImage: {
@@ -12,7 +13,7 @@ module.exports = {
         theme: "linear-gradient(90deg,#10e89c,#0593f7)",
       },
       colors: {
-        theme:"#10e89c",
+        theme: "#10e89c",
         bg1: "#f1f3f6",
       },
     },

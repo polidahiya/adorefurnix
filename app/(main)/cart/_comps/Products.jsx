@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import Deletesvg from "@/app/_svgs/Deletesvg";
+import { AiOutlineDelete } from "react-icons/ai";
 import { AppContextfn } from "@/app/Context";
 import Cookies from "js-cookie";
 
@@ -107,7 +107,7 @@ export default function Products({ item, i }) {
               onClick={handleRemoveProduct}
             >
               <span className="hidden md:block">Remove</span>
-              <Deletesvg styles="md:hidden h-[25px] aspect-square fill-none" />
+              <AiOutlineDelete className="md:hidden aspect-square"/>
             </button>
           </div>
         </div>

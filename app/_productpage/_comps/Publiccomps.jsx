@@ -10,7 +10,6 @@ export function Addtocartbuttons({ filteredproducts, color }) {
   const router = useRouter();
   const { cart, setcart, setmessagefn } = AppContextfn();
   const [availableincart, setavailableincart] = useState(false);
-  console.log(cart);
 
   useEffect(() => {
     const itemKey = `${filteredproducts._id},${color}`;

@@ -1,5 +1,5 @@
 import React from "react";
-import { IoMdStar ,IoMdStarHalf,IoMdStarOutline} from "react-icons/io";
+import { IoMdStar, IoMdStarHalf, IoMdStarOutline } from "react-icons/io";
 
 export default function Rating({ rating }) {
   const numberrating = Number(rating);
@@ -14,7 +14,10 @@ export default function Rating({ rating }) {
         <span className="flex">
           {fullStars > 0 &&
             [...Array(fullStars)].map((_, i) => (
-              <IoMdStar key={i} className="text-[14px] md:text-[20px] text-[#FFC95E]" />
+              <IoMdStar
+                key={i}
+                className="text-[14px] md:text-[20px] text-[#FFC95E]"
+              />
             ))}
         </span>
         {halfStar && (
@@ -23,12 +26,17 @@ export default function Rating({ rating }) {
         <span className="flex">
           {emptyStars > 0 &&
             [...Array(emptyStars)].map((_, i) => (
-              <IoMdStarOutline key={i} className="text-[14px] md:text-[20px] text-[#d2d2d2]" />
+              <IoMdStarOutline
+                key={i}
+                className="text-[14px] md:text-[20px] text-[#d2d2d2]"
+              />
             ))}
         </span>
       </div>
-      <span className="md:px-[10px] md:bg-green-600 md:text-white md:rounded-[5px] font-semibold text-[12px] md:text-[16px]">
-        {rating}/{5}
+      <span className="flex gap-[2px] md:px-[10px] md:bg-green-600 md:text-white md:rounded-[5px] font-semibold text-[12px] md:text-[16px] whitespace-nowrap">
+        <span>{rating}</span>
+        <span>/</span>
+        <span>{5}</span>
       </span>
     </div>
   );
