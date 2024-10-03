@@ -21,7 +21,7 @@ function Collage() {
 
   return (
     <div className="px-[10px] md:px-[200px] mt-[80px]">
-      <h2 className="text-center font-bold text-[25px] md:text-[40px] italic font-serif">This is a heading</h2>
+      <h2 className="text-center font-bold text-3xl md:text-4xl italic font-serif">This is a heading</h2>
       <p className="text-center font-bold text-gray-700">
         This is a para this is a para
       </p>

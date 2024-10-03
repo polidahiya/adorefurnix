@@ -16,6 +16,7 @@ function Productcard({
   available,
   image,
   rating,
+  keywords,
 }) {
   const [showproduct, setshowproduct] = useState(false);
   const [imgSrc, setImgSrc] = useState(image);
@@ -66,6 +67,15 @@ function Productcard({
           </div>
         )}
       </div>
+      {/* best selling tag */}
+      {keywords.toLowerCase().includes("best seller") && (
+        <img
+          className="absolute top-1 right-1 h-16 aspect-square object-contain"
+          src="/images/bestsellertag.png"
+          alt="best selling tag Image"
+          loading="lazy"
+        />
+      )}
 
       <Image
         src={imgSrc}
@@ -73,6 +83,7 @@ function Productcard({
         width={300}
         height={300}
         className="aspect-[4/3] w-full object-cover object-center rounded-b-[10px]"
+        loading="lazy"
         onError={handleImageError} // Handle image error
       />
 

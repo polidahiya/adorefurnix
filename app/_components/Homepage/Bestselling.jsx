@@ -1,30 +1,15 @@
 import React from "react";
-import Rating from "../Ratingstars";
+import { RatingStars } from "../Ratingstars";
 import Link from "next/link";
 import { LuArrowRightCircle } from "react-icons/lu";
+import Image from "next/image";
 
-function Bestselling() {
-  const bestproducts = [
-    {
-      image: "/images/bestselling1.png",
-      name: "Test name",
-      price: "₹ 54999",
-      stars: 4.8,
-    },
-    {
-      image: "/images/bestselling2.png",
-      name: "Test name",
-      price: "₹ 8999",
-      stars: 4.2,
-    },
-    {
-      image:
-        "https://png.pngtree.com/png-vector/20230915/ourmid/pngtree-modern-white-chair-object-png-image_10076590.png",
-      name: "Test name",
-      price: "₹ 11999",
-      stars: 4,
-    },
-  ];
+async function Bestselling({ Cachedproducts }) {
+  const allproducts = await Cachedproducts();
+  const bestselling = allproducts
+    .filter((item) => item.keywords.toLowerCase().includes("best seller"))
+    .sort(() => Math.random() - 0.5)
+    .slice(0, 3);
 
   return (
     <section className="py-12 px-4 md:px-8 lg:px-16  mt-[50px]">
@@ -47,30 +32,59 @@ function Bestselling() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-        {bestproducts.map((item, i) => (
-          <div
-            key={i}
-            className="relative bg-white rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105 cursor-pointer"
-          >
-            <img
-              className="w-full h-64 object-contain p-[10px]"
-              src={item.image}
-              alt={item.name}
-            />
-            <div className="p-6">
-              <h4 className="text-xl font-semibold text-gray-900 mb-2 truncate">
-                {item.name}
-              </h4>
-              <Rating rating={item.stars} className="mb-2" />
-              <div className="text-xl font-bold text-gray-800">
-                {item.price}
-              </div>{" "}
-              {/* Subtle price styling */}
-            </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-[#c1d0e4] to-transparent rounded-lg z-[-1]"></div>
-          </div>
-        ))}
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-8">
+        {bestselling?.map((item, i) => {
+          const pricebeforediscount = Math.floor(
+            (item?.price / (100 - item.discount)) * 100
+          );
+          return (
+            <Link
+              href={`/${item.category}/${item.subcat}/${item._id}`}
+              key={i}
+              className="relative bg-white rounded-lg shadow-lg overflow-hidden  cursor-pointer"
+            >
+              <Image
+                className="w-full h-64 object-cover object-center p-[10px]"
+                src={item.colorpalets[0]?.images[0]}
+                alt={item.name}
+                width={400}
+                height={400}
+                loading="lazy"
+              />
+              <div className="p-6">
+                <h4 className="text-xl font-semibold text-gray-900 mb-2 truncate">
+                  {item.name}
+                </h4>
+                <RatingStars rating={item.rating} />
+                <div className="mt-[10px] flex flex-wrap items-center gap-[5px] md:gap-[10px]">
+                  <span className="font-bold text-[16px] md:text-[20px]">
+                    ₹{parseInt(item?.price, 10).toLocaleString("en-IN")}
+                  </span>
+                  {pricebeforediscount && (
+                    <>
+                      <span className="line-through text-[12px] md:text-[16px] text-[#878787]">
+                        ₹
+                        {parseInt(pricebeforediscount, 10).toLocaleString(
+                          "en-IN"
+                        )}
+                      </span>
+                      <span className="font-bold text-[12px] md:text-[16px] text-[#388e3c]">
+                        {item.discount}% off
+                      </span>
+                    </>
+                  )}
+                </div>
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#c1d0e4] to-transparent rounded-lg z-[-1]"></div>
+              {/* best selling tag */}
+              <img
+                className="absolute top-2 right-2 h-24 aspect-square object-contain"
+                src="/images/bestsellertag.png"
+                alt="best selling tag Image"
+              />
+            </Link>
+          );
+        })}
       </div>
     </section>
   );
