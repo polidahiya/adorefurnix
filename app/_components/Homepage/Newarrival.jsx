@@ -42,7 +42,7 @@ const Newarrival = async ({ Cachedproducts }) => {
             </Link>
             {/* new tag */}
             <img
-              className="absolute top-[-15px] right-[-15px] h-24 aspect-square"
+              className="absolute top-[-13px] right-[-14px] h-24 aspect-square"
               src="/images/newtag.webp"
               alt="new tag image"
               loading="lazy"

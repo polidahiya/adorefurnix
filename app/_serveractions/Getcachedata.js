@@ -49,15 +49,25 @@ export async function Cachedblogs() {
 }
 
 export async function refreshproductsnow() {
-  const currentTime = new Date().getTime();
-  cachedproducts = await Productscollection.find({}).toArray();
-  lastproductfetchtime = currentTime;
-  return { status: 200, message: "Products Refreshed on site" };
+  try {
+    const currentTime = new Date().getTime();
+    cachedproducts = await Productscollection.find({}).toArray();
+    lastproductfetchtime = currentTime;
+    return { status: 200, message: "Products Refreshed on site" };
+  } catch (error) {
+    console.log(error);
+    return { status: 500, message: "Server Error!" };
+  }
 }
 
 export async function refreshblogsnow() {
-  const currentTime = new Date().getTime();
-  cachedblogs = await Productscollection.find({}).toArray();
-  lastblogfetchtime = currentTime;
-  return { status: 200, message: "Blogs Refreshed on site" };
+  try {
+    const currentTime = new Date().getTime();
+    cachedblogs = await Productscollection.find({}).toArray();
+    lastblogfetchtime = currentTime;
+    return { status: 200, message: "Blogs Refreshed on site" };
+  } catch (error) {
+    console.log(error);
+    return { status: 500, message: "Server Error!" };
+  }
 }

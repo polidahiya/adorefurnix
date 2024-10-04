@@ -8,6 +8,7 @@ import Selectcubcategory from "./_comps/Selectcubcategory";
 import Details from "./_comps/Details";
 import Descriptions from "./_comps/Descriptions";
 import Colorpalets from "./_comps/Colorpalets";
+import { refreshproductsnow } from "@/app/_serveractions/Getcachedata";
 
 function Categories() {
   const {
@@ -60,6 +61,16 @@ function Categories() {
 
   return (
     <>
+      {/* refresh site now button */}
+      <button
+        className="fixed top-16 right-5 border border-slate-300 rounded-lg bg-white px-2"
+        onClick={async () => {
+          const res = await refreshproductsnow();
+          setmessagefn(res?.message);
+        }}
+      >
+        Refresh site now
+      </button>
       <Selectcategory />
       <Selectcubcategory />
       <Details />
