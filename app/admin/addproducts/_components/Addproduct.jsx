@@ -63,7 +63,7 @@ function Categories() {
     <>
       {/* refresh site now button */}
       <button
-        className="fixed top-16 right-5 border border-slate-300 rounded-lg bg-white px-2"
+        className="fixed top-16 right-5 border border-slate-300 rounded-lg bg-theme px-2 "
         onClick={async () => {
           const res = await refreshproductsnow();
           setmessagefn(res?.message);

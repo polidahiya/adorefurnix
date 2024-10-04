@@ -2,7 +2,7 @@ import React from "react";
 import { Cachedblogs } from "@/app/_serveractions/Getcachedata";
 import Image from "next/image";
 import Link from "next/link";
-import { LuArrowRightCircle } from "react-icons/lu";
+// import { LuArrowRightCircle } from "react-icons/lu";
 
 async function Blogscomp() {
   const blogs = await Cachedblogs();
@@ -41,8 +41,10 @@ async function Blogscomp() {
                   src={firstImage}
                   className="rounded-lg aspect-[4/3] h-full object-cover object-center"
                   alt="Blog Image"
+                  loading="lazy"
                   height={300}
                   width={400}
+                  quality={10}
                 />
               </div>
               <div className="w-full md:w-2/3 flex flex-col min-h-full">
