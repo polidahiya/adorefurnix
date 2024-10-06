@@ -17,6 +17,7 @@ export default function Page({ userdata, token, orderstatus }) {
 
   const [showpaymentform, setshowpaymentform] = useState(false);
   const [orderid, setorderid] = useState("");
+  const [finalpin, setfinalpin] = useState(null);
 
   let cartlength = 0;
   Object.keys(cart).forEach((item) => {
@@ -39,7 +40,7 @@ export default function Page({ userdata, token, orderstatus }) {
       setmessagefn("Please Login");
       return;
     }
-    if (!userdata?.pincode) {
+    if (!finalpin) {
       setmessagefn("Please select your pincode");
       return;
     }
@@ -87,7 +88,12 @@ export default function Page({ userdata, token, orderstatus }) {
             <FaOpencart />
           </div>
 
-          {userdata && <Useraddress userdata={userdata} />}
+          {userdata && (
+            <Useraddress
+              userdata={userdata}
+              setfinalpin={setfinalpin}
+            />
+          )}
 
           {/* products */}
           <div

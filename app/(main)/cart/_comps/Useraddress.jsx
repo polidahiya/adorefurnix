@@ -4,7 +4,7 @@ import { MdOutlineEditNote } from "react-icons/md";
 import { ImLocation2 } from "react-icons/im";
 import Cookies from "js-cookie";
 
-function UserAddress({ userdata }) {
+function UserAddress({ userdata, setfinalpin }) {
   const [pin, setPin] = useState("");
   const [pinData, setPinData] = useState(null);
   const [showPinMenu, setShowPinMenu] = useState(false);
@@ -24,7 +24,9 @@ function UserAddress({ userdata }) {
     const fetchPinData = async () => {
       if (pin.length === 6) {
         try {
-          const response = await fetch(`https://api.postalpincode.in/pincode/${pin}`);
+          const response = await fetch(
+            `https://api.postalpincode.in/pincode/${pin}`
+          );
           const jsonData = await response.json();
           if (jsonData[0]?.Status === "Success") {
             setPinData(jsonData[0]);
@@ -55,9 +57,15 @@ function UserAddress({ userdata }) {
           onBlur={() => {
             setTimeout(() => setShowPinMenu(false), 500);
           }}
-          onChange={(e) => setPin(e.target.value.replace(/\D/, ''))} // Allow only numbers
+          onChange={(e) => setPin(e.target.value.replace(/\D/, ""))} // Allow only numbers
         />
-        {showPinMenu && <FetchedDataComp pinData={pinData} pin={pin} />}
+        {showPinMenu && (
+          <FetchedDataComp
+            pinData={pinData}
+            pin={pin}
+            setfinalpin={setfinalpin}
+          />
+        )}
       </div>
       <Link
         href="/updateuserdetails"
@@ -73,11 +81,12 @@ function UserAddress({ userdata }) {
   );
 }
 
-function FetchedDataComp({ pinData, pin }) {
+function FetchedDataComp({ pinData, pin, setfinalpin }) {
   const setCookie = (name, division) => {
     const userData = Cookies.get("userdata");
     const jsonUserData = JSON.parse(userData);
     jsonUserData.pincode = `${pin}-${name}-${division}`;
+    setfinalpin(`${pin}-${name}-${division}`);
     Cookies.set("userdata", JSON.stringify(jsonUserData));
   };
 
@@ -86,11 +95,14 @@ function FetchedDataComp({ pinData, pin }) {
   return (
     <div className="absolute top-[calc(100%+10px)] left-0 bg-white rounded-[5px] min-w-[300px] p-[15px] border border-slate-300 shadow-lg z-10">
       {pinData?.Status === "Error" || pin.length !== 6 ? (
-        <div className="text-red-600 font-semibold text-center">Invalid Pincode</div>
+        <div className="text-red-600 font-semibold text-center">
+          Invalid Pincode
+        </div>
       ) : (
         <>
           <h2 className="text-lg font-bold mb-2">
-            {pinData?.PostOffice.length} Record(s) found - {pinData?.PostOffice[0]?.State}
+            {pinData?.PostOffice.length} Record(s) found -{" "}
+            {pinData?.PostOffice[0]?.State}
           </h2>
           <div className="flex flex-col max-h-[300px] overflow-y-scroll">
             {pinData?.PostOffice.map((item, index) => (
