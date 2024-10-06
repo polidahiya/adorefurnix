@@ -7,9 +7,13 @@ export default async function PayUpayment(formdata) {
     const key = process.env.PAYU_MERCHANT_KEY;
     const salt = process.env.PAYU_MERCHANT_SALT;
     const successUrl =
-      "http://localhost:3000/api/validateorder?payment=success"; // Your success page
+      "https://adorefurnix.vercel.app/api/validateorder?payment=success"; 
     const failureUrl =
-      "http://localhost:3000/api/validateorder?payment=failure"; // Your failure page
+      "https://adorefurnix.vercel.app/api/validateorder?payment=failure"; 
+    // const successUrl =
+    //   "http://localhost:3000/api/validateorder?payment=success"; 
+    // const failureUrl =
+    //   "http://localhost:3000/api/validateorder?payment=failure"; 
 
     const hashString = `${key}|${txnId}|${amount}|${productInfo}|${firstName}|${email}|||||||||||${salt}`;
     const hash = crypto.createHash("sha512").update(hashString).digest("hex");
