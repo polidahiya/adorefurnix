@@ -12,64 +12,51 @@ import { IoMdArrowDropdown } from "react-icons/io";
 
 function Ordercard({ item }) {
   const { setmessagefn } = AppContextfn();
-  const [note, setnote] = useState("");
+  const [note, setnote] = useState(item?.note || "");
   const [deleteconfirm, setdeleteconfirm] = useState(false);
   const [showorder, setshoworder] = useState(true);
   const [showstatusmenu, setshowstatusmenu] = useState(false);
   // change status funtion
   const changestatusfn = async (status) => {
     const res = await changestatus(item._id, status);
-    if (res?.message == "Status Updated") {
+    if (res?.status == 200) {
       setshoworder(false);
     }
     setmessagefn(res?.message);
-  };
-  //
-  const formattedDate = (date) => {
-    const now = new Date(date);
-    const hours = now.getHours() % 12 || 12;
-    const minutes = now.getMinutes().toString().padStart(2, "0");
-    const ampm = now.getHours() >= 12 ? "PM" : "AM";
-    const day = now.getDate();
-    const month = now.getMonth() + 1;
-    const year = now.getFullYear();
-    return `${hours}:${minutes} ${ampm} - ${day}/${month}/${year}`;
   };
 
   if (showorder)
     return (
       <div
-        className={`relative flex flex-col md:flex-row items-start gap-[20px] shadow-md my-[20px] p-[10px] ${
-          item.canceled ? "bg-pink-50" : "bg-white"
-        }`}
+        className={`relative flex flex-col md:flex-row items-start gap-[20px] shadow-md my-[20px] p-[10px] pt-12 md:pt-[10px] `}
       >
-        {item.canceled && <Canceledbadge />}
-        <Image
-          className="w-full md:w-[300px] aspect-square object-cover object-center"
-          src={item?.colorpalets[item?.selectedcolor].images[0]}
-          alt="product image"
-          width={300}
-          height={300}
-        ></Image>
         <div className="flex flex-col items-start gap-[5px] w-full">
           <OrderDetail label="Order ID" value={item?._id} />
-          <OrderDetail label="User Name" value={item?.username} />
-          <OrderDetail label="User Email" value={item?.email} />
-          <OrderDetail label="User Phone Number" value={item?.phonenum} />
-          <OrderDetail label="User Address" value={item?.address} />
-          <OrderDetail label="Pin Code" value={item?.pincode} />
-          <hr className="my-3 border-gray-300" />
-          <OrderDetail label="Product Name" value={item?.name} />
-          <OrderDetail label="Product Price" value={`Rs ${item?.price}`} />
-          <OrderDetail label="Razorpay order id" value={`${item?.rzorderid}`} />
+          <p className="text-sm text-gray-700 flex items-center gap-2">
+            <span className="font-bold">Payment Status :</span>
+            <span
+              className={`h-[15px] aspect-square rounded-full ${
+                item?.paymentStatus == "success" ? "bg-green-500" : "bg-red-500"
+              }`}
+            ></span>
+            {item?.paymentStatus}
+          </p>
           <OrderDetail
-            label="Razorpay payment id"
-            value={`${item?.rzpaymentid}`}
+            label="Transection ID (mihpayid)"
+            value={item?.mihpayid}
           />
-          <ProductColorDetail color={item?.colorpalets[item?.selectedcolor]} />
+          <OrderDetail label="txnId" value={item?.txnId} />
+          <OrderDetail label="User Name" value={item?.userdata?.username} />
+          <OrderDetail label="User Email" value={item?.userdata?.email} />
+          <OrderDetail
+            label="User Phone Number"
+            value={item?.userdata?.phonenum}
+          />
+          <OrderDetail label="User Address" value={item?.userdata?.address} />
+          <OrderDetail label="Pin Code" value={item?.userdata?.pincode} />
           <OrderDetail
             label="Order Date and Time"
-            value={formattedDate(item?.date)}
+            value={formattedDate(item?.createdAt)}
           />
           {item?.delivered_date && (
             <OrderDetail
@@ -77,7 +64,15 @@ function Ordercard({ item }) {
               value={formattedDate(item?.delivered_date)}
             />
           )}
-          <div className="flex items-end gap-[10px] w-full">
+          <hr className="my-3 border-gray-300" />
+          <div className="w-full flex items-center justify-center gap-2 flex-wrap">
+            {item.products.map((product, i) => (
+              <ProductCard key={i} product={product} />
+            ))}
+          </div>
+
+          {/* note */}
+          <div className="flex items-end gap-[10px] w-full mt-5">
             <textarea
               className="h-full w-full border border-slate-300 min-h-[50px] p-[10px]"
               placeholder="Write a note here"
@@ -132,7 +127,7 @@ function Ordercard({ item }) {
               setmessagefn={setmessagefn}
               setdeleteconfirm={setdeleteconfirm}
               setshoworder={setshoworder}
-              item={item}
+              id={item?._id}
             />
           )}
           {/* black screen */}
@@ -150,26 +145,59 @@ function Ordercard({ item }) {
     );
 }
 
-const Canceledbadge = () => {
+const ProductCard = ({ product }) => {
   return (
-    <div className="absolute top-[10px] left-[10px] bg-red-500 text-white px-[20px] py-[5px]">
-      Canceled
+    <div className={`relative bg-white shadow-lg rounded-lg p-4 md:max-w-80`}>
+      {product.status !== "" && (
+        <Canceledorrefundedbadge status={product.status} />
+      )}
+      <Image
+        className="w-full  rounded-t-lg aspect-[4/3] object-cover object-center"
+        src={product?.colorpalets[product?.selectedcolor].images[0]}
+        alt="product image"
+        width={300}
+        height={300}
+      />
+      <div className="p-4">
+        <OrderDetail label="Name" value={product?.name} />
+        <OrderDetail label="Price" value={`Rs ${product?.price}`} />
+        <OrderDetail label="quantity" value={`${product?.quantity}`} />
+        <OrderDetail label="discount" value={`${product?.discount} %`} />
+        <OrderDetail label="Dimensions" value={`${product?.Dimensions}`} />
+        <ProductColorDetail
+          color={product?.colorpalets[product?.selectedcolor]}
+        />
+      </div>
+    </div>
+  );
+};
+
+const Canceledorrefundedbadge = ({ status }) => {
+  return (
+    <div
+      className={`absolute top-[10px] left-[10px]  ${
+        status == "canceled" && "bg-red-500"
+      }
+      ${status == "refunded" && "bg-yellow-600"} text-white px-[20px] py-[5px]`}
+    >
+      {status == "canceled" && "Canceled"}
+      {status == "refunded" && "Refunded"}
     </div>
   );
 };
 
 const OrderDetail = ({ label, value }) => (
   <p className="text-sm text-gray-700">
-    <span className="font-semibold">{label}:</span> {value}
+    <span className="font-bold">{label}:</span> {value}
   </p>
 );
 
 const ProductColorDetail = ({ color }) => (
   <div className="flex items-center gap-2">
-    <span className="text-gray-700">Product Color:</span>
+    <span className="text-gray-700">Color:</span>
     <span
       className="h-6 w-6 rounded-full inline-block"
-      style={{ backgroundColor: color.color }}
+      style={{ backgroundColor: color?.color }}
     />
     {color.name}
   </div>
@@ -181,6 +209,8 @@ const StatusMenuOption = ({ changestatusfn }) => {
     { label: "Add to Processing orders", status: 1 },
     { label: "Add to Shipped orders", status: 2 },
     { label: "Add to Delivered orders", status: 3 },
+    { label: "Add to Canceled", status: 4 },
+    { label: "Add to Refunded", status: 5 },
   ];
 
   return (
@@ -203,15 +233,15 @@ const Deleteconfirmationmenu = ({
   setmessagefn,
   setdeleteconfirm,
   setshoworder,
-  item,
+  id,
 }) => {
   return (
     <div className="absolute top-[50px] right-[10px] flex items-center gap-[20px] p-[20px] bg-white rounded-[10px] shadow-md border border-slate-300 z-10">
       <button
         className="text-red-500"
         onClick={async () => {
-          const res = await deleteorder(item._id);
-          if (res?.message == "Deleted Successfully") {
+          const res = await deleteorder(id);
+          if (res?.status == 200) {
             setshoworder(false);
           }
           setmessagefn(res?.message);
@@ -228,6 +258,17 @@ const Deleteconfirmationmenu = ({
       </button>
     </div>
   );
+};
+//
+const formattedDate = (date) => {
+  const now = new Date(date);
+  const hours = now.getHours() % 12 || 12;
+  const minutes = now.getMinutes().toString().padStart(2, "0");
+  const ampm = now.getHours() >= 12 ? "PM" : "AM";
+  const day = now.getDate();
+  const month = now.getMonth() + 1;
+  const year = now.getFullYear();
+  return ` ${day}/${month}/${year} - ${hours}:${minutes} ${ampm}`;
 };
 
 export default Ordercard;

@@ -2,8 +2,10 @@
 import React from "react";
 import Image from "next/image";
 import { AppContextfn } from "@/app/Context";
+import { useRouter } from "next/navigation";
 
 function Ordersplacednotif() {
+  const router=useRouter()
   const { toggleorderplacedmenu } = AppContextfn();
   if (toggleorderplacedmenu)
     return (
@@ -21,7 +23,7 @@ function Ordersplacednotif() {
           <button
             className="bg-green-500 px-[30px] py-[5px] text-white rounded-[5px] my-[20px]"
             onClick={() => {
-              window.location.href = "/";
+              router.replace("/")
             }}
           >
             Ok

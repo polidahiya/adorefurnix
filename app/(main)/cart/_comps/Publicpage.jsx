@@ -1,10 +1,9 @@
 "use client";
 import { Placeorder } from "@/app/_serveractions/Addorder";
 import { AppContextfn } from "@/app/Context";
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import Products from "./Products";
-import { Paymentfn } from "./Payment";
-import Componentloading from "@/app/_components/Componentloading";
+import PaymentPage from "./Payuform";
 import Pricedetails from "./Pricedetails";
 import Emptycart from "./Emptycart";
 import Useraddress from "./Useraddress";
@@ -12,11 +11,12 @@ import { IoShieldCheckmark } from "react-icons/io5";
 import { FaOpencart } from "react-icons/fa6";
 import Cookies from "js-cookie";
 
-export default function Page({ userdata, token }) {
+export default function Page({ userdata, token, orderstatus }) {
   const { cart, setcart, settoggleorderplacedmenu, setmessagefn } =
     AppContextfn();
 
-  const [loading, setloading] = useState(false);
+  const [showpaymentform, setshowpaymentform] = useState(false);
+  const [orderid, setorderid] = useState("");
 
   let cartlength = 0;
   Object.keys(cart).forEach((item) => {
@@ -34,46 +34,36 @@ export default function Page({ userdata, token }) {
   });
 
   // place order fucntion
-  const Order = () => {
+  const Order = async () => {
     if (!token) {
       setmessagefn("Please Login");
       return;
     }
+    if (!userdata?.pincode) {
+      setmessagefn("Please select your pincode");
+      return;
+    }
 
-    Paymentfn(
-      userdata,
-      totalprice - totaldiscount,
-      "INR",
-      async (rzorderid, rzpaymentid) => {
-        setloading(true);
-
-        const res = await Placeorder(cart, rzorderid, rzpaymentid);
-        if (res?.status == 200) {
-          settoggleorderplacedmenu(true);
-
-          Cookies.set("cart", JSON.stringify({}), {
-            expires: 7,
-          });
-          setcart({});
-        } else {
-          setmessagefn(res?.message);
-        }
-        setloading(false);
-      },
-      setmessagefn
-    );
+    const res = await Placeorder(cart);
+    if (res?.status == 200) {
+      setorderid(res?.id);
+      setshowpaymentform(true);
+    } else {
+      setmessagefn(res?.message);
+    }
   };
 
-  // adding razorpay
+  // order success
   useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://checkout.razorpay.com/v1/checkout.js";
-    script.async = true;
-    document.body.appendChild(script);
+    if (orderstatus == "success") {
+      settoggleorderplacedmenu(true);
+      Cookies.set("cart", JSON.stringify({}), {
+        expires: 7,
+      });
+      setcart({});
+    }
 
-    return () => {
-      document.body.removeChild(script);
-    };
+    if (orderstatus == "failed") setmessagefn("Order Failed!");
   }, []);
 
   if (cartlength == 0) {
@@ -82,12 +72,14 @@ export default function Page({ userdata, token }) {
 
   return (
     <>
-      {loading && (
-        <div className="fixed top-0 left-0 h-full w-full flex items-center justify-center bg-black bg-opacity-[10%] z-[10]">
-          <Componentloading />
-        </div>
+      {showpaymentform && (
+        <PaymentPage
+          orderid={orderid}
+          amount={totalprice - totaldiscount}
+          userdata={userdata}
+          setshowpaymentform={setshowpaymentform}
+        />
       )}
-
       <div className="p-[5px] md:p-[20px] flex flex-col lg:flex-row gap-[10px] bg-bg1 min-h-[calc(100vh-111px)]">
         <div className="w-full">
           <div className="h-[60px] flex items-center justify-center gap-[10px] text-[20px] font-bold font-serif italic  lg:hidden">

@@ -3,7 +3,7 @@ import { Userification } from "@/app/Verifytoken";
 import { orderscollection } from "@/app/Mongodb";
 import { cookies } from "next/headers";
 
-export const Placeorder = async (ordersdata, rzorderid, rzpaymentid) => {
+export const Placeorder = async (ordersdata) => {
   try {
     const tokenres = await Userification();
 
@@ -13,23 +13,25 @@ export const Placeorder = async (ordersdata, rzorderid, rzpaymentid) => {
     // cookies
     const userdata = JSON.parse(cookies()?.get("userdata")?.value);
 
-    let ordersarray = [];
-    Object.keys(ordersdata).forEach((order) => {
-      let neworders = { ...ordersdata[order] };
-      neworders.productid = ordersdata[order]._id;
-      neworders.canceled = false;
-      neworders.status = 0;
-      neworders.date = new Date();
-      delete neworders._id;
-      neworders.rzorderid = rzorderid;
-      neworders.rzpaymentid = rzpaymentid;
-      ordersarray.push({ ...neworders, ...userdata });
-    });
+    let order = {
+      paymentStatus: "pending",
+      status: 0,
+      userdata,
+      products: Object.values(ordersdata).map((product) => ({
+        ...product,
+        status: "",
+      })),
+      note: "",
+      createdAt: new Date(),
+    };
+    const result = await orderscollection.insertOne(order);
 
-    let result = await orderscollection.insertMany(ordersarray);
-    console.log(result);
     if (result.insertedCount != 0) {
-      return { status: 200, message: "Order Placed" };
+      return {
+        status: 200,
+        message: "Order Placed Successfully",
+        id: result.insertedId.toString(),
+      };
     } else {
       return { status: 500, message: "Order Failed" };
     }

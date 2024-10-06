@@ -28,7 +28,7 @@ export const changestatus = async (documentId, status) => {
     const tokenres = await Adminverification();
 
     if (!tokenres) {
-      return { message: "Please login first" };
+      return { status: 400, message: "Please login first" };
     }
 
     const filter = { _id: new ObjectId(documentId) };
@@ -40,10 +40,10 @@ export const changestatus = async (documentId, status) => {
     } else {
       await orderscollection.updateOne(filter, { $set: { status: status } });
     }
-    return { message: "Status Updated" };
+    return { status: 200, message: "Status Updated" };
   } catch (error) {
     console.log(error);
-    return { message: "Server Error" };
+    return { status: 500, message: "Server Error" };
   }
 };
 
@@ -53,20 +53,20 @@ export const deleteorder = async (documentId) => {
     const tokenres = await Adminverification();
 
     if (!tokenres) {
-      return { message: "Please login first" };
+      return { status: 400, message: "Please login first" };
     }
     const filter = { _id: new ObjectId(documentId) };
 
     const result = await orderscollection.deleteOne(filter);
 
     if (result.deletedCount === 1) {
-      return { message: "Deleted Successfully" };
+      return { status: 200, message: "Deleted Successfully" };
     } else {
-      return { message: "Delete Failed" };
+      return { status: 500, message: "Delete Failed" };
     }
   } catch (error) {
     console.log(error);
-    return { message: "Server Error" };
+    return { status: 500, message: "Server Error" };
   }
 };
 
