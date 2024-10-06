@@ -1,5 +1,6 @@
 "use server";
-import { Productscollection, blogscollection } from "@/app/Mongodb";
+import { getcollection } from "@/app/Mongodb";
+const { Productscollection, blogscollection }=getcollection()
 
 let cachedproducts = null;
 let lastproductfetchtime = null;

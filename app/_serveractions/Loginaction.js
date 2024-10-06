@@ -2,7 +2,8 @@
 import { cookies } from "next/headers";
 import { Adminverification } from "@/app/Verifytoken";
 import jwt from "jsonwebtoken";
-import { Admindatacollection } from "../Mongodb";
+import { getcollection } from "../Mongodb";
+const {Admindatacollection} =getcollection()
 
 // auto login
 export async function autologin() {

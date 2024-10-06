@@ -1,9 +1,10 @@
 "use server";
-import { userscollection } from "@/app/Mongodb";
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { logintime } from "@/app/commondata";
+import { getcollection } from "@/app/Mongodb";
+const { userscollection }=getcollection()
 
 const generateToken = (data, userdata) => {
   const token = jwt.sign(data, process.env.jwt_secret, {

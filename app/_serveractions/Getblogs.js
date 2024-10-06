@@ -1,5 +1,6 @@
 "use server";
-import { blogscollection } from "../Mongodb";
+import { getcollection } from "../Mongodb";
+const { blogscollection }=getcollection()
 
 export const Getblogs = async (numberofblogs, blogsindex) => {
   try {

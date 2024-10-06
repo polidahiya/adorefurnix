@@ -4,7 +4,7 @@ import Ordersrefreshbutton from "./Ordersrefreshbutton";
 
 function Selectordertype({ ordertype, Refreshorders }) {
   return (
-    <div className="sticky top-[50px] bg-white w-full flex items-center gap-[10px]  p-[10px] px-[40px] shadow-md z-20 border-t border-t-slate-300">
+    <div className="sticky top-[50px] bg-white w-full flex items-center flex-wrap gap-[10px]  p-[10px] px-[40px] shadow-md z-20 border-t border-t-slate-300">
       <Link
         href={"/admin/?order=0"}
         className={`border border-slate-300 px-[10px] py-[5px] rounded-[5px] ${
@@ -36,6 +36,22 @@ function Selectordertype({ ordertype, Refreshorders }) {
         }`}
       >
         Delivered orders
+      </Link>
+      <Link
+        href={"/admin/?order=4"}
+        className={`border border-slate-300 px-[10px] py-[5px] rounded-[5px] ${
+          ordertype == 4 && "bg-theme text-white"
+        }`}
+      >
+        Canceled orders
+      </Link>
+      <Link
+        href={"/admin/?order=5"}
+        className={`border border-slate-300 px-[10px] py-[5px] rounded-[5px] ${
+          ordertype == 5 && "bg-theme text-white"
+        }`}
+      >
+        Refunded orders
       </Link>
       {/* refresh orders */}
       <Ordersrefreshbutton Refreshorders={Refreshorders} />

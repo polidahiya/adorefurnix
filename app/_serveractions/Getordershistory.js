@@ -1,6 +1,7 @@
 "use server";
 import { Userification } from "@/app/Verifytoken";
-import { ObjectId, orderscollection } from "@/app/Mongodb";
+import { getcollection } from "@/app/Mongodb";
+const { ObjectId, orderscollection }=getcollection()
 
 // get orders history
 export const getordershistory = async () => {

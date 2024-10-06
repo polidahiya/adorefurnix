@@ -9,15 +9,15 @@ import Emptycart from "./Emptycart";
 import Useraddress from "./Useraddress";
 import { IoShieldCheckmark } from "react-icons/io5";
 import { FaOpencart } from "react-icons/fa6";
+import Link from "next/link";
 import Cookies from "js-cookie";
 
 export default function Page({ userdata, token, orderstatus }) {
-  const { cart, setcart, settoggleorderplacedmenu, setmessagefn } =
+  const { cart, setcart, settoggleorderplacedmenu, setmessagefn, pincoderef } =
     AppContextfn();
 
   const [showpaymentform, setshowpaymentform] = useState(false);
   const [orderid, setorderid] = useState("");
-  const [finalpin, setfinalpin] = useState(null);
 
   let cartlength = 0;
   Object.keys(cart).forEach((item) => {
@@ -40,8 +40,15 @@ export default function Page({ userdata, token, orderstatus }) {
       setmessagefn("Please Login");
       return;
     }
-    if (!finalpin) {
+
+    const usecookie = Cookies.get("userdata");
+    if (!usecookie) {
+      setmessagefn("Please login first!");
+      return;
+    }
+    if (!JSON.parse(usecookie).pincode) {
       setmessagefn("Please select your pincode");
+      pincoderef.current.focus();
       return;
     }
 
@@ -83,17 +90,12 @@ export default function Page({ userdata, token, orderstatus }) {
       )}
       <div className="p-[5px] md:p-[20px] flex flex-col lg:flex-row gap-[10px] bg-bg1 min-h-[calc(100vh-111px)]">
         <div className="w-full">
-          <div className="h-[60px] flex items-center justify-center gap-[10px] text-[20px] font-bold font-serif italic  lg:hidden">
+          <div className="h-[50px] flex items-center justify-center gap-[10px] text-[20px] font-bold font-serif italic  lg:hidden">
             Cart
             <FaOpencart />
           </div>
 
-          {userdata && (
-            <Useraddress
-              userdata={userdata}
-              setfinalpin={setfinalpin}
-            />
-          )}
+          {userdata && <Useraddress userdata={userdata} />}
 
           {/* products */}
           <div
@@ -105,7 +107,23 @@ export default function Page({ userdata, token, orderstatus }) {
               return <Products key={i} item={item} i={i} />;
             })}
 
-            <div className="sticky bottom-0 flex w-full gap-[10px] bg-white shadow-[0px_-2px_10px_#e1e1e1] p-[10px]">
+            <div className="sticky bottom-0 flex items-center w-full gap-[10px] bg-white shadow-[0px_-2px_10px_#e1e1e1] p-[10px]">
+              <p className="text-[10px] md:text-[12px] text-center w-full">
+                By placing an order, you agree to our{" "}
+                <Link
+                  href="/Terms&Conditions"
+                  className="text-sky-500 hover:underline"
+                >
+                  Terms & Conditions
+                </Link>{" "}
+                and{" "}
+                <Link
+                  href="/PrivacyPolicy"
+                  className="text-sky-500 hover:underline"
+                >
+                  Policies
+                </Link>
+              </p>
               <button
                 className="flex items-center gap-[10px] px-[20px] py-[5px] border border-slate-300 rounded-[5px] bg-theme  text-white ml-auto whitespace-nowrap"
                 onClick={Order}

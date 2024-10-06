@@ -1,7 +1,8 @@
 "use server";
-import { blogscollection, ObjectId } from "../../Mongodb";
 import { Deleteiamgefromurl, uploadImage } from "@/app/Cloudinary";
 import { Adminverification } from "@/app/Verifytoken";
+import { getcollection } from "../../Mongodb";
+const { blogscollection, ObjectId }=getcollection()
 
 export const Addblogaction = async (formdata, editmode, deletedimages) => {
   try {

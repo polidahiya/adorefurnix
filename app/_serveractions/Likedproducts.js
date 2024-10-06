@@ -1,6 +1,7 @@
 "use server";
 import { Userification } from "@/app/Verifytoken";
-import { userscollection } from "@/app/Mongodb";
+import { getcollection } from "@/app/Mongodb";
+const { userscollection } = getcollection();
 
 // get liked products for user
 export const getLikedProducts = async () => {

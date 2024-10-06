@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import Image from "next/image";
 import {
   updatenote,
   deleteorder,
@@ -9,6 +8,7 @@ import {
 import { AppContextfn } from "@/app/Context";
 import { AiOutlineDelete } from "react-icons/ai";
 import { IoMdArrowDropdown } from "react-icons/io";
+import ProductCard from "./Productcard";
 
 function Ordercard({ item }) {
   const { setmessagefn } = AppContextfn();
@@ -66,8 +66,13 @@ function Ordercard({ item }) {
           )}
           <hr className="my-3 border-gray-300" />
           <div className="w-full flex items-center justify-center gap-2 flex-wrap">
-            {item.products.map((product, i) => (
-              <ProductCard key={i} product={product} />
+            {item?.products?.map((product, i) => (
+              <ProductCard
+                key={i}
+                product={product}
+                orderid={item?._id}
+                productindex={i}
+              />
             ))}
           </div>
 
@@ -145,62 +150,10 @@ function Ordercard({ item }) {
     );
 }
 
-const ProductCard = ({ product }) => {
-  return (
-    <div className={`relative bg-white shadow-lg rounded-lg p-4 md:max-w-80`}>
-      {product.status !== "" && (
-        <Canceledorrefundedbadge status={product.status} />
-      )}
-      <Image
-        className="w-full  rounded-t-lg aspect-[4/3] object-cover object-center"
-        src={product?.colorpalets[product?.selectedcolor].images[0]}
-        alt="product image"
-        width={300}
-        height={300}
-      />
-      <div className="p-4">
-        <OrderDetail label="Name" value={product?.name} />
-        <OrderDetail label="Price" value={`Rs ${product?.price}`} />
-        <OrderDetail label="quantity" value={`${product?.quantity}`} />
-        <OrderDetail label="discount" value={`${product?.discount} %`} />
-        <OrderDetail label="Dimensions" value={`${product?.Dimensions}`} />
-        <ProductColorDetail
-          color={product?.colorpalets[product?.selectedcolor]}
-        />
-      </div>
-    </div>
-  );
-};
-
-const Canceledorrefundedbadge = ({ status }) => {
-  return (
-    <div
-      className={`absolute top-[10px] left-[10px]  ${
-        status == "canceled" && "bg-red-500"
-      }
-      ${status == "refunded" && "bg-yellow-600"} text-white px-[20px] py-[5px]`}
-    >
-      {status == "canceled" && "Canceled"}
-      {status == "refunded" && "Refunded"}
-    </div>
-  );
-};
-
 const OrderDetail = ({ label, value }) => (
   <p className="text-sm text-gray-700">
     <span className="font-bold">{label}:</span> {value}
   </p>
-);
-
-const ProductColorDetail = ({ color }) => (
-  <div className="flex items-center gap-2">
-    <span className="text-gray-700">Color:</span>
-    <span
-      className="h-6 w-6 rounded-full inline-block"
-      style={{ backgroundColor: color?.color }}
-    />
-    {color.name}
-  </div>
 );
 
 const StatusMenuOption = ({ changestatusfn }) => {

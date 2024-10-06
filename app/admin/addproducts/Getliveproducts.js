@@ -1,6 +1,7 @@
 "use server";
-import { Productscollection } from "@/app/Mongodb";
 import { Adminverification } from "@/app/Verifytoken";
+import { getcollection } from "@/app/Mongodb";
+const { Productscollection }=getcollection()
 
 export const Getliveproducts = async (categorystate) => {
   const verification = await Adminverification();

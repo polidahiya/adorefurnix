@@ -1,6 +1,7 @@
 import Secureicon from "@/app/_svgs/Secureicon";
 
 function Pricedetails({ cartlength, totalprice, totaldiscount }) {
+  const deliverycahrges = cartlength * 200;
   return (
     <div className=" md:min-w-[400px] ">
       <div className="sticky top-[130px] w-full">
@@ -23,13 +24,14 @@ function Pricedetails({ cartlength, totalprice, totaldiscount }) {
               <span>
                 {" "}
                 - ₹{parseInt(totaldiscount, 10).toLocaleString("en-IN")}
+                <span className="text-sky-500">{"*"}</span>
               </span>
             </div>
             <div className="flex items-center justify-between  ">
               <span>Delivery Charges</span>
               <span>
                 <span className="line-through">
-                  ₹{parseInt(40 * cartlength, 10).toLocaleString("en-IN")}
+                  ₹{parseInt(deliverycahrges, 10).toLocaleString("en-IN")}
                 </span>
                 <span className="text-green-600"> Free</span>
               </span>
@@ -50,7 +52,7 @@ function Pricedetails({ cartlength, totalprice, totaldiscount }) {
               You will save{" "}
               <span>
                 ₹
-                {parseInt(totaldiscount + cartlength * 40, 10).toLocaleString(
+                {parseInt(totaldiscount + deliverycahrges, 10).toLocaleString(
                   "en-IN"
                 )}
               </span>{" "}

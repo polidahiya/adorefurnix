@@ -60,7 +60,7 @@ export default function Products({ item, i }) {
           />
         </Link>
         <div className="flex flex-col h-full w-full">
-          <h2 className="font-bold text-[18px] text-ellipsis overflow-hidden whitespace-nowrap">
+          <h2 className="font-bold text-[18px] text-ellipsis overflow-hidden ">
             {product.name}
           </h2>
           <p className="font-bold text-gray-500">

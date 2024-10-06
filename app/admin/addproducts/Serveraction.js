@@ -1,11 +1,12 @@
 "use server";
-import { Productscollection, ObjectId } from "../../Mongodb";
 import { uploadImage, Deleteiamgefromurl } from "@/app/Cloudinary";
 import { Adminverification } from "@/app/Verifytoken";
+import { getcollection } from "../../Mongodb";
+const { Productscollection, ObjectId } = getcollection();
 
 export const Addproduct = async (addproduct, formData, deletedimages) => {
   const verification = await Adminverification();
- 
+
   if (!verification) {
     return { message: "Invalid user" };
   }
@@ -71,7 +72,7 @@ export const Addproduct = async (addproduct, formData, deletedimages) => {
 
 export const Deleteproduct = async (colorpalets, id) => {
   const verification = await Adminverification();
-  
+
   if (!verification) {
     return { message: "Invalid user" };
   }

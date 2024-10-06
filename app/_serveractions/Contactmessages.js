@@ -1,6 +1,7 @@
 "use server";
-import { contactmessages, ObjectId } from "../Mongodb";
 import { Adminverification } from "@/app/Verifytoken";
+import { getcollection } from "../Mongodb";
+const { contactmessages, ObjectId }=getcollection()
 
 export async function Sendmessage(data) {
   try {

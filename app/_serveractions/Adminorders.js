@@ -1,6 +1,7 @@
 "use server";
-import { orderscollection, ObjectId } from "@/app/Mongodb";
 import { Adminverification } from "@/app/Verifytoken";
+import { getcollection } from "@/app/Mongodb";
+const { orderscollection, ObjectId } = getcollection();
 
 // get orders history
 export const getadminorders = async (status) => {
@@ -41,6 +42,45 @@ export const changestatus = async (documentId, status) => {
       await orderscollection.updateOne(filter, { $set: { status: status } });
     }
     return { status: 200, message: "Status Updated" };
+  } catch (error) {
+    console.log(error);
+    return { status: 500, message: "Server Error" };
+  }
+};
+
+// change product status
+export const changeproductstatus = async (orderId, productIndex, newStatus) => {
+  try {
+    const tokenres = await Adminverification();
+
+    if (!tokenres) {
+      return { status: 400, message: "Please login first" };
+    }
+
+    const filter = { _id: new ObjectId(orderId) };
+
+    // Fetch the order to check if the productIndex exists
+    const order = await orderscollection.findOne(filter);
+
+    if (!order) {
+      return { status: 404, message: "Order not found" };
+    }
+
+    // Check if productIndex is valid
+    if (productIndex >= order.products.length || productIndex < 0) {
+      return { status: 400, message: "Invalid product index" };
+    }
+
+    // Proceed to update the product status in the array
+    const result = await orderscollection.updateOne(filter, {
+      $set: { [`products.${productIndex}.status`]: newStatus },
+    });
+
+    if (result.modifiedCount === 0) {
+      return { status: 500, message: "Failed to update status" };
+    }
+
+    return { status: 200, message: "Status updated successfully" };
   } catch (error) {
     console.log(error);
     return { status: 500, message: "Server Error" };

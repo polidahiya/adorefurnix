@@ -1,6 +1,7 @@
 "use server";
 import crypto from "crypto";
-import { orderscollection, ObjectId } from "@/app/Mongodb";
+import { getcollection } from "@/app/Mongodb";
+const { orderscollection, ObjectId }=getcollection()
 
 export async function POST(req) {
   try {

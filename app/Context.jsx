@@ -1,6 +1,5 @@
 "use client";
 
-
 import Cookies from "js-cookie";
 import { createContext, useContext, useState, useRef, useEffect } from "react";
 export const uploadproductdata = {
@@ -37,6 +36,7 @@ export function Appwrapper({ children }) {
   const [redirectloginlink, setredirectloginlink] = useState("/");
   const [toggleorderplacedmenu, settoggleorderplacedmenu] = useState(false);
   const [messagearray, setmessagearray] = useState([]);
+  const pincoderef = useRef();
 
   // admin contexts
   const [addproduct, setaddproduct] = useState(uploadproductdata);
@@ -72,6 +72,7 @@ export function Appwrapper({ children }) {
         settoggleusermenu,
         setshowsearch,
         searchinputref,
+        pincoderef,
         redirectloginlink,
         setredirectloginlink,
         toggleorderplacedmenu,

@@ -13,12 +13,14 @@ const blogscollection = db.collection("blogs");
 const orderscollection = db.collection("orders");
 const contactmessages = db.collection("contactmessages");
 
-export {
-  blogscollection,
-  Admindatacollection,
-  Productscollection,
-  userscollection,
-  orderscollection,
-  contactmessages,
-  ObjectId,
-};
+export function getcollection() {
+  return {
+    blogscollection,
+    Admindatacollection,
+    Productscollection,
+    userscollection,
+    orderscollection,
+    contactmessages,
+    ObjectId,
+  };
+}
