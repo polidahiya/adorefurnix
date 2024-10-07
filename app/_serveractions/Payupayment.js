@@ -6,10 +6,17 @@ export default async function PayUpayment(formdata) {
     const { amount, productInfo, firstName, email, txnId } = formdata;
     const key = process.env.PAYU_MERCHANT_KEY;
     const salt = process.env.PAYU_MERCHANT_SALT;
+    
     const successUrl =
       "https://adorefurnix.vercel.app/api/validateorder?payment=success"; 
     const failureUrl =
       "https://adorefurnix.vercel.app/api/validateorder?payment=failure"; 
+
+    // const successUrl =
+    //   "https://adorefurnix.com/api/validateorder?payment=success"; 
+    // const failureUrl =
+    //   "https://adorefurnix.com/api/validateorder?payment=failure"; 
+
     // const successUrl =
     //   "http://localhost:3000/api/validateorder?payment=success"; 
     // const failureUrl =

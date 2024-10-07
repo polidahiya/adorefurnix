@@ -2,7 +2,7 @@
 import { Userification } from "@/app/Verifytoken";
 import { cookies } from "next/headers";
 import { getcollection } from "@/app/Mongodb";
-const { orderscollection }=getcollection()
+const { orderscollection } = getcollection();
 
 export const Placeorder = async (ordersdata) => {
   try {
@@ -20,7 +20,7 @@ export const Placeorder = async (ordersdata) => {
       userdata,
       products: Object.values(ordersdata).map((product) => ({
         ...product,
-        status: "none",
+        status: 0,
       })),
       note: "",
       createdAt: new Date(),

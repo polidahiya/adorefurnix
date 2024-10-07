@@ -44,18 +44,17 @@ const page = () => {
                 <p className="mb-6 text-lg leading-relaxed text-gray-700">
                   At Adorefurnix, we take great care in delivering high-quality
                   furniture to our valued customers. Our goal is to ensure your
-                  complete satisfaction with your purchase. Please read our
-                  refund policy carefully.
+                  complete satisfaction with your purchase.
                 </p>
                 <p className="mb-6 text-lg leading-relaxed text-gray-700">
                   Refunds:
                   <br />
-                  We regret to inform you that we do not offer refunds on any of
-                  our products. We are confident in the quality and
-                  craftsmanship of our furniture, and we believe that you will
-                  be pleased with your purchase. However, if you encounter any
-                  major damages to your furniture due to manufacturing defects,
-                  please follow our Replacement Policy below.
+                  We offer a 100% refund on our products within a fixed time
+                  interval from the date of purchase. Please note that in some
+                  cases, taxes and processing fees may be deducted from your
+                  refund. If you encounter major damages to your furniture due
+                  to manufacturing defects, please follow our Replacement Policy
+                  below.
                 </p>
                 <p className="mb-6 text-lg leading-relaxed text-gray-700">
                   Replacement Policy:
@@ -89,17 +88,10 @@ const page = () => {
                 <p className="mb-6 text-lg leading-relaxed text-gray-700">
                   Minor Damages:
                   <br />
-                  For minor damages that may occur during transit, we understand
-                  the inconvenience they can cause. In such cases, we can
+                  For minor damages that may occur during transit, we can
                   arrange for a qualified vendor to repair and rectify the minor
                   damages. Please contact our Customer Support team for further
                   assistance.
-                </p>
-                <p className="mb-6 text-lg leading-relaxed text-gray-700">
-                  Please remember that our aim is to ensure your satisfaction
-                  with your purchase, and we are committed to resolving any
-                  issues promptly. Your understanding of this policy is greatly
-                  appreciated.
                 </p>
                 <p className="mb-6 text-lg leading-relaxed text-gray-700">
                   If you have any questions or need assistance with a damaged
@@ -111,8 +103,8 @@ const page = () => {
                 </p>
                 <ul className="list-disc list-inside mb-6 pl-5 space-y-2 text-gray-700">
                   <li>
-                    The product comes with a 1-year warranty which covers
-                    manufacturing defects, inherent termite and borer issues.
+                    The product comes with a 1-year structural warranty and a
+                    5-year warranty against termites and borers.
                   </li>
                   <li>
                     This limited warranty does not apply to:
@@ -134,7 +126,7 @@ const page = () => {
                   <li>
                     With time, solid woods may develop minor cracks called
                     checks, which are not considered faults and are not covered
-                    by the warranty as these checks do not affect the product&apos;s
+                    by the warranty as these checks do not affect the product's
                     lifespan.
                   </li>
                   <li>

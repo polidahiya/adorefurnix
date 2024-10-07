@@ -8,16 +8,9 @@ export default function ProductCard({ product, orderid, productindex }) {
   const [pshowstatus, setpshowstatus] = useState(false);
   const [localStatus, setLocalStatus] = useState(product?.status); // Local state for status
 
-  // Effect to update local status when product prop changes
-  useEffect(() => {
-    setLocalStatus(product.status);
-  }, [product.status]);
-
   return (
     <div className={`relative bg-white shadow-lg rounded-lg p-4 md:max-w-80`}>
-      {localStatus !== "none" && (
-        <Canceledorrefundedbadge status={localStatus} />
-      )}
+      {localStatus != 0 && <Canceledorrefundedbadge status={localStatus} />}
       <Image
         className="w-full rounded-t-lg aspect-[4/3] object-cover object-center"
         src={product?.colorpalets[product?.selectedcolor].images[0]}
@@ -35,9 +28,8 @@ export default function ProductCard({ product, orderid, productindex }) {
           color={product?.colorpalets[product?.selectedcolor]}
         />
       </div>
-      {/* status */}
+      {/* status button*/}
       <div className="absolute top-[10px] right-[10px] flex items-center gap-[10px] z-10">
-        {/* change status */}
         <button
           className="flex items-center gap-[10px] border border-slate-300 h-[30px] px-[20px] bg-white"
           onClick={() => {
@@ -49,7 +41,13 @@ export default function ProductCard({ product, orderid, productindex }) {
         </button>
       </div>
       {/* status options */}
-      {pshowstatus && <ProductstatusOption orderid={orderid} productindex={productindex} setLocalStatus={setLocalStatus}/>}
+      {pshowstatus && (
+        <ProductstatusOption
+          orderid={orderid}
+          productindex={productindex}
+          setLocalStatus={setLocalStatus}
+        />
+      )}
       {/* black screen */}
       {pshowstatus && (
         <div
@@ -66,9 +64,9 @@ export default function ProductCard({ product, orderid, productindex }) {
 const ProductstatusOption = ({ orderid, productindex, setLocalStatus }) => {
   const { setmessagefn } = AppContextfn();
   const statusOptions = [
-    { label: "None", status: "none" },
-    { label: "Canceled", status: "1" },
-    { label: "Refunded", status: "2" },
+    { label: "None", status: 0 },
+    { label: "Canceled", status: 1 },
+    { label: "Refunded", status: 2 },
   ];
 
   const changestatusfn = async (status) => {
@@ -103,13 +101,11 @@ const OrderDetail = ({ label, value }) => (
 const Canceledorrefundedbadge = ({ status }) => {
   return (
     <div
-      className={`absolute top-[10px] left-[10px] ${
-        status === "1" && "bg-red-500"
-      }
-      ${status === "2" && "bg-yellow-600"} text-white px-[20px] py-[5px]`}
+      className={`absolute top-[10px] left-[10px] ${status == 1 && "bg-red-500"}
+      ${status == 2 && "bg-yellow-600"} text-white px-[20px] py-[5px]`}
     >
-      {status === "1" && "Canceled"}
-      {status === "2" && "Refunded"}
+      {status == 1 && "Canceled"}
+      {status == 2 && "Refunded"}
     </div>
   );
 };

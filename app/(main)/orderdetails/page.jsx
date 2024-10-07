@@ -15,13 +15,18 @@ import { AppContextfn } from "@/app/Context";
 import Link from "next/link";
 
 export default function Historypage() {
+  const { setmessagefn } = AppContextfn();
   const [showloading, setshowloading] = useState(true);
   const [ordershistory, setordershistory] = useState([]);
 
   useEffect(() => {
     (async () => {
-      const orders = await getordershistory();
-      setordershistory(orders);
+      const res = await getordershistory();
+      if (res?.result) {
+        setordershistory(res?.result);
+      }
+      if (res?.message) setmessagefn(res?.message);
+
       setshowloading(false);
     })();
   }, []);
@@ -29,35 +34,54 @@ export default function Historypage() {
   return (
     <div>
       <h2 className="text-center font-bold text-[25px] md:text-[30px] italic font-serif mt-[20px]">
-        Orders History
+        Orders Details
       </h2>
       {ordershistory.length ? (
-        <div className="min-h-[calc(100vh-60px)] lg:min-h-[calc(100vh-110px)] grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] place-items-center gap-[20px] p-[20px]">
+        <div className="w-full min-h-[calc(100vh-60px)] lg:min-h-[calc(100vh-110px)] flex flex-col  gap-[20px] p-[20px]">
           {ordershistory.map((item, i) => (
-            <Historyproductcard
+            <div
               key={i}
-              item={item}
-              setordershistory={setordershistory}
-            />
+              className="relative shadow-md rounded-[10px] overflow-hidden bg-bg1"
+            >
+              <div className="w-full flex justify-center flex-wrap gap-3 p-[20px]">
+                {item?.products.map((product, index) => {
+                  return (
+                    <Historyproductcard
+                      key={index}
+                      item={item}
+                      product={product}
+                      index={index}
+                    />
+                  );
+                })}
+              </div>
+              <OrderStatus item={item} />
+            </div>
           ))}
+          {/* Order details note */}
+          <p className="text-center text-sm text-gray-600 italic mb-[10px]">
+            Note: The details of the orders shown are reflective of the state at
+            the time of your purchase and may not represent current availability
+            or prices.
+          </p>
         </div>
       ) : (
         <div className="flex items-center justify-center min-h-[calc(100vh-60px)] lg:min-h-[calc(100vh-110px)]">
           {showloading ? <Componentloading /> : <Productnotfound />}
         </div>
       )}
-      {/* cancle confirmation message */}
     </div>
   );
 }
 
-const Historyproductcard = ({ item, setordershistory }) => {
+const Historyproductcard = ({ item, product, index }) => {
   const { setmessagefn } = AppContextfn();
   const [showconfirmation, setshowconfirmation] = useState(false);
   const [moreoptions, setmoreoptions] = useState({
     show: false,
     effect: false,
   });
+  const [canceltag, setcanceltag] = useState(product.status);
 
   const toggleMoreOptions = () => {
     setmoreoptions((prev) => ({ ...prev, show: !prev.show }));
@@ -67,32 +91,39 @@ const Historyproductcard = ({ item, setordershistory }) => {
   };
 
   const handleCancelOrder = async () => {
-    const res = await Cancelorder(item._id);
-    if (res?.message === "Order Canceled") {
-      setordershistory((prev) =>
-        prev.filter((order) => order._id !== item._id)
-      );
+    console.log(item._id, index);
+
+    const res = await Cancelorder(item._id, index);
+    setshowconfirmation(false);
+    if (res?.status == 200) {
+      setcanceltag(1);
     }
     setmessagefn(res?.message);
   };
 
   return (
-    <div className="relative shadow-md rounded-[10px] overflow-hidden">
+    <div
+      className={`relative h-full w-full max-w-[350px] md:min-w-[270px] shadow-md rounded-[10px] overflow-hidden  ${
+        canceltag == 0 && "bg-white"
+      } ${canceltag == 1 && "bg-red-100"}
+      ${canceltag == 2 && "bg-yellow-100"}`}
+    >
       <Productcard
-        id={item.productid}
-        category={item.category}
-        subcat={item.subcat}
-        name={item.name}
-        price={item.price}
-        discount={item.discount}
+        index={index}
+        id={product._id}
+        category={product.category}
+        subcat={product.subcat}
+        name={product.name}
+        price={product.price}
+        discount={product.discount}
         available={true}
-        image={item.colorpalets[0].images[0]}
-        rating={item.rating}
+        image={product.colorpalets[product?.selectedcolor].images[0]}
+        rating={product.rating}
       />
-
-      {item.status < 3 && (
+      {/* options */}
+      {canceltag == 0 && item.status < 3 && (
         <div
-          className="absolute right-[10px] top-[10px] p-[5px] aspect-square bg-white rounded-full cursor-pointer z-10"
+          className="absolute right-[10px] top-[10px] p-[5px] aspect-square bg-white rounded-full cursor-pointer z-10 "
           onClick={toggleMoreOptions}
         >
           <BiDotsHorizontalRounded />
@@ -107,12 +138,19 @@ const Historyproductcard = ({ item, setordershistory }) => {
               className="w-full rounded-[5px] text-center lg:hover:bg-slate-100"
               onClick={() => setshowconfirmation(true)}
             >
-              Cancel Order
+              Cancel Product
             </button>
           </div>
         </div>
       )}
-
+      {/* tags */}
+      {canceltag != 0 && (
+        <div className="absolute top-32 left-1/2 -translate-x-1/2  text-white">
+          This order is {canceltag == 1 && "canceled"}
+          {canceltag == 2 && "refunded"}
+        </div>
+      )}
+      {/* black screen */}
       {moreoptions.show && (
         <div
           className="fixed h-full w-full top-0 left-0"
@@ -125,40 +163,47 @@ const Historyproductcard = ({ item, setordershistory }) => {
           setshowconfirmation={setshowconfirmation}
         />
       )}
-      <OrderStatus item={item} />
     </div>
   );
 };
 
 const OrderStatus = ({ item }) => {
   return (
-    <>
-      <div className="flex items-center w-full mt-[10px] px-[40px]">
-        {orderstages.map((_, i) => (
-          <div key={i} className={`flex items-center ${i !== 0 && "w-full"}`}>
-            {i !== 0 && (
+    <center>
+      {item.status < 4 && (
+        <div className="bg-white rounded-lg lg:rounded-b-none pt-3 w-full md:w-[600px] ">
+          <div className="flex items-center w-full mt-[10px] px-[40px] md:px-[60px]">
+            {orderstages.map((_, i) => (
               <div
-                className={`h-[2px] w-full ${
-                  item.status >= i ? "bg-theme" : "bg-slate-300"
-                }`}
-              ></div>
-            )}
-            <div
-              className={`min-w-[10px] aspect-square rounded-full ${
-                item.status >= i ? "bg-theme" : "bg-slate-300"
-              }`}
-            ></div>
+                key={i}
+                className={`flex items-center ${i !== 0 && "w-full"}`}
+              >
+                {i !== 0 && (
+                  <div
+                    className={`h-[2px] w-full ${
+                      item.status >= i ? "bg-theme" : "bg-slate-300"
+                    }`}
+                  ></div>
+                )}
+                <div
+                  className={`min-w-[10px] aspect-square rounded-full ${
+                    item.status >= i ? "bg-theme" : "bg-slate-300"
+                  }`}
+                ></div>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-      <div className="flex items-center w-full p-[10px] text-[10px] gap-[10px]">
-        {orderstages.map((stage, i) => (
-          <span key={i} className="text-center">
-            {stage}
-          </span>
-        ))}
-      </div>
-    </>
+          {/* stage names */}
+          <div className="flex items-center justify-between w-full py-[10px] px-[20px] text-[10px] md:text-[14px] gap-[10px]">
+            {orderstages.map((stage, i) => (
+              <span key={i} className="text-center">
+                {stage}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+    </center>
   );
 };
 
