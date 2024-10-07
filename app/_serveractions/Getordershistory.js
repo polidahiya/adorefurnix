@@ -14,6 +14,7 @@ export const getordershistory = async () => {
 
     let result = await orderscollection
       .find({ [`userdata.email`]: tokenres.email, paymentStatus: "success" })
+      .sort({ createdAt: -1 })
       .toArray();
 
     result.map((item) => (item._id = item._id.toString()));

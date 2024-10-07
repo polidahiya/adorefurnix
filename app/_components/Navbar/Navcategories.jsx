@@ -4,14 +4,13 @@ import { categorylist } from "@/app/commondata";
 import Link from "next/link";
 import Image from "next/image";
 import { AppContextfn } from "@/app/Context";
-// import Image from "next/image";
 
 function Navcategories({ category }) {
   const { showcat, setshowcat } = AppContextfn();
 
   return (
     <div
-      className={`fixed bottom-0 left-0 lg:static w-full bg-white lg:bg-transparent grid grid-cols-[repeat(auto-fit,minmax(100px,1fr))] md:grid-cols-[repeat(auto-fit,minmax(140px,1fr))] lg:flex lg:items-center lg:justify-between lg:h-[30px] lg:mt-[20px] p-[10px] lg:p-0 overflow-hidden  duration-300 ${
+      className={`fixed bottom-0 left-0 lg:static w-full bg-white lg:bg-transparent grid grid-cols-[repeat(auto-fit,minmax(100px,1fr))] md:grid-cols-[repeat(auto-fit,minmax(140px,1fr))] lg:flex lg:items-center lg:justify-between lg:h-[30px] lg:mt-[20px] p-[10px] lg:p-0  duration-300 ${
         showcat ? "translate-y-0 z-40" : "translate-y-full lg:translate-y-0"
       }`}
     >
@@ -19,16 +18,16 @@ function Navcategories({ category }) {
         return (
           <div
             key={i}
-            className={`group`}
             onClick={() => {
               setshowcat(false);
             }}
+            className="group relative"
           >
             <Link
               key={i}
               href={"/" + item}
-              className={`lg:h-[30px] w-full flex flex-col items-center justify-start lg:justify-center  text-[14px] lg:text-white p-[5px]  lg:px-[10px] lg:py-[5px] rounded-[10px] lg:rounded-full text-center ${
-                category == item ? "bg-theme text-white" : ""
+              className={`lg:h-[30px] w-full flex flex-col items-center justify-start lg:justify-center  text-[14px] lg:text-white p-[5px]  lg:px-[10px] lg:py-[5px] rounded-[10px] lg:rounded-full lg:group-hover:hover:bg-slate-700 text-center ${
+                category == item && "bg-theme text-white"
               }`}
             >
               <Image
@@ -37,35 +36,34 @@ function Navcategories({ category }) {
                 alt={item}
                 height={100}
                 width={100}
+                loading="lazy"
               ></Image>
-              <span className="text-[12px] md:text-[14px] mt-1 lg:mt-0 whitespace-nowrap">{item}</span>
+              <span className="text-[12px] md:text-[14px] mt-1 lg:mt-0 whitespace-nowrap">
+                {item}
+              </span>
             </Link>
-            {/* {categorylist[item].subcat.length > 0 && (
-              <div className="fixed top-[90px] left-[50%] translate-x-[-50%] w-full opacity-0 pointer-events-none translate-y-[50px]  lg:group-hover:opacity-100 lg:group-hover:pointer-events-auto lg:group-hover:translate-y-0 duration-300 ">
-                <div className="w-full  flex items-center justify-center flex-wrap gap-[20px]  bg-white  mt-[12px] overflow-hidden p-[20px]">
+            {/* subcategories */}
+            {categorylist[item].subcat.length > 0 && (
+              <div
+                className={`absolute top-0 hidden lg:group-hover:block -z-10 ${
+                  i == 0 ? "left-0" : "left-1/2 -translate-x-1/2"
+                }`}
+              >
+                <div className="p-2 rounded-lg bg-graygradient text-white flex flex-col shadow-lg mt-12">
                   {categorylist[item].subcat.map((subcat, j) => {
                     return (
                       <Link
                         key={j}
                         href={`/${item}/${subcat.name}`}
-                        className="w-[200px]  overflow-hidden bg-white rounded-[10px] lg:shadow-[0px_0px_10px_#bababa7f] duration-200"
+                        className="p-2 hover:bg-slate-700 w-52 text-center text-[14px]"
                       >
-                        <Image
-                          src={subcat.image}
-                          width={300}
-                          height={300}
-                          alt={subcat.name}
-                          className="w-full aspect-[4/3] object-cover object-center "
-                        ></Image>
-                        <div className="text-center text-[13px] md:text-[16px] py-[5px] md:py-[10px]">
-                          {subcat.name}
-                        </div>
+                        {subcat?.name}
                       </Link>
                     );
                   })}
                 </div>
               </div>
-            )} */}
+            )}
           </div>
         );
       })}

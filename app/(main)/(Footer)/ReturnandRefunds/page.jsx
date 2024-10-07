@@ -10,7 +10,7 @@ const page = () => {
             <article className="prose lg:prose-xl mx-auto">
               <header className="mb-6">
                 <h1 className="text-3xl font-bold mb-4">
-                  Return and Refunds – Adorefurnix
+                  Return and Refunds {"–"} Adorefurnix
                 </h1>
               </header>
               <div className="entry-content">
@@ -18,6 +18,11 @@ const page = () => {
                   How to cancel an order placed on Adorefurnix?
                 </p>
                 <ul className="list-disc list-inside mb-6 pl-5 space-y-2 text-gray-700">
+                  <li>
+                    Cancellation within 24 hours: You can cancel your order
+                    within 24 hours of placing it. After this period, the order
+                    cannot be canceled.
+                  </li>
                   <li>
                     Cancellation in case of wrong product: If the product does
                     not comply with the specifications as per your original
@@ -35,7 +40,7 @@ const page = () => {
                   </li>
                   <li>
                     Products purchased on discount or during sale cannot be
-                    cancelled.
+                    canceled.
                   </li>
                 </ul>
                 <p className="font-semibold text-xl text-gray-800 mb-4">
@@ -95,8 +100,8 @@ const page = () => {
                 </p>
                 <p className="mb-6 text-lg leading-relaxed text-gray-700">
                   If you have any questions or need assistance with a damaged
-                  product, please don’t hesitate to contact our Customer Support
-                  team.
+                  product, please don{"’"}t hesitate to contact our Customer
+                  Support team.
                 </p>
                 <p className="font-semibold text-xl text-gray-800 mb-4">
                   Warranties:
@@ -126,8 +131,8 @@ const page = () => {
                   <li>
                     With time, solid woods may develop minor cracks called
                     checks, which are not considered faults and are not covered
-                    by the warranty as these checks do not affect the product&apos;s
-                    lifespan.
+                    by the warranty as these checks do not affect the
+                    product&apos;s lifespan.
                   </li>
                   <li>
                     As per industry standards, unevenness up to 5 mm can occur

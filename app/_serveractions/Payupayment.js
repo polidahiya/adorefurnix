@@ -1,26 +1,15 @@
 "use server";
 import crypto from "crypto";
+import { domain } from "../commondata";
 
 export default async function PayUpayment(formdata) {
   try {
     const { amount, productInfo, firstName, email, txnId } = formdata;
     const key = process.env.PAYU_MERCHANT_KEY;
     const salt = process.env.PAYU_MERCHANT_SALT;
-    
-    const successUrl =
-      "https://adorefurnix.vercel.app/api/validateorder?payment=success"; 
-    const failureUrl =
-      "https://adorefurnix.vercel.app/api/validateorder?payment=failure"; 
 
-    // const successUrl =
-    //   "https://adorefurnix.com/api/validateorder?payment=success"; 
-    // const failureUrl =
-    //   "https://adorefurnix.com/api/validateorder?payment=failure"; 
-
-    // const successUrl =
-    //   "http://localhost:3000/api/validateorder?payment=success"; 
-    // const failureUrl =
-    //   "http://localhost:3000/api/validateorder?payment=failure"; 
+    const successUrl = `${domain}/api/validateorder?payment=success`;
+    const failureUrl = `${domain}/api/validateorder?payment=failure`;
 
     const hashString = `${key}|${txnId}|${amount}|${productInfo}|${firstName}|${email}|||||||||||${salt}`;
     const hash = crypto.createHash("sha512").update(hashString).digest("hex");

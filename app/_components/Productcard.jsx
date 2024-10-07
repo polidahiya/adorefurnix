@@ -69,10 +69,12 @@ function Productcard({
       </div>
       {/* best selling tag */}
       {keywords?.toLowerCase().includes("best seller") && (
-        <img
+        <Image
           className="absolute top-1 right-1 h-16 aspect-square object-contain"
           src="/images/bestsellertag.png"
           alt="best selling tag Image"
+          height={100}
+          width={100}
           loading="lazy"
         />
       )}

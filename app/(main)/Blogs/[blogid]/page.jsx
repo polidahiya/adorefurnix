@@ -53,12 +53,14 @@ async function page({ params }) {
               if (item?.content instanceof File) image = item?.preview;
               else image = item?.content;
               return (
-                <img
+                <Image
                   key={i}
                   src={image}
+                  height={300}
+                  width={400}
                   loading="lazy"
                   alt="furniture blog"
-                  className="w-full md:max-w-[60%] aspect-video object-cover object-center rounded-lg shadow-md mb-4"
+                  className="w-full md:max-w-[60%] aspect-video object-cover object-center rounded-lg shadow-md mb-4 test"
                 />
               );
             default:

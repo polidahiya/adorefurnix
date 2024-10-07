@@ -11,6 +11,7 @@ import Homenavbar from "./_components/Homepage/Homenavbar";
 import Footer from "./_components/Footer";
 import Newarrival from "./_components/Homepage/Newarrival";
 import { cookies } from "next/headers";
+import Image from "next/image";
 
 export default async function Home() {
   const token = cookies()?.get("token")?.value;
@@ -35,21 +36,21 @@ export default async function Home() {
         </div>
 
         {/* bg image */}
-        <img
+        <Image
           className="w-full  md:h-[100vh]  object-cover top-0 z-[-1] hidden md:inline-block"
           src="/images/pullokkaran-banner-01.jpg"
           alt="homepageslide"
           height={1000}
           width={1000}
-        ></img>
+        />
         {/* mobile */}
-        <img
+        <Image
           className="w-full  md:h-[100vh]  object-cover top-0 z-[-1] md:hidden"
           src="/images/mobilehomepageimage.jpg"
           alt="homepageslide"
           height={1000}
           width={1000}
-        ></img>
+        />
         {/* gradient */}
         <div
           className="absolute bottom-0 left-0 w-full h-[10vw] z-[1]"
@@ -61,8 +62,8 @@ export default async function Home() {
 
       <Categories />
       {/* <Collage /> */}
-      <Newarrival Cachedproducts={Cachedproducts}/>
-      <Bestselling Cachedproducts={Cachedproducts}/>
+      <Newarrival Cachedproducts={Cachedproducts} />
+      <Bestselling Cachedproducts={Cachedproducts} />
       <Blogscomp />
       <div>
         <h2 className="text-center font-bold text-3xl md:text-4xl italic font-serif mt-24 ">
@@ -75,10 +76,6 @@ export default async function Home() {
     </div>
   );
 }
-
-
-
-
 
 // const categories = [
 //   { name: 'Living Room', image: '/images/pullokkaran-banner-01.jpg' },
@@ -104,5 +101,3 @@ export default async function Home() {
 //     </section>
 //   );
 // };
-
-

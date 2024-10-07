@@ -1,7 +1,9 @@
 export const mail = "adorefurnix@gmail.com";
 export const mobile = "+91 95822 14574";
 export const address = "Plot no. 1081 sector 3A, Gurgaon Haryana 122001";
+// export const domain = "http://localhost:3000";
 export const domain = "https://adorefurnix.vercel.app";
+// export const domain = "https://adorefurnix.com";
 
 export const sociallinks = {
   insta: "https://www.instagram.com/adorefurnix?igsh=emc0cmUwcHVsdXR2",

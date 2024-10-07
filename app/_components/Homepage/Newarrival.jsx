@@ -14,7 +14,7 @@ const Newarrival = async ({ Cachedproducts }) => {
       <h3 className="text-3xl md:text-4xl font-bold text-center  mb-10 font-serif italic ">
         New Arrivals
       </h3>
-      <div className="relative grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-6 px-4 md:px-16">
+      <div className="relative grid grid-cols-2 md:grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-3 md:gap-6 px-4 md:px-16">
         {newarrival.map((item) => (
           <div
             key={item.name}
@@ -28,7 +28,7 @@ const Newarrival = async ({ Cachedproducts }) => {
               height={400}
               loading="lazy"
             />
-            <h4 className="text-[18px] font-semibold  mb-2 truncate mt-2">
+            <h4 className="text-[14px] md:text-[16px] font-semibold  mb-2 truncate mt-2">
               {item.name}
             </h4>
             <p className="font-bold text-[16px] md:text-[20px]">
@@ -41,10 +41,12 @@ const Newarrival = async ({ Cachedproducts }) => {
               View Details
             </Link>
             {/* new tag */}
-            <img
-              className="absolute top-[-13px] right-[-14px] h-24 aspect-square"
+            <Image
+              className="absolute top-[-13px] right-[-14px] w-24 aspect-square"
               src="/images/newtag.webp"
               alt="new tag image"
+              height={300}
+              width={500}
               loading="lazy"
             />
           </div>

@@ -4,6 +4,7 @@ import { categorylist } from "@/app/commondata";
 import { Getliveproducts } from "../Getliveproducts";
 import { Deleteproduct } from "../Serveraction";
 import { AppContextfn } from "@/app/Context";
+import Image from "next/image";
 import Componentloading from "@/app/_components/Componentloading";
 
 function Showproducts() {
@@ -114,13 +115,14 @@ function Showproducts() {
                 </div>
               )}
               {/*  */}
-              <img
+              <Image
                 src={item.colorpalets[0].images[0]}
                 alt=""
                 width={300}
                 height={300}
+                loading="lazy"
                 className="aspect-[4/3] w-full object-cover object-center"
-              ></img>
+              ></Image>
               <div className="p-[10px]">
                 <h3 className="text-center  font-bold">{item.name}</h3>
                 <div className="flex items-center gap-[10px] text-[18px]">
