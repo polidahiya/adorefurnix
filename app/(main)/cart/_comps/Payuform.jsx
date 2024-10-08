@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import PayUpayment from "@/app/_serveractions/Payupayment";
 import Componentloading from "@/app/_components/Componentloading";
+import { payulink } from "@/app/commondata";
 
 export default function PaymentPage({ orderid, amount, userdata }) {
   const [payUData, setPayUData] = useState(null);
@@ -34,7 +35,7 @@ export default function PaymentPage({ orderid, amount, userdata }) {
         <Componentloading />
         <form
           ref={formRef} // Attach the form reference
-          action="https://test.payu.in/_payment"
+          action={payulink}
           method="POST"
         >
           <input type="hidden" name="key" value={payUData?.key} />
