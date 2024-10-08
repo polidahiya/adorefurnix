@@ -42,6 +42,11 @@ export const Cancelorder = async (orderid, productindex) => {
     if (!order) {
       return { status: 404, message: "Order not found" };
     }
+    // check 24 hours
+    const now = new Date();
+    const ordertime = order?.createdAt;
+    const hoursAgo = Math.floor((now - ordertime) / (1000 * 60 * 60));
+    if (hoursAgo > 24) return { status: 400, message: "Cancellation unavailable (exceeds 24 hours)." };
 
     // Proceed to update the product status in the array
     const result = await orderscollection.updateOne(filter, {

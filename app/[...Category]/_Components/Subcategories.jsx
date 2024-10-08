@@ -26,6 +26,7 @@ function Subcategories({ category, subcat }) {
                   src={itemsubcat.image}
                   width={100}
                   height={100}
+                  quality={50}
                   alt={itemsubcat.name}
                   className="w-full aspect-[4/3] object-cover object-center rounded-[5px] md:rounded-[10px]"
                 ></Image>

@@ -16,14 +16,14 @@ export const categorylist = {
     name: "Living Room Furniture",
     image: "/categoriesimages/livingroom.jpg",
     subcat: [
-      { image: "/categoriesimages/subcats/sofasets.webp", name: "Sofa sets" },
+      { image: "/categoriesimages/subcats/sofasets.jpg", name: "Sofa sets" },
       {
         image: "/categoriesimages/subcats/sofacumbed.jpg",
         name: "Sofa cum bed",
       },
       { image: "/categoriesimages/subcats/wingchair.jpg", name: "Wing chairs" },
       { image: "/categoriesimages/subcats/ottoman.jpg", name: "Ottoman" },
-      { image: "/categoriesimages/subcats/charis.jpg", name: "Chairs" },
+      { image: "/categoriesimages/subcats/chair.png", name: "Chairs" },
     ],
     desc: "Discover our curated selection of Living Room Furniture, designed to offer comfort and style. From cozy sofa sets to multifunctional sofa cum beds, elegant wing chairs, and stylish ottomans and chairs, elevate your living space with premium options that match your home decor.",
   },
@@ -32,22 +32,22 @@ export const categorylist = {
     image: "/categoriesimages/bedroom.jpg",
     subcat: [
       {
-        image: "/categoriesimages/subcats/kingbed.webp",
+        image: "/categoriesimages/subcats/kingbed.jpg",
         name: "King Size Bed",
       },
       {
-        image: "/categoriesimages/subcats/queenbed.jpeg",
+        image: "/categoriesimages/subcats/queenbed.jpg",
         name: "Queen Size Bed",
       },
-      { image: "/categoriesimages/subcats/singlebed.webp", name: "Single Bed" },
-      { image: "/categoriesimages/subcats/kidsbed.webp", name: "Kids Bed" },
+      { image: "/categoriesimages/subcats/singlebed.jpg", name: "Single Bed" },
+      { image: "/categoriesimages/subcats/kidsbed.jpg", name: "Kids Bed" },
       { image: "/categoriesimages/subcats/wardrobe.jpg", name: "Wardrobe" },
       {
         image: "/categoriesimages/subcats/bedsidetable.jpg",
         name: "Bedside Table",
       },
       {
-        image: "/categoriesimages/subcats/chestofdrawers.avif",
+        image: "/categoriesimages/subcats/chestofdrawers.png",
         name: "Chest of Drawers",
       },
       {
@@ -62,11 +62,11 @@ export const categorylist = {
     image: "/categoriesimages/Dining.jpg",
     subcat: [
       {
-        image: "/categoriesimages/subcats/2-SeaterDiningSet.webp",
+        image: "/categoriesimages/subcats/2-SeaterDiningSet.jpg",
         name: "2-Seater Dining Set",
       },
       {
-        image: "/categoriesimages/subcats/4-SeaterDiningSet.webp",
+        image: "/categoriesimages/subcats/4-SeaterDiningSet.jpg",
         name: "4-Seater Dining Set",
       },
       {
@@ -78,19 +78,19 @@ export const categorylist = {
   },
   Tables: {
     name: "Tables",
-    image: "/categoriesimages/tables.jpg",
+    image: "/categoriesimages/Tables.jpg",
     subcat: [
       {
-        image: "/categoriesimages/subcats/CoffeeTables.avif",
+        image: "/categoriesimages/subcats/CoffeeTables.jpg",
         name: "Coffee Tables",
       },
-      { image: "/categoriesimages/subcats/EndTables.webp", name: "End Tables" },
+      { image: "/categoriesimages/subcats/EndTables.jpg", name: "End Tables" },
       {
         image: "/categoriesimages/subcats/ConsoleTables.jpg",
         name: "Console Tables",
       },
       {
-        image: "/categoriesimages/subcats/NestingTables.webp",
+        image: "/categoriesimages/subcats/NestingTables.jpg",
         name: "Nesting Tables",
       },
     ],
@@ -98,11 +98,11 @@ export const categorylist = {
   },
   Storage: {
     name: "Storage Furniture",
-    image: "/categoriesimages/storage.avif",
+    image: "/categoriesimages/Storage.jpg",
     subcat: [
-      { image: "/categoriesimages/subcats/ShoeRack.webp", name: "Shoe Rack" },
+      { image: "/categoriesimages/subcats/ShoeRack.jpg", name: "Shoe Rack" },
       {
-        image: "/categoriesimages/subcats/tvandentertainmentunits.webp",
+        image: "/categoriesimages/subcats/tvandentertainmentunits.jpg",
         name: "Tv and Entertainment Unit",
       },
       { image: "/categoriesimages/subcats/Cabinet.jpg", name: "Cabinet" },
@@ -116,20 +116,20 @@ export const categorylist = {
   },
   "Bar Furniture": {
     name: "Bar Furniture",
-    image: "/categoriesimages/barfurniture.jpg",
+    image: "/categoriesimages/barfurniture.png",
     subcat: [
       { image: "/categoriesimages/subcats/BarUnits.png", name: "Bar Units" },
       {
-        image: "/categoriesimages/subcats/BarCabinets.webp",
+        image: "/categoriesimages/subcats/Barcabinets.jpg",
         name: "Bar Cabinets",
       },
-      { image: "/categoriesimages/subcats/BarTrolly.webp", name: "Bar Trolly" },
+      { image: "/categoriesimages/subcats/bartrolly.jpg", name: "Bar Trolly" },
       {
         image: "/categoriesimages/subcats/BarWallhangingShelf.jpg",
         name: "Bar Wall hanging Shelf",
       },
       {
-        image: "/categoriesimages/subcats/BarChairs&Stools.jpeg",
+        image: "/categoriesimages/subcats/BarChairs&Stools.jpg",
         name: "Bar Chairs & Stools",
       },
     ],
@@ -153,18 +153,18 @@ export const categorylist = {
   },
   "Office Furniture": {
     name: "Office Furniture",
-    image: "/categoriesimages/officefurniture.webp",
+    image: "/categoriesimages/officefurniture.jpg",
     subcat: [
       {
-        image: "/categoriesimages/subcats/OfficeChairs.webp",
+        image: "/categoriesimages/subcats/OfficeChairs.jpg",
         name: "Office Chairs",
       },
       {
-        image: "/categoriesimages/subcats/Study&LaptopTables.webp",
+        image: "/categoriesimages/subcats/Study&LaptopTables.jpg",
         name: "Study & Laptop Tables",
       },
       {
-        image: "/categoriesimages/subcats/OfficeSofa.webp",
+        image: "/categoriesimages/subcats/OfficeSofa.jpg",
         name: "Office Sofa",
       },
     ],
@@ -172,7 +172,7 @@ export const categorylist = {
   },
   "Home Decor & More": {
     name: "Home Decor & More",
-    image: "/categoriesimages/homedecoreandmore.webp",
+    image: "/categoriesimages/homedecoreandmore.jpg",
     subcat: [],
     desc: "Explore unique Home Decor options to add personality and charm to your living space. Our collection includes a variety of decor items that will help you create a warm and inviting home environment.",
   },
