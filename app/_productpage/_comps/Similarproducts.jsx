@@ -20,7 +20,7 @@ function Similarproducts({ allproducts, category, subcat, productid }) {
           <div className="flex items-center gap-[20px]  mt-[20px] max-w-full overflow-x-scroll pb-[20px]">
             {similarproducts.map((item, i) => {
               return (
-                <div key={i} className="min-w-[250px] md:min-w-[300px] shadow-md rounded-[10px] overflow-hidden bg-white">
+                <div key={i} className="min-w-[250px] md:min-w-[300px] max-w-[350px]  shadow-md rounded-[10px] overflow-hidden bg-white">
                   <Productcard
                     index={i}
                     id={item._id}

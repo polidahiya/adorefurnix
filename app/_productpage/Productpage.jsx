@@ -72,13 +72,14 @@ async function Productpage({ category, subcat, productid, color }) {
       </header>
 
       <ProductCare />
-      <Promices />
+     
       <Similarproducts
         allproducts={allproducts}
         category={category}
         subcat={subcat}
         productid={productid}
       />
+       <Promices />
     </article>
   );
 }
@@ -145,8 +146,8 @@ const Description = ({ description }) =>
       <span className="text-slate-400 whitespace-nowrap">Description:</span>
       <div>
         {description.map((item, index) => (
-          <div key={index} className="flex items-center gap-[10px]">
-            <span className="h-[10px] aspect-square rounded-full bg-slate-300"></span>
+          <div key={index} className="flex items-start gap-[10px]">
+            <span className="h-[10px] aspect-square rounded-full bg-slate-300 mt-2"></span>
             {item}
           </div>
         ))}

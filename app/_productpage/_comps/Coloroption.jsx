@@ -15,14 +15,14 @@ function Coloroption({ filteredproducts, color }) {
             <Link
               href={`/${filteredproducts.category}/${filteredproducts.subcat}/${filteredproducts._id}?color=${i}`}
               key={i}
-              className={`relative p-[5px]  cursor-pointer shadow-[0px_0px_5px_#bababa7f] rounded-[10px]
+              className={`relative p-[5px] flex flex-col items-center  cursor-pointer shadow-[0px_0px_5px_#bababa7f] rounded-[10px]
                 ${color == i ? "outline outline-cyan-500" : ""}`}
             >
               <Comp image={item.images[0]} />
-              <p className="text-center">{item.name}</p>
+              <p className="text-center text-[12px]">{item?.name}</p>
               <div
                 className={`absolute top-[5px] right-[5px] w-[20px] aspect-square rounded-full`}
-                style={{ backgroundColor: item.color }}
+                style={{ backgroundColor: item?.color }}
               ></div>
             </Link>
           );
