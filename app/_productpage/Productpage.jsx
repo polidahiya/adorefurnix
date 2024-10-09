@@ -51,7 +51,7 @@ async function Productpage({ category, subcat, productid, color }) {
             productName={filteredProduct.name}
           />
 
-          <h1 className="text-[25px] py-[10px] font-semibold" itemProp="name">
+          <h1 className="text-[20px] md:text-[25px] py-[10px] font-semibold" itemProp="name">
             {filteredProduct.name}
           </h1>
           <Rating rating={filteredProduct.rating} />
@@ -85,7 +85,7 @@ async function Productpage({ category, subcat, productid, color }) {
 }
 
 const Breadcrumbs = ({ category, subcat, productName }) => (
-  <nav className="sticky top-[60px] lg:top-[110px] bg-white flex items-center gap-[3px] text-[#87878] text-[14px] z-20 whitespace-nowrap cursor-pointer">
+  <nav className="sticky top-[60px] lg:top-[110px] pl-8 lg:pl-0 py-[20px] lg:py-0 bg-white flex items-center gap-[3px] text-[#87878] text-[14px] z-20 whitespace-nowrap cursor-pointer">
     <Link className="lg:hover:text-cyan-500" href="/">
       Home
     </Link>
@@ -142,11 +142,11 @@ const Dimensions = ({ dimensions }) => (
 
 const Description = ({ description }) =>
   description?.length > 0 && (
-    <div className="flex gap-[10px] mt-[30px] font-semibold">
+    <div className="flex flex-col md:flex-row gap-[10px] mt-[30px] font-semibold">
       <span className="text-slate-400 whitespace-nowrap">Description:</span>
       <div>
         {description.map((item, index) => (
-          <div key={index} className="flex items-start gap-[10px]">
+          <div key={index} className="flex items-start gap-[10px] pl-5 md:pl-0">
             <span className="h-[10px] aspect-square rounded-full bg-slate-300 mt-2"></span>
             {item}
           </div>

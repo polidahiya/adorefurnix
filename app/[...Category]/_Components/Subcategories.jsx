@@ -28,9 +28,13 @@ function Subcategories({ category, subcat }) {
                   height={100}
                   quality={50}
                   alt={itemsubcat.name}
-                  className="w-full aspect-[4/3] object-cover object-center rounded-[5px] md:rounded-[10px]"
+                  className={`w-full aspect-[4/3] object-cover object-center rounded-[7px] md:rounded-[10px] border-[3px] border-white`}
                 ></Image>
-                <div className="h-full w-full  text-center p-[5px]  text-[10px] md:text-[12px] lg:text-[14px] text-ellipsis whitespace-nowrap overflow-hidden">
+                <div
+                  className={`h-fit w-full  text-center p-[5px]  text-[10px] md:text-[12px] lg:text-[14px] text-ellipsis whitespace-nowrap overflow-hidden ${
+                    subcat == itemsubcat.name && "font-semibold"
+                  }`}
+                >
                   {itemsubcat.name}
                 </div>
               </Link>

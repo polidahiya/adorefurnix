@@ -5,18 +5,19 @@ import Link from "next/link";
 
 function Coloroption({ filteredproducts, color }) {
   return (
-    <div className="flex gap-[50px] mt-[30px]">
+    <div className="flex flex-col md:flex-row gap-5 md:gap-[50px] mt-[30px]">
       <span className="font-semibold text-slate-400 whitespace-nowrap">
         Color :
       </span>
-      <div className="flex gap-[10px] overflow-x-scroll flex-wrap p-[20px]">
+      <div className="flex gap-[10px] flex-wrap md:px-[20px]">
         {filteredproducts.colorpalets.map((item, i) => {
           return (
             <Link
-              href={`/${filteredproducts.category}/${filteredproducts.subcat}/${filteredproducts._id}?color=${i}`}
               key={i}
+              href={`/${filteredproducts.category}/${filteredproducts.subcat}/${filteredproducts._id}?color=${i}`}
+              replace
               className={`relative p-[5px] flex flex-col items-center  cursor-pointer shadow-[0px_0px_5px_#bababa7f] rounded-[10px]
-                ${color == i ? "outline outline-cyan-500" : ""}`}
+                ${color == i && "outline outline-cyan-500"}`}
             >
               <Comp image={item.images[0]} />
               <p className="text-center text-[12px]">{item?.name}</p>

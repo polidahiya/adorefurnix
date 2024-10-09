@@ -90,10 +90,10 @@ function Secondnav({ category, subcat, searchParams, lengthofproducts }) {
                 >
                   <Link
                     href={filterlink(i)}
+                    replace
                     className={`flex items-center justify-center  py-[5px] md:px-[5px] text-[14px] md:text-[16px]  ${
-                      i == searchParams.pricerange
-                        ? "bg-theme bg-clip-text text-transparent "
-                        : ""
+                      i == searchParams.pricerange &&
+                      "bg-theme bg-clip-text text-transparent "
                     }`}
                   >
                     {item.name}
@@ -120,10 +120,10 @@ function Secondnav({ category, subcat, searchParams, lengthofproducts }) {
                 >
                   <Link
                     href={sortlink(i)}
+                    replace
                     className={`flex items-center justify-center  py-[5px] md:px-[5px] text-[14px] md:text-[16px]  ${
-                      i == searchParams.sort
-                        ? "bg-theme bg-clip-text text-transparent "
-                        : ""
+                      i == searchParams.sort &&
+                      "bg-theme bg-clip-text text-transparent "
                     }`}
                   >
                     {item.name}

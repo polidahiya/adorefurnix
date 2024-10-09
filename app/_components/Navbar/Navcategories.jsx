@@ -4,6 +4,7 @@ import { categorylist } from "@/app/commondata";
 import Link from "next/link";
 import Image from "next/image";
 import { AppContextfn } from "@/app/Context";
+import { FaCaretDown } from "react-icons/fa";
 
 function Navcategories({ category }) {
   const { showcat, setshowcat } = AppContextfn();
@@ -42,27 +43,41 @@ function Navcategories({ category }) {
                 {item}
               </span>
             </Link>
-            {/* subcategories */}
+
             {categorylist[item].subcat.length > 0 && (
-              <div
-                className={`absolute top-0 hidden lg:group-hover:block -z-10 ${
-                  i == 0 ? "left-0" : "left-1/2 -translate-x-1/2"
-                }`}
-              >
-                <div className="p-2 rounded-lg bg-graygradient text-white flex flex-col shadow-lg mt-12">
-                  {categorylist[item].subcat.map((subcat, j) => {
-                    return (
-                      <Link
-                        key={j}
-                        href={`/${item}/${subcat.name}`}
-                        className="p-2 hover:bg-slate-700 w-52 text-center text-[14px]"
-                      >
-                        {subcat?.name}
-                      </Link>
-                    );
-                  })}
+              <>
+                {/* down arrow */}
+                <FaCaretDown
+                  className={`absolute top-[calc(100%-5px)] text-white  hidden lg:group-hover:block left-1/2 -translate-x-1/2`}
+                />
+
+                {/* subcategories */}
+                <div
+                  className={`absolute top-0 hidden lg:group-hover:block -z-10 ${
+                    i == 0 && "left-0"
+                  } ${
+                    i == Object.keys(categorylist)?.length - 1 && "right-0"
+                  } ${
+                    i != 0 &&
+                    i != Object.keys(categorylist)?.length - 1 &&
+                    "left-1/2 -translate-x-1/2"
+                  }`}
+                >
+                  <div className="p-2 rounded-lg bg-graygradient text-white flex flex-col shadow-lg mt-12">
+                    {categorylist[item].subcat.map((subcat, j) => {
+                      return (
+                        <Link
+                          key={j}
+                          href={`/${item}/${subcat.name}`}
+                          className="p-2 hover:bg-slate-700 w-52 text-center text-[14px]"
+                        >
+                          {subcat?.name}
+                        </Link>
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
+              </>
             )}
           </div>
         );

@@ -9,7 +9,6 @@ import Subcategories from "./_Components/Subcategories";
 import { sortProducts, pricefilter } from "./_Components/sortandfilter";
 import Productpage from "../_productpage/Productpage";
 
-
 async function page({ params, searchParams }) {
   const { Category: slug } = params;
 
@@ -51,22 +50,25 @@ async function page({ params, searchParams }) {
   const lengthofproducts = sortedProducts.length;
 
   return (
-    <div className="flex flex-col lg:flex-row">
-      <Secondnav
-        category={category}
-        subcat={subcat}
-        searchParams={searchParams}
-        lengthofproducts={lengthofproducts}
-      />
-      <div className="w-full">
-        <Subcategories category={category} subcat={subcat} />
-        {sortedProducts.length > 0 ? (
-          <ProductGrid products={sortedProducts} />
-        ) : (
-          <Productnotfound />
-        )}
+    <>
+      <div className="flex flex-col lg:flex-row">
+        <Secondnav
+          category={category}
+          subcat={subcat}
+          searchParams={searchParams}
+          lengthofproducts={lengthofproducts}
+        />
+        <div className="w-full">
+          <Subcategories category={category} subcat={subcat} />
+          {sortedProducts.length > 0 ? (
+            <ProductGrid products={sortedProducts} />
+          ) : (
+            <Productnotfound />
+          )}
+        </div>
       </div>
-    </div>
+      <p className="text-center p-5 font-serif italic">{categorylist[category]?.desc}</p>
+    </>
   );
 }
 
@@ -201,9 +203,7 @@ export const generateMetadata = async ({ params, searchParams }) => {
         description:
           categoryData.desc || `Shop ${subcat} at the best prices online!`,
         openGraph: {
-          images: subCategoryData
-            ? `${domain}${subCategoryData.image}`
-            : null,
+          images: subCategoryData ? `${domain}${subCategoryData.image}` : null,
         },
       };
     }
