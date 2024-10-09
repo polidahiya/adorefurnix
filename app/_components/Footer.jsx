@@ -19,6 +19,8 @@ import { BsTwitterX } from "react-icons/bs";
 import { MdOutlineArrowRightAlt } from "react-icons/md";
 import { sociallinks } from "../commondata";
 import { FaSitemap } from "react-icons/fa";
+import PWAInstallPrompt from "./Pwapromot";
+
 // import ThemeSwitcher from "./Switchtheme";
 
 function Footer() {
@@ -101,10 +103,11 @@ function Footer() {
           reserved.
         </p>
         <div className="h-full flex flex-1 items-center justify-center gap-[20px] text-[12px]">
-          <Link href="Sitemap" className="flex items-center gap-1">
+          <Link href="/Sitemap" className="flex items-center gap-1">
             <FaSitemap className="text-yellow-500" />
             Site map
           </Link>
+          <PWAInstallPrompt />
           {/* <ThemeSwitcher /> */}
         </div>
         <div className="flex flex-1 items-center justify-end gap-[10px]">
@@ -153,7 +156,6 @@ function Divider() {
       </div>
       <div className="h-full w-full rounded-full bg-[linear-gradient(90deg,transparent,white,transparent)]"></div>
     </div>
-    // <div className="bg-[linear-gradient(90deg,transparent,white,transparent)] w-full h-[2px] my-[20px]"></div>
   );
 }
 

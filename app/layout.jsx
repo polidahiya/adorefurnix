@@ -5,10 +5,11 @@ import { domain } from "./commondata";
 
 export const metadata = {
   title: "Adorefurnix",
-  description: "Discover the best furniture and home decor at Adorefurnix. Shop now for exclusive deals!",
+  description: "Discover the best furniture and home decor at Adorefurnix.com Shop now for exclusive deals!",
   openGraph: {
     images: `${domain}/minlogo.png`,
   },
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({ children }) {

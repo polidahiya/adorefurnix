@@ -1,6 +1,8 @@
 "use server";
+import { revalidatePath } from "next/cache";
+import { categorylist } from "../commondata";
 import { getcollection } from "@/app/Mongodb";
-const { Productscollection, blogscollection }=getcollection()
+const { Productscollection, blogscollection } = getcollection();
 
 let cachedproducts = null;
 let lastproductfetchtime = null;
@@ -54,6 +56,10 @@ export async function refreshproductsnow() {
     const currentTime = new Date().getTime();
     cachedproducts = await Productscollection.find({}).toArray();
     lastproductfetchtime = currentTime;
+    cachedproducts.map((item) => (item._id = item._id.toString()));
+
+    Revalidatepaths();
+
     return { status: 200, message: "Products Refreshed on site" };
   } catch (error) {
     console.log(error);
@@ -66,9 +72,41 @@ export async function refreshblogsnow() {
     const currentTime = new Date().getTime();
     cachedblogs = await Productscollection.find({}).toArray();
     lastblogfetchtime = currentTime;
+    cachedblogs.map((item) => (item._id = item._id.toString()));
+
+    Revalidateblogpaths();
+
     return { status: 200, message: "Blogs Refreshed on site" };
   } catch (error) {
     console.log(error);
     return { status: 500, message: "Server Error!" };
   }
+}
+
+function Revalidatepaths() {
+  revalidatePath(`/`);
+
+  Object.keys(categorylist)?.forEach((category) => {
+    revalidatePath(`/${category}`);
+    category?.subcat?.forEach((subcat) => {
+      revalidatePath(`/${category}/${subcat}`);
+    });
+  });
+
+  cachedproducts?.forEach((product) => {
+    revalidatePath(`/${product?.category}/${product?.subcat}/${product?._id}`);
+    product?.colorpalets?.forEach((palet, i) => {
+      revalidatePath(
+        `/${product?.category}/${product?.subcat}/${product?._id}?color=${i}`
+      );
+    });
+  });
+}
+
+function Revalidateblogpaths() {
+  revalidatePath(`/`);
+  revalidatePath(`/Blogs`);
+  cachedblogs.forEach((blog) => {
+    revalidatePath(`/Blogs/${blog?._id}`);
+  });
 }

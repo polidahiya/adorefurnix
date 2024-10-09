@@ -9,6 +9,7 @@ import Subcategories from "./_Components/Subcategories";
 import { sortProducts, pricefilter } from "./_Components/sortandfilter";
 import Productpage from "../_productpage/Productpage";
 
+
 async function page({ params, searchParams }) {
   const { Category: slug } = params;
 
