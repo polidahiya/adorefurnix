@@ -87,17 +87,21 @@ function Revalidatepaths() {
   revalidatePath(`/`);
 
   Object.keys(categorylist)?.forEach((category) => {
-    revalidatePath(`/${category}`);
+    revalidatePath(encodeURI(`/${category}`));
     category?.subcat?.forEach((subcat) => {
-      revalidatePath(`/${category}/${subcat}`);
+      revalidatePath(encodeURI(`/${category}/${subcat}`));
     });
   });
 
   cachedproducts?.forEach((product) => {
-    revalidatePath(`/${product?.category}/${product?.subcat}/${product?._id}`);
+    revalidatePath(
+      encodeURI(`/${product?.category}/${product?.subcat}/${product?._id}`)
+    );
     product?.colorpalets?.forEach((palet, i) => {
       revalidatePath(
-        `/${product?.category}/${product?.subcat}/${product?._id}?color=${i}`
+        encodeURI(
+          `/${product?.category}/${product?.subcat}/${product?._id}?color=${i}`
+        )
       );
     });
   });
