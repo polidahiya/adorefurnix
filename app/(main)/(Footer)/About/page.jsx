@@ -1,5 +1,5 @@
 import React from "react";
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
 import { sociallinks } from "@/app/commondata";
 
 const About = () => {
@@ -28,8 +28,8 @@ const About = () => {
             Founded in 2018, we pride ourselves on our commitment to quality
             craftsmanship and exceptional customer service. Each piece of
             furniture is carefully designed and crafted by skilled artisans who
-            share our dedication to excellence. Whether you&apos;re looking for a
-            statement piece or a functional addition to your home, we have
+            share our dedication to excellence. Whether you&apos;re looking for
+            a statement piece or a functional addition to your home, we have
             something to suit every taste and style.
           </p>
           <p className="mb-4">
@@ -43,8 +43,8 @@ const About = () => {
           <p className="mb-4">
             Our mission is to provide high-quality, handcrafted wooden furniture
             and home decor that enhances your living space. We strive to offer
-            exceptional value and create pieces that you&apos;ll cherish for years to
-            come.
+            exceptional value and create pieces that you&apos;ll cherish for
+            years to come.
           </p>
           <h3 className="text-xl font-semibold mt-6 mb-2">Our Vision</h3>
           <p>

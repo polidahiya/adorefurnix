@@ -4,10 +4,10 @@ import { categorylist } from "../commondata";
 import { getcollection } from "@/app/Mongodb";
 const { Productscollection, blogscollection } = getcollection();
 
+// products data
 let cachedproducts = null;
 let lastproductfetchtime = null;
 
-// prodcuts data
 export async function Cachedproducts() {
   try {
     const currentTime = new Date().getTime();
@@ -27,10 +27,11 @@ export async function Cachedproducts() {
     console.log(error);
   }
 }
+
+// blogs data
 let cachedblogs = null;
 let lastblogfetchtime = null;
 
-// prodcuts data
 export async function Cachedblogs() {
   try {
     const currentTime = new Date().getTime();

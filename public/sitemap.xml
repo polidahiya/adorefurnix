@@ -11,11 +11,6 @@
 	<priority>0.1</priority>
 </url>
 <url>
-	<loc>https://adorefurnix.com/cart</loc>
-	<lastmod>2024-10-01T18:50:38+01:00</lastmod>
-	<priority>0.1</priority>
-</url>
-<url>
 	<loc>https://adorefurnix.com/loginlogout</loc>
 	<lastmod>2024-10-01T18:50:38+01:00</lastmod>
 	<priority>0.1</priority>
@@ -114,16 +109,6 @@
 	<loc>https://adorefurnix.com/Terms&amp;Conditions</loc>
 	<lastmod>2024-10-01T18:50:38+01:00</lastmod>
 	<priority>1.0</priority>
-</url>
-<url>
-	<loc>https://adorefurnix.com/orderdetails</loc>
-	<lastmod>2024-10-01T18:50:38+01:00</lastmod>
-	<priority>0.1</priority>
-</url>
-<url>
-	<loc>https://adorefurnix.com/likedproducts</loc>
-	<lastmod>2024-10-01T18:50:38+01:00</lastmod>
-	<priority>0.1</priority>
 </url>
 <url>
 	<loc>https://adorefurnix.com/Bedroom/King%20Size%20Bed</loc>
@@ -463,56 +448,6 @@
 <url>
 	<loc>https://adorefurnix.com/Living%20Room/Chairs/6689072a2708274592693542</loc>
 	<lastmod>2024-10-01T18:50:48+01:00</lastmod>
-	<priority>0.6</priority>
-</url>
-<url>
-	<loc>https://adorefurnix.com/Bedroom/Kids%20Bed/6688d445ac9bab111707adb5?color=0</loc>
-	<lastmod>2024-10-01T18:50:54+01:00</lastmod>
-	<priority>0.6</priority>
-</url>
-<url>
-	<loc>https://adorefurnix.com/Bedroom/Wardrobe/668a56a462f4ca9674eda9a7?color=0</loc>
-	<lastmod>2024-10-01T18:50:54+01:00</lastmod>
-	<priority>0.6</priority>
-</url>
-<url>
-	<loc>https://adorefurnix.com/Bedroom/King%20Size%20Bed/66d342974bfaf23ac4e8f350?color=0</loc>
-	<lastmod>2024-10-01T18:50:54+01:00</lastmod>
-	<priority>0.6</priority>
-</url>
-<url>
-	<loc>https://adorefurnix.com/Bedroom/King%20Size%20Bed/6682da7d1e75b277128f181b?color=0</loc>
-	<lastmod>2024-10-01T18:50:54+01:00</lastmod>
-	<priority>0.6</priority>
-</url>
-<url>
-	<loc>https://adorefurnix.com/Tables/Coffee%20Tables/668b4374c6a4ea686ba5883f?color=0</loc>
-	<lastmod>2024-10-01T18:50:58+01:00</lastmod>
-	<priority>0.6</priority>
-</url>
-<url>
-	<loc>https://adorefurnix.com/Tables/Coffee%20Tables/668b441ec6a4ea686ba58841?color=0</loc>
-	<lastmod>2024-10-01T18:50:58+01:00</lastmod>
-	<priority>0.6</priority>
-</url>
-<url>
-	<loc>https://adorefurnix.com/Tables/Coffee%20Tables/668b4279c6a4ea686ba5883c?color=0</loc>
-	<lastmod>2024-10-01T18:50:58+01:00</lastmod>
-	<priority>0.6</priority>
-</url>
-<url>
-	<loc>https://adorefurnix.com/Tables/Coffee%20Tables/668b42e9c6a4ea686ba5883d?color=0</loc>
-	<lastmod>2024-10-01T18:50:58+01:00</lastmod>
-	<priority>0.6</priority>
-</url>
-<url>
-	<loc>https://adorefurnix.com/Tables/Coffee%20Tables/668b43cfc6a4ea686ba58840?color=0</loc>
-	<lastmod>2024-10-01T18:50:58+01:00</lastmod>
-	<priority>0.6</priority>
-</url>
-<url>
-	<loc>https://adorefurnix.com/Tables/Coffee%20Tables/668b4336c6a4ea686ba5883e?color=0</loc>
-	<lastmod>2024-10-01T18:50:58+01:00</lastmod>
 	<priority>0.6</priority>
 </url>
 </urlset>
