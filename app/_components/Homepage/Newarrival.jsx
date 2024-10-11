@@ -26,6 +26,7 @@ const Newarrival = async ({ Cachedproducts }) => {
               alt={item.name}
               width={400}
               height={400}
+              quality={10}
               loading="lazy"
             />
             <h4 className="text-[14px] md:text-[16px] font-semibold  mb-2 truncate mt-2">

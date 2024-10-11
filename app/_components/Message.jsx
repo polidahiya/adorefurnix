@@ -1,13 +1,14 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { AppContextfn } from "../Context";
+import { gsap } from "gsap";
 
 function Message() {
   const { messagearray } = AppContextfn();
 
   return (
     <>
-      {messagearray.map((item, i) => {
+      {messagearray.map((item) => {
         return <Notif key={item.id} item={item} />;
       })}
     </>
@@ -16,54 +17,56 @@ function Message() {
 
 function Notif({ item }) {
   const { setmessagearray } = AppContextfn();
-  const [effect, seteffect] = useState([false, false]);
+  const notifRef = useRef(null); // Reference for the notification element
+  const textRef = useRef(null); // Reference for the text element
 
-  //   remove message function
+  // Function to remove the message
   const removemessage = () => {
-    setmessagearray((pre) =>
-      pre.filter((notification) => notification.id !== item.id)
-    );
+    gsap.to(notifRef.current, {
+      opacity: 0,
+      y: 20,
+      duration: 0.2,
+      onComplete: () => {
+        setmessagearray((pre) =>
+          pre.filter((notification) => notification.id !== item.id)
+        );
+      },
+    });
   };
 
-  //   auto remove
   useEffect(() => {
-    setTimeout(() => {
-      seteffect([true, false]); //effect 1 set
-      setTimeout(() => {
-        seteffect([true, true]); //effect 2 set
-        setTimeout(() => {
-          seteffect([true, false]); //effect 2 remove
-          setTimeout(() => {
-            seteffect([false, false]); //effect 1 remove
-            setTimeout(() => {
-              removemessage(); //message removed
-            }, 200);
-          }, 300);
-        }, 3000);
-      }, 200);
-    }, 100);
+    const timeline = gsap.timeline();
+    timeline
+      .to(notifRef.current, { opacity: 1, y: 0, duration: 0.15 }) // Fade in and slide up
+      .to(notifRef.current, {
+        width: 400,
+        maxWidth: "calc(90%)",
+        duration: 0.3,
+      }) // Expand
+      .to(textRef.current, { opacity: 1, duration: 0.3 }, "-=0.1") // Fade in text
+      .to(notifRef.current, { width: "40px", duration: 0.3, delay: 3 }) // Contract after delay
+      .to(textRef.current, { opacity: 0, duration: 0.3 }, "-=0.4") // Fade out text
+      .to(notifRef.current, { opacity: 0, y: 20, duration: 0.3 }) // Fade out and slide down
+      .call(removemessage); // Remove the message after the animation
+
+    return () => {
+      timeline.kill(); 
+    };
   }, []);
 
   return (
     <div
-      className={`fixed top-[70px] lg:top-[120px] left-[50%] translate-x-[-50%]  h-[40px] rounded-full flex items-center justify-center bg-white border border-slate-300 z-[50]  shadow-md
-    ${
-      effect[0]
-        ? "opacity-100 translate-y-0 duration-150"
-        : "opacity-0 translate-y-[20px] duration-150"
-    } ${
-        effect[1]
-          ? "w-[90%] md:w-[400px] duration-300"
-          : "w-[40px] duration-300"
-      }`}
+      ref={notifRef}
+      className={`fixed w-[40px] top-[70px] lg:top-[120px] left-[50%] translate-x-[-50%] h-[40px] rounded-full flex items-center justify-center bg-white border border-slate-300 z-[50] shadow-md opacity-0 translate-y-[20px] `} // Original styles
     >
       <span
-        className={`${effect[1] ? "opacity-100 duration-100" : "opacity-0"}`}
+        ref={textRef}
+        className={`opacity-0 font-semibold`} 
       >
         {item.message}
       </span>
       <button
-        className={`absolute right-[4px] top-[4px] h-[30px] aspect-square bg-theme text-white rounded-full  `}
+        className={`absolute right-[4px] top-[4px] h-[30px] aspect-square bg-theme text-white rounded-full`}
         onClick={removemessage}
       >
         X

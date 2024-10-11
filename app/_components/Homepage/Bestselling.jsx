@@ -22,7 +22,7 @@ async function Bestselling({ Cachedproducts }) {
         </p>
         <div className="grid place-content-center">
           <Link
-            href={"/Search?query=Best"}
+            href={"/Search?query=Best Seller"}
             className="relative group flex items-center justify-center gap-[10px] px-6 py-3  text-white font-semibold rounded-full overflow-hidden"
           >
             <span>See All Collection</span>
