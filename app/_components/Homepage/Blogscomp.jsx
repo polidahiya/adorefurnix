@@ -26,7 +26,7 @@ async function Blogscomp() {
           const firstImage =
             blog?.blogdata?.find((item) => item.type === "image")?.content ||
             "/images/noblogimage.jpg";
-            
+
           const paragraphs = blog?.blogdata
             ?.filter((item) => item.type === "paragraph")
             ?.slice(0, 2); // Show only first 2 paragraphs
@@ -36,18 +36,16 @@ async function Blogscomp() {
               key={i}
               className="flex flex-col md:flex-row items-stretch gap-5 p-5 bg-white shadow-md mt-5 rounded-lg"
             >
-              <div className="w-full md:w-1/3">
-                <Image
-                  src={firstImage}
-                  className="rounded-lg aspect-[4/3] h-full object-cover object-center"
-                  alt="Blog Image"
-                  loading="lazy"
-                  height={300}
-                  width={400}
-                  quality={10}
-                />
-              </div>
-              <div className="w-full md:w-2/3 flex flex-col min-h-full">
+              <Image
+                src={firstImage}
+                className="rounded-lg md:h-[250px]  w-full md:w-fit aspect-[4/3]  object-cover object-center"
+                alt="Blog Image"
+                loading="lazy"
+                height={300}
+                width={400}
+                quality={10}
+              />
+              <div className="w-full flex flex-col min-h-full">
                 <h3 className="text-xl md:text-2xl font-bold mb-2 ">
                   {mainHeading}
                 </h3>

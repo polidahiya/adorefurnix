@@ -5,17 +5,17 @@ import Image from "next/image";
 
 function Categories() {
   return (
-    <div id="categories" className="mt-[30px] md:mt-[100px]">
+    <div id="categories" className="mt-[50px] md:mt-[100px]">
       <h3 className="text-3xl md:text-4xl font-bold p-0 text-center italic font-serif ">
         Shop By Categories
       </h3>
-      <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 place-items-center gap-[5px] md:gap-[20px] p-[10px] md:px-[20px] mt-[30px]">
+      <div className=" flex items-stretch justify-center flex-wrap  gap-[1.4vw] px-[1.4vw] mt-[30px]">
         {Object.keys(categorylist).map((item, i) => {
           return (
             <Link
               key={i}
               href={`/${item}`}
-              className={`item w-full rounded-[10px] md:rounded-[15px] overflow-hidden shadow-[0px_0px_10px_#bababa7f] hover:scale-[103%] duration-200`}
+              className={`item w-[30vw] md:w-[23vw] lg:w-[15vw] rounded-md lg:rounded-[1vw] lg:overflow-hidden lg:shadow-[0px_0px_10px_#bababa7f] lg:hover:scale-[103%] duration-200`}
             >
               <Image
                 src={categorylist[item].image}
@@ -24,11 +24,9 @@ function Categories() {
                 quality={10}
                 alt={item}
                 loading="lazy"
-                className="w-full aspect-[4/3] object-cover object-center rounded-[10px] md:rounded-[15px]"
+                className="w-full aspect-[4/3] object-cover object-center rounded-[2.5vw] md:rounded-[1vw]"
               ></Image>
-              <div className="text-center text-[13px] md:text-[16px] py-[5px] md:py-[10px]">
-                {item}
-              </div>
+              <div className="text-center text-[16px] py-[10px]">{item}</div>
             </Link>
           );
         })}
