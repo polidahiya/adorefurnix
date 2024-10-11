@@ -1,66 +1,26 @@
 "use server";
-import { revalidatePath } from "next/cache";
-import { categorylist } from "../commondata";
 import { getcollection } from "@/app/Mongodb";
 const { Productscollection, blogscollection } = getcollection();
+import { unstable_cache } from "next/cache";
+import { revalidateTag } from "next/cache";
 
-// products data
-let cachedproducts = null;
-let lastproductfetchtime = null;
+const CACHE_TIME = 60 * 60 * 1000; // 24 hours
 
-export async function Cachedproducts() {
-  try {
-    const currentTime = new Date().getTime();
-    const cachetime = 24 * 60 * 60 * 1000;
-    if (
-      !cachedproducts ||
-      !lastproductfetchtime ||
-      currentTime - lastproductfetchtime >= cachetime
-    ) {
-      cachedproducts = await Productscollection.find({}).toArray();
-      lastproductfetchtime = currentTime;
-    }
-    cachedproducts.map((item) => (item._id = item._id.toString()));
-
-    return cachedproducts;
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-// blogs data
-let cachedblogs = null;
-let lastblogfetchtime = null;
-
-export async function Cachedblogs() {
-  try {
-    const currentTime = new Date().getTime();
-    const cachetime = 24 * 60 * 60 * 1000;
-    if (
-      !cachedblogs ||
-      !lastblogfetchtime ||
-      currentTime - lastblogfetchtime >= cachetime
-    ) {
-      cachedblogs = await blogscollection.find({}).sort({ _id: -1 }).toArray();
-      lastblogfetchtime = currentTime;
-    }
-    cachedblogs.map((item) => (item._id = item._id.toString()));
-
-    return cachedblogs;
-  } catch (error) {
-    console.log(error);
-  }
-}
+export const Cachedproducts = unstable_cache(
+  async () => {
+    const productsList = await Productscollection.find({}).toArray();
+    return productsList.map((item) => ({
+      ...item,
+      _id: item._id.toString(),
+    }));
+  },
+  ["posts"],
+  { revalidate: CACHE_TIME, tags: ["posts"] }
+);
 
 export async function refreshproductsnow() {
   try {
-    const currentTime = new Date().getTime();
-    cachedproducts = await Productscollection.find({}).toArray();
-    lastproductfetchtime = currentTime;
-    cachedproducts.map((item) => (item._id = item._id.toString()));
-
-    Revalidatepaths();
-
+    revalidateTag("posts");
     return { status: 200, message: "Products Refreshed on site" };
   } catch (error) {
     console.log(error);
@@ -68,50 +28,22 @@ export async function refreshproductsnow() {
   }
 }
 
+// blogs
+export const Cachedblogs = unstable_cache(
+  async () => {
+    const blogs = await blogscollection.find({}).sort({ _id: -1 }).toArray();
+    return blogs.map((item) => ({ ...item, _id: item._id.toString()}));
+  },
+  ["blogs"],
+  { revalidate: CACHE_TIME, tags: ["blogs"] }
+);
+
 export async function refreshblogsnow() {
   try {
-    const currentTime = new Date().getTime();
-    cachedblogs = await Productscollection.find({}).toArray();
-    lastblogfetchtime = currentTime;
-    cachedblogs.map((item) => (item._id = item._id.toString()));
-
-    Revalidateblogpaths();
-
+    revalidateTag("blogs");
     return { status: 200, message: "Blogs Refreshed on site" };
   } catch (error) {
     console.log(error);
     return { status: 500, message: "Server Error!" };
   }
-}
-
-function Revalidatepaths() {
-  revalidatePath(`/`);
-
-  Object.keys(categorylist)?.forEach((category) => {
-    revalidatePath(encodeURI(`/${category}`));
-    category?.subcat?.forEach((subcat) => {
-      revalidatePath(encodeURI(`/${category}/${subcat}`));
-    });
-  });
-
-  cachedproducts?.forEach((product) => {
-    revalidatePath(
-      encodeURI(`/${product?.category}/${product?.subcat}/${product?._id}`)
-    );
-    product?.colorpalets?.forEach((palet, i) => {
-      revalidatePath(
-        encodeURI(
-          `/${product?.category}/${product?.subcat}/${product?._id}?color=${i}`
-        )
-      );
-    });
-  });
-}
-
-function Revalidateblogpaths() {
-  revalidatePath(`/`);
-  revalidatePath(`/Blogs`);
-  cachedblogs.forEach((blog) => {
-    revalidatePath(`/Blogs/${blog?._id}`);
-  });
 }
