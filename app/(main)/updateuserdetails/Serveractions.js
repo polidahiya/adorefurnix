@@ -10,7 +10,7 @@ export async function updateuserdetails(newuserdetails) {
   try {
     const tokenres = await Userification();
     if (!tokenres) {
-      return { message: "Please login" };
+      return {status:400, message: "Please login" };
     }
 
     const updateduser = await userscollection.findOneAndUpdate(
@@ -29,12 +29,12 @@ export async function updateuserdetails(newuserdetails) {
     });
 
     if (updateduser) {
-      return { message: "Updated Successfully" };
+      return {status:200, message: "Updated Successfully" };
     } else {
-      return { message: "Server error" };
+      return {status:500, message: "Server error" };
     }
   } catch (error) {
-    return { message: "Server error" };
+    return {status:500,message: "Server error" };
   }
 }
 

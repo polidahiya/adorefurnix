@@ -1,5 +1,6 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
+import Checkfields from "./Checkfileds";
 import { AppContextfn } from "@/app/Context";
 import { signup, login } from "../Serveractions";
 import Image from "next/image";
@@ -13,7 +14,7 @@ function Userdetails() {
 
   const { redirectloginlink, setmessagefn } = AppContextfn();
 
-  const [toggleform, settoggleform] = useState(false);
+  const [signupform, setsignupform] = useState(false);
   const [togglepassword, settogglepassword] = useState(true);
   const nameref = useRef(null);
   const emailref = useRef(null);
@@ -23,21 +24,21 @@ function Userdetails() {
   const [loading, setloading] = useState(false);
 
   const authenticateuser = async () => {
-    const filedcheckvalue = fieldcheck({
+    const filedcheckvalue = Checkfields({
       nameref,
       emailref,
       passwordref,
       phonenumref,
       addressref,
       setmessagefn,
-      toggleform,
+      signupform,
     });
 
     if (!filedcheckvalue) return;
 
     setloading(true);
 
-    const userdata = toggleform
+    const userdata = signupform
       ? {
           username: nameref.current.value,
           email: emailref.current.value,
@@ -50,7 +51,7 @@ function Userdetails() {
           password: passwordref.current.value,
         };
 
-    const apiCall = toggleform ? signup : login;
+    const apiCall = signupform ? signup : login;
 
     try {
       const reply = await apiCall(userdata);
@@ -80,11 +81,11 @@ function Userdetails() {
       <center>
         <div className="relative w-fit flex items-center justify-center  text-[30px] ">
           <Usersvg styles="absolute top-[50%] left-0 translate-y-[-50%] translate-x-[-120%]  h-[30px] border border-slate-300 rounded-full fill-white" />
-          {toggleform ? "Sign up" : "Login"}
+          {signupform ? "Sign up" : "Login"}
         </div>
       </center>
       <div className="mt-[20px] lg:grid lg:grid-cols-2 lg:gap-x-[30px] ">
-        {toggleform && <Inputfiels refval={nameref} type="text" lable="Name" />}
+        {signupform && <Inputfiels refval={nameref} type="text" lable="Name" />}
         <Inputfiels refval={emailref} type="email" lable="Email" />
         <Inputfiels
           refval={passwordref}
@@ -101,7 +102,7 @@ function Userdetails() {
             </button>
           }
         />
-        {toggleform && (
+        {signupform && (
           <>
             <Inputfiels
               refval={phonenumref}
@@ -126,20 +127,20 @@ function Userdetails() {
           {loading && (
             <div className="h-[20px] aspect-square rounded-full  border-r-2 border-l-2 border-white animate-spin z-10"></div>
           )}
-          <span className="z-10">{toggleform ? "Signup" : "Login"}</span>
+          <span className="z-10">{signupform ? "Signup" : "Login"}</span>
           <div className="absolute top-0 left-0 w-[200%] h-full bg-[linear-gradient(90deg,#10e89c,#0593f7,#10e89c)] group-hover:translate-x-[-50%] duration-200"></div>
         </button>
       </center>
       {/* form switcher */}
       <div className="text-[14px] text-center mt-[20px]">
-        {toggleform ? "Already have an account?" : "Don't have an account?"}{" "}
+        {signupform ? "Already have an account?" : "Don't have an account?"}{" "}
         <span
           className="text-theme cursor-pointer"
           onClick={() => {
-            settoggleform(!toggleform);
+            setsignupform(!signupform);
           }}
         >
-          {toggleform ? "Login" : "Signup"}
+          {signupform ? "Login" : "Signup"}
         </span>
       </div>
     </div>
@@ -164,75 +165,5 @@ function Inputfiels({ refval, type, lable, extraelem, extrastyle }) {
     </div>
   );
 }
-
-const fieldcheck = ({
-  nameref,
-  emailref,
-  passwordref,
-  phonenumref,
-  addressref,
-  setmessagefn,
-  toggleform,
-}) => {
-  // if fields are empty
-  const refarray = [nameref, emailref, passwordref, phonenumref, addressref];
-  for (let i = 0; i < refarray.length; i++) {
-    if (refarray[i]?.current?.value == "") {
-      refarray[i]?.current?.focus();
-      setmessagefn("Please fill this field");
-      return false;
-    }
-  }
-  // name check
-  if (toggleform) {
-    if (nameref.current.value.length < 3) {
-      nameref.current.focus();
-      setmessagefn("Name is too short");
-      return false;
-    }
-    if (nameref.current.value.length > 50) {
-      nameref.current.focus();
-      setmessagefn("Name is too big");
-      return false;
-    }
-  }
-
-  // email check
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(emailref.current.value)) {
-    emailref.current.focus();
-    setmessagefn("Invalid email");
-    return false;
-  }
-
-  // mobile check
-  if (toggleform) {
-    const mobileregex = /^\d{10}$/;
-    if (!mobileregex.test(phonenumref.current.value)) {
-      emailref.current.focus();
-      setmessagefn("Invalid mobile number");
-      return false;
-    }
-  }
-
-  // password check
-  const minLength = 8;
-  const maxLength = 100;
-
-  if (passwordref.current.value.length < minLength) {
-    passwordref.current.focus();
-    setmessagefn("Password is too short ( " + minLength + " chars min )*");
-    return false;
-  }
-
-  if (passwordref.current.value.length > maxLength) {
-    passwordref.current.focus();
-    setmessagefn("Password is too big ( " + maxLength + " chars min )*");
-    return false;
-  }
-
-  // pass test
-  return true;
-};
 
 export default Userdetails;

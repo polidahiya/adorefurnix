@@ -90,6 +90,7 @@ export const logout = async () => {
   try {
     cookies()?.delete("token");
     cookies()?.delete("userdata");
+    cookies()?.delete("cart");
     return { status: 200, message: "Logout successfully" };
   } catch (error) {
     console.error(error);

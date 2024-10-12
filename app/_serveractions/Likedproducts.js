@@ -9,7 +9,7 @@ export const getLikedProducts = async () => {
     const tokenres = await Userification();
 
     if (!tokenres) {
-      return { message: "Please login first" };
+      return { status: 400, message: "Please login first" };
     }
 
     let result = await userscollection.findOne(
@@ -17,12 +17,10 @@ export const getLikedProducts = async () => {
       { projection: { favourites: 1 } }
     );
 
-    result._id = result._id.toString();
-
-    return result;
+    return { status: 200, message: "Server Error", result: result?.favourites };
   } catch (error) {
     console.log(error);
-    return { message: "Server Error" };
+    return { status: 500, message: "Server Error" };
   }
 };
 
@@ -53,7 +51,7 @@ export async function likeproduct(productid, liked) {
     const tokenres = await Userification();
 
     if (!tokenres) {
-      return { message: "Please login first" };
+      return { status: 400, message: "Please login first" };
     }
     if (liked) {
       // remove from favourite
@@ -63,7 +61,7 @@ export async function likeproduct(productid, liked) {
         { new: true }
       );
 
-      if (result) return { message: "Removed from favourites" };
+      if (result) return { status: 200, message: "Removed from favourites" };
     } else {
       // add to favourite
       const result = await userscollection.findOneAndUpdate(
@@ -72,9 +70,9 @@ export async function likeproduct(productid, liked) {
         { new: true, upsert: true }
       );
 
-      if (result) return { message: "Added to favourites" };
+      if (result) return { status: 200, message: "Added to favourites" };
     }
   } catch (error) {
-    return { message: "Invalid User" };
+    return { status: 500, message: "Invalid User" };
   }
 }
