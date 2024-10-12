@@ -2,8 +2,6 @@ import React from "react";
 import Blogscomp from "./_components/Homepage/Blogscomp";
 import Promices from "./_components/Homepage/Promices";
 import Bestselling from "./_components/Homepage/Bestselling";
-// import Collage from "./_components/Homepage/Collage";
-// import Animation from "./_components/Homepage/Animation";
 import Categories from "./_components/Homepage/Categories";
 import Searchbox from "./_components/Searchbox";
 import { Cachedproducts } from "./_serveractions/Getcachedata";
@@ -12,6 +10,9 @@ import Footer from "./_components/Footer";
 import Newarrival from "./_components/Homepage/Newarrival";
 import { cookies } from "next/headers";
 import Image from "next/image";
+import Subcategories from "./_components/Homepage/Subcategories";
+// import Collage from "./_components/Homepage/Collage";
+// import Animation from "./_components/Homepage/Animation";
 
 export default async function Home() {
   const token = cookies()?.get("token")?.value;
@@ -61,9 +62,9 @@ export default async function Home() {
       </div>
 
       <Categories />
-      {/* <Collage /> */}
       <Newarrival Cachedproducts={Cachedproducts} />
       <Bestselling Cachedproducts={Cachedproducts} />
+      <Subcategories />
       <Blogscomp />
       <div>
         <h2 className="text-center font-bold text-3xl md:text-4xl italic font-serif mt-24 ">
@@ -76,28 +77,3 @@ export default async function Home() {
     </div>
   );
 }
-
-// const categories = [
-//   { name: 'Living Room', image: '/images/pullokkaran-banner-01.jpg' },
-//   { name: 'Bedroom', image: '/images/pullokkaran-banner-01.jpg' },
-//   { name: 'Dining', image: '/images/pullokkaran-banner-01.jpg' },
-//   { name: 'Office', image: '/images/pullokkaran-banner-01.jpg' },
-// ];
-
-// const CategoriesSection = () => {
-//   return (
-//     <section className="py-12 bg-gray-100">
-//       <h2 className="text-3xl font-bold text-center mb-8">Shop by Categories</h2>
-//       <div className="grid grid-cols-2 md:grid-cols-4 gap-6 px-4 md:px-16">
-//         {categories.map((category) => (
-//           <div key={category.name} className="relative group">
-//             <img src={category.image} alt={category.name} className="w-full h-48 object-cover rounded-lg shadow-lg" />
-//             <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-//               <h3 className="text-white text-xl font-semibold">{category.name}</h3>
-//             </div>
-//           </div>
-//         ))}
-//       </div>
-//     </section>
-//   );
-// };
