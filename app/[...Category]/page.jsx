@@ -67,7 +67,7 @@ async function page({ params, searchParams }) {
           )}
         </div>
       </div>
-      <p className="text-center p-5 font-serif italic">{categorylist[category]?.desc}</p>
+      <p className="text-sm md:text-base text-center p-5 font-serif italic">{categorylist[category]?.desc}</p>
     </>
   );
 }
