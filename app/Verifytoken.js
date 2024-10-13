@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 
 async function verifyToken(token) {
   return new Promise((resolve, reject) => {
-    jwt.verify(token, "this-world-is-toxic-adorefurnix", (err, decoded) => {
+    jwt.verify(token, process.env.jwt_secret, (err, decoded) => {
       if (err) {
         resolve({ message: "Invalid token" });
       } else {

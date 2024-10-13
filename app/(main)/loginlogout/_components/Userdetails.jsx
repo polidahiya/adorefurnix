@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import Usersvg from "@/app/_svgs/Usersvg";
 import { IoIosEye } from "react-icons/io";
 import { IoIosEyeOff } from "react-icons/io";
+import Link from "next/link";
 
 function Userdetails() {
   const router = useRouter();
@@ -73,7 +74,7 @@ function Userdetails() {
     <div className="relative bg-white w-[90%] max-w-[750px] rounded-[20px] shadow-lg p-[30px]">
       <Image
         src="/minlogo.png"
-        alt="rentbean.in logo image"
+        alt="logo image"
         className=" top-[20px] left-[30px] h-[50px] w-[50px] invert"
         width={156}
         height={60}
@@ -131,17 +132,31 @@ function Userdetails() {
           <div className="absolute top-0 left-0 w-[200%] h-full bg-[linear-gradient(90deg,#10e89c,#0593f7,#10e89c)] group-hover:translate-x-[-50%] duration-200"></div>
         </button>
       </center>
-      {/* form switcher */}
-      <div className="text-[14px] text-center mt-[20px]">
-        {signupform ? "Already have an account?" : "Don't have an account?"}{" "}
-        <span
-          className="text-theme cursor-pointer"
-          onClick={() => {
-            setsignupform(!signupform);
-          }}
-        >
-          {signupform ? "Login" : "Signup"}
-        </span>
+      <div className="flex gap-5 justify-center mt-5">
+        {/* forgetpassword */}
+        {!signupform && (
+          <p className="text-[14px] text-center ">
+            Forgot password?
+            <Link
+              href={"/forgotpassword"}
+              className="text-theme cursor-pointer ml-1"
+            >
+              Reset
+            </Link>
+          </p>
+        )}
+        {/* form switcher */}
+        <div className="text-[14px] text-center ">
+          {signupform ? "Already have an account?" : "Don't have an account?"}
+          <span
+            className="text-theme cursor-pointer ml-1"
+            onClick={() => {
+              setsignupform(!signupform);
+            }}
+          >
+            {signupform ? "Login" : "Signup"}
+          </span>
+        </div>
       </div>
     </div>
   );
