@@ -1,3 +1,4 @@
+"use server";
 import nodemailer from "nodemailer";
 
 export default async function sendMail(mailto, subject, text, html) {
@@ -8,7 +9,7 @@ export default async function sendMail(mailto, subject, text, html) {
       secure: true,
       auth: {
         user: process.env.MAIL,
-        pass: process.env.GMAIL_PASSWORD, 
+        pass: process.env.GMAIL_PASSWORD,
       },
     });
 
