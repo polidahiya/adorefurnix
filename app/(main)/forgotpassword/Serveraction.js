@@ -116,7 +116,7 @@ export const Sendpassresetmail = async (email) => {
             <a href="${domain}/forgotpassword?token=${token}" class="reset-button">Reset Password</a>
   
             <p>If you didn&apos;t request this, you can safely ignore this email.</p>
-            <p>This password reset link will expire in 1 hours.</p>
+            <p>This password reset link will expire in 1 hour.</p>
           </div>
   
           <div class="footer">
@@ -152,14 +152,14 @@ export const Sendpassresetmail = async (email) => {
     </html>
   `;
 
-    sendMail(
+    const sendmailres = await sendMail(
       email,
       "Passsword Reset",
       "Do not share this mail to anyone.",
       passresetmail
     );
 
-    return { status: 200, message: "Please check your mail inbox" };
+    return sendmailres;
   } catch (error) {
     console.log(error);
     return { status: 500, message: "Server error try again!" };

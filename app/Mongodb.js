@@ -14,6 +14,7 @@ const orderscollection = db.collection("orders");
 const contactmessages = db.collection("contactmessages");
 
 export function getcollection() {
+  // throw new Error("This is a simulated server error");
   return {
     blogscollection,
     Admindatacollection,

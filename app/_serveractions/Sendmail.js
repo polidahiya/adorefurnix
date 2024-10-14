@@ -5,27 +5,26 @@ export default async function sendMail(mailto, subject, text, html) {
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: process.env.MAIL,          
+        user: process.env.MAIL,
         pass: process.env.GMAIL_PASSWORD,
       },
     });
 
     // Set up email options
     const mailOptions = {
-      from: process.env.MAIL,  
-      to: mailto,             
-      subject: subject,        
-      text: text,              
-      html: html,             
+      from: process.env.MAIL,
+      to: mailto,
+      subject: subject,
+      text: text,
+      html: html,
     };
 
     // Send the email
     const info = await transporter.sendMail(mailOptions);
     console.log("Email sent:", info.response);
-    
-    return info.response; 
+    return { status: 200, message: "Please check your mail inbox" };
   } catch (error) {
     console.error("Error occurred:", error);
-    throw error; 
+    return { status: 500, message: "Unable to send mail!" };
   }
 }
