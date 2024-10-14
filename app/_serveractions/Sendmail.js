@@ -8,14 +8,14 @@ export default async function sendMail(mailto, subject, text, html) {
       port: 465,
       secure: true,
       auth: {
-        user: process.env.MAIL,
-        pass: process.env.GMAIL_PASSWORD,
+        user: "adorefurnix@gmail.com",
+        pass: "xjlh tduy ncid xvni",
       },
     });
 
     // Set up email options
     const mailOptions = {
-      from: process.env.MAIL,
+      from: "adorefurnix@gmail.com",
       to: mailto,
       subject: subject,
       text: text,
