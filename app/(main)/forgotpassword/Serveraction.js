@@ -151,9 +151,13 @@ export const Sendpassresetmail = async (email) => {
       </body>
     </html>
   `;
-  
 
-    sendMail(email,"Passsword Reset","",passresetmail);
+    sendMail(
+      email,
+      "Passsword Reset",
+      "Do not share this mail to anyone.",
+      passresetmail
+    );
 
     return { status: 200, message: "Please check your mail inbox" };
   } catch (error) {
