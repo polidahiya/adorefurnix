@@ -3,10 +3,12 @@ import nodemailer from "nodemailer";
 export default async function sendMail(mailto, subject, text, html) {
   try {
     const transporter = nodemailer.createTransport({
-      service: "gmail",
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
       auth: {
         user: process.env.MAIL,
-        pass: process.env.GMAIL_PASSWORD,
+        pass: process.env.GMAIL_PASSWORD, 
       },
     });
 
