@@ -8,7 +8,7 @@ export default async function sendMail(mailto, subject, text, html) {
       port: 465,
       secure: true,
       auth: {
-        user: process.env.MAIL,
+        user: process.env.NEXT_PUBLIC_MAIL,
         pass: process.env.GMAIL_PASSWORD,
       },
     });
