@@ -3,22 +3,61 @@ import { Adminverification } from "@/app/Verifytoken";
 import { getcollection } from "@/app/Mongodb";
 const { orderscollection, ObjectId } = getcollection();
 
-// get orders history
-export const getadminorders = async (status) => {
+export const getadminorders = async (
+  status = 0,
+  page = 1,
+  numberoforders = 20,
+  searchterm,
+  searchfilter = 0
+) => {
   try {
     const tokenres = await Adminverification();
 
+    // Check if user is authenticated
     if (!tokenres) {
-      return { status: 500, message: "Please login first" };
+      return { status: 401, message: "Please login first" };
     }
 
-    let result = await orderscollection.find({ status: status }).toArray();
+    let query = {};
 
-    result.map((item) => (item._id = item._id.toString()));
+    const searchFilters = {
+      0: {
+        _id: ObjectId.isValid(searchterm) ? new ObjectId(searchterm) : null,
+      }, 
+      1: { mihpayid: { $regex: `^${searchterm}$`, $options: "i" } },
+      2: { "userdata.username": { $regex: searchterm, $options: "i" } }, 
+      3: { "userdata.email": { $regex: `^${searchterm}$`, $options: "i" } }, 
+      4: { "userdata.phonenum": searchterm }, 
+      5: { "userdata.address": { $regex: searchterm, $options: "i" } }, 
+    };
 
-    return { status: 200, result: result, message: "Server Error" };
+    if (searchterm) {
+      query = searchFilters[searchfilter] || {};
+    } else {
+      query = { status: status };
+    }
+
+    // Handle invalid ObjectId for order search
+    // if (searchfilter === 0 && !ObjectId.isValid(searchterm)) {
+    //   return { status: 400, message: "Invalid Order ID" };
+    // }
+
+    // Get total number of posts for pagination
+    const totalposts = await orderscollection.countDocuments(query);
+
+    // Fetch the orders with pagination
+    const result = await orderscollection
+      .find(query)
+      .limit(numberoforders)
+      .skip((page - 1) * numberoforders)
+      .toArray();
+
+    // Convert _id to string to avoid issues with MongoDB ObjectId
+    result.forEach((item) => (item._id = item._id.toString()));
+
+    return { status: 200, result, totalposts };
   } catch (error) {
-    console.log(error);
+    console.error("Error fetching admin orders:", error);
     return { status: 500, message: "Server Error" };
   }
 };
