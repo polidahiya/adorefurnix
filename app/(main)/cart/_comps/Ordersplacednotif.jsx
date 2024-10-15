@@ -5,8 +5,8 @@ import { AppContextfn } from "@/app/Context";
 import { useRouter } from "next/navigation";
 
 function Ordersplacednotif() {
-  const router=useRouter()
-  const { toggleorderplacedmenu } = AppContextfn();
+  const router = useRouter();
+  const { toggleorderplacedmenu, settoggleorderplacedmenu } = AppContextfn();
   if (toggleorderplacedmenu)
     return (
       <div className="fixed top-0 left-0 flex items-center justify-center h-full w-full bg-black bg-opacity-[0.5] z-[999]">
@@ -23,7 +23,8 @@ function Ordersplacednotif() {
           <button
             className="bg-green-500 px-[30px] py-[5px] text-white rounded-[5px] my-[20px]"
             onClick={() => {
-              router.replace("/")
+              settoggleorderplacedmenu(false);
+              router.replace("/");
             }}
           >
             Ok

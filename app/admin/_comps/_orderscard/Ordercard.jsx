@@ -5,6 +5,7 @@ import {
   deleteorder,
   changestatus,
 } from "@/app/_serveractions/Adminorders";
+import { orderstages } from "@/app/commondata";
 import { AppContextfn } from "@/app/Context";
 import { AiOutlineDelete } from "react-icons/ai";
 import { IoMdArrowDropdown } from "react-icons/io";
@@ -32,6 +33,7 @@ function Ordercard({ item }) {
       >
         <div className="flex flex-col items-start gap-[5px] w-full">
           <OrderDetail label="Order ID" value={item?._id} />
+          <OrderDetail label="Order Status" value={orderstages[item?.status]} />
           <p className="text-sm text-gray-700 flex items-center gap-2">
             <span className="font-bold">Payment Status :</span>
             <span

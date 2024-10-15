@@ -16,6 +16,7 @@ export default function ProductCard({ product, orderid, productindex }) {
         src={product?.colorpalets[product?.selectedcolor].images[0]}
         alt="product image"
         width={300}
+        loading="lazy"
         height={300}
       />
       <div className="p-4">

@@ -3,6 +3,7 @@ import Selectordertype from "./_comps/Selectordertype";
 import Ordercard from "./_comps/_orderscard/Ordercard";
 import Productnotfound from "../_components/Productnotfound";
 import { revalidatePath } from "next/cache";
+import Searchbox from "./_comps/Searchbox";
 
 export default async function Adminhome({ searchParams }) {
   // refresh orders
@@ -27,6 +28,7 @@ export default async function Adminhome({ searchParams }) {
   return (
     <div>
       <Selectordertype ordertype={ordertype} Refreshorders={Refreshorders} />
+      <Searchbox />
       {orders.length == 0 && <Productnotfound />}
       <div className={`p-[20px]`}>
         {orders.map((item, i) => {

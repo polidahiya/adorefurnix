@@ -31,8 +31,8 @@ export default async function RootLayout({ children }) {
         <Link href="/">
           <Image src="/logo3.png" alt="logo" height={40} width={150} />
         </Link>
-        {navLinks.map(({ href, label, logo }) => (
-          <NavLink key={href} href={href}>
+        {navLinks.map(({ href, label, logo }, index) => (
+          <NavLink key={href} href={href} isFirst={index === 0}>
             {logo}
             <span className="hidden md:block">{label}</span>
           </NavLink>
@@ -43,23 +43,13 @@ export default async function RootLayout({ children }) {
   );
 }
 
-const NavLink = ({ href, children }) => (
+const NavLink = ({ href, children, isFirst }) => (
   <Link
-    className="flex items-center gap-[10px] h-full rounded-[5px] px-[10px] bg-white "
+    className={`flex items-center gap-[10px] h-full rounded-[5px] px-[10px] bg-white ${
+      isFirst && "ml-auto"
+    }`}
     href={href}
   >
     {children}
   </Link>
 );
-
-// {/* Uncomment to enable refresh functionality */}
-//           {/* <button
-//           className="h-full aspect-square bg-white rounded-[5px] ml-auto grid place-content-center"
-//           onClick={async () => {
-//             const res = await refreshsitenow();
-//             setmessagefn(res?.message);
-//           }}
-//           title="Refresh site Data Now"
-//         >
-//           <BiRefresh />
-//         </button> */}

@@ -4,10 +4,10 @@ import Ordersrefreshbutton from "./Ordersrefreshbutton";
 
 function Selectordertype({ ordertype, Refreshorders }) {
   return (
-    <div className="sticky top-[50px] bg-white w-full flex items-center flex-wrap gap-[10px]  p-[10px] px-[40px] shadow-md z-20 border-t border-t-slate-300">
+    <div className="sticky top-[50px] h-[40px] bg-white w-full flex items-center flex-wrap gap-[10px]  py-[5px] px-[40px] shadow-md z-20 border-t border-t-slate-300">
       <Link
         href={"/admin/?order=0"}
-        className={`border border-slate-300 px-[10px] py-[5px] rounded-[5px] ${
+        className={`h-full grid place-content-center border border-slate-300 px-[10px] rounded-[5px] ${
           ordertype == 0 && "bg-theme text-white"
         }`}
       >
@@ -15,7 +15,7 @@ function Selectordertype({ ordertype, Refreshorders }) {
       </Link>
       <Link
         href={"/admin/?order=1"}
-        className={`border border-slate-300 px-[10px] py-[5px] rounded-[5px] ${
+        className={`h-full grid place-content-center border border-slate-300 px-[10px] rounded-[5px] ${
           ordertype == 1 && "bg-theme text-white"
         }`}
       >
@@ -23,7 +23,7 @@ function Selectordertype({ ordertype, Refreshorders }) {
       </Link>
       <Link
         href={"/admin/?order=2"}
-        className={`border border-slate-300 px-[10px] py-[5px] rounded-[5px] ${
+        className={`h-full grid place-content-center border border-slate-300 px-[10px] rounded-[5px] ${
           ordertype == 2 && "bg-theme text-white"
         }`}
       >
@@ -31,7 +31,7 @@ function Selectordertype({ ordertype, Refreshorders }) {
       </Link>
       <Link
         href={"/admin/?order=3"}
-        className={`border border-slate-300 px-[10px] py-[5px] rounded-[5px] ${
+        className={`h-full grid place-content-center border border-slate-300 px-[10px] rounded-[5px] ${
           ordertype == 3 && "bg-theme text-white"
         }`}
       >
@@ -39,7 +39,7 @@ function Selectordertype({ ordertype, Refreshorders }) {
       </Link>
       <Link
         href={"/admin/?order=4"}
-        className={`border border-slate-300 px-[10px] py-[5px] rounded-[5px] ${
+        className={`h-full grid place-content-center border border-slate-300 px-[10px] rounded-[5px] ${
           ordertype == 4 && "bg-theme text-white"
         }`}
       >
@@ -47,7 +47,7 @@ function Selectordertype({ ordertype, Refreshorders }) {
       </Link>
       <Link
         href={"/admin/?order=5"}
-        className={`border border-slate-300 px-[10px] py-[5px] rounded-[5px] ${
+        className={`h-full grid place-content-center border border-slate-300 px-[10px] rounded-[5px] ${
           ordertype == 5 && "bg-theme text-white"
         }`}
       >
