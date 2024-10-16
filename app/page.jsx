@@ -52,11 +52,12 @@ export default async function Home() {
           height={1000}
           width={1000}
         />
-        {/* gradient */}
+        {/* gradient full*/}
         <div
-          className="absolute bottom-0 left-0 w-full h-[10vw] z-[1]"
+          className="absolute bottom-0 translate-y-1/2 left-0 w-full h-[15vw] z-[1]"
           style={{
-            backgroundImage: "linear-gradient(0deg, white, transparent)",
+            backgroundImage:
+              "linear-gradient(0deg,transparent, white, transparent)",
           }}
         ></div>
       </div>

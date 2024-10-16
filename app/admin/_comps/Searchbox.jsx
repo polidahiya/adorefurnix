@@ -34,7 +34,7 @@ function Searchbox() {
         <select
           id="options"
           name="options"
-          className="px-5 outline-none"
+          className="px-2 outline-none"
           value={selectedOption}
           onChange={handleOptionChange}
         >
@@ -63,7 +63,7 @@ function Searchbox() {
           className="flex items-center gap-2 px-5 h-full bg-theme text-white border border-slate-300 rounded-[5px] ml-auto"
         >
           <IoSearchOutline />
-          Search
+         <span className="hidden md:inline-block">Search</span>
         </Link>
       </div>
     </div>

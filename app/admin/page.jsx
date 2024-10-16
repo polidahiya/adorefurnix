@@ -28,13 +28,22 @@ export default async function Adminhome({ searchParams }) {
 
   if (ordersres.status != 200) {
     return (
-      <div className="h-screen w-full flex items-center justify-center text-red-500">
-        {ordersres.message}
-      </div>
+      <>
+        <div className="sticky top-[50px] bg-white py-[5px] px-2 md:px-[40px]  shadow-md z-30">
+          <Selectordertype
+            ordertype={ordertype}
+            Refreshorders={Refreshorders}
+          />
+          <Searchbox />
+        </div>
+        <div className="h-screen w-full flex items-center justify-center text-red-500">
+          {ordersres.message}
+        </div>
+      </>
     );
   }
 
-  const orders = ordersres.result || [];
+  const orders = ordersres?.result || [];
   const pages = new Array(
     Math.ceil(ordersres?.totalposts / numberoforders)
   ).fill(null);

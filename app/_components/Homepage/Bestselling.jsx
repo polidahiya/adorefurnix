@@ -20,7 +20,7 @@ async function Bestselling({ Cachedproducts }) {
         <p className="text-gray-600 mb-6">
           Discover our most popular products that are loved by many.
         </p>
-        <div className="grid place-content-center">
+        <div className="relative grid place-content-center z-20">
           <Link
             href={"/Search?query=Best Seller"}
             className="relative group flex items-center justify-center gap-[10px] px-6 py-3  text-white font-semibold rounded-full overflow-hidden"

@@ -15,7 +15,7 @@ function Categories() {
             <Link
               key={i}
               href={`/${item}`}
-              className={`item w-[30vw] md:w-[23vw] lg:w-[15vw] rounded-md lg:rounded-[1vw] lg:overflow-hidden lg:shadow-[0px_0px_10px_#bababa7f] lg:hover:scale-[103%] duration-200`}
+              className={`item w-[30vw] md:w-[23vw] lg:w-[15vw] bg-white rounded-md lg:rounded-[1vw] lg:overflow-hidden lg:shadow-[0px_0px_10px_#bababa7f] lg:hover:scale-[103%] duration-200 `}
             >
               <Image
                 src={categorylist[item].image}
