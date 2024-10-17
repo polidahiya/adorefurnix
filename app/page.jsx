@@ -68,7 +68,7 @@ export default async function Home() {
       <Subcategories />
       <Blogscomp />
       <div>
-        <h2 className="text-center font-bold text-3xl md:text-4xl italic font-serif mt-24 ">
+        <h2 className="text-center font-bold text-2xl md:text-4xl italic font-serif mt-24 ">
           Why Choose Us?
         </h2>
         <Promices />

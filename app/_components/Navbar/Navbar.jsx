@@ -66,8 +66,8 @@ function Navbar({ params, productsname, token, userdata }) {
         </div>
         {/* searchbar */}
         <div
-          className={`absolute top-[calc(100%+20px)] md:static w-full h-full lg:min-w-[500px] md:block z-40 ${
-            showsearch ? "block" : "hidden"
+          className={`absolute top-[calc(100%+20px)] md:static w-full h-full lg:min-w-[500px] md:block lg:z-20 ${
+            showsearch ? "block z-40" : "hidden"
           }`}
         >
           <Searchbox productsname={productsname} />

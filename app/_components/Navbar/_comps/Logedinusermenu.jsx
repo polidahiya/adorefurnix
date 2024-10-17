@@ -20,15 +20,9 @@ function Logedinusermenu({ token, userdata }) {
   } = AppContextfn();
 
   useEffect(() => {
-    const hidemenu2 = () => {
-      settoggleusermenu((pre) => ({ ...pre, effect: false }));
-      setTimeout(() => {
-        settoggleusermenu((pre) => ({ ...pre, show: false }));
-      }, 300);
-    };
-    window.addEventListener("popstate", hidemenu2);
+    window.addEventListener("popstate", hidemenu);
     return () => {
-      window.removeEventListener("popstate", hidemenu2);
+      window.removeEventListener("popstate", hidemenu);
     };
   }, []);
 
@@ -41,7 +35,6 @@ function Logedinusermenu({ token, userdata }) {
   };
 
   const hidemenu = () => {
-    window.history.back();
     settoggleusermenu((pre) => ({ ...pre, effect: false }));
     setTimeout(() => {
       settoggleusermenu((pre) => ({ ...pre, show: false }));
@@ -71,8 +64,11 @@ function Logedinusermenu({ token, userdata }) {
   return (
     <>
       {/* User menu button */}
-      <button className="relative h-full aspect-square z-30" onClick={showmenu}>
-        <Usersvg styles="h-full aspect-square fill-white stroke-white p-[4px]" />
+      <div className="relative  h-full aspect-squarez-30">
+        <button className=" h-full aspect-square" onClick={showmenu}>
+          <Usersvg styles="h-full aspect-square fill-white stroke-white p-[4px] " />
+        </button>
+
         {/* Menu */}
         {toggleusermenu.show && (
           <div
@@ -99,6 +95,7 @@ function Logedinusermenu({ token, userdata }) {
             >
               <Link
                 href={`/orderdetails`}
+                replace
                 className="p-[5px] flex items-center gap-[10px] lg:hover:bg-slate-100 cursor-pointer"
               >
                 <Navorderssvg styles="h-[25px]" />
@@ -107,6 +104,7 @@ function Logedinusermenu({ token, userdata }) {
               <hr />
               <Link
                 href={`/likedproducts`}
+                replace
                 className="p-[5px] flex items-center gap-[10px] lg:hover:bg-slate-100 cursor-pointer"
               >
                 <Heart styles="h-[25px] w-[25px] fill-red-500" />
@@ -115,6 +113,7 @@ function Logedinusermenu({ token, userdata }) {
               <hr />
               <Link
                 href={`/updateuserdetails`}
+                replace
                 className="p-[5px] flex items-center gap-[10px] lg:hover:bg-slate-100 cursor-pointer"
               >
                 <Updateusersvg styles="h-[25px]" />
@@ -135,12 +134,14 @@ function Logedinusermenu({ token, userdata }) {
             </div>
           </div>
         )}
-      </button>
+      </div>
       {/* Overlay to close menu */}
       {toggleusermenu.show && (
         <button
           className="fixed top-0 left-0 h-screen w-screen cursor-default"
-          onClick={hidemenu}
+          onClick={() => {
+            window.history.back();
+          }}
         ></button>
       )}
     </>

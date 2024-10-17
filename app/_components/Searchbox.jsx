@@ -101,12 +101,11 @@ function Searchbox({ productsname }) {
 
   return (
     <div className="relative h-full w-full p-[2px] border border-white border-opacity-60 rounded-full">
-      <div className="flex h-full w-full rounded-full overflow-hidden bg-white p-[2px]">
+      <div className="relative flex h-full w-full rounded-full overflow-hidden bg-white p-[2px]">
         <input
           ref={searchinputref}
           type="text"
           className="w-full px-[20px] outline-none"
-          placeholder="Search your Products here!"
           value={search}
           onChange={(e) => {
             setarrowselectedsuggest(null);
@@ -163,6 +162,16 @@ function Searchbox({ productsname }) {
             }, 100);
           }}
         />
+        {/* place holder */}
+        {search.trim() == "" && (
+          <p className="absolute inset-0 flex items-center px-6 text-[#999999] font-semibold pointer-events-none">
+            <span className="hidden lg:inline-block">
+              Search your Products here!
+            </span>
+            <span className="hidden md:inline-block lg:hidden">Search</span>
+            <span className="md:hidden">Search here!</span>
+          </p>
+        )}
         <Link
           href={search.trim() !== "" ? `/Search?query=${search}` : "#"}
           className="flex items-center justify-center bg-theme h-full aspect-square md:aspect-auto md:gap-[5px] md:px-[10px] rounded-full text-white"

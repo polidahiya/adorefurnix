@@ -11,7 +11,7 @@ const Newarrival = async ({ Cachedproducts }) => {
 
   return (
     <section className="mt-20  py-10">
-      <h3 className="text-3xl md:text-4xl font-bold text-center  mb-10 font-serif italic ">
+      <h3 className="text-2xl md:text-4xl font-bold text-center  mb-10 font-serif italic ">
         New Arrivals
       </h3>
       <div className="relative grid grid-cols-2 md:grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-3 md:gap-6 px-4 md:px-16">

@@ -12,7 +12,7 @@ async function Blogscomp() {
       <center>
         <Link
           href="/Blogs"
-          className="text-3xl md:text-4xl font-bold mb-4 font-serif italic"
+          className="text-2xl md:text-4xl font-bold mb-4 font-serif italic"
           title=" more blogs"
         >
           Blogs
