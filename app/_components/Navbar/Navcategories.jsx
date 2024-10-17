@@ -5,8 +5,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { AppContextfn } from "@/app/Context";
 import { FaCaretDown } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 
 function Navcategories({ category }) {
+  const router = useRouter();
   const { showcat, setshowcat } = AppContextfn();
 
   return (
@@ -27,6 +29,12 @@ function Navcategories({ category }) {
             <Link
               key={i}
               href={"/" + item}
+              onClick={(e) => {
+                if (window.innerWidth < 1024) {
+                  e.preventDefault();
+                  router.replace("/" + item);
+                }
+              }}
               className={`lg:h-[30px] w-full flex flex-col items-center justify-start lg:justify-center  text-[14px] lg:text-white p-[5px]  lg:px-[10px] lg:py-[5px] rounded-[10px] lg:rounded-full lg:group-hover:hover:bg-slate-700 text-center ${
                 category == item && "bg-theme text-white"
               }`}
@@ -43,7 +51,7 @@ function Navcategories({ category }) {
                 {item}
               </span>
             </Link>
-
+            {/* subcategories */}
             {categorylist[item].subcat.length > 0 && (
               <>
                 {/* down arrow */}

@@ -1,9 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Cartproductcount } from "../Navbar/Publiccomps";
-import { Logedinusermenu } from "../Navbar/Publiccomps";
-import { FaCartShopping } from "react-icons/fa6";
-
+import Logedinusermenu from "../Navbar/_comps/Logedinusermenu";
+import { Cartlink } from "../Navbar/Navbar";
 
 export default function Homenavbar({ userdata, token }) {
   return (
@@ -36,14 +34,7 @@ export default function Homenavbar({ userdata, token }) {
         </Link>
       </ul>
       <div className="flex items-center justify-end gap-[10px] h-full ">
-        <Link
-          href="/cart"
-          className="relative flex items-center justify-center h-full aspect-square "
-        >
-          <FaCartShopping className="text-[25px] text-white " />
-
-          <Cartproductcount />
-        </Link>
+        <Cartlink />
         <Logedinusermenu userdata={userdata} token={token} />
       </div>
     </nav>

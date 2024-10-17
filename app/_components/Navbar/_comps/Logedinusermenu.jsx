@@ -1,96 +1,16 @@
 "use client";
-import React from "react";
-import { AppContextfn } from "@/app/Context";
-import Searchbox from "../Searchbox";
+import React, { useEffect } from "react";
 import Usersvg from "@/app/_svgs/Usersvg";
 import Link from "next/link";
+import { AppContextfn } from "@/app/Context";
 import Navorderssvg from "@/app/_svgs/Navorderssvg";
 import Heart from "@/app/_svgs/Heart";
 import Updateusersvg from "@/app/_svgs/Updateusersvg";
 import Logoutsvg from "@/app/_svgs/Logoutsvg";
 import { logout } from "@/app/(main)/loginlogout/Serveractions";
 import { useRouter } from "next/navigation";
-import { FiSearch } from "react-icons/fi";
-import { IoMdArrowRoundBack } from "react-icons/io";
 
-export const Cartproductcount = () => {
-  const { cart } = AppContextfn();
-  let cartlength = 0;
-  Object.keys(cart).forEach((item) => {
-    cartlength += cart[item].quantity;
-  });
-
-  if (Object.keys(cart).length > 0) {
-    return (
-      <div className="absolute top-0 right-0 h-[15px] aspect-square bg-red-500 text-white text-[10px] rounded-full flex items-center justify-center ">
-        {cartlength}
-      </div>
-    );
-  }
-};
-
-export const Showmobilecategorymenubutton = () => {
-  const { showcat, setshowcat, setshowsearch } = AppContextfn();
-  return (
-    <button
-      onClick={() => {
-        setshowcat((pre) => !pre);
-        setshowsearch(false);
-      }}
-      className="lg:hidden h-[calc(100%-4px)] aspect-square flex flex-col justify-center items-center z-40"
-    >
-      <span
-        className={`bg-white block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ${
-          showcat ? "rotate-45 translate-y-1" : "-translate-y-0.5"
-        }`}
-      ></span>
-      <span
-        className={`bg-white block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm my-0.5 ${
-          showcat ? "opacity-0" : "opacity-100"
-        }`}
-      ></span>
-      <span
-        className={`bg-white block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ${
-          showcat ? "-rotate-45 -translate-y-1" : "translate-y-0.5"
-        }`}
-      ></span>
-    </button>
-  );
-};
-
-export const Centralnav = ({ productsname }) => {
-  const { showsearch } = AppContextfn();
-  return (
-    <div
-      className={`absolute top-[calc(100%+20px)] md:static w-full h-full lg:min-w-[500px] md:block z-40 ${
-        showsearch ? "block" : "hidden"
-      }`}
-    >
-      {/* search bar */}
-      <Searchbox productsname={productsname} />
-    </div>
-  );
-};
-
-export const Showsearchbutton = () => {
-  const { setshowsearch, searchinputref, setshowcat } = AppContextfn();
-  return (
-    <button
-      className="h-full aspect-square  flex items-center justify-center md:hidden "
-      onClick={() => {
-        setshowsearch((pre) => !pre);
-        setshowcat(false);
-        setTimeout(() => {
-          searchinputref.current.focus();
-        }, 100);
-      }}
-    >
-      <FiSearch className="h-full text-[25px] text-white aspect-square " />
-    </button>
-  );
-};
-
-export const Logedinusermenu = ({ token, userdata }) => {
+function Logedinusermenu({ token, userdata }) {
   const router = useRouter();
   const {
     toggleusermenu,
@@ -99,7 +19,21 @@ export const Logedinusermenu = ({ token, userdata }) => {
     setredirectloginlink,
   } = AppContextfn();
 
+  useEffect(() => {
+    const hidemenu2 = () => {
+      settoggleusermenu((pre) => ({ ...pre, effect: false }));
+      setTimeout(() => {
+        settoggleusermenu((pre) => ({ ...pre, show: false }));
+      }, 300);
+    };
+    window.addEventListener("popstate", hidemenu2);
+    return () => {
+      window.removeEventListener("popstate", hidemenu2);
+    };
+  }, []);
+
   const showmenu = () => {
+    history.pushState(null, "", "");
     settoggleusermenu((pre) => ({ ...pre, show: true }));
     setTimeout(() => {
       settoggleusermenu((pre) => ({ ...pre, effect: true }));
@@ -107,6 +41,7 @@ export const Logedinusermenu = ({ token, userdata }) => {
   };
 
   const hidemenu = () => {
+    window.history.back();
     settoggleusermenu((pre) => ({ ...pre, effect: false }));
     setTimeout(() => {
       settoggleusermenu((pre) => ({ ...pre, show: false }));
@@ -132,7 +67,7 @@ export const Logedinusermenu = ({ token, userdata }) => {
       </button>
     );
   }
-  
+
   return (
     <>
       {/* User menu button */}
@@ -210,37 +145,6 @@ export const Logedinusermenu = ({ token, userdata }) => {
       )}
     </>
   );
-};
-
-export const Exitblackscreen = () => {
-  const { showcat, showsearch, setshowsearch, setshowcat } = AppContextfn();
-  if (showcat || showsearch) {
-    return (
-      <div
-        className="block lg:hidden fixed top-0 left-0 bg-black opacity-40 h-screen w-screen z-30"
-        onClick={() => {
-          setshowcat(false);
-          setshowsearch(false);
-        }}
-      ></div>
-    );
-  }
-};
-
-// backbutton
-export function Mobilebackbutton() {
-  const { showsearch } = AppContextfn();
-  const router = useRouter();
-
-  if (!showsearch)
-    return (
-      <button
-        className="absolute bottom-0 left-[10px] translate-y-[calc(100%+10px)] h-[40px] aspect-square bg-theme rounded-full text-[20px] text-white grid place-content-center lg:hidden"
-        onClick={() => {
-          router.back();
-        }}
-      >
-        <IoMdArrowRoundBack />
-      </button>
-    );
 }
+
+export default Logedinusermenu;

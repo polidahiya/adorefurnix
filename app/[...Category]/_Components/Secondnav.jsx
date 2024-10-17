@@ -1,17 +1,29 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { categorylist, filterlist, sortinglist } from "@/app/commondata";
 import { FaChevronRight } from "react-icons/fa6";
 import { VscSettings } from "react-icons/vsc";
 import { TbSortAscendingSmallBig } from "react-icons/tb";
 import { AppContextfn } from "@/app/Context";
+import { useRouter } from "next/navigation";
 
 function Secondnav({ category, subcat, searchParams, lengthofproducts }) {
   if (searchParams.pricerange == undefined) searchParams.pricerange = 0;
   if (searchParams.sort == undefined) searchParams.sort = 0;
+  const router = useRouter();
 
   const [showfilter, setshowfilter] = useState(false);
+
+  useEffect(() => {
+    const hidemenu2 = () => {
+      setshowfilter(false);
+    };
+    window.addEventListener("popstate", hidemenu2);
+    return () => {
+      window.removeEventListener("popstate", hidemenu2);
+    };
+  }, []);
 
   // filter link
   const generateLink = (params) => {
@@ -60,7 +72,8 @@ function Secondnav({ category, subcat, searchParams, lengthofproducts }) {
       <button
         className="fixed top-[70px] right-[10px] h-[40px] aspect-square text-[20px] grid place-content-center rounded-full text-white bg-theme z-10"
         onClick={() => {
-          setshowfilter((pre) => !pre);
+          history.pushState(null, "", "");
+          setshowfilter(true);
         }}
       >
         <VscSettings />
@@ -71,7 +84,7 @@ function Secondnav({ category, subcat, searchParams, lengthofproducts }) {
           showfilter ? "translate-y-0" : " translate-y-full lg:translate-y-0"
         }`}
         onClick={() => {
-          setshowfilter(false);
+          if (window.innerWidth < 1024) window.history.back();
         }}
       >
         {/* price range */}
@@ -90,6 +103,14 @@ function Secondnav({ category, subcat, searchParams, lengthofproducts }) {
                 >
                   <Link
                     href={filterlink(i)}
+                    onClick={(e) => {
+                      if (window.innerWidth < 1024) {
+                        e.preventDefault();
+                        setTimeout(() => {
+                          router.replace(filterlink(i));
+                        }, 100);
+                      }
+                    }}
                     replace
                     className={`flex items-center justify-center  py-[5px] md:px-[5px] text-[14px] md:text-[16px]  ${
                       i == searchParams.pricerange &&
@@ -120,6 +141,12 @@ function Secondnav({ category, subcat, searchParams, lengthofproducts }) {
                 >
                   <Link
                     href={sortlink(i)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setTimeout(() => {
+                        router.replace(sortlink(i));
+                      }, 300);
+                    }}
                     replace
                     className={`flex items-center justify-center  py-[5px] md:px-[5px] text-[14px] md:text-[16px]  ${
                       i == searchParams.sort &&
@@ -139,7 +166,7 @@ function Secondnav({ category, subcat, searchParams, lengthofproducts }) {
         <div
           className="fixed top-0 left-0 h-full w-full bg-black opacity-40 z-40 lg:hidden"
           onClick={() => {
-            setshowfilter(false);
+            window.history.back();
           }}
         ></div>
       )}
@@ -171,6 +198,7 @@ const Mobilecategorybuttons = ({ category }) => {
       <span
         className="text-center text-[20px] font-semibold font-serif italic whitespace-nowrap select-none"
         onClick={() => {
+          history.pushState(null, "", "");
           setshowcat(true);
         }}
       >
