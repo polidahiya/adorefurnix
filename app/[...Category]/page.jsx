@@ -51,7 +51,7 @@ async function page({ params, searchParams }) {
 
   return (
     <>
-      <div className="flex flex-col lg:flex-row">
+      <div className="flex flex-col lg:flex-row p-[10px] gap-[10px]">
         <Secondnav
           category={category}
           subcat={subcat}
@@ -73,7 +73,7 @@ async function page({ params, searchParams }) {
 }
 
 const ProductGrid = ({ products }) => (
-  <div className="w-full grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] md:grid-cols-[repeat(auto-fit,minmax(250px,1fr))] place-items-center gap-[10px] md:gap-[20px] p-[10px] md:p-[20px]">
+  <div className="w-full grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] md:grid-cols-[repeat(auto-fit,minmax(250px,1fr))] place-items-center gap-[10px] md:gap-[20px] mt-5">
     {products.map((item, i) => (
       <Productcard
         key={i + new Date().getMilliseconds() + Math.random()} // More stable key

@@ -57,7 +57,7 @@ function Secondnav({ category, subcat, searchParams, lengthofproducts }) {
   };
 
   return (
-    <div className="lg:w-[300px]  p-[10px]">
+    <div className="lg:w-[300px]">
       <div className=" flex items-center justify-center h-[50px] bg-white lg:hidden">
         {category == "Search" ? (
           <span className="text-center text-[20px] font-semibold font-serif italic whitespace-nowrap select-none">
@@ -78,9 +78,9 @@ function Secondnav({ category, subcat, searchParams, lengthofproducts }) {
       >
         <VscSettings />
       </button>
-      {/*  */}
+      {/* filters */}
       <section
-        className={`flex flex-col md:flex-row lg:flex-col md:gap-[10px] lg:gap-0 fixed lg:static bottom-0 left-0 w-full z-50 bg-white p-[10px] lg:p-0 duration-300 ${
+        className={`flex flex-col md:flex-row lg:flex-col gap-[10px] fixed lg:static bottom-0 left-0 w-full p-[10px] lg:p-0 z-50 bg-white duration-300 ${
           showfilter ? "translate-y-0" : " translate-y-full lg:translate-y-0"
         }`}
         onClick={() => {
@@ -88,7 +88,7 @@ function Secondnav({ category, subcat, searchParams, lengthofproducts }) {
         }}
       >
         {/* price range */}
-        <div className="w-full bg-bg1 p-[10px] mt-[10px] lg:mt-0">
+        <div className="w-full bg-bg1 p-[10px]">
           <h2 className="text-center font-bold text-[20px] flex items-center justify-center gap-[10px]">
             <VscSettings />
             <span>Price Range</span>
@@ -126,7 +126,7 @@ function Secondnav({ category, subcat, searchParams, lengthofproducts }) {
         </div>
 
         {/* sorting */}
-        <div className="w-full bg-bg1 p-[10px] mt-[10px] ">
+        <div className="w-full bg-bg1 p-[10px] ">
           <h2 className="text-center font-bold text-[20px] flex items-center justify-center gap-[10px]">
             <TbSortAscendingSmallBig />
             <span>Sort</span>

@@ -64,7 +64,7 @@ function Logedinusermenu({ token, userdata }) {
   return (
     <>
       {/* User menu button */}
-      <div className="relative  h-full aspect-squarez-30">
+      <div className="relative  h-full aspect-square z-30">
         <button className=" h-full aspect-square" onClick={showmenu}>
           <Usersvg styles="h-full aspect-square fill-white stroke-white p-[4px] " />
         </button>

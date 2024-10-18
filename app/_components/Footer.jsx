@@ -15,7 +15,7 @@ import { AiFillBank } from "react-icons/ai";
 import { SiPaytm, SiPhonepe } from "react-icons/si";
 import { FaFacebook } from "react-icons/fa";
 import { RiInstagramFill } from "react-icons/ri";
-import { BsTwitterX } from "react-icons/bs";
+import { RiTwitterXFill } from "react-icons/ri";
 import { MdOutlineArrowRightAlt } from "react-icons/md";
 import { sociallinks } from "../commondata";
 import { FaSitemap } from "react-icons/fa";
@@ -58,18 +58,7 @@ function Footer() {
             exceptional value and create pieces that you&apos;ll cherish for
             years to come.
           </p>
-          <div className="w-full flex items-center gap-[20px] text-[25px] mt-auto">
-            <p className="text-[16px] font-bold">Socials : </p>
-            <Link href={sociallinks.facebook} target="_blank" title="Facebook">
-              <FaFacebook className="text-[20px]" />
-            </Link>
-            <Link href={sociallinks.insta} target="_blank" title="Instagram">
-              <RiInstagramFill className="text-[20px]" />
-            </Link>
-            <Link href={sociallinks.twitter} target="_blank" title="X">
-              <BsTwitterX className="text-[20px]" />
-            </Link>
-          </div>
+          <Socialfollow />
         </div>
         {/*  */}
         <div className="flex flex-col flex-1  items-start">
@@ -142,6 +131,57 @@ function Links({ name, link }) {
       {name}
       <span className="w-0 h-[2px] absolute bottom-0 left-0 block bg-theme rounded-full lg:group-hover:w-[calc(100%+20px)] duration-200"></span>
     </Link>
+  );
+}
+
+function Socialfollow() {
+  const social = [
+    {
+      title: "Facebook.com",
+      link: sociallinks.facebook,
+      logo: (
+        <FaFacebook className="text-[20px] lg:group-hover:translate-y-1 duration-300" />
+      ),
+    },
+    {
+      title: "X.com",
+      link: sociallinks.twitter,
+      logo: (
+        <RiTwitterXFill className="text-[20px] lg:group-hover:translate-y-1 duration-300" />
+      ),
+    },
+    {
+      title: "Instagram.com",
+      link: sociallinks.insta,
+      logo: (
+        <RiInstagramFill className="text-[20px] lg:group-hover:translate-y-1 duration-300" />
+      ),
+    },
+  ];
+
+  return (
+    <div className="w-full flex items-center gap-5 mt-auto">
+      <p className="text-[16px] font-bold">Socials:</p>
+      {social.map((item, i) => (
+        <Link
+          key={i}
+          href={item.link}
+          className="group relative"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Follow us on ${item.title}`}
+        >
+          {/* Tooltip */}
+          <p className="absolute -top-6 left-1/2 -translate-x-1/2 bg-white text-gray-700 rounded-lg px-5 py-1 opacity-0 text-sm lg:group-hover:opacity-100 lg:group-hover:-top-10 pointer-events-none duration-500">
+            <span className="bg-theme text-transparent bg-clip-text font-semibold">{item.title}</span>
+            <span className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 h-2 rotate-45 aspect-square block bg-white"></span>
+          </p>
+
+          {/* Icon */}
+          {item.logo}
+        </Link>
+      ))}
+    </div>
   );
 }
 
