@@ -11,8 +11,6 @@ import Newarrival from "./_components/Homepage/Newarrival";
 import { cookies } from "next/headers";
 import Image from "next/image";
 import Subcategories from "./_components/Homepage/Subcategories";
-// import Collage from "./_components/Homepage/Collage";
-// import Animation from "./_components/Homepage/Animation";
 
 export default async function Home() {
   const token = cookies()?.get("token")?.value;
@@ -73,7 +71,6 @@ export default async function Home() {
         </h2>
         <Promices />
       </div>
-
       <Footer />
     </div>
   );

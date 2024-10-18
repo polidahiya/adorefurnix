@@ -8,7 +8,7 @@ const CACHE_TIME = 60 * 60 * 1000; // 24 hours
 
 export const Cachedproducts = unstable_cache(
   async () => {
-    const productsList = await Productscollection.find({}).toArray();
+    const productsList = await Productscollection.find().toArray();
     return productsList.map((item) => ({
       ...item,
       _id: item._id.toString(),
