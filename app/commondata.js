@@ -290,4 +290,6 @@ export const orderstages = [
   "Order Processing",
   "Order Shipped",
   "Order Delivered",
+  "Order Canceled",
+  "Order Refunded",
 ];

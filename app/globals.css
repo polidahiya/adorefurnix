@@ -84,7 +84,6 @@ body {
   }
 }
 
-
 /* about us heading */
 .aboutusheading {
   background: url(/images/bg2.jpg);
@@ -127,3 +126,10 @@ body {
   }
 }
 
+.hidescroll::-webkit-scrollbar {
+  height: 0;
+  width: 0;
+}
+.hidescroll::-webkit-scrollbar-thumb {
+  background: transparent;
+}

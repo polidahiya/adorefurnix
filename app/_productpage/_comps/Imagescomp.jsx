@@ -78,7 +78,7 @@ function ImagesComp({ filteredproducts, color, token }) {
 
       <div
         className={`hidden md:flex absolute top-0 left-[10px] w-[70px] h-full flex-col gap-[10px] ${
-          images.length > 5 ? "overflow-y-scroll" : "justify-center"
+          images.length > 5 ? "overflow-y-scroll hidescroll" : "justify-center"
         }`}
       >
         {images.map((image, index) => (

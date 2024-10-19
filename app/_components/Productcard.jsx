@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Rating from "./Ratingstars";
 import { FaTags } from "react-icons/fa";
+import { GoClock } from "react-icons/go";
+import { FiClock } from "react-icons/fi";
 
 function Productcard({
   index,
@@ -17,6 +19,7 @@ function Productcard({
   image,
   rating,
   keywords,
+  colorpalets,
 }) {
   const [showproduct, setshowproduct] = useState(false);
   const [imgSrc, setImgSrc] = useState(image);
@@ -46,48 +49,62 @@ function Productcard({
   return (
     <Link
       href={`/${category}/${subcat}/${id}`}
-      className={`relative h-full w-full max-w-[350px] md:min-w-[270px] shadow-md rounded-[10px] overflow-hidden bg-white duration-300 ${
+      className={`relative h-full w-full max-w-[350px] md:min-w-[270px] shadow-md rounded-[10px]  bg-white duration-300 ${
         showproduct ? "opacity-100 scale-100" : "opacity-0 scale-75"
       }`}
     >
-      <div className="absolute top-[5px] left-[5px] md:top-[10px] md:left-[10px]  text-[8px] md:text-[14px] text-white">
-        {/* discount */}
-        {pricebeforediscount && (
-          <div className="flex items-center gap-[5px]  bg-green-600 py-[5px] px-[5px] md:px-[10px] rounded-[5px]">
-            <FaTags />
-            {discount}% OFF
-          </div>
-        )}
-        {/* available */}
-        {!available && (
-          <div
-            className={` bg-red-600 py-[5px] px-[5px] md:px-[10px] rounded-[5px] mt-[5px]`}
-          >
-            Out of Stock!
-          </div>
-        )}
-      </div>
-      {/* best selling tag */}
-      {keywords?.toLowerCase().includes("best seller") && (
+      <div className="relative aspect-[4/3] w-full">
         <Image
-          className="absolute top-0 right-0 w-12 md:w-16 aspect-square object-contain"
-          src="/images/bestsellertag.png"
-          alt="best selling tag Image"
-          height={100}
-          width={100}
+          src={imgSrc}
+          alt={name}
+          width={300}
+          height={300}
+          className="w-full h-full object-cover object-center rounded-[10px]"
           loading="lazy"
+          onError={handleImageError} // Handle image error
         />
-      )}
-
-      <Image
-        src={imgSrc}
-        alt={name}
-        width={300}
-        height={300}
-        className="aspect-[4/3] w-full object-cover object-center rounded-b-[10px]"
-        loading="lazy"
-        onError={handleImageError} // Handle image error
-      />
+        <div className="absolute top-[5px] left-[5px] md:top-[10px] md:left-[10px] flex flex-col items-start gap-[5px] text-[8px] md:text-[14px] text-white">
+          {/* discount */}
+          {pricebeforediscount && (
+            <div className="flex items-center gap-[5px]  bg-green-600 py-[5px] px-[5px] md:px-[10px] rounded-[5px]">
+              <FaTags />
+              {discount}% OFF
+            </div>
+          )}
+          {/* available */}
+          {!available && (
+            <div
+              className={`flex items-center gap-[5px]  bg-red-600 py-[5px] px-[5px] md:px-[10px] rounded-[5px]`}
+            >
+              <FiClock />
+              Comming soon!
+            </div>
+          )}
+        </div>
+        {/* best selling tag */}
+        {keywords?.toLowerCase().includes("best seller") && (
+          <Image
+            className="absolute top-0 right-0 w-12 md:w-16 aspect-square object-contain"
+            src="/images/bestsellertag.png"
+            alt="best selling tag Image"
+            height={100}
+            width={100}
+            loading="lazy"
+          />
+        )}
+        {/* color options */}
+        <div className="absolute bottom-2 right-2 p-1 rounded-full bg-white flex gap-1">
+          {colorpalets?.map((colors, j) => {
+            return (
+              <div
+                key={j}
+                className="aspect-square h-4 md:h-5 rounded-full"
+                style={{ backgroundColor: colors.color }}
+              ></div>
+            );
+          })}
+        </div>
+      </div>
 
       <div className="p-[5px] md:p-[10px]">
         <h3 className="py-[5px] md:py-[10px] text-[12px] md:text-[16px] font-semibold text-center w-full whitespace-nowrap text-ellipsis overflow-hidden">
