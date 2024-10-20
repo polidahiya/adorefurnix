@@ -22,12 +22,12 @@ function Navcategories({ category }) {
           <div key={i} className="group relative">
             <Link
               key={i}
-              href={"/" + item}
+              href={"/" + item.replace(/ /g, "_")}
               onClick={(e) => {
                 if (window.innerWidth < 1024) {
                   setshowcat(false);
                   e.preventDefault();
-                  router.replace("/" + item);
+                  router.replace("/" + item.replace(/ /g, "_"));
                 }
               }}
               className={`lg:h-[30px] w-full flex  items-center justify-start lg:justify-center  text-[14px] lg:text-white py-[10px] px-5 lg:px-[10px] lg:py-[5px] rounded-[10px] lg:rounded-full lg:group-hover:hover:bg-slate-700  ${
@@ -71,12 +71,12 @@ function Navcategories({ category }) {
                       return (
                         <Link
                           key={j}
-                          href={`/${item}/${subcat.name}`}
+                          href={`/${item}/${subcat.name}`.replace(/ /g, "_")}
                           onClick={(e) => {
                             if (window.innerWidth < 1024) {
                               setshowcat(false);
                               e.preventDefault();
-                              router.replace(`/${item}/${subcat.name}`);
+                              router.replace(`/${item}/${subcat.name}`.replace(/ /g, "_"));
                             }
                           }}
                           className="p-2 lg:hover:bg-slate-700 lg:w-52 pl-10 lg:pl-0 lg:text-center text-[14px]"

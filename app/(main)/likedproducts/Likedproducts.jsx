@@ -29,16 +29,11 @@ function Likedproducts({ filtereditems }) {
             className="relative h-full w-full max-w-[350px] md:min-w-[270px] shadow-md rounded-[10px] overflow-hidden"
           >
             <Productcard
+              key={i + new Date().getMilliseconds() + Math.random()} // More stable key
               index={i}
               id={item._id}
-              category={item.category}
-              subcat={item.subcat}
-              name={item.name}
-              price={item.price}
-              discount={item.discount}
-              available={item.available}
-              image={item.colorpalets[0].images[0]}
-              rating={item.rating}
+              image={item.colorpalets[0]?.images[0]}
+              {...item}
             />
             {/* like button */}
             <button

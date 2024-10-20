@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Rating from "./Ratingstars";
 import { FaTags } from "react-icons/fa";
-import { GoClock } from "react-icons/go";
 import { FiClock } from "react-icons/fi";
 
 function Productcard({
@@ -20,6 +19,7 @@ function Productcard({
   rating,
   keywords,
   colorpalets,
+  link,
 }) {
   const [showproduct, setshowproduct] = useState(false);
   const [imgSrc, setImgSrc] = useState(image);
@@ -48,18 +48,18 @@ function Productcard({
 
   return (
     <Link
-      href={`/${category}/${subcat}/${id}`}
-      className={`relative h-full w-full max-w-[350px] md:min-w-[270px] shadow-md rounded-[10px]  bg-white duration-300 ${
+      href={link ? link.replace(/ /g, "_") : `/${category}/${subcat}/${id}`.replace(/ /g, "_")}
+      className={`group relative h-full w-full max-w-[350px] md:min-w-[270px] shadow-md rounded-[10px]  bg-white duration-300 ${
         showproduct ? "opacity-100 scale-100" : "opacity-0 scale-75"
       }`}
     >
-      <div className="relative aspect-[4/3] w-full">
+      <div className="relative aspect-[4/3] w-full rounded-[10px] overflow-hidden">
         <Image
           src={imgSrc}
           alt={name}
           width={300}
           height={300}
-          className="w-full h-full object-cover object-center rounded-[10px]"
+          className="w-full h-full object-cover object-center  scale-100 lg:group-hover:scale-105 lg:duration-300"
           loading="lazy"
           onError={handleImageError} // Handle image error
         />
@@ -94,15 +94,13 @@ function Productcard({
         )}
         {/* color options */}
         <div className="absolute bottom-2 right-2 p-1 rounded-full bg-white flex gap-1">
-          {colorpalets?.map((colors, j) => {
-            return (
-              <div
-                key={j}
-                className="aspect-square h-4 md:h-5 rounded-full"
-                style={{ backgroundColor: colors.color }}
-              ></div>
-            );
-          })}
+          {colorpalets?.map((colors, j) => (
+            <div
+              key={j}
+              className="aspect-square h-3 md:h-4 rounded-full"
+              style={{ backgroundColor: colors.color }}
+            ></div>
+          ))}
         </div>
       </div>
 

@@ -47,7 +47,7 @@ export default function Products({ item, i }) {
       {i !== 0 && <hr />}
       <div className="flex flex-col md:flex-row gap-[20px] md:h-[150px]">
         <Link
-          href={`/${product.category}/${product.subcat}/${product._id}?color=${color}`}
+          href={`/${product.category}/${product.subcat}/${product._id}?color=${color}`.replace(/ /g, "_")}
           className="w-full md:w-auto aspect-[2/1] md:h-full md:aspect-square border border-slate-300"
         >
           <Image

@@ -31,7 +31,7 @@ function Secondnav({ category, subcat, searchParams, lengthofproducts }) {
     const basePath = `/${category}${subcat ? "/" + subcat : ""}`;
     const queryParams = new URLSearchParams(searchParams).toString();
 
-    return `${basePath}?${queryParams}`;
+    return `${basePath}?${queryParams}`.replace(/ /g, "_");
   };
 
   const filterlink = (priceRange) => {

@@ -12,8 +12,8 @@ import Productpage from "../_productpage/Productpage";
 async function page({ params, searchParams }) {
   const { Category: slug } = params;
 
-  const category = slug && slug[0] ? decodeURIComponent(slug[0]) : null;
-  const subcat = slug && slug[1] ? decodeURIComponent(slug[1]) : null;
+  const category = slug && slug[0] ? decodeURIComponent(slug[0]).replace(/_/g, " ") : null;
+  const subcat = slug && slug[1] ? decodeURIComponent(slug[1]).replace(/_/g, " ") : null;
   const productid = slug && slug[2] ? decodeURIComponent(slug[2]) : null;
 
   if (productid)
@@ -32,7 +32,7 @@ async function page({ params, searchParams }) {
   let producttorender;
 
   if (category == "Search") {
-    const searchQuery = searchParams?.query;
+    const searchQuery = searchParams?.query.replace(/_/g, " ");
     producttorender = searchProducts(allproducts, searchQuery);
   } else {
     validateCategoryAndSubcategory(category, subcat);
@@ -67,22 +67,27 @@ async function page({ params, searchParams }) {
           )}
         </div>
       </div>
-      <p className="text-sm md:text-base text-center p-5 font-serif italic">{categorylist[category]?.desc}</p>
+      <p className="text-sm md:text-base text-center p-5 font-serif italic">
+        {categorylist[category]?.desc}
+      </p>
     </>
   );
 }
 
 const ProductGrid = ({ products }) => (
-  <div className="w-full grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] md:grid-cols-[repeat(auto-fit,minmax(250px,1fr))] place-items-center gap-[10px] md:gap-[20px] mt-5">
-    {products.map((item, i) => (
-      <Productcard
-        key={i + new Date().getMilliseconds() + Math.random()} // More stable key
-        index={i}
-        id={item._id}
-        image={item.colorpalets[0]?.images[0]}
-        {...item}
-      />
-    ))}
+  <div className="w-full grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] md:grid-cols-[repeat(auto-fit,minmax(250px,1fr))] place-items-center gap-[10px] md:gap-[20px]">
+    {products.map((item, i) =>
+      item.colorpalets.map((_, j) => (
+        <Productcard
+          key={i + new Date().getMilliseconds() + Math.random()} // More stable key
+          index={i}
+          id={item._id}
+          link={`/${item?.category}/${item?.subcat}/${item._id}?color=${j}`}
+          image={item.colorpalets[j]?.images[0]}
+          {...item}
+        />
+      ))
+    )}
   </div>
 );
 
@@ -163,8 +168,8 @@ const categoriesedproducts = (allproducts, category, subcat) => {
 
 export const generateMetadata = async ({ params, searchParams }) => {
   const { Category: slug } = params;
-  const category = slug && slug[0] ? decodeURIComponent(slug[0]) : null;
-  const subcat = slug && slug[1] ? decodeURIComponent(slug[1]) : null;
+  const category = slug && slug[0] ? decodeURIComponent(slug[0]).replace(/_/g, " ") : null;
+  const subcat = slug && slug[1] ? decodeURIComponent(slug[1]).replace(/_/g, " ") : null;
   const productid = slug && slug[2] ? decodeURIComponent(slug[2]) : null;
 
   // Handle product-specific metadata

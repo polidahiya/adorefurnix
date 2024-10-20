@@ -36,7 +36,7 @@ const Newarrival = async ({ Cachedproducts }) => {
               ₹{parseInt(item?.price, 10).toLocaleString("en-IN")}
             </p>
             <Link
-              href={`/${item.category}/${item.subcat}/${item._id}`}
+              href={`/${item.category}/${item.subcat}/${item._id}`.replace(/ /g, "_")}
               className="block mt-4 bg-orange-500 text-center text-white py-2 rounded-lg hover:bg-orange-600"
             >
               View Details
@@ -55,7 +55,7 @@ const Newarrival = async ({ Cachedproducts }) => {
       </div>
       <center>
         <Link
-          href={"/Search?query=new arrivals"}
+          href={"/Search?query=new_arrivals"}
           className="relative w-fit group flex items-center justify-center gap-[10px] px-6 py-3 mt-8  text-white font-semibold rounded-full overflow-hidden"
         >
           <span className="z-10">View More</span>

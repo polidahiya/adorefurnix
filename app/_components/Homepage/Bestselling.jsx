@@ -22,7 +22,7 @@ async function Bestselling({ Cachedproducts }) {
         </p>
         <div className="relative grid place-content-center z-20">
           <Link
-            href={"/Search?query=Best Seller"}
+            href={"/Search?query=Best_Seller"}
             className="relative group flex items-center justify-center gap-[10px] px-6 py-3  text-white font-semibold rounded-full overflow-hidden"
           >
             <span>See All Collection</span>
@@ -39,7 +39,7 @@ async function Bestselling({ Cachedproducts }) {
           );
           return (
             <Link
-              href={`/${item.category}/${item.subcat}/${item._id}`}
+              href={`/${item.category}/${item.subcat}/${item._id}`.replace(/ /g, "_")}
               key={i}
               className="relative bg-white rounded-lg shadow-lg overflow-hidden  cursor-pointer"
             >

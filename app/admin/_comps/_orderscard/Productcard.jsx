@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { changeproductstatus } from "@/app/_serveractions/Adminorders";

@@ -81,7 +81,7 @@ function Subcategories() {
               <HiArrowSmRight className="rotate-180" />
             </button>
             <Link
-              href={`/${categorykeys[index]}`}
+              href={`/${categorykeys[index]}`.replace(/ /g, "_")}
               className="h-[40px] flex justify-center items-center rounded-full bg-gray-800 text-white px-5 shadow-md lg:hover:bg-gray-600 transition duration-300"
             >
               {categorykeys[index]}
@@ -103,7 +103,7 @@ function Subcategories() {
           {categoryvalues[index].subcat.map((item, i) => (
             <Link
               key={i + new Date().getMilliseconds()}
-              href={`/${categorykeys[index]}/${categoryvalues[index]?.subcat[i]?.name}`}
+              href={`/${categorykeys[index]}/${categoryvalues[index]?.subcat[i]?.name}`.replace(/ /g, "_")}
               className="group"
             >
               <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden border-[3px] border-white  transition duration-300">

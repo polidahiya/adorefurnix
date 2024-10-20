@@ -34,11 +34,11 @@ function Footer() {
     { name: "Terms & Conditions", link: "/Terms&Conditions" },
   ];
   const list2 = [
-    { name: "Living Room", link: "/Living%20Room" },
+    { name: "Living Room", link: "/Living_Room" },
     { name: "Bedroom", link: "/Bedroom" },
-    { name: "Bar Furniture", link: "/Bar%20Furniture" },
-    { name: "Office Furniture", link: "/Office%20Furniture" },
-    { name: "Home Decor & More", link: "/Home%20Decor%20&%20More" },
+    { name: "Bar Furniture", link: "/Bar_Furniture" },
+    { name: "Office Furniture", link: "/Office_Furniture" },
+    { name: "Home Decor & More", link: "/Home_Decor_&_More" },
     { name: "More", link: "/#categories" },
   ];
   return (
