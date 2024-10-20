@@ -10,7 +10,7 @@ import Footer from "./_components/Footer";
 import Newarrival from "./_components/Homepage/Newarrival";
 import { cookies } from "next/headers";
 import Image from "next/image";
-import Subcategories from "./_components/Homepage/Subcategories";
+import Allproducts from "./_components/Homepage/Allproducts";
 
 export default async function Home() {
   const token = cookies()?.get("token")?.value;
@@ -61,9 +61,9 @@ export default async function Home() {
       </div>
 
       <Categories />
-      <Newarrival Cachedproducts={Cachedproducts} />
-      <Bestselling Cachedproducts={Cachedproducts} />
-      <Subcategories />
+      <Newarrival products={products} />
+      <Bestselling products={products} />
+      <Allproducts products={products.sort(() => Math.random() - 0.5)}/>
       <Blogscomp />
       <div>
         <h2 className="text-center font-bold text-2xl md:text-4xl italic font-serif mt-24 ">

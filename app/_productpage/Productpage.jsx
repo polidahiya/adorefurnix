@@ -89,15 +89,15 @@ const Breadcrumbs = ({ category, subcat, productName }) => (
     <Link className="lg:hover:text-cyan-500" href="/">
       Home
     </Link>
-    <RxChevronRight />
+    <RxChevronRight className="min-w-3" />
     <Link className="lg:hover:text-cyan-500" href={`/${category}`}>
       {category}
     </Link>
-    <RxChevronRight />
+    <RxChevronRight className="min-w-3" />
     <Link className="lg:hover:text-cyan-500" href={`/${category}/${subcat}`}>
       {subcat}
     </Link>
-    <RxChevronRight />
+    <RxChevronRight className="min-w-3" />
     <span className="text-ellipsis overflow-hidden">{productName}</span>
   </nav>
 );

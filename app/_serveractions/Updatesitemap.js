@@ -21,13 +21,13 @@ export default async function Updatesitemap() {
 
     // Map product and blog links
     const productlinks = productsList.map((item) => ({
-      loc: createUrl(baseUrl, `${item.category}/${item.subcat}/${item._id.toString()}`),
+      loc: createUrl(baseUrl, `${item.category}/${item.subcat}/${item._id.toString()}`.replace(/ /g, "_")),
       lastmod: currentDate,
       priority: "0.8",
     }));
 
     const bloglinks = blogsList.map((item) => ({
-      loc: createUrl(baseUrl, `Blogs/${item._id.toString()}`),
+      loc: createUrl(baseUrl, `Blogs/${item._id.toString()}`.replace(/ /g, "_")),
       lastmod: currentDate,
       priority: "0.6",
     }));

@@ -2,9 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { LuArrowRightCircle } from "react-icons/lu";
 
-const Newarrival = async ({ Cachedproducts }) => {
-  const allproducts = await Cachedproducts();
-  const newarrival = allproducts
+const Newarrival = async ({ products }) => {
+  const newarrival = products
     .filter((item) => item.keywords.toLowerCase().includes("new arrivals"))
     .sort(() => Math.random() - 0.5)
     .slice(0, 4);

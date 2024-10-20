@@ -4,9 +4,8 @@ import Link from "next/link";
 import { LuArrowRightCircle } from "react-icons/lu";
 import Image from "next/image";
 
-async function Bestselling({ Cachedproducts }) {
-  const allproducts = await Cachedproducts();
-  const bestselling = allproducts
+async function Bestselling({ products }) {
+  const bestselling = products
     .filter((item) => item.keywords.toLowerCase().includes("best seller"))
     .sort(() => Math.random() - 0.5)
     .slice(0, 4);
