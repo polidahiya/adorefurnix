@@ -195,7 +195,7 @@ const Mobilecategorybuttons = ({ category }) => {
       <Link href={backbardlink}>
         <FaChevronRight className=" h-[40px] w-[40px] p-[13px] rotate-180" />
       </Link>
-      <span
+      <h1
         className="text-center text-[20px] font-semibold font-serif italic whitespace-nowrap select-none"
         onClick={() => {
           history.pushState(null, "", "");
@@ -203,7 +203,7 @@ const Mobilecategorybuttons = ({ category }) => {
         }}
       >
         {category}
-      </span>
+      </h1>
       <Link href={forwardlink}>
         <FaChevronRight className=" h-[40px] w-[40px] p-[13px] " />
       </Link>
