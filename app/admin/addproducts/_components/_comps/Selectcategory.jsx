@@ -4,32 +4,57 @@ import { AppContextfn } from "@/app/Context";
 
 function Selectcategory() {
   const { addproduct, setaddproduct } = AppContextfn();
+
+  const handlecategorychange = (e) => {
+    const value = e.target.value;
+    setaddproduct({
+      ...addproduct,
+      category: value,
+      subcat: categorylist[value]?.subcat[0]?.name,
+    });
+  };
+
+  const handlesubcategorychange = (e) => {
+    const value = e.target.value;
+    setaddproduct({
+      ...addproduct,
+      subcat: value,
+    });
+  };
+
   return (
-    <>
-      <h2 className="text-center mt-[30px] text-[20px] font-bold ">
-        Select a category
-      </h2>
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-[10px] p-[20px]">
-        {Object.keys(categorylist).map((item, i) => {
-          return (
-            <button
-              key={i}
-              className={`border border-slate-300 rounded-[10px] p-[5px] text-[12px] 
-                ${addproduct?.category == item && "bg-slate-600 text-white"}`}
-              onClick={() => {
-                setaddproduct({
-                  ...addproduct,
-                  category: item,
-                  subcat: categorylist[item]?.subcat[0]?.name,
-                });
-              }}
-            >
+    <div className="flex flex-col md:flex-row  items-center justify-center gap-10 mt-10 px-5">
+      <div className="w-full flex gap-5 items-center">
+        <label className="flex-1 text-[20px] font-bold ">Category :</label>
+        <select
+          className="flex-1 p-2 border border-slate-300 outline-none rounded-md"
+          value={addproduct?.category}
+          onChange={handlecategorychange}
+        >
+          {Object.keys(categorylist).map((item, i) => (
+            <option key={i} value={item}>
               {item}
-            </button>
-          );
-        })}
+            </option>
+          ))}
+        </select>
       </div>
-    </>
+      {categorylist[addproduct?.category]?.subcat.length != 0 && (
+        <div className="w-full flex gap-5 items-center">
+          <label className="flex-1 text-[20px] font-bold ">Sub-Category :</label>
+          <select
+            className="flex-1 p-2 border border-slate-300 outline-none rounded-md"
+            value={addproduct?.subcat}
+            onChange={handlesubcategorychange}
+          >
+            {categorylist[addproduct?.category]?.subcat?.map((item, i) => (
+              <option key={i} value={item?.name}>
+                {item?.name}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
+    </div>
   );
 }
 

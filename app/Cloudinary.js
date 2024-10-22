@@ -28,6 +28,5 @@ export const Deleteiamgefromurl = (url, folder = "Adorefurnix") => {
   const fileName = parts[parts.length - 1];
   const publicId = fileName.split(".")[0];
   const file=folder + "/" + publicId
-  console.log(file);
   cloudinary.uploader.destroy(file);
 };

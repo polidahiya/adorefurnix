@@ -4,11 +4,9 @@ import { Addproduct } from "../Serveraction";
 import { AppContextfn } from "@/app/Context";
 import { uploadproductdata } from "@/app/Context";
 import Selectcategory from "./_comps/Selectcategory";
-import Selectcubcategory from "./_comps/Selectcubcategory";
 import Details from "./_comps/Details";
 import Descriptions from "./_comps/Descriptions";
 import Colorpalets from "./_comps/Colorpalets";
-import { refreshproductsnow } from "@/app/_serveractions/Getcachedata";
 
 function Categories() {
   const {
@@ -18,9 +16,9 @@ function Categories() {
     setupdateproduct,
     deletedimages,
     setdeletedimages,
-    setadminproductrefresher,
     setmessagefn,
   } = AppContextfn();
+
   const [uploadloading, setuploadloading] = useState(false);
 
   const resetfields = () => {
@@ -45,38 +43,20 @@ function Categories() {
     });
 
     const res = await Addproduct(addproduct, formData, deletedimages);
-    if (
-      res?.message == "Updated successfully" ||
-      res?.message == "Added successfully"
-    ) {
-      // update show products
-      setadminproductrefresher((pre) => pre + 1);
+    
+    if (res?.status == 200) {
+      resetfields();
+      setupdateproduct(false);
     }
     setmessagefn(res?.message);
-
-    resetfields();
-    setupdateproduct(false);
     setuploadloading(false);
   };
 
   return (
     <>
-      {/* refresh site now button */}
-      <button
-        className="fixed top-16 right-5 border border-slate-300 rounded-lg bg-theme px-2 "
-        onClick={async () => {
-          const res = await refreshproductsnow();
-          setmessagefn(res?.message);
-        }}
-      >
-        Refresh site now
-      </button>
       <Selectcategory />
-      <Selectcubcategory />
       <Details />
       <Descriptions />
-
-      {/* color palets */}
       <Colorpalets />
 
       {/* add or update product button */}
@@ -107,7 +87,7 @@ function Categories() {
 
 function Loadingcomp() {
   return (
-    <div className="uploadloader h-[20px] aspect-square rounded-full border-t-2 border-l-2 border-solid border-white"></div>
+    <div className="uploadloader h-[20px] aspect-square rounded-full border-t-2 border-b-2 border-solid border-white"></div>
   );
 }
 

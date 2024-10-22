@@ -7,6 +7,7 @@ const client = new MongoClient(db_link);
 client.connect();
 const db = client.db("Adorefurnix");
 const Productscollection = db.collection("Products");
+// const Productscollection = db.collection("testcollection");
 const userscollection = db.collection("users");
 const Admindatacollection = db.collection("Admindata");
 const blogscollection = db.collection("blogs");

@@ -9,7 +9,7 @@ function Details() {
   };
 
   return (
-    <div className="grid grid-cols-[repeat(auto-fit,minmax(400px,1fr))] gap-2 p-5">
+    <div className="grid grid-cols-[repeat(auto-fit,minmax(350px,1fr))] gap-2 p-5">
       <InputField
         label="Name:"
         name="name"

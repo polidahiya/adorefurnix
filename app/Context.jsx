@@ -10,7 +10,7 @@ export const uploadproductdata = {
   price: 0,
   rating: 5,
   discount: 0,
-  keywords: "",
+  keywords: "new arrivals best seller",
   available: true,
   desc: [],
   colorpalets: [
@@ -42,7 +42,6 @@ export function Appwrapper({ children }) {
   const [addproduct, setaddproduct] = useState(uploadproductdata);
   const [updateproduct, setupdateproduct] = useState(false);
   const [deletedimages, setdeletedimages] = useState([]);
-  const [adminproductrefresher, setadminproductrefresher] = useState(0);
 
   // funtions
   const setmessagefn = (message) => {
@@ -87,8 +86,6 @@ export function Appwrapper({ children }) {
         setupdateproduct,
         deletedimages,
         setdeletedimages,
-        adminproductrefresher,
-        setadminproductrefresher,
       }}
     >
       {children}

@@ -4,8 +4,9 @@ import { categorylist } from "@/app/commondata";
 import { Getliveproducts } from "../Getliveproducts";
 import { Deleteproduct } from "../Serveraction";
 import { AppContextfn } from "@/app/Context";
-import Image from "next/image";
 import Componentloading from "@/app/_components/Componentloading";
+import Productcard from "@/app/_components/Productcard";
+import { MdUpload } from "react-icons/md";
 
 function Showproducts() {
   const [categorystate, setcategorystate] = useState({
@@ -17,6 +18,23 @@ function Showproducts() {
 
   const [products, setproducts] = useState([]);
   const [loading, setloading] = useState(false);
+
+  const handlecategorychange = (e) => {
+    const value = e.target.value;
+    setcategorystate({
+      ...categorystate,
+      category: value,
+      subcat: categorylist[value]?.subcat[0]?.name,
+    });
+  };
+
+  const handlesubcategorychange = (e) => {
+    const value = e.target.value;
+    setcategorystate({
+      ...categorystate,
+      subcat: value,
+    });
+  };
 
   const showproducts = async () => {
     setloading(true);
@@ -37,106 +55,65 @@ function Showproducts() {
       <h2 className="text-center mt-[30px] text-[20px] font-bold">
         Show Products
       </h2>
-      <h2 className="text-center mt-[30px] text-[20px] font-bold">
-        Select a category
-      </h2>
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-[10px] p-[20px]">
-        {Object.keys(categorylist).map((item, i) => {
-          return (
-            <button
-              key={i}
-              className={`border border-slate-300 rounded-[10px] p-[5px] text-[12px] 
-                ${
-                  categorystate?.category == item && "bg-slate-600 text-white"
-                }`}
-              onClick={() => {
-                setcategorystate({
-                  ...categorystate,
-                  category: item,
-                  subcat: categorylist[item]?.subcat[0]?.name,
-                });
-              }}
+      <div className="flex flex-col md:flex-row  items-center justify-center gap-10 mt-10 px-5">
+        <div className="w-full flex gap-5 items-center">
+          <label className="flex-1 text-[20px] font-bold ">Category :</label>
+          <select
+            className="flex-1 p-2 border border-slate-300 outline-none rounded-md"
+            value={categorystate?.category}
+            onChange={handlecategorychange}
+          >
+            {Object.keys(categorylist).map((item, i) => (
+              <option key={i} value={item}>
+                {item}
+              </option>
+            ))}
+          </select>
+        </div>
+        {categorylist[categorystate?.category]?.subcat.length != 0 && (
+          <div className="w-full flex gap-5 items-center">
+            <label className="flex-1 text-[20px] font-bold ">
+              Sub-Category :
+            </label>
+            <select
+              className="flex-1 p-2 border border-slate-300 outline-none rounded-md"
+              value={categorystate?.subcat}
+              onChange={handlesubcategorychange}
             >
-              {item}
-            </button>
-          );
-        })}
-      </div>
-      <h2 className="text-center mt-[30px] text-[20px] font-bold">
-        Select Subcategory
-      </h2>
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-[10px] p-[20px]">
-        {categorylist[categorystate?.category]?.subcat?.map((item, i) => {
-          return (
-            <button
-              key={i}
-              className={`border border-slate-300 rounded-[10px] p-[5px] text-[12px] ${
-                categorystate?.subcat == item.name && "bg-slate-600 text-white"
-              }`}
-              onClick={() => {
-                setcategorystate({ ...categorystate, subcat: item.name });
-              }}
-            >
-              {item.name}
-            </button>
-          );
-        })}
+              {categorylist[categorystate?.category]?.subcat?.map((item, i) => (
+                <option key={i} value={item?.name}>
+                  {item?.name}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
       </div>
       <center>
-        <button className="bg-slate-300 rounded-md px-2" onClick={showproducts}>
+        <button
+          className="bg-slate-300 rounded-md p-[5px] px-5 my-5"
+          onClick={showproducts}
+        >
           Show Products
         </button>
       </center>
       {/* products */}
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-[20px] p-[20px]">
+      <div className="w-full grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] md:grid-cols-[repeat(auto-fit,minmax(250px,1fr))] place-items-center gap-[10px] md:gap-[20px] p-3 md:p-8">
         {products.map((item, i) => {
-          const discount = Math.floor(
-            (item.price / (100 - item.discount)) * 100
-          );
           return (
             <div
-              key={i}
-              className="relative w-full shadow-[4px_4px_5px_#bababa7f] rounded-[10px] overflow-hidden"
+              key={i + new Date().getMilliseconds() + Math.random()} // More stable key
+              className="relative h-full w-full max-w-[350px] md:min-w-[270px] shadow-md rounded-[10px]  bg-white"
             >
-              {/* discount */}
-              {item.discount != 0 && (
-                <div className="absolute top-[10px] left-[10px] bg-green-600 text-white p-[5px] rounded-[5px]">
-                  {item.discount}
-                  {"%"} OFF
-                </div>
-              )}
-              {/* availabe */}
-              {!item.available && (
-                <div
-                  className={`absolute  left-[10px] bg-red-600 text-white p-[5px] rounded-[5px]
-                   ${discount ? "top-[50px]" : "top-[10px]"}`}
-                >
-                  Out of Stock!
-                </div>
-              )}
-              {/*  */}
-              <Image
-                src={item.colorpalets[0].images[0]}
-                alt=""
-                width={300}
-                height={300}
-                loading="lazy"
-                className="aspect-[4/3] w-full object-cover object-center"
-              ></Image>
-              <div className="p-[10px]">
-                <h3 className="text-center  font-bold">{item.name}</h3>
-                <div className="flex items-center gap-[10px] text-[18px]">
-                  {item.discount != 0 && (
-                    <span className="line-through text-slate-400">
-                      ₹{discount}
-                    </span>
-                  )}
-                  <span className="">₹{item.price}</span>
-                </div>
-              </div>
+              <Productcard
+                index={i}
+                id={item._id}
+                image={item.colorpalets[0]?.images[0]}
+                {...item}
+              />
               {/* delete product button */}
               <button
-                className="absolute top-3 right-3 aspect-square w-7 bg-red-600 text-white"
+                className="absolute top-3 right-3 aspect-square w-7 bg-red-600 text-white rounded-full"
                 onClick={async () => {
                   const res = await Deleteproduct(item.colorpalets, item._id);
                   setproducts(
@@ -151,7 +128,7 @@ function Showproducts() {
               </button>
               {/* update product button */}
               <button
-                className="absolute top-[50px] right-3  bg-green-600 p-[5px] text-white"
+                className="absolute top-[50px] right-3 flex items-center gap-1 bg-green-600 p-[5px] px-5 rounded-full text-white"
                 onClick={() => {
                   setaddproduct(item);
                   setdeletedimages([]);
@@ -159,7 +136,7 @@ function Showproducts() {
                   window.scrollTo(0, 0);
                 }}
               >
-                Update
+                <MdUpload /> Update
               </button>
             </div>
           );
