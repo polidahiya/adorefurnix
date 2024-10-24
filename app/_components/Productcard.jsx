@@ -22,6 +22,10 @@ function Productcard({
   link,
 }) {
   const [showproduct, setshowproduct] = useState(false);
+  const [loading, setloading] = useState({
+    effect: true,
+    show: true,
+  });
   const [imgSrc, setImgSrc] = useState(image);
 
   // Fallback image URL
@@ -48,7 +52,11 @@ function Productcard({
 
   return (
     <Link
-      href={link ? link.replace(/ /g, "_") : `/${category}/${subcat}/${id}`.replace(/ /g, "_")}
+      href={
+        link
+          ? link.replace(/ /g, "_")
+          : `/${category}/${subcat}/${id}`.replace(/ /g, "_")
+      }
       className={`group relative h-full w-full max-w-[350px] md:min-w-[270px] shadow-md rounded-[10px]  bg-white duration-300 ${
         showproduct ? "opacity-100 scale-100" : "opacity-0 scale-75"
       }`}
@@ -61,8 +69,21 @@ function Productcard({
           height={300}
           className="w-full h-full object-cover object-center  scale-100 lg:group-hover:scale-105 lg:duration-300"
           loading="lazy"
+          onLoad={() => {
+            setloading((pre) => ({ ...pre, effect: false }));
+            setTimeout(() => {
+              setloading((pre) => ({ ...pre, show: false }));
+            }, 550);
+          }}
           onError={handleImageError} // Handle image error
         />
+        {loading.show && (
+          <div
+            className={`imgloader absolute inset-0 bg-bg1 ${
+              !loading.effect && "opacity-0"
+            } duration-500`}
+          ></div>
+        )}
         <div className="absolute top-[5px] left-[5px] md:top-[10px] md:left-[10px] flex flex-col items-start gap-[5px] text-[8px] md:text-[14px] text-white">
           {/* discount */}
           {pricebeforediscount && (

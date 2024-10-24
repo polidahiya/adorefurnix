@@ -31,19 +31,19 @@ const ContactCard = () => {
         </h3>
         <div className="flex flex-col space-y-4 text-gray-600">
           <div className="flex items-center space-x-3 text-[14px]">
-            <FaEnvelope className="text-indigo-600 text-xl" />
+            <FaEnvelope className="text-cyan-400 text-xl" />
             <p>
               <strong>Email:</strong> {mail}
             </p>
           </div>
           <div className="flex items-center space-x-3 text-[14px]">
-            <FaPhone className="text-indigo-600 text-xl" />
+            <FaPhone className="text-cyan-400 text-xl" />
             <p>
               <strong>Phone:</strong> {mobile}
             </p>
           </div>
           <div className="flex items-center space-x-3 text-[14px]">
-            <FaMapMarkerAlt className="text-indigo-600 text-xl" />
+            <FaMapMarkerAlt className="text-cyan-400 text-xl" />
             <p>
               <strong>Address:</strong> {address}
             </p>

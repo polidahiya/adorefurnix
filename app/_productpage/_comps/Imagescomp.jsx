@@ -156,7 +156,7 @@ const MiniImage = ({ image, alt, onClick, isActive }) => {
 
   return (
     <Image
-      className={`w-full aspect-square object-cover bg-slate-200 cursor-pointer ${
+      className={`w-full aspect-square object-contain bg-white cursor-pointer ${
         isActive
           ? "border-[2px] border-cyan-500"
           : "border-[2px] border-slate-300"

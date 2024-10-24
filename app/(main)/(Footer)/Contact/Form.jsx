@@ -59,7 +59,7 @@ export default function ContactForm({ userdata }) {
             name="name"
             value={formData.name}
             onChange={handleChange}
-            className="block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm"
+            className="block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-cyan-400 sm:text-sm"
             required
             placeholder="Your Name"
           />
@@ -78,7 +78,7 @@ export default function ContactForm({ userdata }) {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            className="block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm"
+            className="block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-cyan-400 sm:text-sm"
             required
             placeholder="Your Email"
           />
@@ -96,7 +96,7 @@ export default function ContactForm({ userdata }) {
             name="subject"
             value={formData.subject}
             onChange={handleChange}
-            className="block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm"
+            className="block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-cyan-400 sm:text-sm"
             required
             placeholder="Enter subject here"
           />
@@ -114,14 +114,14 @@ export default function ContactForm({ userdata }) {
             value={formData.message}
             onChange={handleChange}
             rows="6"
-            className="block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm"
+            className="block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-cyan-400 sm:text-sm"
             required
             placeholder="Type your message here!"
           ></textarea>
         </div>
         <button
           type="submit"
-          className="flex items-center justify-center gap-[10px] w-full bg-gradient-to-r from-indigo-500 to-indigo-600 text-white py-3 px-4 rounded-lg shadow-sm hover:from-indigo-600 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          className="flex items-center justify-center gap-[10px] w-full bg-theme text-white py-3 px-4 rounded-lg shadow-sm hover:from-indigo-600 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400"
         >
           {loading && (
             <div className="h-[20px] aspect-square border-[2px] border-l-0 border-t-0 rounded-full border-white animate-spin duration-200"></div>

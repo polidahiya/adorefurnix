@@ -11,6 +11,7 @@ import Newarrival from "./_components/Homepage/Newarrival";
 import { cookies } from "next/headers";
 import Image from "next/image";
 import Allproducts from "./_components/Homepage/Allproducts";
+import Roundcategories from "./_components/Homepage/Roundcategories";
 
 export default async function Home() {
   const token = cookies()?.get("token")?.value;
@@ -52,18 +53,18 @@ export default async function Home() {
         />
         {/* gradient full*/}
         <div
-          className="absolute bottom-0 translate-y-1/2 left-0 w-full h-[15vw] z-[1]"
+          className="absolute bottom-0 translate-y-1/2 left-0 w-full h-[10vw] z-10"
           style={{
             backgroundImage:
               "linear-gradient(0deg,transparent, white, transparent)",
           }}
         ></div>
       </div>
-
+      <Roundcategories />
       <Categories />
       <Newarrival products={products} />
       <Bestselling products={products} />
-      <Allproducts products={products.sort(() => Math.random() - 0.5)}/>
+      <Allproducts products={products.sort(() => Math.random() - 0.5)} />
       <Blogscomp />
       <div>
         <h2 className="text-center font-bold text-2xl md:text-4xl italic font-serif mt-24 ">

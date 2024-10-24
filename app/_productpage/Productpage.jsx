@@ -51,7 +51,10 @@ async function Productpage({ category, subcat, productid, color }) {
             productName={filteredProduct.name}
           />
 
-          <h1 className="text-[20px] md:text-[25px] py-[10px] font-semibold" itemProp="name">
+          <h1
+            className="text-[20px] md:text-[25px] py-[10px] font-semibold"
+            itemProp="name"
+          >
             {filteredProduct.name}
           </h1>
           <Rating rating={filteredProduct.rating} />
@@ -72,14 +75,14 @@ async function Productpage({ category, subcat, productid, color }) {
       </header>
 
       <ProductCare />
-     
+
       <Similarproducts
         allproducts={allproducts}
         category={category}
         subcat={subcat}
         productid={productid}
       />
-       <Promices />
+      <Promices />
     </article>
   );
 }
@@ -90,11 +93,17 @@ const Breadcrumbs = ({ category, subcat, productName }) => (
       Home
     </Link>
     <RxChevronRight className="min-w-3" />
-    <Link className="lg:hover:text-cyan-500" href={`/${category}`}>
+    <Link
+      className="lg:hover:text-cyan-500"
+      href={`/${category}`.replace(/ /g, "_")}
+    >
       {category}
     </Link>
     <RxChevronRight className="min-w-3" />
-    <Link className="lg:hover:text-cyan-500" href={`/${category}/${subcat}`}>
+    <Link
+      className="lg:hover:text-cyan-500"
+      href={`/${category}/${subcat}`.replace(/ /g, "_")}
+    >
       {subcat}
     </Link>
     <RxChevronRight className="min-w-3" />

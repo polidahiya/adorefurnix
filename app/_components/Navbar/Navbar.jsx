@@ -15,7 +15,8 @@ import { useRouter } from "next/navigation";
 function Navbar({ params, productsname, token, userdata }) {
   const router = useRouter();
   const slug = params?.Category;
-  const category = slug && slug[0] ? decodeURIComponent(slug[0]) : null;
+  const category =
+    slug && slug[0] ? decodeURIComponent(slug[0]).replace(/_/g, " ") : null;
 
   const { showsearch, setshowsearch, showcat, setshowcat, searchinputref } =
     AppContextfn();
