@@ -60,7 +60,7 @@ async function page({ params }) {
                   width={400}
                   loading="lazy"
                   alt="furniture blog"
-                  className="w-full md:max-w-[60%] aspect-video object-cover object-center rounded-lg shadow-md mb-4"
+                  className="w-full md:max-w-[60%] aspect-video object-cover object-center rounded-lg shadow-md mb-4 bg-bg1"
                 />
               );
             default:
@@ -95,7 +95,7 @@ function Showblogs({ blogs }) {
               className="group rounded-xl shadow-md p-2 min-w-64 md:min-w-full"
             >
               <Image
-                className="w-full aspect-video rounded-md object-cover object-center"
+                className="w-full aspect-video rounded-md object-cover object-center bg-bg1"
                 height={300}
                 width={500}
                 src={firstImage}

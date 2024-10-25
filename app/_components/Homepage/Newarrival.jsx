@@ -20,7 +20,7 @@ const Newarrival = async ({ products }) => {
             className="relative bg-white shadow-md rounded-xl p-2"
           >
             <Image
-              className="w-full aspect-[4/3] object-cover rounded-lg"
+              className="w-full aspect-[4/3] object-cover rounded-lg bg-bg1"
               src={item.colorpalets[0]?.images[0]}
               alt={item.name}
               width={400}

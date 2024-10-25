@@ -38,7 +38,7 @@ async function Blogscomp() {
             >
               <Image
                 src={firstImage}
-                className="rounded-lg md:h-[250px]  w-full md:w-fit aspect-[4/3]  object-cover object-center"
+                className="rounded-lg md:h-[250px]  w-full md:w-fit aspect-[4/3]  object-cover object-center bg-bg1"
                 alt="Blog Image"
                 loading="lazy"
                 height={300}

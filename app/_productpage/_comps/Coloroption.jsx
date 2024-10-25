@@ -14,12 +14,15 @@ function Coloroption({ filteredproducts, color }) {
           return (
             <Link
               key={i}
-              href={`/${filteredproducts.category}/${filteredproducts.subcat}/${filteredproducts._id}?color=${i}`}
+              href={`/${filteredproducts.category}/${filteredproducts.subcat}/${filteredproducts._id}?color=${i}`.replace(
+                / /g,
+                "_"
+              )}
               replace
               className={`relative p-[5px] flex flex-col items-center  cursor-pointer shadow-[0px_0px_5px_#bababa7f] rounded-[10px]
                 ${color == i && "outline outline-cyan-500"}`}
             >
-              <Comp image={item.images[0]} />
+              <Comp image={item.images[0]} i={i} />
               <p className="text-center text-[12px]">{item?.name}</p>
               <div
                 className={`absolute top-[5px] right-[5px] w-[20px] aspect-square rounded-full`}
@@ -33,13 +36,13 @@ function Coloroption({ filteredproducts, color }) {
   );
 }
 
-function Comp({ image }) {
+function Comp({ image, i }) {
   const [safeimage, setsafeimage] = useState(image);
   return (
     <Image
       src={safeimage}
-      className="h-[100px] min-w-[100px] object-contain object-center rounded-[5px]"
-      alt="sdjfjds"
+      className="h-[100px] min-w-[100px] object-contain object-center rounded-[5px] bg-bg1"
+      alt={"color-option-" + i}
       height={100}
       width={100}
       onError={() => {

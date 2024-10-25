@@ -43,7 +43,7 @@ async function Bestselling({ products }) {
               className="relative bg-white rounded-lg shadow-lg overflow-hidden  cursor-pointer"
             >
               <Image
-                className="w-full aspect-[4/3] object-cover object-center p-[10px]"
+                className="w-full aspect-[4/3] object-cover object-center p-[10px] bg-bg1"
                 src={item.colorpalets[0]?.images[0]}
                 alt={item.name}
                 width={400}

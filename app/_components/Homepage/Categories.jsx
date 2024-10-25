@@ -24,7 +24,7 @@ function Categories() {
                 quality={10}
                 alt={item}
                 loading="lazy"
-                className="w-full aspect-[4/3] object-cover object-center rounded-[2.5vw] md:rounded-[1vw]"
+                className="w-full aspect-[4/3] object-cover object-center rounded-[2.5vw] md:rounded-[1vw] bg-bg1"
               ></Image>
               <div className="text-center text-[14px] md:text-[16px] py-[10px]">{item}</div>
             </Link>

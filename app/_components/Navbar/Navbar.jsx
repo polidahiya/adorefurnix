@@ -122,7 +122,7 @@ export const Cartlink = () => {
   return (
     <div className="group relative flex items-center justify-center h-full aspect-square z-20">
       <Link href="/cart">
-        <FaCartShopping className="text-[25px] text-white " />
+        <FaCartShopping className="text-[25px] text-white" />
       </Link>
       {Object.keys(cart).length > 0 && (
         <div className="absolute top-0 right-0 h-[15px] aspect-square bg-red-500 text-white text-[10px] rounded-full flex items-center justify-center ">
@@ -130,25 +130,32 @@ export const Cartlink = () => {
         </div>
       )}
       {/* cart peak */}
-      <div className="absolute top-full left-1/2 -translate-x-1/2 w-72  bg-white rounded-md hidden flex-col items-center lg:group-hover:flex p-2 shadow-md">
-        <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-45 w-2 aspect-square bg-white"></span>
+      <div className="absolute top-full right-0  w-96 translate-x-1/4  bg-white rounded-3xl hidden flex-col items-center lg:group-hover:flex p-3 shadow-md">
+        <span className="absolute top-0 right-[110px] -translate-y-1/2 rotate-45 w-2 aspect-square bg-white"></span>
         {Object.keys(cart).length > 0 ? (
           <>
-            <div className="w-full flex flex-col gap-2 max-h-80 overflow-y-scroll hidescroll">
+            <div className="w-full flex flex-col gap-3 max-h-80 rounded-xl overflow-y-scroll hidescroll">
               {Object.values(cart).map((item, i) => {
                 const priceBeforeDiscount =
                   item.discount > 0
                     ? Math.floor((item.price / (100 - item.discount)) * 100)
                     : null;
                 return (
-                  <div key={i} className="flex gap-2">
+                  <Link
+                    key={i}
+                    href={`/${item.category}/${item.subcat}/${item._id}?color=${item?.selectedcolor}`.replace(
+                      / /g,
+                      "_"
+                    )}
+                    className="flex gap-2"
+                  >
                     <Image
-                      className="w-28 aspect-[4/3] object-cover"
+                      className="min-w-32 aspect-[4/3] rounded-xl object-cover bg-bg1"
                       src={item?.colorpalets[item?.selectedcolor]?.images[0]}
                       alt={item?.name}
                       quality={10}
-                      width={100}
-                      height={100}
+                      width={112}
+                      height={84}
                     ></Image>
                     <div className="flex flex-col text-xs">
                       <h3 className="line-clamp-2">{item.name}</h3>
@@ -188,13 +195,13 @@ export const Cartlink = () => {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 );
               })}
             </div>
             <Link
               href="/cart"
-              className="bg-theme flex items-center justify-center gap-3 w-fit px-5 py-1 rounded-full text-white text-sm font-semibold mt-2"
+              className="bg-theme flex items-center justify-center gap-3 w-fit px-5 py-1 rounded-full text-white text-sm font-semibold mt-3"
             >
               Go to Cart <FaOpencart />
             </Link>
@@ -206,7 +213,7 @@ export const Cartlink = () => {
               alt="Empty cart image"
               height={300}
               width={300}
-              className="w-1/3"
+              className="min-w-1/3"
             ></Image>
             <p className="text-[14px] text-center">
               Your Cart is Empty, Add Some Products.
