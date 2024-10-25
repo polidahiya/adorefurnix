@@ -133,42 +133,83 @@ function ImagesComp({ filteredproducts, color, token }) {
 }
 
 const MainImage = ({ image, name }) => {
+  const [loading, setloading] = useState({
+    effect: true,
+    show: true,
+  });
   const [hasError, setHasError] = useState(false);
 
   return (
-    <div className="min-w-[100%] h-full">
+    <div className="relative min-w-[100%] h-full">
       <Image
         className="min-w-[100%] h-full snap-start snap-always object-contain"
         src={hasError ? fallbackImage : image}
         alt={name}
         height={400}
         width={754}
-        loading="eager"
+        loading="lazy"
+        onLoad={() => {
+          setloading((pre) => ({ ...pre, effect: false }));
+          setTimeout(() => {
+            setloading((pre) => ({ ...pre, show: false }));
+          }, 550);
+        }}
         onError={() => setHasError(true)}
       />
+      {/* loading */}
+      {loading.show && (
+        <div
+          className={`imgloader absolute inset-0 bg-bg1 ${
+            !loading.effect && "opacity-0"
+          } duration-500`}
+        ></div>
+      )}
     </div>
   );
 };
 
-
 const MiniImage = ({ image, alt, onClick, isActive }) => {
+  const [loading, setloading] = useState({
+    effect: true,
+    show: true,
+  });
   const [hasError, setHasError] = useState(false);
 
   return (
-    <Image
-      className={`w-full aspect-square object-contain bg-white cursor-pointer ${
+    <div
+      className={`relative w-full aspect-square cursor-pointer ${
         isActive
           ? "border-[2px] border-cyan-500"
           : "border-[2px] border-slate-300"
       }`}
-      src={hasError ? fallbackImage : image}
-      alt={alt}
-      height={100}
-      width={100}
-      quality={50}
-      onError={() => setHasError(true)}
       onClick={onClick}
-    />
+    >
+      <Image
+        className={`h-full w-full aspect-square object-contain bg-white`}
+        src={hasError ? fallbackImage : image}
+        alt={alt}
+        height={100}
+        width={100}
+        quality={50}
+        loading="lazy"
+        onLoad={() => {
+          setloading((pre) => ({ ...pre, effect: false }));
+          setTimeout(() => {
+            setloading((pre) => ({ ...pre, show: false }));
+          }, 550);
+        }}
+        onError={() => setHasError(true)}
+        
+      />
+      {/* loading */}
+      {loading.show && (
+        <div
+          className={`imgloader absolute inset-0 bg-bg1 ${
+            !loading.effect && "opacity-0"
+          } duration-500`}
+        ></div>
+      )}
+    </div>
   );
 };
 
