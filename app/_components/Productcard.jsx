@@ -77,6 +77,7 @@ function Productcard({
           }}
           onError={handleImageError} // Handle image error
         />
+        {/* loading */}
         {loading.show && (
           <div
             className={`imgloader absolute inset-0 bg-bg1 ${

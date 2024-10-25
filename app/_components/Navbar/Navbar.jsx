@@ -11,6 +11,7 @@ import { FiSearch } from "react-icons/fi";
 import Searchbox from "../Searchbox";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { useRouter } from "next/navigation";
+import { FaOpencart } from "react-icons/fa6";
 
 function Navbar({ params, productsname, token, userdata }) {
   const router = useRouter();
@@ -112,23 +113,108 @@ function Navbar({ params, productsname, token, userdata }) {
 
 export const Cartlink = () => {
   const { cart } = AppContextfn();
+
   let cartlength = 0;
   Object.keys(cart).forEach((item) => {
     cartlength += cart[item].quantity;
   });
 
   return (
-    <Link
-      href="/cart"
-      className="relative flex items-center justify-center h-full aspect-square "
-    >
-      <FaCartShopping className="text-[25px] text-white " />
+    <div className="group relative flex items-center justify-center h-full aspect-square z-20">
+      <Link href="/cart">
+        <FaCartShopping className="text-[25px] text-white " />
+      </Link>
       {Object.keys(cart).length > 0 && (
         <div className="absolute top-0 right-0 h-[15px] aspect-square bg-red-500 text-white text-[10px] rounded-full flex items-center justify-center ">
           {cartlength}
         </div>
       )}
-    </Link>
+      {/* cart peak */}
+      <div className="absolute top-full left-1/2 -translate-x-1/2 w-72  bg-white rounded-md hidden flex-col items-center lg:group-hover:flex p-2 shadow-md">
+        <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-45 w-2 aspect-square bg-white"></span>
+        {Object.keys(cart).length > 0 ? (
+          <>
+            <div className="w-full flex flex-col gap-2 max-h-80 overflow-y-scroll hidescroll">
+              {Object.values(cart).map((item, i) => {
+                const priceBeforeDiscount =
+                  item.discount > 0
+                    ? Math.floor((item.price / (100 - item.discount)) * 100)
+                    : null;
+                return (
+                  <div key={i} className="flex gap-2">
+                    <Image
+                      className="w-28 aspect-[4/3] object-cover"
+                      src={item?.colorpalets[item?.selectedcolor]?.images[0]}
+                      alt={item?.name}
+                      quality={10}
+                      width={100}
+                      height={100}
+                    ></Image>
+                    <div className="flex flex-col text-xs">
+                      <h3 className="line-clamp-2">{item.name}</h3>
+                      {/* price */}
+                      <p className="font-bold flex gap-[10px] items-baseline mt-1">
+                        {priceBeforeDiscount && (
+                          <span className="text-gray-500 line-through">
+                            ₹
+                            {(
+                              priceBeforeDiscount * item.quantity
+                            ).toLocaleString("en-IN")}
+                          </span>
+                        )}
+                        {priceBeforeDiscount && (
+                          <span className="text-green-500 font-semibold">
+                            {item.discount}% OFF
+                          </span>
+                        )}
+                      </p>
+                      <p className="text-black">
+                        ₹{(item.price * item.quantity).toLocaleString("en-IN")}
+                      </p>
+                      <div className="flex gap-10 mt-auto">
+                        <div>
+                          <span className="text-slate-400">Color : </span>
+                          <span
+                            className="inline-block h-2 aspect-square rounded-full"
+                            style={{
+                              backgroundColor:
+                                item?.colorpalets[item?.selectedcolor]?.color,
+                            }}
+                          ></span>
+                        </div>
+                        <div>
+                          <span className="text-slate-400">Qty : </span>
+                          <span>{item?.quantity}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            <Link
+              href="/cart"
+              className="bg-theme flex items-center justify-center gap-3 w-fit px-5 py-1 rounded-full text-white text-sm font-semibold mt-2"
+            >
+              Go to Cart <FaOpencart />
+            </Link>
+          </>
+        ) : (
+          <div className="flex items-center p-2">
+            <Image
+              src="/no-cart.png"
+              alt="Empty cart image"
+              height={300}
+              width={300}
+              className="w-1/3"
+            ></Image>
+            <p className="text-[14px] text-center">
+              Your Cart is Empty, Add Some Products.
+            </p>
+          </div>
+        )}
+      </div>
+    </div>
   );
 };
 
