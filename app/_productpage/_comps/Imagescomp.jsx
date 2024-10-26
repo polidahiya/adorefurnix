@@ -65,20 +65,13 @@ function ImagesComp({ filteredproducts, color, token }) {
   const images = filteredproducts.colorpalets[color].images;
 
   return (
-    <div className="relative aspect-[4/3] w-full max-h-[400px] lg:max-h-full">
+    <div className="flex flex-col-reverse lg:flex-row lg:items-center gap-2 ">
+      {/* mini images */}
       <div
-        className="h-full w-full flex overflow-x-scroll snap-x snap-mandatory scroll-smooth"
-        onScroll={handleImageScroll}
-        ref={imagesScrollRef}
-      >
-        {images.map((image, index) => (
-          <MainImage key={index} image={image} name={filteredproducts.name} />
-        ))}
-      </div>
-
-      <div
-        className={`hidden md:flex absolute top-0 left-[10px] w-[70px] h-full flex-col gap-[10px] ${
-          images.length > 5 ? "overflow-y-scroll hidescroll" : "justify-center"
+        className={`flex  lg:w-[70px] lg:h-full lg:flex-col flex-wrap lg:flex-nowrap gap-[10px] lg:max-h-[400px] ${
+          images.length > 5
+            ? "overflow-y-scroll hidescroll justify-center lg:justify-normal"
+            : "justify-center"
         }`}
       >
         {images.map((image, index) => (
@@ -94,38 +87,53 @@ function ImagesComp({ filteredproducts, color, token }) {
           />
         ))}
       </div>
-
-      <button
-        className="absolute right-[50px] top-[10px] bg-white rounded-full p-[3px] border border-slate-300"
-        title="Add to favourites"
-        onClick={handleLikeToggle}
-      >
-        <Heart
-          styles={`h-[25px] w-[25px] translate-y-[1px] ${
-            isLiked
-              ? "fill-red-500 stroke-none"
-              : "fill-white stroke-[5px] stroke-red-600"
-          }`}
-        />
-      </button>
-
-      <button
-        className="absolute right-[10px] top-[10px] rounded-full bg-white p-[3px] border border-slate-300"
-        title="Copy Link"
-        onClick={handleSharePage}
-      >
-        <Linksvg styles="h-[25px] aspect-square fill-none stroke-slate-500" />
-      </button>
-
-      <div className="absolute bottom-0 left-0 z-10 w-full">
-        <div className="absolute bottom-[5px] left-1/2 flex gap-[10px] transform -translate-x-1/2">
-          {images.map((_, index) => (
-            <div
-              key={index}
-              className="h-[5px] min-w-[5px] bg-theme rounded-full transition-all duration-200"
-              style={{ width: activeImageIndex === index ? "30px" : "5px" }}
-            />
+      {/* main */}
+      <div className="relative aspect-[4/3] w-full max-h-[400px] lg:max-h-full">
+        <div
+          className="h-full w-full flex overflow-x-scroll snap-x snap-mandatory scroll-smooth"
+          onScroll={handleImageScroll}
+          ref={imagesScrollRef}
+        >
+          {images.map((image, index) => (
+            <MainImage key={index} image={image} name={filteredproducts.name} />
           ))}
+        </div>
+        <div className="absolute right-[10px] top-[10px] flex gap-2">
+          {/* like  */}
+          <button
+            className=" bg-white rounded-full p-[3px] border border-slate-300"
+            title="Add to favourites"
+            onClick={handleLikeToggle}
+          >
+            <Heart
+              styles={`h-[25px] w-[25px] translate-y-[1px] ${
+                isLiked
+                  ? "fill-red-500 stroke-none"
+                  : "fill-white stroke-[5px] stroke-red-600"
+              }`}
+            />
+          </button>
+          {/* link */}
+          <button
+            className=" rounded-full bg-white p-[3px] border border-slate-300"
+            title="Copy Link"
+            onClick={handleSharePage}
+          >
+            <Linksvg styles="h-[25px] aspect-square fill-none stroke-slate-500" />
+          </button>
+        </div>
+
+        {/* dots */}
+        <div className="absolute bottom-0 left-0 z-10 w-full">
+          <div className="absolute bottom-[5px] left-1/2 flex gap-[10px] transform -translate-x-1/2">
+            {images.map((_, index) => (
+              <div
+                key={index}
+                className="h-[5px] min-w-[5px] bg-theme rounded-full transition-all duration-200"
+                style={{ width: activeImageIndex === index ? "30px" : "5px" }}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>
@@ -177,7 +185,7 @@ const MiniImage = ({ image, alt, onClick, isActive }) => {
 
   return (
     <div
-      className={`relative w-full aspect-square cursor-pointer ${
+      className={`relative w-[70px] lg:w-full aspect-square cursor-pointer ${
         isActive
           ? "border-[2px] border-cyan-500"
           : "border-[2px] border-slate-300"
@@ -199,7 +207,6 @@ const MiniImage = ({ image, alt, onClick, isActive }) => {
           }, 550);
         }}
         onError={() => setHasError(true)}
-        
       />
       {/* loading */}
       {loading.show && (

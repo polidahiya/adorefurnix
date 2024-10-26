@@ -41,7 +41,7 @@ function Comp({ image, i }) {
   return (
     <Image
       src={safeimage}
-      className="h-[100px] min-w-[100px] object-contain object-center rounded-[5px] bg-bg1"
+      className="h-[100px] min-w-[100px] object-contain object-center rounded-[5px]"
       alt={"color-option-" + i}
       height={100}
       width={100}

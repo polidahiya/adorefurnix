@@ -3,7 +3,7 @@ import { FaLeaf } from "react-icons/fa";
 
 const ProductCare = () => {
   return (
-    <div className="px-6 py-8 bg-white rounded-lg shadow-lg mt-12 md:mt-16 md:px-12 md:py-10 ">
+    <div className="px-6 py-8 md:px-12 md:py-10 ">
       <h2 className="flex items-center gap-3 text-2xl font-semibold text-green-600 mb-6">
         <FaLeaf className="text-green-500 w-6 h-6" />
         Product Care Instructions
