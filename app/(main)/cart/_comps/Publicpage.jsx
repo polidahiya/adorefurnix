@@ -11,10 +11,19 @@ import { IoShieldCheckmark } from "react-icons/io5";
 import { FaOpencart } from "react-icons/fa6";
 import Link from "next/link";
 import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 
 export default function Page({ userdata, token, orderstatus }) {
-  const { cart, setcart, settoggleorderplacedmenu, setmessagefn, pincoderef } =
-    AppContextfn();
+  const router = useRouter();
+  const {
+    cart,
+    setcart,
+    settoggleorderplacedmenu,
+    setmessagefn,
+    pincoderef,
+    setredirectloginlink,
+    // setinstantlogin,
+  } = AppContextfn();
 
   const [showpaymentform, setshowpaymentform] = useState(false);
   const [orderid, setorderid] = useState("");
@@ -38,7 +47,15 @@ export default function Page({ userdata, token, orderstatus }) {
   const Order = async () => {
     if (!token) {
       setmessagefn("Please Login");
-      return;
+      setredirectloginlink("/cart");
+      router.push("/loginlogout");
+
+      // history.pushState(null, "", "");
+      // setinstantlogin((pre) => ({ ...pre, show: true }));
+      // setTimeout(() => {
+      //   setinstantlogin((pre) => ({ ...pre, effect: true }));
+      // }, 350);
+      // return;
     }
 
     const usecookie = Cookies.get("userdata");

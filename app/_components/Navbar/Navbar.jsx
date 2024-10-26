@@ -130,7 +130,7 @@ export const Cartlink = () => {
         </div>
       )}
       {/* cart peak */}
-      <div className="absolute top-full right-0  w-96 translate-x-1/4  bg-white rounded-3xl hidden flex-col items-center lg:group-hover:flex p-3 shadow-md">
+      <div className="absolute top-full right-0  w-96 translate-x-1/4  bg-white  hidden flex-col items-center lg:group-hover:flex p-3 shadow-md">
         <span className="absolute top-0 right-[110px] -translate-y-1/2 rotate-45 w-2 aspect-square bg-white"></span>
         {Object.keys(cart).length > 0 ? (
           <>
@@ -207,13 +207,13 @@ export const Cartlink = () => {
             </Link>
           </>
         ) : (
-          <div className="flex items-center p-2">
+          <div className="flex items-center px-5">
             <Image
               src="/no-cart.png"
               alt="Empty cart image"
-              height={300}
-              width={300}
-              className="min-w-1/3"
+              height={100}
+              width={100}
+              className="w-[100px]"
             ></Image>
             <p className="text-[14px] text-center">
               Your Cart is Empty, Add Some Products.

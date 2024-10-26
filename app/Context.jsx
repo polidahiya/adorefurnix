@@ -37,6 +37,10 @@ export function Appwrapper({ children }) {
   const [toggleorderplacedmenu, settoggleorderplacedmenu] = useState(false);
   const [messagearray, setmessagearray] = useState([]);
   const pincoderef = useRef();
+  const [instantlogin, setinstantlogin] = useState({
+    show: false,
+    effect: false,
+  });
 
   // admin contexts
   const [addproduct, setaddproduct] = useState(uploadproductdata);
@@ -79,6 +83,8 @@ export function Appwrapper({ children }) {
         messagearray,
         setmessagearray,
         setmessagefn,
+        instantlogin,
+        setinstantlogin,
         // admin
         addproduct,
         setaddproduct,

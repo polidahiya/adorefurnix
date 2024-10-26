@@ -46,7 +46,7 @@ function Form({ userdata }) {
     <div className="blackshadow1 w-full md:w-[700px] bg-white p-[30px] rounded-[20px]">
       <Image
         src="/minlogo.png"
-        alt="rentbean.in logo image"
+        alt="adorefurnix logo image"
         className=" top-[20px] left-[30px] h-[50px] w-[50px]"
         width={156}
         height={60}
