@@ -32,7 +32,7 @@ export async function refreshproductsnow() {
 export const Cachedblogs = unstable_cache(
   async () => {
     const blogs = await blogscollection.find({}).sort({ _id: -1 }).toArray();
-    return blogs.map((item) => ({ ...item, _id: item._id.toString()}));
+    return blogs.map((item) => ({ ...item, _id: item._id.toString() }));
   },
   ["blogs"],
   { revalidate: CACHE_TIME, tags: ["blogs"] }

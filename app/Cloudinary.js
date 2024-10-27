@@ -9,7 +9,7 @@ cloudinary.config({
 export const uploadImage = (buffer, folder = "Adorefurnix") => {
   return new Promise((resolve, reject) => {
     const uploadStream = cloudinary.uploader.upload_stream(
-      { folder: folder },
+      { folder: folder, secure: true },
       (error, result) => {
         if (error) {
           reject(error);
@@ -27,6 +27,6 @@ export const Deleteiamgefromurl = (url, folder = "Adorefurnix") => {
   const parts = url.split("/");
   const fileName = parts[parts.length - 1];
   const publicId = fileName.split(".")[0];
-  const file=folder + "/" + publicId
+  const file = folder + "/" + publicId;
   cloudinary.uploader.destroy(file);
 };

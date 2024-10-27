@@ -120,8 +120,11 @@ export const Cartlink = () => {
   });
 
   return (
-    <div className="group relative flex items-center justify-center h-full aspect-square z-20">
-      <Link href="/cart">
+    <div className="group relative  h-full aspect-square z-20">
+      <Link
+        href="/cart"
+        className="h-full w-full flex items-center justify-center"
+      >
         <FaCartShopping className="text-[25px] text-white" />
       </Link>
       {Object.keys(cart).length > 0 && (
@@ -130,96 +133,99 @@ export const Cartlink = () => {
         </div>
       )}
       {/* cart peak */}
-      <div className="absolute top-full right-0  w-96 translate-x-1/4  bg-white  hidden flex-col items-center lg:group-hover:flex p-3 shadow-md">
-        <span className="absolute top-0 right-[110px] -translate-y-1/2 rotate-45 w-2 aspect-square bg-white"></span>
-        {Object.keys(cart).length > 0 ? (
-          <>
-            <div className="w-full flex flex-col gap-3 max-h-80 rounded-xl overflow-y-scroll hidescroll">
-              {Object.values(cart).map((item, i) => {
-                const priceBeforeDiscount =
-                  item.discount > 0
-                    ? Math.floor((item.price / (100 - item.discount)) * 100)
-                    : null;
-                return (
-                  <Link
-                    key={i}
-                    href={`/${item.category}/${item.subcat}/${item._id}?color=${item?.selectedcolor}`.replace(
-                      / /g,
-                      "_"
-                    )}
-                    className="flex gap-2"
-                  >
-                    <Image
-                      className="min-w-32 aspect-[4/3] rounded-xl object-cover bg-bg1"
-                      src={item?.colorpalets[item?.selectedcolor]?.images[0]}
-                      alt={item?.name}
-                      quality={10}
-                      width={112}
-                      height={84}
-                    ></Image>
-                    <div className="flex flex-col text-xs">
-                      <h3 className="line-clamp-2">{item.name}</h3>
-                      {/* price */}
-                      <p className="font-bold flex gap-[10px] items-baseline mt-1">
-                        {priceBeforeDiscount && (
-                          <span className="text-gray-500 line-through">
-                            ₹
-                            {(
-                              priceBeforeDiscount * item.quantity
-                            ).toLocaleString("en-IN")}
-                          </span>
-                        )}
-                        {priceBeforeDiscount && (
-                          <span className="text-green-500 font-semibold">
-                            {item.discount}% OFF
-                          </span>
-                        )}
-                      </p>
-                      <p className="text-black">
-                        ₹{(item.price * item.quantity).toLocaleString("en-IN")}
-                      </p>
-                      <div className="flex gap-10 mt-auto">
-                        <div>
-                          <span className="text-slate-400">Color : </span>
-                          <span
-                            className="inline-block h-2 aspect-square rounded-full"
-                            style={{
-                              backgroundColor:
-                                item?.colorpalets[item?.selectedcolor]?.color,
-                            }}
-                          ></span>
-                        </div>
-                        <div>
-                          <span className="text-slate-400">Qty : </span>
-                          <span>{item?.quantity}</span>
+      <div className="absolute h-3 w-full hidden lg:group-hover:block ">
+        <div className="absolute top-full right-0  w-96 translate-x-1/4  bg-white flex  flex-col items-center  p-3 shadow-md">
+          <span className="absolute top-0 right-[110px] -translate-y-1/2 rotate-45 w-2 aspect-square bg-white"></span>
+          {Object.keys(cart).length > 0 ? (
+            <>
+              <div className="w-full flex flex-col gap-3 max-h-80 rounded-xl overflow-y-scroll hidescroll">
+                {Object.values(cart).map((item, i) => {
+                  const priceBeforeDiscount =
+                    item.discount > 0
+                      ? Math.floor((item.price / (100 - item.discount)) * 100)
+                      : null;
+                  return (
+                    <Link
+                      key={i}
+                      href={`/${item.category}/${item.subcat}/${item._id}?color=${item?.selectedcolor}`.replace(
+                        / /g,
+                        "_"
+                      )}
+                      className="flex gap-2"
+                    >
+                      <Image
+                        className="min-w-32 aspect-[4/3] rounded-xl object-cover bg-bg1"
+                        src={item?.colorpalets[item?.selectedcolor]?.images[0]}
+                        alt={item?.name}
+                        quality={10}
+                        width={112}
+                        height={84}
+                      ></Image>
+                      <div className="flex flex-col text-xs">
+                        <h3 className="line-clamp-2">{item.name}</h3>
+                        {/* price */}
+                        <p className="font-bold flex gap-[10px] items-baseline mt-1">
+                          {priceBeforeDiscount && (
+                            <span className="text-gray-500 line-through">
+                              ₹
+                              {(
+                                priceBeforeDiscount * item.quantity
+                              ).toLocaleString("en-IN")}
+                            </span>
+                          )}
+                          {priceBeforeDiscount && (
+                            <span className="text-green-500 font-semibold">
+                              {item.discount}% OFF
+                            </span>
+                          )}
+                        </p>
+                        <p className="text-black">
+                          ₹
+                          {(item.price * item.quantity).toLocaleString("en-IN")}
+                        </p>
+                        <div className="flex gap-10 mt-auto">
+                          <div>
+                            <span className="text-slate-400">Color : </span>
+                            <span
+                              className="inline-block h-2 aspect-square rounded-full"
+                              style={{
+                                backgroundColor:
+                                  item?.colorpalets[item?.selectedcolor]?.color,
+                              }}
+                            ></span>
+                          </div>
+                          <div>
+                            <span className="text-slate-400">Qty : </span>
+                            <span>{item?.quantity}</span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </Link>
-                );
-              })}
+                    </Link>
+                  );
+                })}
+              </div>
+              <Link
+                href="/cart"
+                className="bg-theme flex items-center justify-center gap-3 w-fit px-5 py-1 rounded-full text-white text-sm font-semibold mt-3"
+              >
+                Go to Cart <FaOpencart />
+              </Link>
+            </>
+          ) : (
+            <div className="flex items-center px-5">
+              <Image
+                src="/no-cart.png"
+                alt="Empty cart image"
+                height={100}
+                width={100}
+                className="w-[100px]"
+              ></Image>
+              <p className="text-[14px] text-center">
+                Your Cart is Empty, Add Some Products.
+              </p>
             </div>
-            <Link
-              href="/cart"
-              className="bg-theme flex items-center justify-center gap-3 w-fit px-5 py-1 rounded-full text-white text-sm font-semibold mt-3"
-            >
-              Go to Cart <FaOpencart />
-            </Link>
-          </>
-        ) : (
-          <div className="flex items-center px-5">
-            <Image
-              src="/no-cart.png"
-              alt="Empty cart image"
-              height={100}
-              width={100}
-              className="w-[100px]"
-            ></Image>
-            <p className="text-[14px] text-center">
-              Your Cart is Empty, Add Some Products.
-            </p>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );
