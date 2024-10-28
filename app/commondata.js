@@ -14,6 +14,7 @@ export const sociallinks = {
   insta: "https://www.instagram.com/adorefurnix?igsh=emc0cmUwcHVsdXR2",
   facebook: "https://www.facebook.com/share/VN5R1yTY3ZHarwW9/?mibextid=qi2Omg",
   twitter: "https://x.com/Adorefurnix?t=VQWPT4ltjY2cAcHw40xLmw&s=09",
+  pinterest: "https://in.pinterest.com/adorefurnix/",
 };
 
 export const categorylist = {

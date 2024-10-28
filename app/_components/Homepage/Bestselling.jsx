@@ -1,8 +1,7 @@
 import React from "react";
-import { RatingStars } from "../Ratingstars";
 import Link from "next/link";
 import { LuArrowRightCircle } from "react-icons/lu";
-import Image from "next/image";
+import Productcard from "../Productcard";
 
 async function Bestselling({ products }) {
   const bestselling = products
@@ -33,57 +32,14 @@ async function Bestselling({ products }) {
 
       <div className="grid grid-cols-2 md:grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-2 md:gap-6">
         {bestselling?.map((item, i) => {
-          const pricebeforediscount = Math.floor(
-            (item?.price / (100 - item.discount)) * 100
-          );
           return (
-            <Link
-              href={`/${item.category}/${item.subcat}/${item._id}`.replace(/ /g, "_")}
-              key={i}
-              className="relative bg-white rounded-lg shadow-lg overflow-hidden  cursor-pointer"
-            >
-              <Image
-                className="w-full aspect-[4/3] object-cover object-center p-[10px] bg-bg1"
-                src={item.colorpalets[0]?.images[0]}
-                alt={item.name}
-                width={400}
-                height={400}
-                loading="lazy"
-              />
-              <div className="p-4">
-                <h4 className="text-[14px] md:text-[16px] font-semibold text-gray-900 mb-1 md:mb-2 truncate">
-                  {item.name}
-                </h4>
-                <RatingStars rating={item.rating} />
-                <div className="mt-[10px] flex flex-wrap items-center gap-[5px] md:gap-[10px]">
-                  <span className="font-bold text-[16px] md:text-[20px]">
-                    ₹{parseInt(item?.price, 10).toLocaleString("en-IN")}
-                  </span>
-                  {pricebeforediscount && (
-                    <>
-                      <span className="line-through text-[12px] md:text-[16px] text-[#878787]">
-                        ₹
-                        {parseInt(pricebeforediscount, 10).toLocaleString(
-                          "en-IN"
-                        )}
-                      </span>
-                      <span className="font-bold text-[12px] md:text-[16px] text-[#388e3c]">
-                        {item.discount}% off
-                      </span>
-                    </>
-                  )}
-                </div>
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-[#c1d0e4] to-transparent rounded-lg z-[-1]"></div>
-              {/* best selling tag */}
-              <Image
-                className="absolute top-1 right-1 w-16 md:w-20 aspect-square object-contain"
-                src="/images/bestsellertag.png"
-                height={100}
-                width={100}
-                alt="best selling tag Image"
-              />
-            </Link>
+            <Productcard
+              key={i + new Date().getMilliseconds() + Math.random()} // More stable key
+              index={i}
+              id={item._id}
+              image={item.colorpalets[0]?.images[0]}
+              {...item}
+            />
           );
         })}
       </div>

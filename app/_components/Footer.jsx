@@ -16,6 +16,7 @@ import { SiPaytm, SiPhonepe } from "react-icons/si";
 import { FaFacebook } from "react-icons/fa";
 import { RiInstagramFill } from "react-icons/ri";
 import { RiTwitterXFill } from "react-icons/ri";
+import { FaPinterestP } from "react-icons/fa6";
 import { MdOutlineArrowRightAlt } from "react-icons/md";
 import { sociallinks } from "../commondata";
 import { FaSitemap } from "react-icons/fa";
@@ -155,6 +156,13 @@ function Socialfollow() {
       link: sociallinks.insta,
       logo: (
         <RiInstagramFill className="text-[20px] lg:group-hover:translate-y-1 duration-300" />
+      ),
+    },
+    {
+      title: "Pinterest.com",
+      link: sociallinks.pinterest,
+      logo: (
+        <FaPinterestP className="text-[20px] lg:group-hover:translate-y-1 duration-300" />
       ),
     },
   ];

@@ -31,7 +31,7 @@ export default function Homenavbar({ userdata, token }) {
         height={50}
         width={200}
       ></Image>
-      <div className="absolute hidden md:flex top-0 left-[50%] translate-x-[-50%] h-full items-center justify-center gap-[50px] text-white">
+      <div className="absolute hidden md:flex top-0 left-[50%] translate-x-[-50%] h-full items-center justify-center gap-4 lg:gap-12 text-white">
         {list.map((item, i) => (
           <Link
             key={i}
