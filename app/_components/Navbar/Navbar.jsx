@@ -133,12 +133,13 @@ export const Cartlink = () => {
         </div>
       )}
       {/* cart peak */}
-      <div className="absolute h-3 w-full hidden lg:group-hover:block ">
-        <div className="absolute top-full right-0  w-96 translate-x-1/4  bg-white flex  flex-col items-center  p-3 shadow-md">
-          <span className="absolute top-0 right-[110px] -translate-y-1/2 rotate-45 w-2 aspect-square bg-white"></span>
+      <div className="absolute h-3 w-full hidden lg:group-hover:block"
+      >
+        <div className="absolute top-full right-0  w-96 translate-x-[50px] rounded-lg bg-white flex  flex-col items-center  p-3 shadow-md">
+          <span className="absolute top-0 right-[65px] -translate-y-1/2 rotate-45 w-2 aspect-square bg-white"></span>
           {Object.keys(cart).length > 0 ? (
             <>
-              <div className="w-full flex flex-col gap-3 max-h-80 rounded-xl overflow-y-scroll hidescroll">
+              <div className="w-full flex flex-col gap-3 max-h-80  overflow-y-scroll hidescroll">
                 {Object.values(cart).map((item, i) => {
                   const priceBeforeDiscount =
                     item.discount > 0
@@ -154,7 +155,7 @@ export const Cartlink = () => {
                       className="flex gap-2"
                     >
                       <Image
-                        className="min-w-32 aspect-[4/3] rounded-xl object-cover bg-bg1"
+                        className="min-w-32 aspect-[4/3] rounded-sm object-cover bg-bg1"
                         src={item?.colorpalets[item?.selectedcolor]?.images[0]}
                         alt={item?.name}
                         quality={10}

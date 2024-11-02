@@ -20,8 +20,6 @@ function Form({ userdata }) {
   }, []);
 
   const updateuserfn = async () => {
-    setshowloading(true);
-
     const refarray = [nameref, phonenumref, addressref];
     for (let i = 0; i < refarray.length; i++) {
       if (refarray[i]?.current?.value == "") {
@@ -30,6 +28,7 @@ function Form({ userdata }) {
         return;
       }
     }
+    setshowloading(true);
 
     const userdetails = {
       username: nameref.current.value,

@@ -4,14 +4,14 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { logintime } from "@/app/commondata";
 import { getcollection } from "@/app/Mongodb";
-const { userscollection }=getcollection()
+const { userscollection } = getcollection();
 
 const generateToken = (data, userdata) => {
   const token = jwt.sign(data, process.env.jwt_secret, {
     expiresIn: logintime[1],
   });
 
-  cookies().set("token", token, {
+  cookies().set("next-auth.session-token", token, {
     maxAge: logintime[0],
     httpOnly: true,
     secure: true,
@@ -32,7 +32,14 @@ export const login = async (userdata) => {
       return { status: 400, message: "User not found" };
     }
 
-    const isPasswordMatch = await bcrypt.compare(userdata.password, user.password);
+    if (!user.password) {
+      return { status: 400, message: "Wrong password" };
+    }
+
+    const isPasswordMatch = await bcrypt.compare(
+      userdata.password,
+      user.password
+    );
     if (!isPasswordMatch) {
       return { status: 400, message: "Wrong password" };
     }
@@ -46,7 +53,7 @@ export const login = async (userdata) => {
         address: user.address,
       }
     );
-    
+
     return { status: 200, message: "Login successful" };
   } catch (error) {
     console.error(error);
@@ -63,7 +70,7 @@ export const signup = async (userdata) => {
 
     // Hash password
     userdata.password = await bcrypt.hash(userdata.password, 12);
-    
+
     const insertedUser = await userscollection.insertOne(userdata);
     if (!insertedUser) {
       return { status: 500, message: "Failed to create user" };
@@ -88,9 +95,11 @@ export const signup = async (userdata) => {
 
 export const logout = async () => {
   try {
-    cookies()?.delete("token");
-    cookies()?.delete("userdata");
-    cookies()?.delete("cart");
+    const cookieStore = cookies();
+    cookieStore?.delete("next-auth.session-token");
+    cookieStore?.delete("next-auth.csrf-token");
+    cookieStore?.delete("userdata");
+    cookieStore?.delete("cart");
     return { status: 200, message: "Logout successfully" };
   } catch (error) {
     console.error(error);

@@ -3,8 +3,8 @@ import Userdetails from "./_components/Userdetails";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 
-function page() {
-  const token = cookies().get("token");
+async function page() {
+  const token = cookies().get("next-auth.session-token");
   if (token) redirect("/");
   return (
     <div
@@ -20,5 +20,3 @@ function page() {
 }
 
 export default page;
-
-

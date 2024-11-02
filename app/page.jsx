@@ -12,9 +12,10 @@ import { cookies } from "next/headers";
 import Image from "next/image";
 import Allproducts from "./_components/Homepage/Allproducts";
 import Roundcategories from "./_components/Homepage/Roundcategories";
+// import Posters from "./_components/Homepage/Posters";
 
 export default async function Home() {
-  const token = cookies()?.get("token")?.value;
+  const token = cookies()?.get("next-auth.session-token")?.value;
   const userdata = cookies()?.get("userdata")?.value;
 
   const products = await Cachedproducts();
@@ -61,6 +62,7 @@ export default async function Home() {
         ></div>
       </div>
       <Roundcategories />
+      {/* <Posters /> */}
       <Categories />
       <Newarrival products={products} />
       <Bestselling products={products} />

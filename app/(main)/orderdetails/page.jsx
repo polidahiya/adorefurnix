@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 async function page() {
-  let token = cookies().get("token");
+  let token = cookies().get("next-auth.session-token");
   if (!token) redirect("/loginlogout");
 
   const res = await getordershistory();

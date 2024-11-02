@@ -63,6 +63,18 @@ export default function Page({ userdata, token, orderstatus }) {
       setmessagefn("Please login first!");
       return;
     }
+
+    if (
+      userdata?.phonenum.trim() === "" ||
+      userdata?.address.trim() === "" ||
+      userdata?.username.trim() === ""
+    ) {
+      setmessagefn("Update Your Details");
+      setredirectloginlink("/cart");
+      router.push("/updateuserdetails");
+      return;
+    }
+
     if (!JSON.parse(usecookie).pincode) {
       setmessagefn("Please select your pincode");
       pincoderef.current.focus();

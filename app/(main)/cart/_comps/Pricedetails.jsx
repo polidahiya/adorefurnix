@@ -60,7 +60,7 @@ function Pricedetails({ cartlength, totalprice, totaldiscount }) {
             </p>
           </div>
         </div>
-        <div className="flex items-center gap-[10px] mt-[30px] pb-[30px] md:pb-0 px-[10px]">
+        <div className="flex items-center justify-center gap-[10px] mt-[30px] pb-[30px] md:pb-0 px-[10px]">
           <Secureicon />
           <span>
             Safe and Secure Payments. Easy returns. 100% Authentic products.

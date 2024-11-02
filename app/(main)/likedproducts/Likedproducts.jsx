@@ -38,7 +38,7 @@ function Likedproducts({ filtereditems }) {
             {/* like button */}
             <button
               className="absolute right-[10px] top-[10px] bg-white rounded-full p-[3px] "
-              title="Add to favourites"
+              title="Remove from favourites"
               onClick={async () => {
                 let res = await likeproduct(item._id, true);
                 if (res?.status == 200) {

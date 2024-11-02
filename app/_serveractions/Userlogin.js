@@ -11,7 +11,7 @@ const generateToken = (data, userdata) => {
     expiresIn: logintime[1],
   });
 
-  cookies().set("token", token, {
+  cookies().set("next-auth.session-token", token, {
     maxAge: logintime[0],
     httpOnly: true,
     secure: true,
@@ -118,7 +118,7 @@ export const signup = async (userdata) => {
 
 export const logout = async () => {
   try {
-    cookies()?.delete("token");
+    cookies()?.delete("next-auth.session-token");
     cookies()?.delete("userdata");
     cookies()?.delete("cart");
     return { status: 200, message: "Logout successfully" };

@@ -14,7 +14,7 @@ import Similarproducts from "./_comps/Similarproducts";
 import { RxChevronRight } from "react-icons/rx";
 
 async function Productpage({ category, subcat, productid, color }) {
-  const token = cookies()?.get("token")?.value;
+  const token = cookies()?.get("next-auth.session-token")?.value;
   const allproducts = await Cachedproducts();
 
   // Validate category, subcategory, and product existence

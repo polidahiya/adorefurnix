@@ -1,13 +1,20 @@
 "use server";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 async function verifyToken(token) {
-  return new Promise((resolve, reject) => {
-    jwt.verify(token, process.env.jwt_secret, (err, decoded) => {
+  return new Promise((resolve) => {
+    jwt.verify(token, process.env.jwt_secret, async (err, decoded) => {
       if (err) {
+        const session = await getServerSession(authOptions);
+        if (session) {
+          resolve({ message: "Token verified", email: session?.user?.email });
+        }
         resolve({ message: "Invalid token" });
       } else {
+        console.log(decoded);
         resolve({ message: "Token verified", email: decoded?.email });
       }
     });
@@ -28,11 +35,11 @@ export const Adminverification = async () => {
 };
 
 export const Userification = async () => {
-  if (!cookies().get("token")) {
+  if (!cookies().get("next-auth.session-token")) {
     return false;
   }
 
-  let token = cookies().get("token").value;
+  let token = cookies().get("next-auth.session-token").value;
   let result = await verifyToken(token);
 
   return { email: result.email };

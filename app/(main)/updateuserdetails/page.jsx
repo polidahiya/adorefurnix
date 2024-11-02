@@ -4,7 +4,7 @@ import Form from "./Form";
 import { redirect } from "next/navigation";
 
 function page() {
-  let token = cookies().get("token");
+  let token = cookies().get("next-auth.session-token");
   if (!token) redirect("/loginlogout");
 
   let userdata = cookies().get("userdata")?.value;
