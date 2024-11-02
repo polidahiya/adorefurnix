@@ -53,7 +53,7 @@ function Footer() {
             height={52}
             className="h-[40px] w-[160px] "
           ></Image>
-          <p className="mt-[30px]  mb-[20px] text-justify lg:text-start">
+          <p className="mt-[30px]  mb-[20px] text-justify">
             Our mission is to provide high-quality, handcrafted wooden furniture
             and home decor that enhances your living space. We strive to offer
             exceptional value and create pieces that you&apos;ll cherish for

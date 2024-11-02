@@ -58,16 +58,16 @@ function Roundcategories() {
   ];
 
   return (
-    <div className="relative mt-[50px] md:mt-[100px]">
-      <div className="flex items-center gap-5 w-full overflow-x-scroll hidescroll mt-10 px-3 md:px-10">
+    <div className="relative">
+      <div className="flex items-center gap-5 w-full overflow-x-scroll hidescroll px-3 md:px-10">
         {list.map((item, i) => (
-          <Link key={i} href={item?.link} className="min-w-24 md:min-w-44">
+          <Link key={i} href={item?.link} className="min-w-28 md:min-w-44">
             <Image
               src={item?.image}
               alt={item?.image}
               className=""
-              width={300}
-              height={300}
+              width={175}
+              height={150}
               quality={100}
               loading="lazy"
             ></Image>

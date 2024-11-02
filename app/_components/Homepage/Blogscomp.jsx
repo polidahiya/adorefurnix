@@ -8,7 +8,7 @@ async function Blogscomp() {
   const blogs = await Cachedblogs();
 
   return (
-    <div className="mt-[70px]">
+    <div className="">
       <center>
         <Link
           href="/Blogs"

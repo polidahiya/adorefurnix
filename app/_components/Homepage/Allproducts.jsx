@@ -10,14 +10,14 @@ function Allproducts({ products }) {
   const maxlimit = 15;
 
   return (
-    <div className="relative">
-      <h2 className="text-center font-bold text-2xl md:text-4xl italic font-serif mt-24">
+    <div className="relative px-4 md:px-8 lg:px-16">
+      <h2 className="text-center font-bold text-2xl md:text-4xl italic font-serif">
         lovely Collection
       </h2>
       <p className="text-gray-600 mb-6 italic text-center mt-2 md:mt-4">
         You will love to take these home.
       </p>
-      <div className=" w-full grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] md:grid-cols-[repeat(auto-fit,minmax(250px,1fr))] place-items-center gap-[10px] md:gap-[20px] px-4 md:px-16 mt-12">
+      <div className="grid grid-cols-2 md:grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-2 md:gap-6">
         {shuffledProducts.slice(0 + index * 4, 4 + index * 4).map((item, i) => (
           <Productcard
             key={i + new Date().getMilliseconds() + Math.random()} // More stable key

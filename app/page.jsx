@@ -21,7 +21,7 @@ export default async function Home() {
   const products = await Cachedproducts();
   const productsname = products?.map((item) => item?.name);
   return (
-    <div>
+    <div className="flex flex-col gap-16 lg:gap-20">
       <div className="relative w-full box-content h-fit">
         <Homenavbar userdata={userdata} token={token} />
         {/*  */}
@@ -54,7 +54,7 @@ export default async function Home() {
         />
         {/* gradient full*/}
         <div
-          className="absolute bottom-0 translate-y-1/2 left-0 w-full h-[10vw] z-10"
+          className="absolute bottom-0 translate-y-1/2 left-0 w-full h-[10vw] "
           style={{
             backgroundImage:
               "linear-gradient(0deg,transparent, white, transparent)",
@@ -69,7 +69,7 @@ export default async function Home() {
       <Allproducts products={products.sort(() => Math.random() - 0.5)} />
       <Blogscomp />
       <div>
-        <h2 className="text-center font-bold text-2xl md:text-4xl italic font-serif mt-24 ">
+        <h2 className="text-center font-bold text-2xl md:text-4xl italic font-serif">
           Why Choose Us?
         </h2>
         <Promices />

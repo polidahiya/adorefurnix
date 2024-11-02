@@ -10,7 +10,7 @@ async function Bestselling({ products }) {
     .slice(0, 4);
 
   return (
-    <section className="py-12 px-4 md:px-8 lg:px-16  mt-[50px]">
+    <section className="px-4 md:px-8 lg:px-16">
       <div className="text-center mb-12">
         <h3 className="text-2xl md:text-4xl font-bold  mb-2 font-serif italic">
           Best Selling Products

@@ -9,7 +9,7 @@ const Newarrival = async ({ products }) => {
     .slice(0, 4);
 
   return (
-    <section className="mt-20  py-10">
+    <section className="">
       <h3 className="text-2xl md:text-4xl font-bold text-center  mb-10 font-serif italic ">
         New Arrivals
       </h3>
