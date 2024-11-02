@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 import Ordersplacednotif from "./_comps/Ordersplacednotif";
 
 function page({ searchParams }) {
-  const token = cookies()?.get("next-auth.session-token")?.value;
+  const token = cookies()?.get("token")?.value;
   const userdata = cookies()?.get("userdata")?.value;
   let parseduserdata;
   if (userdata) {

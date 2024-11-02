@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 
 async function page() {
-  const token = cookies().get("next-auth.session-token");
+  const token = cookies().get("token");
   if (token) redirect("/");
   return (
     <div

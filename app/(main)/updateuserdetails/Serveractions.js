@@ -40,6 +40,6 @@ export async function updateuserdetails(newuserdetails) {
 
 function addtoken(userdata) {
   cookies().set("userdata", JSON.stringify(userdata), {
-    maxAge: logintime[0],
+    maxAge: logintime,
   });
 }

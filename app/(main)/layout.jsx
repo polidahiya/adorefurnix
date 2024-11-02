@@ -8,7 +8,7 @@ export default async function RootLayout({ children, params }) {
   const productsname = products.map((item) => item.name);
   
   // cookies
-  const token = cookies()?.get("next-auth.session-token")?.value;
+  const token = cookies()?.get("token")?.value;
   const userdata = cookies()?.get("userdata")?.value;
 
   return (

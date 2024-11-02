@@ -15,14 +15,14 @@ import Roundcategories from "./_components/Homepage/Roundcategories";
 // import Posters from "./_components/Homepage/Posters";
 
 export default async function Home() {
-  const token = cookies()?.get("next-auth.session-token")?.value;
+  const token = cookies()?.get("token")?.value;
   const userdata = cookies()?.get("userdata")?.value;
 
   const products = await Cachedproducts();
   const productsname = products?.map((item) => item?.name);
   return (
     <div>
-      <div className="relative w-full box-content h-fit " id="home">
+      <div className="relative w-full box-content h-fit">
         <Homenavbar userdata={userdata} token={token} />
         {/*  */}
         <div className="absolute top-[25%] md:top-[20%] w-full z-10">
@@ -38,7 +38,7 @@ export default async function Home() {
 
         {/* bg image */}
         <Image
-          className="w-full  md:h-[100vh]  object-cover top-0 z-[-1] hidden md:inline-block"
+          className="w-full  md:h-[100vh] max-h-[600px]  object-cover top-0 z-[-1] hidden md:inline-block"
           src="/images/pullokkaran-banner-01.jpg"
           alt="homepageslide"
           height={1000}
@@ -46,7 +46,7 @@ export default async function Home() {
         />
         {/* mobile */}
         <Image
-          className="w-full  md:h-[100vh]  object-cover top-0 z-[-1] md:hidden"
+          className="w-full  md:h-[100vh] max-h-[600px]  object-cover top-0 z-[-1] md:hidden"
           src="/images/mobilehomepageimage.jpg"
           alt="homepageslide"
           height={1000}

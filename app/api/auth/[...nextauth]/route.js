@@ -42,17 +42,21 @@ export const authOptions = {
           address: existingUser ? existingUser?.address : "",
         }),
         {
-          maxAge: logintime[0],
+          maxAge: logintime,
         }
       );
 
       return true;
     },
   },
+  cookies: {
+    sessionToken: {
+      name: "token",
+    },
+  },
   session: {
     strategy: "jwt",
-    maxAge: logintime[0],
-    updateAge: 24 * 60 * 60,
+    maxAge: logintime,
   },
   secret: process.env.jwt_secret,
 };

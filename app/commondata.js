@@ -3,8 +3,7 @@ export const mobile = "+91 95822 14574";
 export const address = "Plot no. 1081 sector 3A, Gurgaon Haryana 122001";
 
 // export const payulink="https://test.payu.in/_payment" //test
-export const payulink="https://secure.payu.in/_payment" //live
-
+export const payulink = "https://secure.payu.in/_payment"; //live
 
 // export const domain = "http://localhost:3000";
 export const domain = "https://adorefurnix.vercel.app";
@@ -283,7 +282,7 @@ export const permanentsearchoptions = [
 ];
 
 // login time
-export const logintime = [3600 * 24 * 2, "48h"];
+export const logintime = 3600 * 24 * 30;
 
 // ordere stages
 export const orderstages = [

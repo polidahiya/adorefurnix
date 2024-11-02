@@ -8,16 +8,16 @@ const { userscollection } = getcollection();
 
 const generateToken = (data, userdata) => {
   const token = jwt.sign(data, process.env.jwt_secret, {
-    expiresIn: logintime[1],
+    expiresIn: logintime,
   });
 
-  cookies().set("next-auth.session-token", token, {
-    maxAge: logintime[0],
+  cookies().set("token", token, {
+    maxAge: logintime,
     httpOnly: true,
     secure: true,
   });
   cookies().set("userdata", JSON.stringify(userdata), {
-    maxAge: logintime[0],
+    maxAge: logintime,
   });
 };
 
@@ -96,7 +96,7 @@ export const signup = async (userdata) => {
 export const logout = async () => {
   try {
     const cookieStore = cookies();
-    cookieStore?.delete("next-auth.session-token");
+    cookieStore?.delete("token");
     cookieStore?.delete("next-auth.csrf-token");
     cookieStore?.delete("userdata");
     cookieStore?.delete("cart");

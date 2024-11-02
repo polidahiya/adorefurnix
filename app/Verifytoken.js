@@ -35,11 +35,11 @@ export const Adminverification = async () => {
 };
 
 export const Userification = async () => {
-  if (!cookies().get("next-auth.session-token")) {
+  if (!cookies().get("token")) {
     return false;
   }
 
-  let token = cookies().get("next-auth.session-token").value;
+  let token = cookies().get("token").value;
   let result = await verifyToken(token);
 
   return { email: result.email };
