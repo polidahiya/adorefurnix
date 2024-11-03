@@ -2,7 +2,7 @@ import { MongoClient, ObjectId } from "mongodb";
 
 const db_link = process.env.mongodb_link;
 
-const client = new MongoClient(db_link);
+const client = new MongoClient(db_link, { serverSelectionTimeoutMS: 10000 });
 
 client.connect();
 const db = client.db("Adorefurnix");

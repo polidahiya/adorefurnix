@@ -20,15 +20,16 @@ export const authOptions = {
     // }),
   ],
   callbacks: {
-    async signIn(data) {
+    async signIn({ profile, user }) {
+      const mail = profile.email ? profile?.email : user?.email;
       const existingUser = await userscollection.findOne({
-        email: data?.profile?.email,
+        email: mail,
       });
 
       if (!existingUser)
         await userscollection.insertOne({
-          username: data?.profile?.name || "",
-          email: data?.profile?.email,
+          username: profile?.name || "",
+          email: mail,
           phonenum: "",
           address: "",
         });
@@ -36,8 +37,8 @@ export const authOptions = {
       cookies().set(
         "userdata",
         JSON.stringify({
-          username: data?.profile?.name || "",
-          email: data?.profile?.email,
+          username: profile?.name || "",
+          email: mail,
           phonenum: existingUser ? existingUser?.phonenum : "",
           address: existingUser ? existingUser?.address : "",
         }),

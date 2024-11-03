@@ -193,12 +193,14 @@ function Inputfiels({ refval, type, lable, extraelem, extrastyle }) {
 }
 
 function SignInPage() {
-  const { setmessagefn } = AppContextfn();
+  const { setmessagefn, redirectloginlink } = AppContextfn();
   return (
     <div className="flex flex-col md:flex-row justify-center items-center gap-5 mt-5">
       <button
         className="w-full flex items-center justify-center gap-2 border border-slate-300 rounded-lg h-11"
-        onClick={() => signIn("google")}
+        onClick={() =>
+          signIn("google", { callbackUrl: redirectloginlink || "/" })
+        }
       >
         <svg
           viewBox="0 0 24 24"
