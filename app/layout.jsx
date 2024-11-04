@@ -4,6 +4,7 @@ import Message from "./_components/Message";
 import { domain } from "./commondata";
 import Script from "next/script";
 // import Logininstant from "./_components/Logininstant";
+import Gotopbutton from "./_components/Gotopbutton";
 
 export const metadata = {
   title:
@@ -40,6 +41,7 @@ export default function RootLayout({ children }) {
           <div>{children}</div>
           {/* <Logininstant /> */}
           <Seopara />
+          <Gotopbutton />
         </body>
       </Appwrapper>
     </html>

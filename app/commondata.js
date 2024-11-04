@@ -178,7 +178,24 @@ export const categorylist = {
   "Home Decor & More": {
     name: "Home Decor & More",
     image: "/categoriesimages/homedecoreandmore.jpg",
-    subcat: [],
+    subcat: [
+      {
+        image: "/categoriesimages/subcats/mirrorframe.jpg",
+        name: "Mirror Frame",
+      },
+      {
+        image: "/categoriesimages/subcats/wallarts.jpg",
+        name: "Wall Arts",
+      },
+      {
+        image: "/categoriesimages/subcats/wallhanging.jpg",
+        name: "Wall Hanging",
+      },
+      {
+        image: "/categoriesimages/subcats/planter.jpg",
+        name: "Planter",
+      },
+    ],
     desc: "Explore unique Home Decor options to add personality and charm to your living space. Our collection includes a variety of decor items that will help you create a warm and inviting home environment.",
   },
 };

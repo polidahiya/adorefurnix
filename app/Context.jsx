@@ -41,6 +41,7 @@ export function Appwrapper({ children }) {
     show: false,
     effect: false,
   });
+  const [scrollPosition, setScrollPosition] = useState(0);
 
   // admin contexts
   const [addproduct, setaddproduct] = useState(uploadproductdata);
@@ -62,6 +63,22 @@ export function Appwrapper({ children }) {
       setcart(parsedCart);
     }
   }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (Math.abs(currentScrollY - scrollPosition) > 100) {
+        console.log("updated",currentScrollY);
+        setScrollPosition(currentScrollY);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [scrollPosition]);
 
   return (
     <AppContext.Provider
@@ -85,6 +102,7 @@ export function Appwrapper({ children }) {
         setmessagefn,
         instantlogin,
         setinstantlogin,
+        scrollPosition,
         // admin
         addproduct,
         setaddproduct,
