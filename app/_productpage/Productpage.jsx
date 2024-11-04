@@ -12,6 +12,8 @@ import { cookies } from "next/headers";
 import ProductCare from "./_comps/Productcare";
 import Similarproducts from "./_comps/Similarproducts";
 import { RxChevronRight } from "react-icons/rx";
+import Bestselling from "../_components/Homepage/Bestselling";
+import Newarrival from "../_components/Homepage/Newarrival";
 
 async function Productpage({ category, subcat, productid, color }) {
   const token = cookies()?.get("token")?.value;
@@ -75,13 +77,18 @@ async function Productpage({ category, subcat, productid, color }) {
       </header>
 
       <ProductCare />
-
       <Similarproducts
         allproducts={allproducts}
         category={category}
         subcat={subcat}
         productid={productid}
       />
+      <div className="mt-10 lg:mt-20">
+        <Bestselling products={allproducts} />
+      </div>
+      <div className="mt-10 lg:mt-20">
+        <Newarrival products={allproducts} />
+      </div>
       <Promices />
     </article>
   );

@@ -8,12 +8,15 @@ import Productnotfound from "../_components/Productnotfound";
 import Subcategories from "./_Components/Subcategories";
 import { sortProducts, pricefilter } from "./_Components/sortandfilter";
 import Productpage from "../_productpage/Productpage";
+import Roundcategories from "../_components/Homepage/Roundcategories";
 
 async function page({ params, searchParams }) {
   const { Category: slug } = params;
 
-  const category = slug && slug[0] ? decodeURIComponent(slug[0]).replace(/_/g, " ") : null;
-  const subcat = slug && slug[1] ? decodeURIComponent(slug[1]).replace(/_/g, " ") : null;
+  const category =
+    slug && slug[0] ? decodeURIComponent(slug[0]).replace(/_/g, " ") : null;
+  const subcat =
+    slug && slug[1] ? decodeURIComponent(slug[1]).replace(/_/g, " ") : null;
   const productid = slug && slug[2] ? decodeURIComponent(slug[2]) : null;
 
   if (productid)
@@ -67,6 +70,7 @@ async function page({ params, searchParams }) {
           )}
         </div>
       </div>
+      <div className="my-5 lg:my-10"><Roundcategories /></div>
       <p className="text-sm md:text-base text-center p-5 font-serif italic">
         {categorylist[category]?.desc}
       </p>
@@ -168,8 +172,10 @@ const categoriesedproducts = (allproducts, category, subcat) => {
 
 export const generateMetadata = async ({ params, searchParams }) => {
   const { Category: slug } = params;
-  const category = slug && slug[0] ? decodeURIComponent(slug[0]).replace(/_/g, " ") : null;
-  const subcat = slug && slug[1] ? decodeURIComponent(slug[1]).replace(/_/g, " ") : null;
+  const category =
+    slug && slug[0] ? decodeURIComponent(slug[0]).replace(/_/g, " ") : null;
+  const subcat =
+    slug && slug[1] ? decodeURIComponent(slug[1]).replace(/_/g, " ") : null;
   const productid = slug && slug[2] ? decodeURIComponent(slug[2]) : null;
 
   // Handle product-specific metadata

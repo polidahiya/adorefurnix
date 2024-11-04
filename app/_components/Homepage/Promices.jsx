@@ -23,7 +23,7 @@ function Promices() {
   ];
 
   return (
-    <section className="mt-12 px-6 md:px-12 lg:px-24">
+    <section className="my-12 px-6 md:px-12 lg:px-24">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-7 md:gap-12">
           {services.map((item, i) => (
