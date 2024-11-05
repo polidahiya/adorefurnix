@@ -14,6 +14,7 @@ import Similarproducts from "./_comps/Similarproducts";
 import { RxChevronRight } from "react-icons/rx";
 import Bestselling from "../_components/Homepage/Bestselling";
 import Newarrival from "../_components/Homepage/Newarrival";
+import FAQSection from "@/app/_components/Faq";
 
 async function Productpage({ category, subcat, productid, color }) {
   const token = cookies()?.get("token")?.value;
@@ -89,6 +90,7 @@ async function Productpage({ category, subcat, productid, color }) {
       <div className="mt-10 lg:mt-20">
         <Newarrival products={allproducts} />
       </div>
+      <FAQSection />
       <Promices />
     </article>
   );
