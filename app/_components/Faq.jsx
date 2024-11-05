@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import { FaChevronDown } from "react-icons/fa6";
-import { mobile } from "../commondata";
 import { mail } from "../commondata";
 
 const FAQSection = () => {
@@ -22,10 +21,6 @@ const FAQSection = () => {
         "The product comes with a 1-year structural warranty and a 5-year warranty against termites and borers. Our warranty typically covers manufacturing defects and workmanship issues, including termite/borer damage. It ensures that your furniture is free from defects in materials and construction.",
     },
     {
-      question: "What is your return policy?",
-      answer: `We have a hassle-free return policy. If you receive a damaged or defective product, you can return it within 4 days of receiving it. You will need to send images and videos of the damaged part to our WhatsApp number <a href="https://api.whatsapp.com/send/?phone=${mobile}&amp;text=I%20need%20Help" target="_blank" class="text-blue-500 hover:underline">${mobile}</a> or email us at <a href="mailto:${mail}" target="_blank" class="text-blue-500 hover:underline">${mail}</a>. Please review our <a href="/ReturnandRefunds" target="_blank" class="text-blue-500 hover:underline">Return Policy</a> for more details.`,
-    },
-    {
       question: "What should I do if I receive a damaged item?",
       answer:
         "We apologize for the inconvenience. Please contact our customer support team within 3 days of receiving the damaged item. Provide photos of the damage, and we will promptly assist you with a replacement or refund.",
@@ -33,7 +28,7 @@ const FAQSection = () => {
     {
       question: "Is assembly/installation service available?",
       answer:
-        "Yes, we offer free assembly service, and it will be completed within 24 hours after delivery.",
+        "Assembly services are not included with our products at this time",
     },
     {
       question: "Can I track my order?",

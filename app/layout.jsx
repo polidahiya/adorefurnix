@@ -41,19 +41,9 @@ export default function RootLayout({ children }) {
           <Message />
           <div>{children}</div>
           {/* <Logininstant /> */}
-          <div className="fixed bottom-5 right-5 md:bottom-10 md:right-10 flex flex-col items-end gap-2">
+          <div className="fixed bottom-5 right-5 md:bottom-10 md:right-10 flex flex-col items-end gap-2 z-30">
             <Gotopbutton />
-            <Link
-              href="/Contact"
-              className="group bg-theme flex items-center justify-center p-1 rounded-full overflow-hidden"
-            >
-              <span className="text-white opacity-0 text-sm max-w-0 group-hover:opacity-100 group-hover:max-w-32  group-hover:px-5 whitespace-nowrap transition-all duration-500 ease-in-out">
-                Need Help
-              </span>
-              <span className="h-8 aspect-square rounded-full bg-white text-theme grid place-content-center transition-all duration-500 ease-in-out">
-                ?
-              </span>
-            </Link>
+            <Helpbutton />
           </div>
           <Seopara />
         </body>
@@ -61,6 +51,20 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+
+const Helpbutton = () => (
+  <Link
+    href="/Contact"
+    className="group bg-theme flex items-center justify-center p-1 rounded-full overflow-hidden"
+  >
+    <span className="text-white opacity-0 text-sm max-w-0 group-hover:opacity-100 group-hover:max-w-32  group-hover:px-5 whitespace-nowrap transition-all duration-300 ease-in-out">
+      Need Help
+    </span>
+    <span className="h-8 aspect-square rounded-full bg-white text-theme grid place-content-center">
+      ?
+    </span>
+  </Link>
+);
 
 const Seopara = () => (
   <div className="absolute -left-[9999px]">

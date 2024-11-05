@@ -23,9 +23,9 @@ function Gotopbutton() {
 
   return (
     <button
-      className={`group flex flex-col items-center justify-center gap-1 text-sm shadow-lg
+      className={`group flex flex-col items-center justify-center gap-1 text-sm 
          bg-theme text-white h-10 w-10 lg:hover:h-16 rounded-full
-         z-10 overflow-hidden duration-300 ${
+         overflow-hidden duration-300 ${
            !isVisible && "opacity-0 pointer-events-none"
          }`}
       onClick={() => {

@@ -2,19 +2,37 @@ import { MongoClient, ObjectId } from "mongodb";
 
 const db_link = process.env.mongodb_link;
 
-const client = new MongoClient(db_link, { serverSelectionTimeoutMS: 10000 });
+let client;
+let db;
 
-client.connect();
-const db = client.db("Adorefurnix");
-const Productscollection = db.collection("Products");
-// const Productscollection = db.collection("testcollection");
-const userscollection = db.collection("users");
-const Admindatacollection = db.collection("Admindata");
-const blogscollection = db.collection("blogs");
-const orderscollection = db.collection("orders");
-const contactmessages = db.collection("contactmessages");
+async function connectToDatabase() {
+  try {
+    client = new MongoClient(db_link, { serverSelectionTimeoutMS: 10000 });
 
-export function getcollection() {
+    await client.connect();
+    console.log("Successfully connected to MongoDB");
+
+    db = client.db("Adorefurnix");
+
+  } catch (error) {
+    console.error("Error connecting to MongoDB:", error);
+
+    throw new Error("Failed to connect to the database. Please try again later.");
+  }
+}
+
+async function initializeCollections() {
+  if (!db) {
+    await connectToDatabase();
+  }
+
+  const Productscollection = db.collection("Products");
+  const userscollection = db.collection("users");
+  const Admindatacollection = db.collection("Admindata");
+  const blogscollection = db.collection("blogs");
+  const orderscollection = db.collection("orders");
+  const contactmessages = db.collection("contactmessages");
+
   return {
     blogscollection,
     Admindatacollection,
@@ -24,4 +42,14 @@ export function getcollection() {
     contactmessages,
     ObjectId,
   };
+}
+
+export async function getcollection() {
+  try {
+    const collections = await initializeCollections();
+    return collections;
+  } catch (error) {
+    console.error("Failed to get collections:", error);
+    throw error;
+  }
 }

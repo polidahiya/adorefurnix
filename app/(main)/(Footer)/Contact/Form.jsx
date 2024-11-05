@@ -114,7 +114,7 @@ export default function ContactForm({ userdata }) {
             value={formData.message}
             onChange={handleChange}
             rows="6"
-            className="block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-cyan-400 sm:text-sm"
+            className="block w-full max-h-96 px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-cyan-400 sm:text-sm"
             required
             placeholder="Type your message here!"
           ></textarea>
