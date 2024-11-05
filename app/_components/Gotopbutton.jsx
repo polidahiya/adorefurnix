@@ -23,8 +23,8 @@ function Gotopbutton() {
 
   return (
     <button
-      className={`group fixed flex flex-col items-center justify-center gap-1 text-sm shadow-lg
-        bottom-5 right-5 md:bottom-10 md:right-10 bg-theme text-white h-10 w-10 lg:hover:h-16 rounded-full
+      className={`group flex flex-col items-center justify-center gap-1 text-sm shadow-lg
+         bg-theme text-white h-10 w-10 lg:hover:h-16 rounded-full
          z-10 overflow-hidden duration-300 ${
            !isVisible && "opacity-0 pointer-events-none"
          }`}

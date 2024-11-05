@@ -5,6 +5,7 @@ import { domain } from "./commondata";
 import Script from "next/script";
 // import Logininstant from "./_components/Logininstant";
 import Gotopbutton from "./_components/Gotopbutton";
+import Link from "next/link";
 
 export const metadata = {
   title:
@@ -40,8 +41,21 @@ export default function RootLayout({ children }) {
           <Message />
           <div>{children}</div>
           {/* <Logininstant /> */}
+          <div className="fixed bottom-5 right-5 md:bottom-10 md:right-10 flex flex-col items-end gap-2">
+            <Gotopbutton />
+            <Link
+              href="/Contact"
+              className="group bg-theme flex items-center justify-center p-1 rounded-full overflow-hidden"
+            >
+              <span className="text-white opacity-0 text-sm max-w-0 group-hover:opacity-100 group-hover:max-w-32  group-hover:px-5 whitespace-nowrap transition-all duration-500 ease-in-out">
+                Need Help
+              </span>
+              <span className="h-8 aspect-square rounded-full bg-white text-theme grid place-content-center transition-all duration-500 ease-in-out">
+                ?
+              </span>
+            </Link>
+          </div>
           <Seopara />
-          <Gotopbutton />
         </body>
       </Appwrapper>
     </html>

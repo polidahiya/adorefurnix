@@ -42,8 +42,7 @@ const FAQSection = () => {
     },
     {
       question: "Can I modify or cancel my order after placing it?",
-      answer:
-        "Unfortunately, once an order is placed, it cannot be modified or cancelled. Please double-check your order before completing the purchase. If you have concerns, please contact our customer support team.",
+      answer: `You can cancel your order within 24 hours of placing it. After this period, the order cannot be canceled. If the product does not comply with the specifications as per your original order, raise the issue immediately & report it to us. For more details, please get in touch with us on our customer care number or write to us at <a href="mailto:${mail}" target="_blank" class="text-blue-500 hover:underline">${mail}</a>. Products purchased on discount or during sale cannot be canceled.`,
     },
     {
       question: "Do you offer bulk or wholesale pricing?",
@@ -55,7 +54,7 @@ const FAQSection = () => {
   return (
     <div className="px-5 md:px-10 mt-10 lg:mt-20">
       <h3 className="text-2xl font-semibold mb-6">
-        Frequently Asked Questions
+        Frequently Asked Questions :
       </h3>
       {faqs.map((faq, index) => (
         <Faq key={index} faq={faq} />
