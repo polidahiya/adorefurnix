@@ -15,6 +15,7 @@ import { RxChevronRight } from "react-icons/rx";
 import Bestselling from "../_components/Homepage/Bestselling";
 import Newarrival from "../_components/Homepage/Newarrival";
 import FAQSection from "@/app/_components/Faq";
+import Quantity from "./_comps/Quantity";
 
 async function Productpage({ category, subcat, productid, color }) {
   const token = cookies()?.get("token")?.value;
@@ -72,6 +73,7 @@ async function Productpage({ category, subcat, productid, color }) {
           <Dimensions dimensions={filteredProduct.Dimensions} />
 
           <Description description={filteredProduct.desc} />
+          <Quantity filteredproducts={filteredProduct} color={color}/>
 
           <Addtocartbuttons filteredproducts={filteredProduct} color={color} />
         </section>

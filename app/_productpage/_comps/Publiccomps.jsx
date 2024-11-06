@@ -8,7 +8,7 @@ import Cookies from "js-cookie";
 
 export function Addtocartbuttons({ filteredproducts, color }) {
   const router = useRouter();
-  const { cart, setcart, setmessagefn } = AppContextfn();
+  const { cart, setcart, quantity, setmessagefn } = AppContextfn();
   const [availableincart, setavailableincart] = useState(false);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export function Addtocartbuttons({ filteredproducts, color }) {
       [itemKey]: {
         ...editedproduct,
         selectedcolor: color,
-        quantity: 1,
+        quantity: quantity,
       },
     };
 

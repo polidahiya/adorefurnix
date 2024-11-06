@@ -57,7 +57,7 @@ const Helpbutton = () => (
     href="/Contact"
     className="group bg-theme flex items-center justify-center p-1 rounded-full overflow-hidden"
   >
-    <span className="text-white opacity-0 text-sm max-w-0 group-hover:opacity-100 group-hover:max-w-32  group-hover:px-5 whitespace-nowrap transition-all duration-300 ease-in-out">
+    <span className="text-white opacity-0 text-sm max-w-0 lg:group-hover:opacity-100 lg:group-hover:max-w-32  lg:group-hover:px-5 whitespace-nowrap transition-all duration-300 ease-in-out">
       Need Help
     </span>
     <span className="h-8 aspect-square rounded-full bg-white text-theme grid place-content-center">

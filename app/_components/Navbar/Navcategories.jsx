@@ -55,7 +55,7 @@ function Navcategories({ category }) {
 
                 {/* subcategories */}
                 <div
-                  className={`lg:absolute top-0  lg:group-hover:block -z-10 ${
+                  className={`lg:absolute top-0 lg:hidden lg:group-hover:block lg:group-hover:max-h-screen overflow-hidden  duration-300 lg:duration-0 -z-10 ${
                     i == 0 && "lg:left-0"
                   } ${
                     i == Object.keys(categorylist)?.length - 1 && "lg:right-0"
@@ -64,7 +64,7 @@ function Navcategories({ category }) {
                     i != Object.keys(categorylist)?.length - 1 &&
                     "lg:left-1/2 lg:-translate-x-1/2"
                   }
-                  ${showsubcat == i ? "block lg:hidden" : "hidden"}`}
+                  ${showsubcat == i ? "max-h-screen " : "max-h-0"}`}
                 >
                   <div className="p-2 lg:rounded-lg bg-bg1 lg:bg-graygradient lg:text-white flex flex-col lg:shadow-lg lg:mt-12">
                     {categorylist[item].subcat.map((subcat, j) => {

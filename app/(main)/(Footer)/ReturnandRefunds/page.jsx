@@ -42,6 +42,12 @@ const page = () => {
                     Products purchased on discount or during sale cannot be
                     canceled.
                   </li>
+                  <li>
+                    We provide a full refund on our products if canceled within
+                    24 hours of purchase, subject to a specific time frame.
+                    Please note that taxes and processing fees may be deducted
+                    from the refund in some cases.
+                  </li>
                 </ul>
                 <p className="font-semibold text-xl text-gray-800 mb-4">
                   Return & Refund:
@@ -54,12 +60,12 @@ const page = () => {
                 <p className="mb-6 text-lg leading-relaxed text-gray-700">
                   Refunds:
                   <br />
-                  We offer a 100% refund on our products within a fixed time
-                  interval from the date of purchase. Please note that in some
-                  cases, taxes and processing fees may be deducted from your
-                  refund. If you encounter major damages to your furniture due
-                  to manufacturing defects, please follow our Replacement Policy
-                  below.
+                  We regret to inform you that we do not offer refunds on any of
+                  our products. We are confident in the quality and
+                  craftsmanship of our furniture, and we believe that you will
+                  be pleased with your purchase. However, if you encounter any
+                  major damages to your furniture due to manufacturing defects,
+                  please follow our Replacement Policy below.
                 </p>
                 <p className="mb-6 text-lg leading-relaxed text-gray-700">
                   Replacement Policy:
@@ -70,7 +76,7 @@ const page = () => {
                 </p>
                 <ol className="list-decimal list-inside mb-6 pl-5 space-y-2 text-gray-700">
                   <li>
-                    Contact our Customer Support team within 72 hours of
+                    Contact our Customer Support team within 48 hours of
                     receiving the damaged item. You can reach us at {mobile}.
                   </li>
                   <li>
@@ -145,10 +151,6 @@ const page = () => {
                 </ul>
                 <p className="font-semibold text-xl text-gray-800 mb-4">
                   Delivery:
-                </p>
-                <p className="text-lg leading-relaxed text-gray-700">
-                  Our support and delivery team will be in coordination with you
-                  for a hassle-free installation process.
                 </p>
                 <p className="mb-6 text-lg leading-relaxed text-gray-700">
                   Free delivery and COD is only applicable for Delhi NCR Orders.

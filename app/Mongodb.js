@@ -8,15 +8,9 @@ let db;
 async function connectToDatabase() {
   try {
     client = new MongoClient(db_link, { serverSelectionTimeoutMS: 10000 });
-
     await client.connect();
-    console.log("Successfully connected to MongoDB");
-
     db = client.db("Adorefurnix");
-
   } catch (error) {
-    console.error("Error connecting to MongoDB:", error);
-
     throw new Error("Failed to connect to the database. Please try again later.");
   }
 }

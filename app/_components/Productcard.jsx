@@ -115,14 +115,17 @@ function Productcard({
           />
         )}
         {/* color options */}
-        <div className="absolute bottom-2 right-2 p-1 rounded-full bg-white flex gap-1">
-          {colorpalets?.map((colors, j) => (
+        <div className="absolute bottom-2 right-2 p-1 rounded-full bg-white flex items-center gap-1">
+          {colorpalets?.slice(0, 2).map((colors, j) => (
             <div
               key={j}
               className="aspect-square h-3 md:h-4 rounded-full"
               style={{ backgroundColor: colors.color }}
             ></div>
           ))}
+          {colorpalets.length > 2 && (
+            <span className="text-[10px] px-1">+{colorpalets.length - 2}</span>
+          )}
         </div>
       </div>
 

@@ -26,6 +26,7 @@ const AppContext = createContext({});
 
 export function Appwrapper({ children }) {
   const [cart, setcart] = useState({});
+  const [quantity, setquantity] = useState(1);
   const [showcat, setshowcat] = useState(false);
   const [showsearch, setshowsearch] = useState(false);
   const [toggleusermenu, settoggleusermenu] = useState({
@@ -63,13 +64,13 @@ export function Appwrapper({ children }) {
     }
   }, []);
 
- 
-
   return (
     <AppContext.Provider
       value={{
         cart,
         setcart,
+        quantity,
+        setquantity,
         showcat,
         setshowcat,
         showsearch,
