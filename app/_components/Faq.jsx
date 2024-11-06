@@ -23,7 +23,7 @@ const FAQSection = () => {
     {
       question: "What should I do if I receive a damaged item?",
       answer:
-        "We apologize for the inconvenience. Please contact our customer support team within 3 days of receiving the damaged item. Provide photos of the damage, and we will promptly assist you with a replacement or refund.",
+        "We apologize for the inconvenience. Please contact our customer support team within 24 hours of receiving the damaged item. Provide photos of the damage, and we will promptly assist you with a replacement or rectification.",
     },
     {
       question: "Is assembly/installation service available?",

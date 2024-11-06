@@ -76,7 +76,7 @@ const page = () => {
                 </p>
                 <ol className="list-decimal list-inside mb-6 pl-5 space-y-2 text-gray-700">
                   <li>
-                    Contact our Customer Support team within 48 hours of
+                    Contact our Customer Support team within 24 hours of
                     receiving the damaged item. You can reach us at {mobile}.
                   </li>
                   <li>
@@ -151,6 +151,10 @@ const page = () => {
                 </ul>
                 <p className="font-semibold text-xl text-gray-800 mb-4">
                   Delivery:
+                </p>
+                <p className="text-lg leading-relaxed text-gray-700">
+                  Our support and delivery team will be in coordination with you
+                  for a hassle-free delivery process.
                 </p>
                 <p className="mb-6 text-lg leading-relaxed text-gray-700">
                   Free delivery and COD is only applicable for Delhi NCR Orders.
