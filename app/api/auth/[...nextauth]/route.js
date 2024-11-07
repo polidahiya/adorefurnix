@@ -1,8 +1,6 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-// import AppleProvider from "next-auth/providers/apple";
-// import FacebookProvider from 'next-auth/providers/facebook';
-// import TwitterProvider from 'next-auth/providers/twitter';
+import FacebookProvider from "next-auth/providers/facebook";
 import { logintime } from "@/app/commondata";
 import { getcollection } from "@/app/Mongodb";
 const { userscollection } = getcollection();
@@ -14,21 +12,10 @@ export const authOptions = {
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
-    // FacebookProvider({
-    //   clientId: process.env.FACEBOOK_CLIENT_ID,
-    //   clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
-    // }),
-    // TwitterProvider({
-    //   clientId: process.env.TWITTER_CLIENT_ID,
-    //   clientSecret: process.env.TWITTER_CLIENT_SECRET,
-    //   version: '2.0', 
-    // }),
-    // AppleProvider({
-    //   clientId: process.env.APPLE_CLIENT_ID,
-    //   clientSecret: process.env.APPLE_PRIVATE_KEY,
-    //   teamId: process.env.APPLE_TEAM_ID,
-    //   keyId: process.env.APPLE_KEY_ID,
-    // }),
+    FacebookProvider({
+      clientId: process.env.FACEBOOK_CLIENT_ID,
+      clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
+    }),
   ],
   callbacks: {
     async signIn({ profile, user }) {
