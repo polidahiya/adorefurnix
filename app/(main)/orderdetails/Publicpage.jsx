@@ -109,6 +109,7 @@ const Historyproductcard = ({ item, product, index }) => {
         price={product.price}
         discount={product.discount}
         available={true}
+        colorpalets={product.colorpalets}
         image={product.colorpalets[product?.selectedcolor].images[0]}
         rating={product.rating}
       />
