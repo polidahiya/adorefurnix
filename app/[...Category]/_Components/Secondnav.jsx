@@ -11,7 +11,6 @@ import { useRouter } from "next/navigation";
 function Secondnav({ category, subcat, searchParams, lengthofproducts }) {
   if (searchParams.pricerange == undefined) searchParams.pricerange = 0;
   if (searchParams.sort == undefined) searchParams.sort = 0;
-  const router = useRouter();
 
   const [showfilter, setshowfilter] = useState(false);
 
@@ -57,7 +56,7 @@ function Secondnav({ category, subcat, searchParams, lengthofproducts }) {
   };
 
   return (
-    <div className="lg:w-[300px]">
+    <div className="lg:w-60 lg:min-w-60 lg:max-h-[calc(100vh-130px)] lg:overflow-y-scroll lg:sticky lg:top-[120px]">
       <div className=" flex items-center justify-center h-[50px] bg-white lg:hidden">
         {category == "Search" ? (
           <span className="text-center text-[20px] font-semibold font-serif italic whitespace-nowrap select-none">
@@ -95,33 +94,14 @@ function Secondnav({ category, subcat, searchParams, lengthofproducts }) {
           </h2>
 
           <div className="flex flex-col gap-[5px] mt-[10px] ">
-            {filterlist.map((item, i) => {
-              return (
-                <div
-                  key={i}
-                  className="bg-white border border-slate-300 rounded-[5px] md:rounded-[10px]"
-                >
-                  <Link
-                    href={filterlink(i)}
-                    onClick={(e) => {
-                      if (window.innerWidth < 1024) {
-                        e.preventDefault();
-                        setTimeout(() => {
-                          router.replace(filterlink(i));
-                        }, 100);
-                      }
-                    }}
-                    replace
-                    className={`flex items-center justify-center  py-[5px] md:px-[5px] text-[14px] md:text-[16px]  ${
-                      i == searchParams.pricerange &&
-                      "bg-theme bg-clip-text text-transparent "
-                    }`}
-                  >
-                    {item.name}
-                  </Link>
-                </div>
-              );
-            })}
+            {filterlist.map((item, i) => (
+              <Filterbutton
+                key={i}
+                href={filterlink(i)}
+                name={item.name}
+                selected={i == searchParams.pricerange}
+              />
+            ))}
           </div>
         </div>
 
@@ -133,31 +113,14 @@ function Secondnav({ category, subcat, searchParams, lengthofproducts }) {
           </h2>
 
           <div className="flex flex-col gap-[5px] mt-[10px] ">
-            {sortinglist.map((item, i) => {
-              return (
-                <div
-                  key={i}
-                  className="bg-white border border-slate-300 rounded-[5px] md:rounded-[10px]"
-                >
-                  <Link
-                    href={sortlink(i)}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setTimeout(() => {
-                        router.replace(sortlink(i));
-                      }, 300);
-                    }}
-                    replace
-                    className={`flex items-center justify-center  py-[5px] md:px-[5px] text-[14px] md:text-[16px]  ${
-                      i == searchParams.sort &&
-                      "bg-theme bg-clip-text text-transparent "
-                    }`}
-                  >
-                    {item.name}
-                  </Link>
-                </div>
-              );
-            })}
+            {sortinglist.map((item, i) => (
+              <Filterbutton
+                key={i}
+                href={sortlink(i)}
+                name={item.name}
+                selected={i == searchParams.sort}
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -173,6 +136,32 @@ function Secondnav({ category, subcat, searchParams, lengthofproducts }) {
     </div>
   );
 }
+
+const Filterbutton = ({ href, name, selected }) => {
+  const router = useRouter();
+  
+  return (
+    <div className="bg-white border border-slate-300 rounded-[10px]">
+      <Link
+        href={href}
+        onClick={(e) => {
+          if (window.innerWidth < 1024) {
+            e.preventDefault();
+            setTimeout(() => {
+              router.replace(href);
+            }, 100);
+          }
+        }}
+        replace
+        className={`flex items-center justify-center  py-[5px] md:px-[5px] text-[14px] md:text-[16px]  ${
+          selected && "bg-theme bg-clip-text text-transparent "
+        }`}
+      >
+        {name}
+      </Link>
+    </div>
+  );
+};
 
 const Mobilecategorybuttons = ({ category }) => {
   const { setshowcat } = AppContextfn();

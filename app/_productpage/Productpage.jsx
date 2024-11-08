@@ -16,6 +16,7 @@ import Bestselling from "../_components/Homepage/Bestselling";
 import Newarrival from "../_components/Homepage/Newarrival";
 import FAQSection from "@/app/_components/Faq";
 import Quantity from "./_comps/Quantity";
+import Prouctid from "./_comps/Prouctid";
 
 async function Productpage({ category, subcat, productid, color }) {
   const token = cookies()?.get("token")?.value;
@@ -61,6 +62,7 @@ async function Productpage({ category, subcat, productid, color }) {
           >
             {filteredProduct.name}
           </h1>
+          <Prouctid pid={filteredProduct._id}/>
           <Rating rating={filteredProduct.rating} />
 
           <PriceDisplay
@@ -73,7 +75,7 @@ async function Productpage({ category, subcat, productid, color }) {
           <Dimensions dimensions={filteredProduct.Dimensions} />
 
           <Description description={filteredProduct.desc} />
-          <Quantity filteredproducts={filteredProduct} color={color}/>
+          <Quantity filteredproducts={filteredProduct} color={color} />
 
           <Addtocartbuttons filteredproducts={filteredProduct} color={color} />
         </section>
@@ -155,7 +157,7 @@ const PriceDisplay = ({ filteredProduct, priceBeforeDiscount }) => (
 
 const Dimensions = ({ dimensions }) => (
   <div className="flex gap-[10px] mt-[30px] font-semibold">
-    <span className="text-slate-400 whitespace-nowrap">Dimension:</span>
+    <span className="text-slate-400 whitespace-nowrap min-w-28">Dimension:</span>
     {dimensions || <span className="text-red-500">Not Available{" *"}</span>}
   </div>
 );
@@ -163,7 +165,7 @@ const Dimensions = ({ dimensions }) => (
 const Description = ({ description }) =>
   description?.length > 0 && (
     <div className="flex flex-col md:flex-row gap-[10px] mt-[30px] font-semibold">
-      <span className="text-slate-400 whitespace-nowrap">Description:</span>
+      <span className="text-slate-400 whitespace-nowrap min-w-28">Description:</span>
       <div>
         {description.map((item, index) => (
           <div key={index} className="flex items-start gap-[10px] pl-5 md:pl-0">

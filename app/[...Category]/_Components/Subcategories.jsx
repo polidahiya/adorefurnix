@@ -1,23 +1,19 @@
 import Link from "next/link";
 import Image from "next/image";
 import { categorylist } from "@/app/commondata";
-import { BiSolidCategory } from "react-icons/bi";
+// import { BiSolidCategory } from "react-icons/bi";
 
 function Subcategories({ category, subcat }) {
   if (categorylist[category]?.subcat.length > 0)
     return (
-      <div className="bg-bg1 pt-[10px] mb-5">
-        <h2 className="text-center font-bold text-[20px] items-center justify-center gap-[10px] hidden lg:flex">
-          <BiSolidCategory />
-          <span>Sub Categories</span>
-        </h2>
-        <div className="w-full grid grid-cols-[repeat(auto-fit,minmax(80px,1fr))] md:grid-cols-[repeat(auto-fit,minmax(150px,1fr))] place-items-center place-content-center p-[10px] gap-[5px] mt-[10px]">
+      <div className="relative flex items-center justify-center mb-5">
+        <div className="w-fit  flex items-center overflow-x-scroll p-2 gap-3 ">
           {categorylist[category]?.subcat.map((itemsubcat, i) => {
             return (
               <Link
                 key={i}
                 href={`/${category}/${itemsubcat.name}`.replace(/ /g, "_")}
-                className={`w-full md:w-[150px] flex flex-col items-center rounded-[5px] md:rounded-[10px]  ${
+                className={`min-w-28 w-28 lg:w-36 lg:min-w-36 flex flex-col items-center  ${
                   subcat == itemsubcat.name &&
                   "bg-theme bg-clip-text text-transparent"
                 }`}
@@ -28,10 +24,12 @@ function Subcategories({ category, subcat }) {
                   height={100}
                   quality={50}
                   alt={itemsubcat.name}
-                  className={`w-full aspect-[4/3] object-cover object-center rounded-[7px] md:rounded-[10px] border-[3px] border-white`}
+                  className={`w-full aspect-[4/3] object-cover object-center rounded-[10px]  p-[2px] ${
+                    subcat == itemsubcat.name ?"bg-theme":"bg-slate-300"
+                  }`}
                 ></Image>
                 <div
-                  className={`h-fit w-full  text-center p-[5px]  text-[10px] md:text-[12px] lg:text-[14px] text-ellipsis whitespace-nowrap overflow-hidden ${
+                  className={`h-fit w-full  text-center p-[5px]  text-[14px] text-ellipsis whitespace-nowrap overflow-hidden ${
                     subcat == itemsubcat.name && "font-semibold"
                   }`}
                 >
@@ -41,6 +39,8 @@ function Subcategories({ category, subcat }) {
             );
           })}
         </div>
+        {/* gradient */}
+        <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(90deg,white_0px,transparent_20px,transparent_calc(100%-20px),white_100%)]"></div>
       </div>
     );
 }

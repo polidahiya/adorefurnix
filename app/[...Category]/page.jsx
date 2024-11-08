@@ -9,6 +9,7 @@ import Subcategories from "./_Components/Subcategories";
 import { sortProducts, pricefilter } from "./_Components/sortandfilter";
 import Productpage from "../_productpage/Productpage";
 import Roundcategories from "../_components/Homepage/Roundcategories";
+import Appliedfilters from "./_Components/Appliedfilters";
 
 async function page({ params, searchParams }) {
   const { Category: slug } = params;
@@ -61,8 +62,9 @@ async function page({ params, searchParams }) {
           searchParams={searchParams}
           lengthofproducts={lengthofproducts}
         />
-        <div className="w-full">
+        <div className="w-full lg:w-[calc(100%-250px)]">
           <Subcategories category={category} subcat={subcat} />
+          {/* <Appliedfilters category={category} subcat={subcat} /> */}
           {sortedProducts.length > 0 ? (
             <ProductGrid products={sortedProducts} />
           ) : (
@@ -70,7 +72,9 @@ async function page({ params, searchParams }) {
           )}
         </div>
       </div>
-      <div className="my-5 lg:my-10"><Roundcategories /></div>
+      <div className="my-5 lg:my-10">
+        <Roundcategories />
+      </div>
       <p className="text-sm md:text-base text-center p-5 font-serif italic">
         {categorylist[category]?.desc}
       </p>
@@ -122,12 +126,17 @@ function searchProducts(allproducts, searchQuery) {
           ?.toLowerCase()
           .includes(word.toLowerCase());
 
+        const idMatch = product?._id
+          ?.toLowerCase()
+          .includes(word.toLowerCase());
+
         return (
           nameMatch ||
           descMatch ||
           keywordsMatch ||
           categoryMatch ||
-          subcategoryMatch
+          subcategoryMatch ||
+          idMatch
         );
       });
     }

@@ -5,6 +5,7 @@ import Heart from "@/app/_svgs/Heart";
 import { likeproduct, isliked } from "@/app/_serveractions/Likedproducts";
 import { AppContextfn } from "@/app/Context";
 import Linksvg from "@/app/_svgs/Linksvg";
+import copytoclipboard from "@/app/_components/_helperfunctions/copytoclipboard";
 
 const fallbackImage = "/default-fallback-image.png";
 
@@ -33,21 +34,9 @@ function ImagesComp({ filteredproducts, color, token }) {
 
   const handleSharePage = () => {
     const link = typeof window !== "undefined" ? new URL(location.href) : "";
-    navigator.clipboard
-      .writeText(link)
-      .then(() => {
-        setmessagefn("Link copied!");
-      })
-      .catch(() => fallbackCopyTextToClipboard(link));
-  };
-
-  const fallbackCopyTextToClipboard = (text) => {
-    const textArea = document.createElement("textarea");
-    textArea.value = text;
-    document.body.appendChild(textArea);
-    textArea.select();
-    document.execCommand("copy");
-    document.body.removeChild(textArea);
+    copytoclipboard(link, () => {
+      setmessagefn("Link copied!");
+    });
   };
 
   const handleLikeToggle = async () => {

@@ -55,7 +55,7 @@ function Navcategories({ category }) {
 
                 {/* subcategories */}
                 <div
-                  className={`lg:absolute top-0 lg:hidden lg:group-hover:block lg:group-hover:max-h-screen overflow-hidden  duration-300 lg:duration-0 -z-10 ${
+                  className={`lg:absolute top-0 lg:hidden lg:group-hover:block lg:group-hover:max-h-screen overflow-hidden  duration-500 lg:duration-0 -z-10 ${
                     i == 0 && "lg:left-0"
                   } ${
                     i == Object.keys(categorylist)?.length - 1 && "lg:right-0"

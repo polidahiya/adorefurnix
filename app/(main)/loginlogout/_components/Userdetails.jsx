@@ -137,7 +137,7 @@ function Userdetails() {
       <div className="relative">
         <hr className="my-10" />
         <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-8">
-          or 
+          or
         </span>
       </div>
       <SignInPage />
@@ -194,7 +194,7 @@ function Inputfiels({ refval, type, lable, extraelem, extrastyle }) {
 
 function SignInPage() {
   const { redirectloginlink } = AppContextfn();
-  
+
   const providers = [
     {
       name: "Google",
@@ -225,53 +225,6 @@ function SignInPage() {
         </svg>
       ),
     },
-    // {
-    //   name: "Apple",
-    //   id: "apple",
-    //   icon: (
-    //     <svg
-    //       viewBox="0 0 30 30"
-    //       height={30}
-    //       width={30}
-    //       xmlns="http://www.w3.org/2000/svg"
-    //     >
-    //       <path d="M25.565,9.785c-0.123,0.077-3.051,1.702-3.051,5.305c0.138,4.109,3.695,5.55,3.756,5.55 c-0.061,0.077-0.537,1.963-1.947,3.94C23.204,26.283,21.962,28,20.076,28c-1.794,0-2.438-1.135-4.508-1.135 c-2.223,0-2.852,1.135-4.554,1.135c-1.886,0-3.22-1.809-4.4-3.496c-1.533-2.208-2.836-5.673-2.882-9 c-0.031-1.763,0.307-3.496,1.165-4.968c1.211-2.055,3.373-3.45,5.734-3.496c1.809-0.061,3.419,1.242,4.523,1.242 c1.058,0,3.036-1.242,5.274-1.242C21.394,7.041,23.97,7.332,25.565,9.785z M15.001,6.688c-0.322-1.61,0.567-3.22,1.395-4.247 c1.058-1.242,2.729-2.085,4.17-2.085c0.092,1.61-0.491,3.189-1.533,4.339C18.098,5.937,16.488,6.872,15.001,6.688z" />
-    //     </svg>
-    //   ),
-    // },
-    {
-      name: "Facebook",
-      id: "facebook",
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 40 40"
-          width={25}
-          height={25}
-        >
-          <linearGradient
-            id="a"
-            x1="-277.375"
-            x2="-277.375"
-            y1="406.6018"
-            y2="407.5726"
-            gradientTransform="matrix(40 0 0 -39.7778 11115.001 16212.334)"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop offset="0" stopColor="#0062e0" />
-            <stop offset="1" stopColor="#19afff" />
-          </linearGradient>
-          <path
-            fill="url(#a)"
-            d="M16.7 39.8C7.2 38.1 0 29.9 0 20 0 9 9 0 20 0s20 9 20 20c0 9.9-7.2 18.1-16.7 19.8l-1.1-.9h-4.4l-1.1.9z"
-          />
-          <path
-            fill="#fff"
-            d="m27.8 25.6.9-5.6h-5.3v-3.9c0-1.6.6-2.8 3-2.8H29V8.2c-1.4-.2-3-.4-4.4-.4-4.6 0-7.8 2.8-7.8 7.8V20h-5v5.6h5v14.1c1.1.2 2.2.3 3.3.3 1.1 0 2.2-.1 3.3-.3V25.6h4.4z"
-          />
-        </svg>
-      ),
-    },
   ];
 
   return (
@@ -280,15 +233,16 @@ function SignInPage() {
         <button
           key={provider.id}
           className="w-full flex items-center justify-center gap-2 border border-slate-200 rounded-lg h-11"
-          onClick={() => signIn(provider.id, { callbackUrl: redirectloginlink || "/" })}
+          onClick={() =>
+            signIn(provider.id, { callbackUrl: redirectloginlink || "/" })
+          }
         >
           {provider.icon}
-          <span>{provider.name}</span>
+          <span>Continue with {provider.name}</span>
         </button>
       ))}
     </div>
   );
 }
-
 
 export default Userdetails;
