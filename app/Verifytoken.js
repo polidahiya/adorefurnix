@@ -14,7 +14,6 @@ async function verifyToken(token) {
         }
         resolve({ message: "Invalid token" });
       } else {
-        console.log(decoded);
         resolve({ message: "Token verified", email: decoded?.email });
       }
     });

@@ -21,8 +21,6 @@ export const Addproduct = async (addproduct, formData, deletedimages) => {
           const buffer = Buffer.from(arrayBuffer);
 
           const cloudinaryres = await uploadImage(buffer);
-          console.log(cloudinaryres);
-
           item.images[j] = cloudinaryres.secure_url;
         }
       }

@@ -64,7 +64,7 @@ async function page({ params, searchParams }) {
         />
         <div className="w-full lg:w-[calc(100%-250px)]">
           <Subcategories category={category} subcat={subcat} />
-          {/* <Appliedfilters category={category} subcat={subcat} /> */}
+          <Appliedfilters category={category} subcat={subcat} searchParams={searchParams} />
           {sortedProducts.length > 0 ? (
             <ProductGrid products={sortedProducts} />
           ) : (
