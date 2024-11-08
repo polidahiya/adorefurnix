@@ -233,7 +233,7 @@ const sendconfirmationmail = async (orderdetails, amount) => {
                                                   />
                                                 </td>
                                                 <td>${product.quantity}</td>
-                                                <td>$${product.price}</td>
+                                                <td>Rs ${product.price}</td>
                                               </tr>
                                               `
                                                 )
@@ -242,7 +242,7 @@ const sendconfirmationmail = async (orderdetails, amount) => {
                                             <tfoot>
                                               <tr>
                                                 <td colspan="3"><strong>Total</strong></td>
-                                                <td><strong>$${amount}</strong></td>
+                                                <td><strong>RS ${amount}</strong></td>
                                               </tr>
                                             </tfoot>
                                           </table>
@@ -447,7 +447,7 @@ const sendconfirmationmail = async (orderdetails, amount) => {
                                                   />
                                                 </td>
                                                 <td>${product.quantity}</td>
-                                                <td>$${product.price}</td>
+                                                <td>Rs ${product.price}</td>
                                               </tr>
                                               `
                                                 )
@@ -456,7 +456,7 @@ const sendconfirmationmail = async (orderdetails, amount) => {
                                             <tfoot>
                                               <tr>
                                                 <td colspan="3"><strong>Total</strong></td>
-                                                <td><strong>$${amount}</strong></td>
+                                                <td><strong>RS ${amount}</strong></td>
                                               </tr>
                                             </tfoot>
                                           </table>

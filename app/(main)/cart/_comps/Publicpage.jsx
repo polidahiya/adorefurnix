@@ -133,7 +133,13 @@ export default function Page({ userdata, token, orderstatus }) {
             }`}
           >
             {Object.keys(cart).map((item, i) => {
-              return <Products key={i} item={item} i={i} />;
+              return (
+                <Products
+                  key={i + new Date().getMilliseconds()}
+                  item={item}
+                  i={i}
+                />
+              );
             })}
 
             <div className="sticky bottom-0 flex items-center w-full gap-[10px] bg-white shadow-[0px_-2px_10px_#e1e1e1] p-[10px]">
