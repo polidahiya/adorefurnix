@@ -132,15 +132,13 @@ export default function Page({ userdata, token, orderstatus }) {
               userdata && "mt-[10px]"
             }`}
           >
-            {Object.keys(cart).map((item, i) => {
-              return (
-                <Products
-                  key={i + new Date().getMilliseconds()}
-                  item={item}
-                  i={i}
-                />
-              );
-            })}
+            {Object.keys(cart).map((item, i) => (
+              <Products
+                key={i + new Date().getMilliseconds()}
+                item={item}
+                i={i}
+              />
+            ))}
 
             <div className="sticky bottom-0 flex items-center w-full gap-[10px] bg-white shadow-[0px_-2px_10px_#e1e1e1] p-[10px]">
               <p className="text-[10px] md:text-[12px] text-center w-full">

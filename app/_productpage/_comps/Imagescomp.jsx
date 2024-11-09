@@ -6,6 +6,7 @@ import { likeproduct, isliked } from "@/app/_serveractions/Likedproducts";
 import { AppContextfn } from "@/app/Context";
 import Linksvg from "@/app/_svgs/Linksvg";
 import copytoclipboard from "@/app/_components/_helperfunctions/copytoclipboard";
+import Link from "next/link";
 
 const fallbackImage = "/default-fallback-image.png";
 
@@ -51,7 +52,7 @@ function ImagesComp({ filteredproducts, color, token }) {
     }
   };
 
-  const images = filteredproducts.colorpalets[color].images;
+  const images = filteredproducts?.colorpalets[color]?.images;
 
   return (
     <div className="flex flex-col-reverse lg:flex-row lg:items-center gap-2 ">
@@ -84,7 +85,14 @@ function ImagesComp({ filteredproducts, color, token }) {
           ref={imagesScrollRef}
         >
           {images.map((image, index) => (
-            <MainImage key={index} image={image} name={filteredproducts.name} />
+            <MainImage
+              key={index}
+              image={image}
+              name={filteredproducts.name}
+              pid={filteredproducts?._id}
+              index={index}
+              color={color}
+            />
           ))}
         </div>
         <div className="absolute right-[10px] top-[10px] flex gap-2">
@@ -129,7 +137,7 @@ function ImagesComp({ filteredproducts, color, token }) {
   );
 }
 
-const MainImage = ({ image, name }) => {
+const MainImage = ({ image, name, pid, index, color }) => {
   const [loading, setloading] = useState({
     effect: true,
     show: true,
@@ -137,7 +145,10 @@ const MainImage = ({ image, name }) => {
   const [hasError, setHasError] = useState(false);
 
   return (
-    <div className="relative min-w-[100%] h-full">
+    <Link
+      href={`/Fullimage?pid=${pid}&color=${color}&index=${index}`}
+      className="relative min-w-[100%] h-full cursor-zoom-in"
+    >
       <Image
         className="min-w-[100%] h-full snap-start snap-always object-contain"
         src={hasError ? fallbackImage : image}
@@ -161,7 +172,7 @@ const MainImage = ({ image, name }) => {
           } duration-500`}
         ></div>
       )}
-    </div>
+    </Link>
   );
 };
 

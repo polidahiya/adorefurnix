@@ -509,7 +509,7 @@ const sendconfirmationmail = async (orderdetails, amount) => {
     usermail
   );
   await sendMail(
-    "letsolvein@gmail.com",
+    "Vs8287802215@gmail.com",
     "New Order",
     "We have a new order",
     adminmail
