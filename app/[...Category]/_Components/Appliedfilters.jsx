@@ -6,20 +6,32 @@ function Appliedfilters({ category, subcat, searchParams }) {
   const { pricerange, sort } = searchParams;
 
   const baseUrl = `/${category}${subcat ? `/${subcat}` : ""}`;
+
+  const createLinkWithParams = (newParams) => {
+    const params = new URLSearchParams(searchParams);
+    Object.entries(newParams).forEach(([key, value]) => {
+      if (value === 0 || value === null) {
+        params.delete(key);
+      } else {
+        params.set(key, value);
+      }
+    });
+    return `${baseUrl}?${params.toString()}`;
+  };
+
   const pricerangeLink = useMemo(
-    () => `${baseUrl}?pricerange=0${sort ? `&sort=${sort}` : ""}`,
-    [baseUrl, sort]
+    () => createLinkWithParams({ pricerange: 0 }),
+    [searchParams, baseUrl]
   );
+
   const sortLink = useMemo(
-    () => `${baseUrl}?sort=0${pricerange ? `&pricerange=${pricerange}` : ""}`,
-    [baseUrl, pricerange]
+    () => createLinkWithParams({ sort: 0 }),
+    [searchParams, baseUrl]
   );
+
   const subcatLink = useMemo(
-    () =>
-      `/${category}?${pricerange ? `pricerange=${pricerange}&` : ""}${
-        sort ? `sort=${sort}` : ""
-      }`,
-    [category, pricerange, sort]
+    () => createLinkWithParams({ subcat: null }),
+    [searchParams, baseUrl]
   );
 
   if (
