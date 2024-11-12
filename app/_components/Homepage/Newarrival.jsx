@@ -59,7 +59,7 @@ const Newarrival = async ({ products }) => {
         >
           <span className="z-10">View More</span>
           <LuArrowRightCircle className="z-10" />
-          <div className="absolute top-0 left-0 w-[200%] h-full bg-[linear-gradient(90deg,#10e89c,#0593f7,#10e89c)]  group-hover:translate-x-[-50%] duration-200"></div>
+          <div className="absolute top-0 left-0 w-[200%] h-full bg-animatingtheme  group-hover:translate-x-[-50%] duration-200"></div>
         </Link>
       </center>
     </section>

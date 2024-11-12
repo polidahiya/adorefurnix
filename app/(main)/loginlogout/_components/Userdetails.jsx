@@ -10,6 +10,7 @@ import { IoIosEye } from "react-icons/io";
 import { IoIosEyeOff } from "react-icons/io";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
+import Recaptcha from "@/app/_components/_helperfunctions/Recaptcha";
 
 function Userdetails() {
   const router = useRouter();
@@ -25,7 +26,7 @@ function Userdetails() {
   const addressref = useRef(null);
   const [loading, setloading] = useState(false);
 
-  const authenticateuser = async () => {
+  const authenticateuser = () => {
     const filedcheckvalue = Checkfields({
       nameref,
       emailref,
@@ -55,20 +56,28 @@ function Userdetails() {
 
     const apiCall = signupform ? signup : login;
 
-    try {
-      const reply = await apiCall(userdata);
-      setmessagefn(reply?.message);
+    Recaptcha(
+      async () => {
+        try {
+          const reply = await apiCall(userdata);
+          setmessagefn(reply?.message);
 
-      if (reply?.status === 200) {
-        setTimeout(() => {
-          router.replace(redirectloginlink || "/");
-        }, 1000);
+          if (reply?.status === 200) {
+            setTimeout(() => {
+              router.replace(redirectloginlink || "/");
+            }, 1000);
+          }
+        } catch (error) {
+          setmessagefn("An error occurred. Please try again.");
+        } finally {
+          setloading(false);
+        }
+      },
+      () => {
+        setmessagefn("Something went wrong!");
+        setloading(false);
       }
-    } catch (error) {
-      setmessagefn("An error occurred. Please try again.");
-    } finally {
-      setloading(false);
-    }
+    );
   };
 
   return (
@@ -131,7 +140,7 @@ function Userdetails() {
             <div className="h-[20px] aspect-square rounded-full  border-r-2 border-l-2 border-white animate-spin z-10"></div>
           )}
           <span className="z-10">{signupform ? "Signup" : "Login"}</span>
-          <div className="absolute top-0 left-0 w-[200%] h-full bg-[linear-gradient(90deg,#10e89c,#0593f7,#10e89c)] group-hover:translate-x-[-50%] duration-200"></div>
+          <div className="absolute top-0 left-0 w-[200%] h-full bg-animatingtheme group-hover:translate-x-[-50%] duration-200"></div>
         </button>
       </center>
       <div className="relative">

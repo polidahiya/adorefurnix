@@ -21,6 +21,7 @@ import { MdOutlineArrowRightAlt } from "react-icons/md";
 import { sociallinks } from "../commondata";
 import { FaSitemap } from "react-icons/fa";
 import PWAInstallPrompt from "./Pwapromot";
+import { IoShieldHalf } from "react-icons/io5";
 
 // import ThemeSwitcher from "./Switchtheme";
 
@@ -92,12 +93,13 @@ function Footer() {
           <strong className="font-bold">Adorefurnix.com</strong>. All rights
           reserved.
         </p>
-        <div className="h-full flex flex-1 items-center justify-center gap-[20px] text-[12px]">
+        <div className="h-full flex flex-1 items-center justify-center flex-wrap gap-[20px] text-[12px]">
           <Link href="/Sitemap" className="flex items-center gap-1">
             <FaSitemap className="text-yellow-500" />
             Site map
           </Link>
           <PWAInstallPrompt />
+          <Protectedbygoogle />
           {/* <ThemeSwitcher /> */}
         </div>
         <div className="flex flex-1 items-center justify-end gap-[10px]">
@@ -135,6 +137,33 @@ function Links({ name, link }) {
   );
 }
 
+const Protectedbygoogle = () => (
+  <div className="group relative flex items-center gap-1 cursor-pointer">
+    <IoShieldHalf className="text-yellow-500" />
+    Protected by Google
+    <p className="w-56 absolute top-0 left-1/2 -translate-x-1/2 -translate-y-full bg-white rounded-lg p-2 text-black text-center hidden group-hover:block">
+      This site is protected by reCAPTCHA and the Google{" "}
+      <a
+        href="https://policies.google.com/privacy"
+        target="_blank"
+        className="text-cyan-500 hover:underline"
+      >
+        Privacy Policy
+      </a>{" "}
+      and{" "}
+      <a
+        href="https://policies.google.com/terms"
+        target="_blank"
+        className="text-cyan-500 hover:underline"
+      >
+        Terms of Service
+      </a>{" "}
+      apply.
+      <span className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-2 aspect-square bg-white rotate-45"></span>
+    </p>
+  </div>
+);
+
 function Socialfollow() {
   const social = [
     {
@@ -143,6 +172,7 @@ function Socialfollow() {
       logo: (
         <FaFacebook className="text-[20px] lg:group-hover:translate-y-1 duration-300" />
       ),
+      qrcode: "/faceboo.svg",
     },
     {
       title: "X.com",
@@ -150,6 +180,7 @@ function Socialfollow() {
       logo: (
         <RiTwitterXFill className="text-[20px] lg:group-hover:translate-y-1 duration-300" />
       ),
+      qrcode: "/x.com.svg",
     },
     {
       title: "Instagram.com",
@@ -157,6 +188,7 @@ function Socialfollow() {
       logo: (
         <RiInstagramFill className="text-[20px] lg:group-hover:translate-y-1 duration-300" />
       ),
+      qrcode: "/instagram.svg",
     },
     {
       title: "Pinterest.com",
@@ -164,6 +196,7 @@ function Socialfollow() {
       logo: (
         <FaPinterestP className="text-[20px] lg:group-hover:translate-y-1 duration-300" />
       ),
+      qrcode: "/pinterest.svg",
     },
   ];
 
@@ -181,7 +214,9 @@ function Socialfollow() {
         >
           {/* Tooltip */}
           <p className="absolute -top-6 left-1/2 -translate-x-1/2 bg-white text-gray-700 rounded-lg px-5 py-1 opacity-0 text-sm lg:group-hover:opacity-100 lg:group-hover:-top-10 pointer-events-none duration-500">
-            <span className="bg-theme text-transparent bg-clip-text font-semibold">{item.title}</span>
+            <span className="bg-theme text-transparent bg-clip-text font-semibold">
+              {item.title}
+            </span>
             <span className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 h-2 rotate-45 aspect-square block bg-white"></span>
           </p>
 

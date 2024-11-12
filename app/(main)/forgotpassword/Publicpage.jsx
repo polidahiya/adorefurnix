@@ -3,13 +3,14 @@ import React, { useRef } from "react";
 import { Sendpassresetmail, Resetpassword } from "./Serveraction";
 import { AppContextfn } from "@/app/Context";
 import { useState } from "react";
+import Recaptcha from "@/app/_components/_helperfunctions/Recaptcha";
 
 function Publicpage({ token = null }) {
   const { setmessagefn } = AppContextfn();
   const inputref = useRef(null);
   const [loading, setloading] = useState(false);
 
-  const Submitform = async () => {
+  const Submitform = () => {
     const inputvalue = inputref.current.value;
     if (token) {
       // password check
@@ -27,10 +28,19 @@ function Publicpage({ token = null }) {
         setmessagefn("Password is too big ( " + maxLength + " chars min )*");
         return;
       }
+
       setloading(true);
-      const res = await Resetpassword(inputvalue, token);
-      setmessagefn(res?.message);
-      setloading(false);
+      Recaptcha(
+        async () => {
+          const res = await Resetpassword(inputvalue, token);
+          setmessagefn(res?.message);
+          setloading(false);
+        },
+        () => {
+          setmessagefn("Something went wrong!");
+          setloading(false);
+        }
+      );
     } else {
       // email check
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -40,9 +50,17 @@ function Publicpage({ token = null }) {
         return;
       }
       setloading(true);
-      const res = await Sendpassresetmail(inputvalue);
-      setloading(false);
-      setmessagefn(res?.message);
+      Recaptcha(
+        async () => {
+          const res = await Sendpassresetmail(inputvalue);
+          setmessagefn(res?.message);
+          setloading(false);
+        },
+        () => {
+          setmessagefn("Something went wrong!");
+          setloading(false);
+        }
+      );
     }
   };
   return (
@@ -72,7 +90,7 @@ function Publicpage({ token = null }) {
             <div className="h-[20px] aspect-square rounded-full  border-r-2 border-l-2 border-white animate-spin z-10"></div>
           )}
           <span className="z-10">{token ? "Change password" : "Continue"}</span>
-          <div className="absolute top-0 left-0 w-[200%] h-full bg-[linear-gradient(90deg,#10e89c,#0593f7,#10e89c)] group-hover:translate-x-[-50%] duration-200"></div>
+          <div className="absolute top-0 left-0 w-[200%] h-full bg-animatingtheme group-hover:translate-x-[-50%] duration-200"></div>
         </button>
       </center>
     </>

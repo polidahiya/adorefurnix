@@ -3,9 +3,7 @@ import Verifyrecaptcha from "@/app/_serveractions/Recaptchaverify";
 export default async function Recaptcha(
   successcallbackfn,
   failedcallbackfn,
-  e
 ) {
-  e?.preventDefault();
   grecaptcha.ready(function () {
     grecaptcha
       .execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY, { action: "submit" })
@@ -15,7 +13,6 @@ export default async function Recaptcha(
           successcallbackfn();
         } else {
           failedcallbackfn();
-          console.log("Verification failed");
         }
       });
   });

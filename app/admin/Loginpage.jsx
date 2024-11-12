@@ -4,6 +4,7 @@ import { passwordlogin } from "../_serveractions/Loginaction";
 import { AppContextfn } from "@/app/Context";
 import { ImEye } from "react-icons/im";
 import { ImEyeBlocked } from "react-icons/im";
+import Recaptcha from "../_components/_helperfunctions/Recaptcha";
 
 function Loginpage() {
   const { setmessagefn } = AppContextfn();
@@ -14,17 +15,24 @@ function Loginpage() {
 
   const loginfn = () => {
     setshowloading(true);
-    (async () => {
-      if (password == "") {
-        setmessagefn("Please enter password");
-        setshowloading(false);
-        return;
-      }
 
-      let res = await passwordlogin({ password: password });
+    if (password == "") {
+      setmessagefn("Please enter password");
       setshowloading(false);
-      setmessagefn(res.message);
-    })();
+      return;
+    }
+
+    Recaptcha(
+      async () => {
+        let res = await passwordlogin({ password: password });
+        setmessagefn(res.message);
+        setshowloading(false);
+      },
+      () => {
+        setmessagefn("Something went wrong!");
+        setshowloading(false);
+      }
+    );
   };
 
   useEffect(() => {

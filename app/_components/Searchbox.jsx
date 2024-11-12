@@ -174,10 +174,10 @@ function Searchbox({ productsname }) {
         )}
         <Link
           href={search.trim() !== "" ? `/Search?query=${search}`.replace(/ /g, "_") : "#"}
-          className="flex items-center justify-center bg-theme h-full aspect-square md:aspect-auto md:gap-[5px] md:px-[10px] rounded-full text-white"
+          className="flex items-center justify-center bg-theme h-full aspect-square lg:aspect-auto md:gap-[5px] lg:px-[10px] rounded-full text-white"
         >
           <FiSearch className="text-[20px]" />
-          <span className=" hidden md:block">Search</span>
+          <span className=" hidden lg:block">Search</span>
         </Link>
       </div>
       {/* suggestions */}

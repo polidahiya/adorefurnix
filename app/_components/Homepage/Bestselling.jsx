@@ -25,7 +25,7 @@ async function Bestselling({ products }) {
           >
             <span>See All Collection</span>
             <LuArrowRightCircle />
-            <div className="absolute top-0 left-0 w-[200%] h-full bg-[linear-gradient(90deg,#10e89c,#0593f7,#10e89c)] -z-10 group-hover:translate-x-[-50%] duration-200"></div>
+            <div className="absolute top-0 left-0 w-[200%] h-full bg-animatingtheme -z-10 group-hover:translate-x-[-50%] duration-200"></div>
           </Link>
         </div>
       </div>

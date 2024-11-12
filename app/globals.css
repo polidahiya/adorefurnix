@@ -36,6 +36,7 @@
 html {
   scroll-behavior: smooth;
 }
+
 body {
   color: #525252;
   /* --theme: rgb(0, 153, 255); */
@@ -175,7 +176,6 @@ body {
   animation: gradient-animation_2 1.2s linear infinite;
 }
 
-
 @keyframes gradient-animation_2 {
   0% {
     transform: translateX(-100%);
@@ -184,4 +184,8 @@ body {
   100% {
     transform: translateX(100%);
   }
+}
+
+.grecaptcha-badge {
+  transform: translateX(100%);
 }

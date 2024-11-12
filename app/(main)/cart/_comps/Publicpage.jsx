@@ -12,6 +12,7 @@ import { FaOpencart } from "react-icons/fa6";
 import Link from "next/link";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
+import Recaptcha from "@/app/_components/_helperfunctions/Recaptcha";
 
 export default function Page({ userdata, token, orderstatus }) {
   const router = useRouter();
@@ -44,7 +45,7 @@ export default function Page({ userdata, token, orderstatus }) {
   });
 
   // place order fucntion
-  const Order = async () => {
+  const Order = () => {
     if (!token) {
       setmessagefn("Please Login");
       setredirectloginlink("/cart");
@@ -81,13 +82,20 @@ export default function Page({ userdata, token, orderstatus }) {
       return;
     }
 
-    const res = await Placeorder(cart);
-    if (res?.status == 200) {
-      setorderid(res?.id);
-      setshowpaymentform(true);
-    } else {
-      setmessagefn(res?.message);
-    }
+    Recaptcha(
+      async () => {
+        const res = await Placeorder(cart);
+        if (res?.status == 200) {
+          setorderid(res?.id);
+          setshowpaymentform(true);
+        } else {
+          setmessagefn(res?.message);
+        }
+      },
+      () => {
+        setmessagefn("Something went wrong!");
+      }
+    );
   };
 
   // order success

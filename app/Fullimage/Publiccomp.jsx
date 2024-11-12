@@ -38,7 +38,7 @@ function Publiccomp({ pid, index, color, allproducts }) {
         onClick={() => settogglemenu((pre) => !pre)}
       ></Image>
       <div
-        className={`w-full flex items-center justify-center flex-wrap gap-2 absolute bottom-0 p-5 left-1/2 -translate-x-1/2 duration-300 ${
+        className={`w-full flex items-center justify-center flex-wrap gap-2 bg-black bg-opacity-50 absolute bottom-0 p-5 left-1/2 -translate-x-1/2 duration-300 ${
           togglemenu ? "translate-y-0" : "translate-y-full"
         }`}
       >
@@ -58,7 +58,7 @@ function Publiccomp({ pid, index, color, allproducts }) {
               width={100}
               quality={0}
               loading="lazy"
-              className={`min-w-16 w-16 md:min-w-12 md:w-12 aspect-square border  ${index==i?"border-theme":"border-slate-300"}`}
+              className={`min-w-16 w-16 md:min-w-12 md:w-12 aspect-square border md:border-2 ${index==i?"border-theme":"border-slate-300"}`}
             ></Image>
           </Link>
         ))}

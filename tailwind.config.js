@@ -11,6 +11,7 @@ module.exports = {
       backgroundImage: {
         graygradient: "linear-gradient(110deg,#79818c,#263242)",
         theme: "linear-gradient(90deg,#10e89c,#0593f7)",
+        animatingtheme:"linear-gradient(90deg,#10e89c,#0593f7,#10e89c)"
       },
       colors: {
         theme: "#10e89c",

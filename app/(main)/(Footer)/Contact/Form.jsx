@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Sendmessage } from "@/app/_serveractions/Contactmessages";
 import { AppContextfn } from "@/app/Context";
+import Recaptcha from "@/app/_components/_helperfunctions/Recaptcha";
 
 export default function ContactForm({ userdata }) {
   const { setmessagefn } = AppContextfn();
@@ -25,19 +26,25 @@ export default function ContactForm({ userdata }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setloading(true);
-
-    const res = await Sendmessage(formData);
-
-    setloading(false);
-    setmessagefn(res.message);
-    if (res.status == 200) {
-      setFormData({
-        name: userdata?.username ? userdata?.username : "",
-        subject: "",
-        email: userdata?.email ? userdata?.email : "",
-        message: "",
-      });
-    }
+    Recaptcha(
+      async () => {
+        const res = await Sendmessage(formData);
+        setloading(false);
+        setmessagefn(res.message);
+        if (res.status == 200) {
+          setFormData({
+            name: userdata?.username ? userdata?.username : "",
+            subject: "",
+            email: userdata?.email ? userdata?.email : "",
+            message: "",
+          });
+        }
+      },
+      () => {
+        setloading(false);
+        setmessagefn("Something went wrong!");
+      }
+    );
   };
 
   return (

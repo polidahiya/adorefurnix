@@ -5,9 +5,8 @@ import Link from "next/link";
 function Appliedfilters({ category, subcat, searchParams }) {
   const { pricerange, sort } = searchParams;
 
-  const baseUrl = `/${category}${subcat ? `/${subcat}` : ""}`;
-
   const createLinkWithParams = (newParams) => {
+    const { subcat } = newParams;
     const params = new URLSearchParams(searchParams);
     Object.entries(newParams).forEach(([key, value]) => {
       if (value === 0 || value === null) {
@@ -16,23 +15,15 @@ function Appliedfilters({ category, subcat, searchParams }) {
         params.set(key, value);
       }
     });
-    return `${baseUrl}?${params.toString()}`;
+
+    return `/${category ? category : ""}${
+      subcat ? "/" + subcat : ""
+    }?${params.toString()}`;
   };
 
-  const pricerangeLink = useMemo(
-    () => createLinkWithParams({ pricerange: 0 }),
-    [searchParams, baseUrl]
-  );
-
-  const sortLink = useMemo(
-    () => createLinkWithParams({ sort: 0 }),
-    [searchParams, baseUrl]
-  );
-
-  const subcatLink = useMemo(
-    () => createLinkWithParams({ subcat: null }),
-    [searchParams, baseUrl]
-  );
+  const pricerangeLink = createLinkWithParams({ pricerange: 0 });
+  const sortLink = createLinkWithParams({ sort: 0 });
+  const subcatLink = createLinkWithParams({ subcat: null });
 
   if (
     !subcat &&
@@ -65,8 +56,9 @@ function FilterItem({ label, link }) {
     <div className="flex items-center h-7 pl-5 rounded-lg bg-bg1">
       {label}{" "}
       <Link
-        href={link.replace(/ /g, "_")}
+        href={link?.replace(/ /g, "_")}
         className="text-sm hover:text-theme px-3"
+        replace
       >
         X
       </Link>

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { AppContextfn } from "@/app/Context";
 import { updateuserdetails } from "./Serveractions";
 import Updateusersvg from "@/app/_svgs/Updateusersvg";
+import Recaptcha from "@/app/_components/_helperfunctions/Recaptcha";
 
 function Form({ userdata }) {
   const { setmessagefn } = AppContextfn();
@@ -36,9 +37,17 @@ function Form({ userdata }) {
       address: addressref.current.value,
     };
 
-    const res = await updateuserdetails(userdetails);
-    setshowloading(false);
-    setmessagefn(res?.message);
+    Recaptcha(
+      async () => {
+        const res = await updateuserdetails(userdetails);
+        setshowloading(false);
+        setmessagefn(res?.message);
+      },
+      () => {
+        setmessagefn("Something went wrong!");
+        setshowloading(false);
+      }
+    );
   };
 
   return (
