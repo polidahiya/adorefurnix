@@ -1,10 +1,10 @@
 "use server";
 import { Adminverification } from "@/app/Verifytoken";
 import { getcollection } from "../Mongodb";
-const { contactmessages, ObjectId }=getcollection()
 
 export async function Sendmessage(data) {
   try {
+    const { contactmessages } = await getcollection();
     const { name, email, message, subject } = data;
     if (!name || !email || !message || !subject) {
       return { status: 400, message: "Missing required fields" };
@@ -27,6 +27,7 @@ export async function Sendmessage(data) {
 
 export async function Getmessage(type) {
   try {
+    const { contactmessages } = await getcollection();
     const tokenres = await Adminverification();
     if (!tokenres) return { status: 400, message: "Invalid user" };
 
@@ -44,7 +45,6 @@ export async function Getmessage(type) {
     }
     messages.map((item) => (item._id = item._id.toString()));
     console.log(messages);
-    
 
     return { status: 200, message: messages.length + "new messages", messages };
   } catch (error) {
@@ -55,6 +55,7 @@ export async function Getmessage(type) {
 
 export const changestatus = async (documentId, viewed) => {
   try {
+    const { contactmessages, ObjectId } = await getcollection();
     const tokenres = await Adminverification();
     if (!tokenres) return { status: 400, message: "Invalid user" };
 
@@ -72,6 +73,7 @@ export const changestatus = async (documentId, viewed) => {
 // delete orders function
 export const deletemessage = async (documentId) => {
   try {
+    const { contactmessages, ObjectId } = await getcollection();
     const tokenres = await Adminverification();
     if (!tokenres) return { status: 400, message: "Invalid user" };
 

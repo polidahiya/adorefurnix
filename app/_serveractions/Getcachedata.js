@@ -1,6 +1,5 @@
 "use server";
 import { getcollection } from "@/app/Mongodb";
-const { Productscollection, blogscollection } = getcollection();
 import { unstable_cache } from "next/cache";
 import { revalidateTag } from "next/cache";
 
@@ -8,6 +7,7 @@ const CACHE_TIME = 60 * 60 * 1000; // 24 hours
 
 export const Cachedproducts = unstable_cache(
   async () => {
+    const { Productscollection } = await getcollection();
     const productsList = await Productscollection.find().toArray();
     return productsList.map((item) => ({
       ...item,
@@ -31,6 +31,7 @@ export async function refreshproductsnow() {
 // blogs
 export const Cachedblogs = unstable_cache(
   async () => {
+    const { blogscollection } = await getcollection();
     const blogs = await blogscollection.find({}).sort({ _id: -1 }).toArray();
     return blogs.map((item) => ({ ...item, _id: item._id.toString() }));
   },

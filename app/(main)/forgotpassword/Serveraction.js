@@ -5,10 +5,11 @@ import { sociallinks } from "@/app/commondata";
 import sendMail from "@/app/_serveractions/Sendmail";
 import bcrypt from "bcrypt";
 import { getcollection } from "@/app/Mongodb";
-const { userscollection } = getcollection();
 
 export const Sendpassresetmail = async (email) => {
   try {
+    const { userscollection } = await getcollection();
+
     const userdata = await userscollection.findOne({ email });
     if (!userdata) return { status: 400, message: "User not found!" };
 
@@ -168,6 +169,7 @@ export const Sendpassresetmail = async (email) => {
 
 export const Resetpassword = async (newpassword, token) => {
   try {
+    const { userscollection } = await getcollection();
     const jwtres = jwt.verify(token, process.env.jwt_secret);
     const encrypterpassword = await bcrypt.hash(newpassword, 12);
 

@@ -2,10 +2,11 @@
 import { Userification } from "@/app/Verifytoken";
 import { cookies } from "next/headers";
 import { getcollection } from "@/app/Mongodb";
-const { orderscollection } = getcollection();
+
 
 export const Placeorder = async (ordersdata) => {
   try {
+    const { orderscollection } =await getcollection();
     const tokenres = await Userification();
 
     if (!tokenres) {

@@ -4,7 +4,6 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { logintime } from "@/app/commondata";
 import { getcollection } from "@/app/Mongodb";
-const { userscollection } = getcollection();
 
 const generateToken = (data, userdata) => {
   const token = jwt.sign(data, process.env.jwt_secret, {
@@ -22,6 +21,7 @@ const generateToken = (data, userdata) => {
 };
 
 const findUserByEmail = async (email) => {
+  const { userscollection } = await getcollection();
   return await userscollection.findOne({ email });
 };
 
@@ -63,6 +63,7 @@ export const login = async (userdata) => {
 
 export const signup = async (userdata) => {
   try {
+    const { userscollection } = await getcollection();
     const existingUser = await findUserByEmail(userdata.email);
     if (existingUser) {
       return { status: 400, message: "Email already registered" };

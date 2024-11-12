@@ -1,11 +1,11 @@
 "use server";
 import { Userification } from "@/app/Verifytoken";
 import { getcollection } from "@/app/Mongodb";
-const { ObjectId, orderscollection } = getcollection();
 
 // get orders history
 export const getordershistory = async () => {
   try {
+    const { orderscollection } = await getcollection();
     const tokenres = await Userification();
 
     if (!tokenres) {
@@ -29,6 +29,7 @@ export const getordershistory = async () => {
 // cancel order
 export const Cancelorder = async (orderid, productindex) => {
   try {
+    const { ObjectId, orderscollection } = await getcollection();
     const tokenres = await Userification();
 
     if (!tokenres) {
@@ -46,7 +47,11 @@ export const Cancelorder = async (orderid, productindex) => {
     const now = new Date();
     const ordertime = order?.createdAt;
     const hoursAgo = Math.floor((now - ordertime) / (1000 * 60 * 60));
-    if (hoursAgo > 24) return { status: 400, message: "Cancellation unavailable (exceeds 24 hours)." };
+    if (hoursAgo > 24)
+      return {
+        status: 400,
+        message: "Cancellation unavailable (exceeds 24 hours).",
+      };
 
     // Proceed to update the product status in the array
     const result = await orderscollection.updateOne(filter, {

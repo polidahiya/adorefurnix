@@ -2,7 +2,7 @@ import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { logintime } from "@/app/commondata";
 import { getcollection } from "@/app/Mongodb";
-const { userscollection } = getcollection();
+
 import { cookies } from "next/headers";
 
 export const authOptions = {
@@ -14,6 +14,7 @@ export const authOptions = {
   ],
   callbacks: {
     async signIn({ profile, user }) {
+      const { userscollection } = await getcollection();
       const mail = profile.email ? profile?.email : user?.email;
       const existingUser = await userscollection.findOne({
         email: mail,

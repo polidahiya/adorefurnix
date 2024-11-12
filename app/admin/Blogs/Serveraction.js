@@ -2,10 +2,10 @@
 import { Deleteiamgefromurl, uploadImage } from "@/app/Cloudinary";
 import { Adminverification } from "@/app/Verifytoken";
 import { getcollection } from "../../Mongodb";
-const { blogscollection, ObjectId }=getcollection()
 
 export const Addblogaction = async (formdata, editmode, deletedimages) => {
   try {
+    const { blogscollection, ObjectId } = await getcollection();
     const verification = await Adminverification();
 
     if (!verification) {
@@ -73,6 +73,7 @@ export const Addblogaction = async (formdata, editmode, deletedimages) => {
 
 export const Deleteblog = async (blog) => {
   try {
+    const { blogscollection, ObjectId } = await getcollection();
     const verification = await Adminverification();
 
     if (!verification) {

@@ -1,9 +1,9 @@
 "use server";
 import { getcollection } from "../Mongodb";
-const { blogscollection }=getcollection()
 
 export const Getblogs = async (numberofblogs, blogsindex) => {
   try {
+    const { blogscollection } = await getcollection();
     // Get the total count of blogs
     const totalBlogsCount = await blogscollection.countDocuments();
 

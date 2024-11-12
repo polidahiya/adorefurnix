@@ -1,11 +1,11 @@
 "use server";
 import { Userification } from "@/app/Verifytoken";
 import { getcollection } from "@/app/Mongodb";
-const { userscollection } = getcollection();
 
 // get liked products for user
 export const getLikedProducts = async () => {
   try {
+    const { userscollection } = await getcollection();
     const tokenres = await Userification();
 
     if (!tokenres) {
@@ -27,6 +27,7 @@ export const getLikedProducts = async () => {
 // is liked
 export async function isliked(productid) {
   try {
+    const { userscollection } = await getcollection();
     const tokenres = await Userification();
 
     if (!tokenres) {
@@ -48,6 +49,7 @@ export async function isliked(productid) {
 // add to favourite or remove favourite
 export async function likeproduct(productid, liked) {
   try {
+    const { userscollection } = await getcollection();
     const tokenres = await Userification();
 
     if (!tokenres) {

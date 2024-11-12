@@ -3,10 +3,10 @@ import crypto from "crypto";
 import { getcollection } from "@/app/Mongodb";
 import sendMail from "@/app/_serveractions/Sendmail";
 import { domain, sociallinks } from "@/app/commondata";
-const { orderscollection, ObjectId } = getcollection();
 
 export async function POST(req) {
   try {
+    const { orderscollection, ObjectId } = await getcollection();
     const formData = await req.formData();
 
     // Extract data from PayU response

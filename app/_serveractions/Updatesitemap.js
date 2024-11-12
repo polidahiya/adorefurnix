@@ -2,32 +2,38 @@
 import fs from "fs";
 import path from "path";
 import xml2js from "xml2js";
+import { domain } from "../commondata";
 import { getcollection } from "@/app/Mongodb";
-const { Productscollection, blogscollection } = getcollection();
 
 // Helper to create encoded URLs
 const createUrl = (base, path) => encodeURI(`${base}/${path}`);
 
 export default async function Updatesitemap() {
   try {
-    const baseUrl = "https://adorefurnix.com";
+    const { Productscollection, blogscollection } = await getcollection();
     const currentDate = new Date().toISOString();
-    
+
     // Fetch products and blogs concurrently
     const [productsList, blogsList] = await Promise.all([
       Productscollection.find().toArray(),
-      blogscollection.find().toArray()
+      blogscollection.find().toArray(),
     ]);
 
     // Map product and blog links
     const productlinks = productsList.map((item) => ({
-      loc: createUrl(baseUrl, `${item.category}/${item.subcat}/${item._id.toString()}`.replace(/ /g, "_")),
+      loc: createUrl(
+        domain,
+        `${item.category}/${item.subcat}/${item._id.toString()}`.replace(
+          / /g,
+          "_"
+        )
+      ),
       lastmod: currentDate,
       priority: "0.8",
     }));
 
     const bloglinks = blogsList.map((item) => ({
-      loc: createUrl(baseUrl, `Blogs/${item._id.toString()}`.replace(/ /g, "_")),
+      loc: createUrl(domain, `Blogs/${item._id.toString()}`.replace(/ /g, "_")),
       lastmod: currentDate,
       priority: "0.6",
     }));

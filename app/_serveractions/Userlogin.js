@@ -4,7 +4,6 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { logintime } from "@/app/commondata";
 import { getcollection } from "@/app/Mongodb";
-const { userscollection } = getcollection();
 
 const generateToken = (data, userdata) => {
   const token = jwt.sign(data, process.env.jwt_secret, {
@@ -22,11 +21,13 @@ const generateToken = (data, userdata) => {
 };
 
 const findUserByEmail = async (email) => {
+  const { userscollection } = await getcollection();
   return await userscollection.findOne({ email });
 };
 
 export const Userlogin = async (userdata, step) => {
   try {
+    const { userscollection } = await getcollection();
     if (step == 1) {
       const user = await findUserByEmail(userdata.email);
       return { status: 200, userexist: user ? true : false };
@@ -52,31 +53,31 @@ export const Userlogin = async (userdata, step) => {
       return { status: 200, message: "Login successful" };
     }
 
-    if(step==3){
-        const existingUser = await findUserByEmail(userdata.email);
-        if (existingUser) {
-          return { status: 400, message: "Email already registered" };
+    if (step == 3) {
+      const existingUser = await findUserByEmail(userdata.email);
+      if (existingUser) {
+        return { status: 400, message: "Email already registered" };
+      }
+
+      // Hash password
+      userdata.password = await bcrypt.hash(userdata.password, 12);
+
+      const insertedUser = await userscollection.insertOne(userdata);
+      if (!insertedUser) {
+        return { status: 500, message: "Failed to create user" };
+      }
+
+      generateToken(
+        { email: userdata.email },
+        {
+          username: userdata.username,
+          email: userdata.email,
+          phonenum: userdata.phonenum,
+          address: userdata.address,
         }
-    
-        // Hash password
-        userdata.password = await bcrypt.hash(userdata.password, 12);
-    
-        const insertedUser = await userscollection.insertOne(userdata);
-        if (!insertedUser) {
-          return { status: 500, message: "Failed to create user" };
-        }
-    
-        generateToken(
-          { email: userdata.email },
-          {
-            username: userdata.username,
-            email: userdata.email,
-            phonenum: userdata.phonenum,
-            address: userdata.address,
-          }
-        );
-    
-        return { status: 200, message: "Signup successful" };
+      );
+
+      return { status: 200, message: "Signup successful" };
     }
   } catch (error) {
     console.error(error);
@@ -86,6 +87,7 @@ export const Userlogin = async (userdata, step) => {
 
 export const signup = async (userdata) => {
   try {
+    const { userscollection } = await getcollection();
     const existingUser = await findUserByEmail(userdata.email);
     if (existingUser) {
       return { status: 400, message: "Email already registered" };

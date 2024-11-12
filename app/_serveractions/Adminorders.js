@@ -1,7 +1,6 @@
 "use server";
 import { Adminverification } from "@/app/Verifytoken";
 import { getcollection } from "@/app/Mongodb";
-const { orderscollection, ObjectId } = getcollection();
 
 export const getadminorders = async (
   status = 0,
@@ -11,6 +10,7 @@ export const getadminorders = async (
   searchfilter = 0
 ) => {
   try {
+    const { orderscollection, ObjectId } = await getcollection();
     const tokenres = await Adminverification();
 
     // Check if user is authenticated
@@ -23,12 +23,12 @@ export const getadminorders = async (
     const searchFilters = {
       0: {
         _id: ObjectId.isValid(searchterm) ? new ObjectId(searchterm) : null,
-      }, 
+      },
       1: { mihpayid: { $regex: `^${searchterm}$`, $options: "i" } },
-      2: { "userdata.username": { $regex: searchterm, $options: "i" } }, 
-      3: { "userdata.email": { $regex: `^${searchterm}$`, $options: "i" } }, 
-      4: { "userdata.phonenum": searchterm }, 
-      5: { "userdata.address": { $regex: searchterm, $options: "i" } }, 
+      2: { "userdata.username": { $regex: searchterm, $options: "i" } },
+      3: { "userdata.email": { $regex: `^${searchterm}$`, $options: "i" } },
+      4: { "userdata.phonenum": searchterm },
+      5: { "userdata.address": { $regex: searchterm, $options: "i" } },
     };
 
     if (searchterm) {
@@ -36,11 +36,6 @@ export const getadminorders = async (
     } else {
       query = { status: status };
     }
-
-    // Handle invalid ObjectId for order search
-    // if (searchfilter === 0 && !ObjectId.isValid(searchterm)) {
-    //   return { status: 400, message: "Invalid Order ID" };
-    // }
 
     // Get total number of posts for pagination
     const totalposts = await orderscollection.countDocuments(query);
@@ -65,6 +60,7 @@ export const getadminorders = async (
 // change order status
 export const changestatus = async (documentId, status) => {
   try {
+    const { orderscollection, ObjectId } = await getcollection();
     const tokenres = await Adminverification();
 
     if (!tokenres) {
@@ -90,6 +86,7 @@ export const changestatus = async (documentId, status) => {
 // change product status
 export const changeproductstatus = async (orderId, productIndex, newStatus) => {
   try {
+    const { orderscollection, ObjectId } = await getcollection();
     const tokenres = await Adminverification();
 
     if (!tokenres) {
@@ -129,6 +126,7 @@ export const changeproductstatus = async (orderId, productIndex, newStatus) => {
 // delete orders function
 export const deleteorder = async (documentId) => {
   try {
+    const { orderscollection, ObjectId } = await getcollection();
     const tokenres = await Adminverification();
 
     if (!tokenres) {
@@ -152,6 +150,7 @@ export const deleteorder = async (documentId) => {
 // update note
 export const updatenote = async (documentId, note) => {
   try {
+    const { orderscollection, ObjectId } = await getcollection();
     const tokenres = await Adminverification();
 
     if (!tokenres) {

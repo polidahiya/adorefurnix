@@ -3,7 +3,6 @@ import { cookies } from "next/headers";
 import { Adminverification } from "@/app/Verifytoken";
 import jwt from "jsonwebtoken";
 import { getcollection } from "../Mongodb";
-const {Admindatacollection} =getcollection()
 
 // auto login
 export async function autologin() {
@@ -23,6 +22,7 @@ export async function autologin() {
 // password login
 export async function passwordlogin(req) {
   try {
+    const { Admindatacollection } = await getcollection();
     let password = req?.password;
 
     const admindata = await Admindatacollection.findOne();
@@ -48,4 +48,3 @@ export async function passwordlogin(req) {
   } catch (error) {}
   return { status: 500, message: "Server Error!" };
 }
-
