@@ -1,11 +1,11 @@
 import React from "react";
-import Categories from "./_components/Addproduct";
+import Addandupdateproduct from "./_components/Addproduct";
 import Showproducts from "./_components/Showproducts";
 
 function page() {
   return (
     <div>
-      <Categories />
+      <Addandupdateproduct />
       <Showproducts />
     </div>
   );

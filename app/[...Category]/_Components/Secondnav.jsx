@@ -56,7 +56,7 @@ function Secondnav({ category, subcat, searchParams, lengthofproducts }) {
   };
 
   return (
-    <div className="lg:w-60 lg:min-w-60 lg:max-h-[calc(100vh-130px)] lg:overflow-y-scroll lg:sticky lg:top-[120px]">
+    <div className="lg:w-60 lg:min-w-60 lg:max-h-[calc(100vh-130px)] lg:overflow-y-hidden lg:pr-[5px] lg:hover:overflow-y-scroll lg:hover:pr-0 lg:sticky lg:top-[120px]">
       <div className=" flex items-center justify-center h-[50px] bg-white lg:hidden">
         {category == "Search" ? (
           <span className="text-center text-[20px] font-semibold font-serif italic whitespace-nowrap select-none">

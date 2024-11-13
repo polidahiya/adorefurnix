@@ -7,15 +7,17 @@ import { AppContextfn } from "@/app/Context";
 import Componentloading from "@/app/_components/Componentloading";
 import Productcard from "@/app/_components/Productcard";
 import { MdUpload } from "react-icons/md";
+import { IoSearchOutline } from "react-icons/io5";
 
 function Showproducts() {
-  const [categorystate, setcategorystate] = useState({
-    category: "Living Room",
-    subcat: "Sofa sets",
-  });
   const { setaddproduct, setupdateproduct, setdeletedimages, setmessagefn } =
     AppContextfn();
 
+  const [categorystate, setcategorystate] = useState({
+    category: "Living Room",
+    subcat: "Sofa sets",
+    id: "",
+  });
   const [products, setproducts] = useState([]);
   const [loading, setloading] = useState(false);
 
@@ -36,9 +38,9 @@ function Showproducts() {
     });
   };
 
-  const showproducts = async () => {
+  const showproducts = async (searchmode) => {
     setloading(true);
-    const res = await Getliveproducts(categorystate);
+    const res = await Getliveproducts(categorystate, searchmode);
     if (res.status == 200) {
       setproducts(res?.products);
     }
@@ -50,12 +52,35 @@ function Showproducts() {
   if (loading) return <Componentloading />;
 
   return (
-    <div>
+    <div className="px-5">
       <hr />
       <h2 className="text-center mt-[30px] text-[20px] font-bold">
         Show Products
       </h2>
-      <div className="flex flex-col md:flex-row  items-center justify-center gap-10 mt-10 px-5">
+      {/* search id way */}
+      <div className="flex items-center h-10 border border-slate-300 rounded-[5px] p-1 mt-5">
+        <input
+          type="text"
+          className="h-full w-full px-5 outline-none"
+          placeholder="Order id"
+          value={categorystate?.id}
+          onChange={(e) =>
+            setcategorystate((pre) => ({ ...pre, id: e.target.value }))
+          }
+          onKeyDown={(e) => {
+            if (e.key == "Enter") showproducts(true);
+          }}
+        />
+        <button
+          className="flex items-center gap-2 px-5 h-full bg-theme text-white border border-slate-300 rounded-[5px] ml-auto"
+          onClick={() => showproducts(true)}
+        >
+          <IoSearchOutline />
+          <span className="hidden md:inline-block">Search</span>
+        </button>
+      </div>
+      {/* search categories way */}
+      <div className="flex flex-col md:flex-row  items-center justify-center gap-10 mt-10">
         <div className="w-full flex gap-5 items-center">
           <label className="flex-1 text-[20px] font-bold ">Category :</label>
           <select
@@ -92,7 +117,7 @@ function Showproducts() {
       <center>
         <button
           className="bg-slate-300 rounded-md p-[5px] px-5 my-5"
-          onClick={showproducts}
+          onClick={() => showproducts(false)}
         >
           Show Products
         </button>

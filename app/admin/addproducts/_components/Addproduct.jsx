@@ -8,7 +8,7 @@ import Details from "./_comps/Details";
 import Descriptions from "./_comps/Descriptions";
 import Colorpalets from "./_comps/Colorpalets";
 
-function Categories() {
+function Addandupdateproduct() {
   const {
     addproduct,
     setaddproduct,
@@ -43,7 +43,7 @@ function Categories() {
     });
 
     const res = await Addproduct(addproduct, formData, deletedimages);
-    
+
     if (res?.status == 200) {
       resetfields();
       setupdateproduct(false);
@@ -75,6 +75,7 @@ function Categories() {
               resetfields();
               setdeletedimages([]);
               setupdateproduct(false);
+              setuploadloading(false);
             }}
           >
             Cancle Update
@@ -91,4 +92,4 @@ function Loadingcomp() {
   );
 }
 
-export default Categories;
+export default Addandupdateproduct;

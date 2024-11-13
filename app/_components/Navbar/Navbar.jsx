@@ -89,6 +89,7 @@ function Navbar({ params, productsname, token, userdata }) {
             className="block lg:hidden fixed top-0 left-0 bg-black opacity-40 h-screen w-screen z-30"
             onClick={() => {
               window.history.back();
+              document.body.classList.remove("overflow-hidden","max-h-dvh","h-dvh")
             }}
           ></div>
         )}

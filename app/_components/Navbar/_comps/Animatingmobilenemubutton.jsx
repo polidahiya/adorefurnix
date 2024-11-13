@@ -7,8 +7,9 @@ function Animatingmobilenemubutton() {
       onClick={() => {
         history.pushState(null, "", "");
         setshowcat(true);
+        document.body.classList.add("overflow-hidden","max-h-dvh","h-dvh")
       }}
-      className={`lg:hidden h-[calc(100%-4px)] aspect-square flex flex-col justify-center items-center ${
+      className={`lg:hidden h-[calc(100%-4px)] aspect-square flex flex-col justify-center items-center  ${
         showcat && "z-40 pointer-events-none"
       }`}
     >
