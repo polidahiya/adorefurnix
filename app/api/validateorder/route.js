@@ -104,7 +104,7 @@ const sendconfirmationmail = async (orderdetails, amount) => {
                                         text-align: center;
                                         width: 100%;
                                         height: 250px;
-                                        background-image: url("${domain}/images/pullokkaran-banner-01.jpg");
+                                        background-image: url("${domain}/images/desktophomepageimage.webp");
                                         background-size: cover;
                                         background-position: center;
                                         border-bottom: 1px solid #ddd;
@@ -319,7 +319,7 @@ const sendconfirmationmail = async (orderdetails, amount) => {
                                         text-align: center;
                                         width: 100%;
                                         height: 250px;
-                                        background-image: url("${domain}/images/pullokkaran-banner-01.jpg");
+                                        background-image: url("${domain}/images/desktophomepageimage.webp");
                                         background-size: cover;
                                         background-position: center;
                                         border-bottom: 1px solid #ddd;

@@ -38,19 +38,21 @@ export default async function Home() {
 
         {/* bg image */}
         <Image
-          className="w-full  md:h-[100vh] max-h-[600px]  object-cover top-0 z-[-1] hidden md:inline-block"
-          src="/images/pullokkaran-banner-01.jpg"
+          className="w-full  md:h-[100vh] max-h-[600px]  object-cover bg-graygradient top-0 z-[-1] hidden md:inline-block"
+          src="/images/desktophomepageimage.webp"
           alt="homepageslide"
           height={1000}
           width={1000}
+          priority={true}
         />
         {/* mobile */}
         <Image
-          className="w-full  md:h-[100vh] max-h-[600px]  object-cover top-0 z-[-1] md:hidden"
-          src="/images/mobilehomepageimage.jpg"
+          className="w-full  md:h-[100vh] max-h-[600px]  object-cover bg-graygradient top-0 z-[-1] md:hidden"
+          src="/images/mobilehomepageimage.webp"
           alt="homepageslide"
           height={1000}
           width={1000}
+          priority={true}
         />
         {/* gradient full*/}
         <div
