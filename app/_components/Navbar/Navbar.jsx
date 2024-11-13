@@ -55,10 +55,10 @@ function Navbar({ params, productsname, token, userdata }) {
           {/* logo */}
           <Link
             href="/"
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[40px] md:static md:flex  md:translate-x-0 md:translate-y-0 md:h-full md:w-fit "
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[30px] md:h-full md:static md:flex  md:translate-x-0 md:translate-y-0  md:w-fit "
           >
             <Image
-              className=" w-auto h-full "
+              className="w-auto h-full "
               src="/logo3.png"
               alt="adorefurnix logo"
               height={50}

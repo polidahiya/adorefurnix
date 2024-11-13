@@ -39,6 +39,10 @@ export default function RootLayout({ children }) {
           src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`}
           strategy="afterInteractive"
         ></Script>
+        {/* <meta
+          name="viewport"
+          content="min-width=440"
+        ></meta> */}
       </head>
       <Appwrapper>
         <body className="antialiased">
