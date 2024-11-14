@@ -9,7 +9,7 @@ function page({ searchParams }) {
     <div
       className="relative flex items-center justify-center py-[20px]"
       style={{
-        background: "url(images/loginwallpaper.jpg) center left / cover",
+        background: "url(/images/loginwallpaper.jpg) center left / cover",
         minHeight: "calc(100vh - 60px)",
       }}
     >

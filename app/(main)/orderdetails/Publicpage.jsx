@@ -138,7 +138,7 @@ const Historyproductcard = ({ item, product, index }) => {
       )}
       {/* tags */}
       {canceltag != 0 && (
-        <div className="absolute top-32 left-1/2 -translate-x-1/2  text-white">
+        <div className="absolute top-32 left-1/2 -translate-x-1/2  text-white bg-black bg-opacity-50 px-5 whitespace-nowrap">
           This order is {canceltag == 1 && "canceled"}
           {canceltag == 2 && "refunded"}
         </div>
@@ -166,7 +166,7 @@ const OrderStatus = ({ item }) => {
       {item.status < 4 && (
         <div className="bg-white rounded-lg lg:rounded-b-none pt-3 w-full md:w-[600px] ">
           <div className="flex items-center w-full mt-[10px] px-[40px] md:px-[60px]">
-            {orderstages.map((_, i) => (
+            {orderstages.slice(0, 4).map((_, i) => (
               <div
                 key={i}
                 className={`flex items-center ${i !== 0 && "w-full"}`}
@@ -188,7 +188,7 @@ const OrderStatus = ({ item }) => {
           </div>
           {/* stage names */}
           <div className="flex items-center justify-between w-full py-[10px] px-[20px] text-[10px] md:text-[14px] gap-[10px]">
-            {orderstages.map((stage, i) => (
+            {orderstages.slice(0, 4).map((stage, i) => (
               <span key={i} className="text-center">
                 {stage}
               </span>

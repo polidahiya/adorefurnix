@@ -6,7 +6,6 @@ export const address = "Plot no. 1081 sector 3A, Gurgaon Haryana 122001";
 export const payulink = "https://secure.payu.in/_payment"; //live
 
 // export const domain = "http://localhost:3000";
-// export const domain = "https://adorefurnix.vercel.app";
 export const domain = "https://adorefurnix.com";
 
 export const sociallinks = {
