@@ -19,13 +19,13 @@ const Citiesdescription = ({ city = "Delhi" }) => {
         the perfect pieces can be overwhelming. That’s why it’s essential to
         look for a trusted furniture store in <strong>{city}</strong>—one that
         offers high-quality, stylish pieces for every room in your home. Whether
-        you're designing a living room, bedroom, or office space, the right
+        you&apos;re designing a living room, bedroom, or office space, the right
         furniture can enhance your comfort and lifestyle.
       </p>
       <p className="my-1">
         At Adorefurnix, we provide a wide variety of furniture options, tailored
         to meet your needs. Our store in <strong>{city}</strong> offers
-        everything you need to create the perfect atmosphere, whether you're
+        everything you need to create the perfect atmosphere, whether you&apos;re
         furnishing a home or an office. You can even take advantage of
         convenient EMI options to make your dream furniture more accessible.
         Wondering where to find the best online furniture in{" "}
@@ -36,9 +36,9 @@ const Citiesdescription = ({ city = "Delhi" }) => {
       <h3 className="font-semibold mt-3 text-base">Bedroom Furniture</h3>
       <p className="my-1">
         Your bedroom is your personal retreat, a space where you can relax and
-        recharge. To make this room truly yours, you'll need essential furniture
+        recharge. To make this room truly yours, you&apos;ll need essential furniture
         like bed frames, wardrobes, nightstands, and chairs that combine style
-        with functionality. Whether you're searching for a luxurious bed or
+        with functionality. Whether you&apos;re searching for a luxurious bed or
         elegant storage solutions, Adorefurnix offers a range of options in{" "}
         <strong>{city}</strong> that fit any style and budget.
       </p>

@@ -3,11 +3,9 @@ export default function categorydescription(
   subcategory,
   city = "Delhi"
 ) {
-  console.log(category, subcategory, city);
-
   const descriptions = {
     "Living Room": {
-      description: `Explore the finest selection of Living Room Furniture in ${city} at Adorefurnix, where quality meets design. Whether you're searching for plush sofa sets, multifunctional sofa cum beds, or elegant wing chairs, we offer premium choices for every living space in ${city}. Enhance your living room with stylish ottomans and accent chairs that blend perfectly with modern or traditional interiors. Shop now to discover the best living room furniture options in ${city} for any home decor.`,
+      description: `Explore the finest selection of Living Room Furniture in ${city} at Adorefurnix, where quality meets design. Whether you&apos;re searching for plush sofa sets, multifunctional sofa cum beds, or elegant wing chairs, we offer premium choices for every living space in ${city}. Enhance your living room with stylish ottomans and accent chairs that blend perfectly with modern or traditional interiors. Shop now to discover the best living room furniture options in ${city} for any home decor.`,
       subcategories: {
         "Sofa sets": `Upgrade your living room in ${city} with Adorefurnix’s premium sofa sets. Our collection offers a variety of styles and sizes, ensuring comfort and elegance for any space. Choose from classic, modern, or contemporary designs to match your home decor.`,
         "Sofa cum bed": `Maximize functionality in your living room in ${city} with a versatile sofa cum bed from Adorefurnix. Ideal for small spaces or guest rooms, our sofa beds offer comfort and style, transforming easily from seating to sleeping space.`,
@@ -17,12 +15,12 @@ export default function categorydescription(
       },
     },
     Bedroom: {
-      description: `Redefine your bedroom in ${city} with luxurious and affordable Bedroom Furniture from Adorefurnix. Whether you're looking for spacious king-size beds, elegant queen-size beds, or practical single beds, we have options for every bedroom in ${city}. Complete your space with stylish wardrobes, bedside tables, chest of drawers, and more.`,
+      description: `Redefine your bedroom in ${city} with luxurious and affordable Bedroom Furniture from Adorefurnix. Whether you&apos;re looking for spacious king-size beds, elegant queen-size beds, or practical single beds, we have options for every bedroom in ${city}. Complete your space with stylish wardrobes, bedside tables, chest of drawers, and more.`,
       subcategories: {
         "King Size Bed": `Sleep like royalty in a king-size bed from Adorefurnix in ${city}. Our beds offer ample space, comfort, and elegance, making them the perfect centerpiece for any master bedroom.`,
         "Queen Size Bed": `Bring style and comfort to your bedroom in ${city} with our queen-size beds. Perfect for both spacious and compact rooms, these beds offer a balance of luxury and functionality.`,
-        "Single Bed": `Ideal for guest rooms or children's rooms in ${city}, our single beds offer style and comfort in a compact size. Choose from a variety of designs to suit your home.`,
-        "Kids Bed": `Create a fun and functional space for your children with Adorefurnix’s kids' beds in ${city}. Designed with safety and style in mind, our beds are perfect for any child's room.`,
+        "Single Bed": `Ideal for guest rooms or children&apos;s rooms in ${city}, our single beds offer style and comfort in a compact size. Choose from a variety of designs to suit your home.`,
+        "Kids Bed": `Create a fun and functional space for your children with Adorefurnix’s kids&apos; beds in ${city}. Designed with safety and style in mind, our beds are perfect for any child&apos;s room.`,
         Wardrobe: `Organize your bedroom in ${city} with our stylish and spacious wardrobes. Our designs offer plenty of storage while complementing the aesthetics of your room.`,
         "Bedside Table": `Add convenience and style to your bedroom in ${city} with our bedside tables. Perfect for keeping essentials within reach, our tables come in a variety of designs to match any decor.`,
         "Chest of Drawers": `Keep your bedroom in ${city} tidy and organized with a chest of drawers from Adorefurnix. Our range combines functionality with elegance, providing ample storage in a sleek design.`,
@@ -30,7 +28,7 @@ export default function categorydescription(
       },
     },
     Dining: {
-      description: `Elevate your dining experience in ${city} with Adorefurnix’s stylish Dining Furniture. Whether you're looking for a cozy 2-seater dining set or a spacious 6-seater table, our collection in ${city} offers the perfect blend of comfort and design for your home.`,
+      description: `Elevate your dining experience in ${city} with Adorefurnix’s stylish Dining Furniture. Whether you&apos;re looking for a cozy 2-seater dining set or a spacious 6-seater table, our collection in ${city} offers the perfect blend of comfort and design for your home.`,
       subcategories: {
         "2-Seater Dining Set": `Perfect for small spaces or intimate meals, our 2-seater dining sets in ${city} provide style and comfort in a compact design. Ideal for cozy dining areas.`,
         "4-Seater Dining Set": `Enjoy family meals around a 4-seater dining set from Adorefurnix in ${city}. Our sets offer a perfect balance of style and function for everyday use.`,
@@ -53,7 +51,7 @@ export default function categorydescription(
         "Tv and Entertainment Unit": `Create a stylish and functional media center in ${city} with a TV and entertainment unit from Adorefurnix. Our units offer plenty of storage for your electronics and decor.`,
         Cabinet: `Add extra storage and elegance to your home in ${city} with a cabinet from Adorefurnix. Our cabinets are perfect for storing dishes, linens, or decor in style.`,
         "Book Shelf": `Display your books and decor in style with a bookshelf from Adorefurnix in ${city}. Our designs are perfect for organizing and showcasing your collection.`,
-        "Crockery Cabinet": `Keep your kitchen or dining room in ${city} organized with a sleek crockery cabinet from Adorefurnix. Our cabinets provide ample storage for your dishes while enhancing the room's decor.`,
+        "Crockery Cabinet": `Keep your kitchen or dining room in ${city} organized with a sleek crockery cabinet from Adorefurnix. Our cabinets provide ample storage for your dishes while enhancing the room&apos;s decor.`,
       },
     },
     "Bar Furniture": {
@@ -92,10 +90,7 @@ export default function categorydescription(
       },
     },
   };
-  console.log(descriptions[category].subcategories[subcategory]);
   
-
   if (subcategory) return descriptions[category].subcategories[subcategory];
-
   return descriptions[category].description;
 }
