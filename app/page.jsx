@@ -12,9 +12,10 @@ import { cookies } from "next/headers";
 import Image from "next/image";
 import Allproducts from "./_components/Homepage/Allproducts";
 import Roundcategories from "./_components/Homepage/Roundcategories";
+import Citiesdescription from "./_components/Homepage/Citiesdescription";
 // import Posters from "./_components/Homepage/Posters";
 
-export default async function Home() {
+export default async function Home({ searchParams }) {
   const token = cookies()?.get("token")?.value;
   const userdata = cookies()?.get("userdata")?.value;
 
@@ -76,6 +77,7 @@ export default async function Home() {
         </h2>
         <Promices />
       </div>
+      <Citiesdescription city={searchParams?.location} />
       <Footer />
     </div>
   );

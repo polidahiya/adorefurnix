@@ -10,6 +10,7 @@ import { sortProducts, pricefilter } from "./_Components/sortandfilter";
 import Productpage from "../_productpage/Productpage";
 import Roundcategories from "../_components/Homepage/Roundcategories";
 import Appliedfilters from "./_Components/Appliedfilters";
+import categorydescription from "../_components/_data/Categorydescription";
 
 async function page({ params, searchParams }) {
   const { Category: slug } = params;
@@ -19,6 +20,8 @@ async function page({ params, searchParams }) {
   const subcat =
     slug && slug[1] ? decodeURIComponent(slug[1])?.replace(/_/g, " ") : null;
   const productid = slug && slug[2] ? decodeURIComponent(slug[2]) : null;
+
+  const location=searchParams?.location?.replace(/_/g, " ")
 
   if (productid)
     return (
@@ -76,7 +79,7 @@ async function page({ params, searchParams }) {
         <Roundcategories />
       </div>
       <p className="text-sm md:text-base text-center p-5 font-serif italic">
-        {categorylist[category]?.desc}
+        {categorydescription(category,subcat,location)}
       </p>
     </>
   );
