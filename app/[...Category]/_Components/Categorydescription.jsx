@@ -1,11 +1,21 @@
-export default function categorydescription(
-  category,
-  subcategory,
-  city = "Delhi"
-) {
+function Categorydescription({ category, subcat, location }) {
+  return (
+    <div>
+      <p className="text-sm md:text-base text-center p-5 font-serif italic">
+       
+      </p>
+    </div>
+  );
+}
+
+export default Categorydescription;
+
+function categorydescr(category, subcategory, city = "Delhi") {
   const descriptions = {
     "Living Room": {
-      description: `Explore the finest selection of Living Room Furniture in ${city} at Adorefurnix, where quality meets design. Whether you&apos;re searching for plush sofa sets, multifunctional sofa cum beds, or elegant wing chairs, we offer premium choices for every living space in ${city}. Enhance your living room with stylish ottomans and accent chairs that blend perfectly with modern or traditional interiors. Shop now to discover the best living room furniture options in ${city} for any home decor.`,
+      description: `Explore the finest selection of Living Room Furniture in ${city} at Adorefurnix, your go-to destination where quality meets contemporary design. Whether you're searching for plush sofa sets, multifunctional sofa cum beds, or elegant wing chairs, we provide a curated range of premium furniture designed to transform your living space in ${city}. Our collection features luxurious sectional sofas, stylish coffee tables, and media units, perfect for creating a comfortable and visually appealing living room. 
+      From modern sofa sets to classic armchairs, we offer something to suit every style, ensuring that your living room reflects your personal taste. Add a touch of sophistication with our stylish ottomans and accent chairs, blending seamlessly with both modern and traditional interiors. Looking for storage solutions? Our range of entertainment units, console tables, and bookshelves offers both functionality and style, helping you keep your living room organized and clutter-free. 
+      At Adorefurnix, we prioritize both comfort and aesthetics, offering ergonomic furniture that enhances your relaxation experience. Our recliners and lounge chairs are perfect for unwinding after a long day, while our coffee tables and side tables add the perfect finishing touch to any living room layout. For those in ${city} seeking to create a cozy and inviting atmosphere, we have the perfect mix of modern design and timeless elegance.Shop now to discover the best living room furniture options in ${city} for any home decor, whether you're furnishing a cozy apartment, a spacious family home, or a trendy urban loft. With Adorefurnix, you're guaranteed to find high-quality, stylish furniture that elevates your living space and enhances your lifestyle.`,
       subcategories: {
         "Sofa sets": `Upgrade your living room in ${city} with Adorefurnix’s premium sofa sets. Our collection offers a variety of styles and sizes, ensuring comfort and elegance for any space. Choose from classic, modern, or contemporary designs to match your home decor.`,
         "Sofa cum bed": `Maximize functionality in your living room in ${city} with a versatile sofa cum bed from Adorefurnix. Ideal for small spaces or guest rooms, our sofa beds offer comfort and style, transforming easily from seating to sleeping space.`,
@@ -90,7 +100,7 @@ export default function categorydescription(
       },
     },
   };
-  
-  if (subcategory) return descriptions[category].subcategories[subcategory];
-  return descriptions[category].description;
+
+  if (subcategory) return descriptions[category]?.subcategories[subcategory];
+  return descriptions[category]?.description;
 }

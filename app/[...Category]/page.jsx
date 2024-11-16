@@ -10,7 +10,7 @@ import { sortProducts, pricefilter } from "./_Components/sortandfilter";
 import Productpage from "../_productpage/Productpage";
 import Roundcategories from "../_components/Homepage/Roundcategories";
 import Appliedfilters from "./_Components/Appliedfilters";
-import categorydescription from "../_components/_data/Categorydescription";
+import Categorydescription from "./_Components/Categorydescription";
 
 async function page({ params, searchParams }) {
   const { Category: slug } = params;
@@ -21,7 +21,7 @@ async function page({ params, searchParams }) {
     slug && slug[1] ? decodeURIComponent(slug[1])?.replace(/_/g, " ") : null;
   const productid = slug && slug[2] ? decodeURIComponent(slug[2]) : null;
 
-  const location=searchParams?.location?.replace(/_/g, " ")
+  const location = searchParams?.location?.replace(/_/g, " ") || "Delhi";
 
   if (productid)
     return (
@@ -67,7 +67,11 @@ async function page({ params, searchParams }) {
         />
         <div className="w-full lg:w-[calc(100%-250px)]">
           <Subcategories category={category} subcat={subcat} />
-          <Appliedfilters category={category} subcat={subcat} searchParams={searchParams} />
+          <Appliedfilters
+            category={category}
+            subcat={subcat}
+            searchParams={searchParams}
+          />
           {sortedProducts.length > 0 ? (
             <ProductGrid products={sortedProducts} />
           ) : (
@@ -78,9 +82,11 @@ async function page({ params, searchParams }) {
       <div className="my-5 lg:my-10">
         <Roundcategories />
       </div>
-      <p className="text-sm md:text-base text-center p-5 font-serif italic">
-        {categorydescription(category,subcat,location)}
-      </p>
+      <Categorydescription
+        category={category}
+        subcat={subcat}
+        location={location}
+      />
     </>
   );
 }
