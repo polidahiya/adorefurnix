@@ -31,24 +31,24 @@ const SiteMap = () => {
   ];
 
   const furnitureCategories = [
-    { loc: "/Living%20Room", label: "Living Room", icon: <FaCouch /> },
+    { loc: "/Living_Room", label: "Living Room", icon: <FaCouch /> },
     { loc: "/Bedroom", label: "Bedroom", icon: <FaBed /> },
     { loc: "/Dining", label: "Dining", icon: <FaUtensils /> },
     { loc: "/Tables", label: "Tables", icon: <FaTable /> },
     { loc: "/Storage", label: "Storage", icon: <FaWarehouse /> },
-    { loc: "/Bar%20Furniture", label: "Bar Furniture", icon: <FaWineBottle /> },
+    { loc: "/Bar_Furniture", label: "Bar Furniture", icon: <FaWineBottle /> },
     {
-      loc: "/Study%20and%20Bookshelf",
+      loc: "/Study_and_Bookshelf",
       label: "Study and Bookshelf",
       icon: <FaBook />,
     },
     {
-      loc: "/Office%20Furniture",
+      loc: "/Office_Furniture",
       label: "Office Furniture",
       icon: <FaLaptopHouse />,
     },
     {
-      loc: "/Home%20Decor%20and%20More",
+      loc: "/Home_Decor_&_More",
       label: "Home Decor & More",
       icon: <FaCouch />,
     },
