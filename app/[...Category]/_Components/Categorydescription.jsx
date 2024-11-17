@@ -203,13 +203,13 @@ function Bedroomdesc({ location }) {
     <div>
       <main>
         <header>
-          <h1>Bedroom Furniture in Delhi</h1>
+          <h1>Bedroom Furniture in Delhi - AdoreFurnix</h1>
           <p>
-            Whether you are looking for cheap bedroom furniture, luxury options,
-            or complete bedroom sets with wardrobes, we offer a wide range of
-            high-quality furniture to suit every budget and style. Find the
-            perfect bed, wardrobe, bedside table, and kids' furniture to enhance
-            your home in Delhi.
+            At AdoreFurnix, we offer a wide range of bedroom furniture to suit
+            every budget and style. Whether you are looking for affordable
+            options or luxury designs, our collection includes everything you
+            need to transform your space, from beds and wardrobes to bedside
+            tables and kids&apos; furniture.
           </p>
         </header>
 
@@ -231,9 +231,9 @@ function Bedroomdesc({ location }) {
               second-hand options, and custom designs for sale in Delhi.
             </li>
             <li>
-              <strong>Kids' Furniture:</strong> Special beds for boys and girls,
-              including beds with study tables, in Kirti Nagar and other
-              locations.
+              <strong>Kids&apos; Furniture:</strong> Special beds for boys and
+              girls, including beds with study tables, available in various
+              locations in Delhi.
             </li>
             <li>
               <strong>Accessories:</strong> Add bedside tables, chest of
@@ -247,20 +247,20 @@ function Bedroomdesc({ location }) {
           <dl>
             <dt>Where can I find affordable bedroom furniture in Delhi?</dt>
             <dd>
-              Many furniture shops in Delhi, including options in Kirti Nagar,
-              offer budget-friendly bedroom furniture.
+              At AdoreFurnix, we provide budget-friendly bedroom furniture to
+              suit every requirement and style.
             </dd>
 
             <dt>What is the price range for king-size beds in Delhi?</dt>
             <dd>
-              King-size beds in Delhi can start as low as ₹10,000, with
+              King-size beds at AdoreFurnix start as low as ₹10,000, with
               hydraulic storage options and premium designs available.
             </dd>
 
-            <dt>Are there second-hand wardrobes available in Delhi?</dt>
+            <dt>Are there second-hand wardrobes available?</dt>
             <dd>
-              Yes, you can find second-hand wardrobes for sale in various areas,
-              including Kirti Nagar and online platforms.
+              Yes, AdoreFurnix offers a variety of wardrobe options, including
+              new and pre-owned styles.
             </dd>
 
             <dt>What is the minimum size of a single bed?</dt>
@@ -269,42 +269,41 @@ function Bedroomdesc({ location }) {
               suitable for adults and kids alike.
             </dd>
 
-            <dt>Do you offer kids' furniture in Delhi?</dt>
+            <dt>Do you offer kids&apos; furniture in Delhi?</dt>
             <dd>
-              Yes, we provide kids' beds, including beds with study tables, in
-              Delhi. Options are available for boys and girls.
+              Yes, we provide kids&apos; beds, including beds with study tables,
+              in various designs for boys and girls.
             </dd>
 
             <dt>What are the best materials for bedroom furniture?</dt>
             <dd>
-              Wooden furniture is a popular choice for durability and aesthetic
-              appeal.
+              Wooden furniture is a popular choice for its durability and
+              timeless design.
             </dd>
 
             <dt>Are there luxury bedroom sets available?</dt>
             <dd>
-              Yes, we offer premium luxury bedroom furniture, including complete
-              sets with wardrobes and dressing tables.
+              Yes, AdoreFurnix offers luxury bedroom furniture, including
+              complete sets with wardrobes and dressing tables.
             </dd>
           </dl>
         </section>
 
         <section>
-          <h2>Shop Online or Visit Us</h2>
+          <h2>Shop Online or Visit AdoreFurnix</h2>
           <p>
-            Shop bedroom furniture online or visit our store in Delhi for a
-            personalized experience. We cater to all your needs, whether you're
-            furnishing a master bedroom, kids' room, or guest room.
+            Shop bedroom furniture online at AdoreFurnix or visit our store in
+            Delhi for a personalized experience. We cater to all your needs,
+            whether you&apos;re furnishing a master bedroom, kids&apos; room, or
+            guest room.
           </p>
         </section>
       </main>
 
-      <footer>
-        <p>
-          Find us in Kirti Nagar, the heart of Delhi's furniture market, or shop
-          conveniently online.
-        </p>
-      </footer>
+      <p>
+        Visit AdoreFurnix, your trusted destination for bedroom furniture in
+        Delhi, and explore our extensive collection.
+      </p>
     </div>
   );
 }
