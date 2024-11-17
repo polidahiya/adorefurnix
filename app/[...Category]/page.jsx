@@ -82,11 +82,11 @@ async function page({ params, searchParams }) {
       <div className="my-5 lg:my-10">
         <Roundcategories />
       </div>
-      <Categorydescription
+      {/* <Categorydescription
         category={category}
         subcat={subcat}
         location={location}
-      />
+      /> */}
     </>
   );
 }

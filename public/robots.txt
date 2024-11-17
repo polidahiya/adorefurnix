@@ -1,6 +1,16 @@
+# *
+User-agent: *
+Allow: /
+
+# *
 User-agent: *
 Disallow: /admin
 Disallow: /orderdetails
 Disallow: /likedproducts
 Disallow: /cart
-Sitemap: https://adorefurnix.com/sitemap
+
+# Host
+Host: https://adorefurnix.com
+
+# Sitemaps
+Sitemap: https://adorefurnix.com/sitemap.xml
