@@ -61,6 +61,7 @@ const listclasses = "";
 const strongclasses = "font-bold text-cyan-600";
 
 function Categorydescription({ category, subcat, location }) {
+  if (!category || category == "Search") return;
   const CategoryComponent = categoryComponents[category];
   const SubcatComponent = subcategoryComponents[subcat];
 
@@ -91,7 +92,8 @@ function Livingroomdesc({ location }) {
         </strong>
         , designed to suit every budget and style preference. Whether
         you&rsquo;re looking for premium, luxurious pieces or budget-friendly
-        furniture, Adorefurnix offers endless choices to elevate your living room.
+        furniture, Adorefurnix offers endless choices to elevate your living
+        room.
       </p>
       <p className={paraclasses}>
         From modern <strong className={strongclasses}>sofa cum beds</strong> to
@@ -152,7 +154,8 @@ function Livingroomdesc({ location }) {
           beds.
         </li>
         <li className={listclasses}>
-          <strong className={strongclasses}>Sofa Cum Beds:</strong> Get the best quality with best price in market.
+          <strong className={strongclasses}>Sofa Cum Beds:</strong> Get the best
+          quality with best price in market.
         </li>
         <li className={listclasses}>
           <strong className={strongclasses}>Wing Chairs:</strong> Sophisticated
@@ -268,8 +271,7 @@ function Bedroomdesc({ location }) {
               <strong className={strongclasses}>Wardrobes:</strong> Browse a
               variety of{" "}
               <strong className={strongclasses}>wooden wardrobes</strong> with
-              mirrors, as well as second-hand options and custom designs in{" "}
-              {location}.
+              mirrors, as well as custom designs in {location}.
             </li>
             <li className={listclasses}>
               <strong className={strongclasses}>Kids&apos; Furniture:</strong>{" "}
@@ -316,9 +318,9 @@ function Bedroomdesc({ location }) {
               3. Do you offer second-hand wardrobes in {location}?
             </h3>
             <p className={paraclasses}>
-              Yes, we offer a range of{" "}
+              No, we do not offer
               <strong className={strongclasses}>second-hand wardrobes</strong>,
-              including both new and pre-owned styles, at affordable prices.
+              all our products are brand new.
             </p>
 
             <h3 className={h3classes}>
@@ -416,9 +418,7 @@ function Diningdesc({ location }) {
         start under ₹5,000 for 2-seater sets and under ₹10,000 for 4-seater
         sets. For a premium experience, explore our{" "}
         <strong className={strongclasses}>6-seater marble dining tables</strong>{" "}
-        that combine luxury with durability. Additionally, for budget-conscious
-        shoppers, we offer second-hand dining tables that offer great value
-        without compromising quality.
+        that combine luxury with durability.
       </p>
       <p className={paraclasses}>
         Whether you are redecorating your dining room, furnishing a new home, or
@@ -577,12 +577,9 @@ function Tablesdesc({ location }) {
             2. Do you provide second-hand furniture tables in {location}?
           </h3>
           <p className={paraclasses}>
-            Yes, we offer a selection of second-hand{" "}
-            <strong className={strongclasses}>furniture tables</strong> in{" "}
-            {location}, including{" "}
-            <strong className={strongclasses}>study tables</strong> and{" "}
-            <strong className={strongclasses}>dining tables</strong>, for
-            customers seeking budget-friendly options.
+            No, we do not offer
+            <strong className={strongclasses}>second-hand Furniture</strong>,
+            all our products are brand new.
           </p>
 
           <h3 className={h3classes}>
@@ -652,10 +649,9 @@ function Storagedesc({ location }) {
           Whether you’re looking for a sturdy{" "}
           <strong className={strongclasses}>wooden shoe rack</strong> or a
           modern <strong className={strongclasses}>metal shoe rack</strong>, we
-          offer a variety of options to suit every style and space. You can find
-          affordable shoe racks under ₹2000, or choose from second-hand racks
-          for a budget-friendly solution. Explore our curated collection,
-          perfect for homes in Kirti Nagar and throughout {location}.
+          offer a variety of options to suit every style and space. Explore our
+          curated collection, perfect for homes in Kirti Nagar and throughout{" "}
+          {location}.
         </p>
       </section>
 
@@ -685,10 +681,8 @@ function Storagedesc({ location }) {
           <strong className={strongclasses}>
             wooden bookshelves with glass doors
           </strong>{" "}
-          to space-saving book racks. We also provide{" "}
-          <strong className={strongclasses}>second-hand bookshelves</strong> and
-          affordable options under ₹500. These pieces not only provide storage
-          but also serve as beautiful, decorative additions to your living room,
+          to space-saving book racks. These pieces not only provide storage but
+          also serve as beautiful, decorative additions to your living room,
           bedroom, or office.
         </p>
       </section>
@@ -704,8 +698,7 @@ function Storagedesc({ location }) {
           <strong className={strongclasses}>
             affordable crockery cabinets
           </strong>{" "}
-          under ₹5000 or explore second-hand options to suit your budget and
-          storage needs.
+          options to suit your budget and storage needs.
         </p>
       </section>
 
@@ -725,11 +718,9 @@ function Storagedesc({ location }) {
         <div>
           <h3 className={h3classes}>2. Do you offer second-hand furniture?</h3>
           <p className={paraclasses}>
-            Yes, we offer second-hand furniture for various categories,
-            including <strong className={strongclasses}>shoe racks</strong>,{" "}
-            <strong className={strongclasses}>bookshelves</strong>, and{" "}
-            <strong className={strongclasses}>crockery cabinets</strong>,
-            providing affordable solutions.
+            No, we do not offer
+            <strong className={strongclasses}>second-hand furniture</strong>,
+            all our products are brand new.
           </p>
         </div>
         <div>
@@ -803,8 +794,7 @@ function Barfurnituredesc({ location }) {
       <p className={paraclasses}>
         Choose from a range of{" "}
         <strong className={strongclasses}>wooden bar unit furniture</strong>,{" "}
-        <strong className={strongclasses}>modern bar cabinets</strong>, and{" "}
-        <strong className={strongclasses}>second-hand bar furniture</strong>{" "}
+        and <strong className={strongclasses}>modern bar cabinets</strong>,
         available at great prices in
         {location}. Our designs offer both style and function, making them the
         perfect addition to any home bar or living room.
@@ -816,9 +806,8 @@ function Barfurnituredesc({ location }) {
         wide selection of{" "}
         <strong className={strongclasses}>bar chairs & stools</strong> in
         different styles, including wooden and modern designs, available in{" "}
-        {location}. Whether you&rsquo;re looking for the best, cheapest, or
-        second-hand options, you&rsquo;ll find the perfect pieces to complement
-        your space.
+        {location}. Whether you&rsquo;re looking for the best or cheapest
+        options, you&rsquo;ll find the perfect pieces to complement your space.
       </p>
 
       <h3 className={h3classes}>Wall-Mounted Bar Shelves</h3>
@@ -853,16 +842,15 @@ function Barfurnituredesc({ location }) {
           <strong className={strongclasses}>bar cabinets</strong>,{" "}
           <strong className={strongclasses}>bar chairs & stools</strong>, and{" "}
           <strong className={strongclasses}>wall-mounted bar shelves</strong>.
-          Our collection includes wooden, modern, and second-hand options to
-          suit your style and space.
+          Our collection includes wooden and modern options to suit your style
+          and space.
         </p>
 
         <h3 className={h3classes}>2. Can I find second-hand bar furniture?</h3>
         <p className={paraclasses}>
-          Yes, we have a selection of{" "}
-          <strong className={strongclasses}>second-hand bar furniture</strong>{" "}
-          available at affordable prices. These pieces are well-maintained and
-          perfect for those looking for budget-friendly options.
+          No, we do not offer
+          <strong className={strongclasses}>second-hand furniture</strong>, all
+          our products are brand new.
         </p>
 
         <h3 className={h3classes}>
@@ -927,10 +915,8 @@ function Studyandbookshelfdesc({ location }) {
         <strong className={strongclasses}>study tables</strong>,{" "}
         <strong className={strongclasses}>bookshelves</strong>, and{" "}
         <strong className={strongclasses}>computer tables</strong> in
-        {location}. Whether you&rsquo;re looking for brand-new or second-hand
-        furniture, we offer a wide variety of options for every budget. Explore
-        furniture that is designed to fit your space, with options under ₹500,
-        ₹2000, ₹5000, and ₹10000.
+        {location}. we offer a wide variety of options for every budget. Explore
+        furniture that is designed to fit your space.
       </p>
 
       <h2 className={h2classes}>Find the Perfect Study Table</h2>
@@ -1012,10 +998,9 @@ function Studyandbookshelfdesc({ location }) {
             2. Are second-hand study tables available in {location}?
           </h3>
           <p className={paraclasses}>
-            Yes, we provide a selection of{" "}
-            <strong className={strongclasses}>second-hand study tables</strong>{" "}
-            in good condition. These offer an affordable option for customers
-            looking for budget-friendly furniture in {location}.
+            No, we do not offer
+            <strong className={strongclasses}>second-hand furniture</strong>,
+            all our products are brand new.
           </p>
         </div>
 
