@@ -10,7 +10,7 @@ import { sortProducts, pricefilter } from "./_Components/sortandfilter";
 import Productpage from "../_productpage/Productpage";
 import Roundcategories from "../_components/Homepage/Roundcategories";
 import Appliedfilters from "./_Components/Appliedfilters";
-import Categorydescription from "./_Components/Categorydescription";
+// import Categorydescription from "./_Components/Categorydescription";
 
 async function page({ params, searchParams }) {
   const { Category: slug } = params;
