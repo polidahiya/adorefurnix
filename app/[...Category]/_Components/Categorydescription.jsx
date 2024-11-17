@@ -199,7 +199,114 @@ function Livingroomdesc({ location }) {
   );
 }
 function Bedroomdesc({ location }) {
-  return <div>Bedroom</div>;
+  return (
+    <div>
+      <main>
+        <header>
+          <h1>Bedroom Furniture in Delhi</h1>
+          <p>
+            Whether you are looking for cheap bedroom furniture, luxury options,
+            or complete bedroom sets with wardrobes, we offer a wide range of
+            high-quality furniture to suit every budget and style. Find the
+            perfect bed, wardrobe, bedside table, and kids' furniture to enhance
+            your home in Delhi.
+          </p>
+        </header>
+
+        <section>
+          <h2>Our Bedroom Furniture Collection</h2>
+          <ul>
+            <li>
+              <strong>King Size Beds:</strong> Explore wooden king-size beds
+              with hydraulic storage, priced under ₹10,000, with the latest
+              designs.
+            </li>
+            <li>
+              <strong>Queen Size Beds:</strong> Find queen-size beds with
+              storage options, priced affordably under ₹10,000 or ₹5,000,
+              including wooden styles.
+            </li>
+            <li>
+              <strong>Wardrobes:</strong> Browse wooden wardrobes with mirrors,
+              second-hand options, and custom designs for sale in Delhi.
+            </li>
+            <li>
+              <strong>Kids' Furniture:</strong> Special beds for boys and girls,
+              including beds with study tables, in Kirti Nagar and other
+              locations.
+            </li>
+            <li>
+              <strong>Accessories:</strong> Add bedside tables, chest of
+              drawers, and dressing tables to complete your bedroom setup.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>FAQs about Bedroom Furniture in Delhi</h2>
+          <dl>
+            <dt>Where can I find affordable bedroom furniture in Delhi?</dt>
+            <dd>
+              Many furniture shops in Delhi, including options in Kirti Nagar,
+              offer budget-friendly bedroom furniture.
+            </dd>
+
+            <dt>What is the price range for king-size beds in Delhi?</dt>
+            <dd>
+              King-size beds in Delhi can start as low as ₹10,000, with
+              hydraulic storage options and premium designs available.
+            </dd>
+
+            <dt>Are there second-hand wardrobes available in Delhi?</dt>
+            <dd>
+              Yes, you can find second-hand wardrobes for sale in various areas,
+              including Kirti Nagar and online platforms.
+            </dd>
+
+            <dt>What is the minimum size of a single bed?</dt>
+            <dd>
+              A single bed typically measures 3 feet by 6 feet, making it
+              suitable for adults and kids alike.
+            </dd>
+
+            <dt>Do you offer kids' furniture in Delhi?</dt>
+            <dd>
+              Yes, we provide kids' beds, including beds with study tables, in
+              Delhi. Options are available for boys and girls.
+            </dd>
+
+            <dt>What are the best materials for bedroom furniture?</dt>
+            <dd>
+              Wooden furniture is a popular choice for durability and aesthetic
+              appeal.
+            </dd>
+
+            <dt>Are there luxury bedroom sets available?</dt>
+            <dd>
+              Yes, we offer premium luxury bedroom furniture, including complete
+              sets with wardrobes and dressing tables.
+            </dd>
+          </dl>
+        </section>
+
+        <section>
+          <h2>Shop Online or Visit Us</h2>
+          <p>
+            Shop bedroom furniture online or visit our store in Delhi for a
+            personalized experience. We cater to all your needs, whether you're
+            furnishing a master bedroom, kids' room, or guest room.
+          </p>
+        </section>
+      </main>
+
+      <footer>
+        <p>
+          Find us in Kirti Nagar, the heart of Delhi's furniture market, or shop
+          conveniently online.
+        </p>
+      </footer>
+    </div>
+  );
 }
 function Diningdesc({ location }) {
   return <div>Dining</div>;
