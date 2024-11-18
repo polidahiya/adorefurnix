@@ -6,7 +6,7 @@ export const uploadproductdata = {
   category: "Living Room",
   subcat: "Sofa sets",
   name: "",
-  Dimensions: "",
+  Dimensions: "00(L) 00(B) 00(H) Inches",
   price: 0,
   rating: 5,
   discount: 0,
@@ -15,8 +15,8 @@ export const uploadproductdata = {
   desc: [],
   colorpalets: [
     {
-      color: "",
-      name: "",
+      color: "#ffffff",
+      name: "White",
       images: [],
     },
   ],

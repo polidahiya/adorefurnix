@@ -1,36 +1,30 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { filterlist, sortinglist } from "@/app/commondata";
 import Link from "next/link";
 
 function Appliedfilters({ category, subcat, searchParams }) {
   const { pricerange, sort } = searchParams;
-
-  const createLinkWithParams = (newParams) => {
-    const { subcat } = newParams;
-    const params = new URLSearchParams(searchParams);
-    Object.entries(newParams).forEach(([key, value]) => {
-      if (value === 0 || value === null) {
-        params.delete(key);
-      } else {
-        params.set(key, value);
-      }
-    });
-
-    return `/${category ? category : ""}${
-      subcat ? "/" + subcat : ""
-    }?${params.toString()}`;
-  };
-
-  const pricerangeLink = createLinkWithParams({ pricerange: 0 });
-  const sortLink = createLinkWithParams({ sort: 0 });
-  const subcatLink = createLinkWithParams({ subcat: null });
-
   if (
     !subcat &&
     (pricerange == null || pricerange == 0) &&
     (sort == null || sort == 0)
   )
     return null;
+
+  const createLinkWithParams = (newParams) => {
+    const params = new URLSearchParams({
+      ...searchParams,
+      ...newParams,
+    }).toString();
+    return `/${category && category}${subcat ? `/${subcat}` : ""}?${params}`;
+  };
+
+  const pricerangeLink = createLinkWithParams({ pricerange: 0 });
+  const sortLink = createLinkWithParams({ sort: 0 });
+  const subcatLink = () => {
+    const params = new URLSearchParams(searchParams).toString();
+    return `/${category && category}?${params}`;
+  };
 
   return (
     <div className="flex flex-wrap gap-2 mb-5 text-sm">
@@ -46,7 +40,7 @@ function Appliedfilters({ category, subcat, searchParams }) {
           link={sortLink}
         />
       )}
-      {subcat && <FilterItem label={`${subcat} only`} link={subcatLink} />}
+      {subcat && <FilterItem label={`${subcat} only`} link={subcatLink()} />}
     </div>
   );
 }
@@ -58,7 +52,7 @@ function FilterItem({ label, link }) {
       <Link
         href={link?.replace(/ /g, "_")}
         className="text-sm hover:text-theme px-3"
-        replace
+        // replace
       >
         X
       </Link>

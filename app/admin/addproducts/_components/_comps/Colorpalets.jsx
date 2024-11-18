@@ -5,6 +5,47 @@ import { uploadproductdata } from "@/app/Context";
 function Colorpalets() {
   const { addproduct, setaddproduct, updateproduct, setdeletedimages } =
     AppContextfn();
+  const fixedcolors = [
+    { name: "White", color: "#ffffff" },
+    { name: "Black", color: "#000000" },
+    { name: "Natural", color: "#a57c4f" },
+    { name: "Honey Oak", color: "#b3480a" },
+    { name: "Walnut", color: "#3f231f" },
+    { name: "Light walnut", color: "#62322e" },
+    { name: "Dark walnut", color: "#392b25" },
+    { name: "Teak", color: "#a87139" },
+    { name: "Mahogany", color: "#C04000" },
+  ];
+
+  const setinputcolor = (colorindex, color) => {
+    const updatedColorPalets = addproduct.colorpalets.map((palette, i) =>
+      i === colorindex ? { ...palette, color: color } : palette
+    );
+    setaddproduct({
+      ...addproduct,
+      colorpalets: updatedColorPalets,
+    });
+  };
+
+  const setinputcolorname = (colorindex, name) => {
+    const updatedColorPalets = addproduct.colorpalets.map((palette, i) =>
+      i === colorindex ? { ...palette, name: name } : palette
+    );
+    setaddproduct({
+      ...addproduct,
+      colorpalets: updatedColorPalets,
+    });
+  };
+
+  const setfixedcolors = (colorindex, color, name) => {
+    const updatedColorPalets = addproduct.colorpalets.map((palette, i) =>
+      i === colorindex ? { ...palette, color: color, name: name } : palette
+    );
+    setaddproduct({
+      ...addproduct,
+      colorpalets: updatedColorPalets,
+    });
+  };
 
   return (
     <div className="mt-8">
@@ -13,7 +54,7 @@ function Colorpalets() {
         {addproduct.colorpalets.map((color, colorindex) => (
           <div
             key={colorindex}
-            className="relative flex flex-col gap-4 items-center border border-slate-300 rounded-lg p-4 shadow-md"
+            className="relative flex flex-col gap-4 items-center border border-slate-300 rounded-lg p-4 shadow-md max-w-full"
           >
             {/* Delete color palette button */}
             <button
@@ -44,21 +85,31 @@ function Colorpalets() {
             >
               <input
                 type="color"
+                value={addproduct?.colorpalets[colorindex]?.color}
                 className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                 onChange={(e) => {
-                  const updatedColorPalets = addproduct.colorpalets.map(
-                    (palette, i) =>
-                      i === colorindex
-                        ? { ...palette, color: e.target.value }
-                        : palette
-                  );
-                  setaddproduct({
-                    ...addproduct,
-                    colorpalets: updatedColorPalets,
-                  });
+                  setinputcolor(colorindex, e.target.value);
                 }}
               />
             </div>
+            {/* fixed color selection */}
+            <div className="w-full max-w-full flex gap-5 overflow-x-scroll text-sm">
+              {fixedcolors.map((item, i) => (
+                <div
+                  key={i}
+                  onClick={() => {
+                    setfixedcolors(colorindex, item?.color, item?.name);
+                  }}
+                >
+                  <div
+                    style={{ backgroundColor: item?.color }}
+                    className="w-10 mx-auto aspect-square rounded-full border border-slate-300"
+                  ></div>
+                  <p className="text-center whitespace-nowrap">{item?.name}</p>
+                </div>
+              ))}
+            </div>
+
             {/* Color Name */}
             <div>
               <label className="block mb-1">Color Name:</label>
@@ -67,16 +118,7 @@ function Colorpalets() {
                 className="border border-slate-300 rounded p-2"
                 value={color.name}
                 onChange={(e) => {
-                  const updatedColorPalets = addproduct.colorpalets.map(
-                    (palette, i) =>
-                      i === colorindex
-                        ? { ...palette, name: e.target.value }
-                        : palette
-                  );
-                  setaddproduct({
-                    ...addproduct,
-                    colorpalets: updatedColorPalets,
-                  });
+                  setinputcolorname(colorindex, e.target.value);
                 }}
               />
             </div>

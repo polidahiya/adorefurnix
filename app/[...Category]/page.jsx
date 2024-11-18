@@ -195,6 +195,7 @@ export const generateMetadata = async ({ params, searchParams }) => {
   const subcat =
     slug && slug[1] ? decodeURIComponent(slug[1])?.replace(/_/g, " ") : null;
   const productid = slug && slug[2] ? decodeURIComponent(slug[2]) : null;
+  const location = searchParams?.location?.replace(/_/g, " ") || "India";
 
   // Handle product-specific metadata
   if (productid) {
@@ -228,7 +229,7 @@ export const generateMetadata = async ({ params, searchParams }) => {
       );
 
       return {
-        title: `Get ${subcat} at Best Price Online in India | ${new Date().getFullYear()}`,
+        title: `Get ${subcat} at Best Price Online in ${location} | ${new Date().getFullYear()}`,
         description:
           categoryData.desc || `Shop ${subcat} at the best prices online!`,
         openGraph: {
@@ -246,7 +247,7 @@ export const generateMetadata = async ({ params, searchParams }) => {
       return {
         title: `Get ${
           categoryData?.name
-        } at Best Price Online in India | ${new Date().getFullYear()}`,
+        } at Best Price Online in ${location} | ${new Date().getFullYear()}`,
         description:
           categoryData.desc || `Shop ${categoryData?.name} and decor online.`,
         openGraph: {

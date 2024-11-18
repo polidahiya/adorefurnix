@@ -66,7 +66,7 @@ function Categorydescription({ category, subcat, location }) {
   const SubcatComponent = subcategoryComponents[subcat];
 
   return (
-    <div className="px-5 md:px-10 text-sm font-serif italic mb-10 text-justify">
+    <div className="px-5 md:px-10 text-sm font-serif italic my-10 text-justify ">
       {/* {subcat ? (
         <SubcatComponent location={location} />
       ) : ( */}
@@ -415,10 +415,9 @@ function Diningdesc({ location }) {
       <p className={paraclasses}>
         If you&apos;re on a budget, our{" "}
         <strong className={strongclasses}>affordable dining tables</strong>{" "}
-        start under ₹5,000 for 2-seater sets and under ₹10,000 for 4-seater
-        sets. For a premium experience, explore our{" "}
+        2-seater sets, 4-seater sets and{" "}
         <strong className={strongclasses}>6-seater marble dining tables</strong>{" "}
-        that combine luxury with durability.
+        that combine luxury with durability are available.
       </p>
       <p className={paraclasses}>
         Whether you are redecorating your dining room, furnishing a new home, or
@@ -447,24 +446,24 @@ function Diningdesc({ location }) {
             2. How much do 2-seater dining tables cost in {location}?
           </h3>
           <p className={paraclasses}>
-            The price of a{" "}
+            The price of a good quality{" "}
             <strong className={strongclasses}>
               2-seater dining table in {location}
             </strong>{" "}
-            starts at ₹5,000, depending on the material and design. Our
+            starts at ₹15,000, depending on the material and design. Our
             budget-friendly options are perfect for small families or intimate
             settings.
           </p>
           <h3 className={h3classes}>
-            3. Can I find 2-seater dining table sets under ₹5,000?
+            3. Can I find 2-seater dining table sets under ₹20,000?
           </h3>
           <p className={paraclasses}>
             Yes, we offer a range of{" "}
             <strong className={strongclasses}>
               2-seater dining table sets
             </strong>{" "}
-            starting under ₹5,000. Check out our collection for affordable and
-            stylish options.
+            under ₹20,000. Check out our collection for affordable and stylish
+            options.
           </p>
           <h3 className={h3classes}>
             4. What is the standard size of a 2-seater dining table?
@@ -473,16 +472,17 @@ function Diningdesc({ location }) {
             The standard dimensions of a{" "}
             <strong className={strongclasses}>2-seater dining table</strong> are
             typically 30-36 inches in length and 24-30 inches in width, making
-            it perfect for small dining areas or kitchens.
+            it perfect for small dining areas or kitchens. You can even
+            customize your own order.
           </p>
           <h3 className={h3classes}>
-            5. Are there any 4-seater dining tables available under ₹10,000 in{" "}
+            5. Are there any 4-seater dining tables available under ₹30,000 in{" "}
             {location}?
           </h3>
           <p className={paraclasses}>
             Yes, we offer{" "}
             <strong className={strongclasses}>
-              4-seater dining tables under ₹10,000
+              4-seater dining tables under ₹30,000
             </strong>{" "}
             that are both affordable and durable. Explore our collection for
             budget-friendly options ideal for growing families or hosting

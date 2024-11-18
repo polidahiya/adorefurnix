@@ -69,7 +69,7 @@ function Roundcategories() {
               width={175}
               height={150}
               quality={100}
-              loading="lazy"
+              priority={true}
             ></Image>
 
             <p className="text-center font-semibold mt-2 text-[14px] md:text-[16px]">
