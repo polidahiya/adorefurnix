@@ -37,7 +37,7 @@ function Promices() {
               <h3 className="text-xl font-semibold text-gray-800 mb-2">
                 {item.heading}
               </h3>
-              <p className="text-gray-600 text-[12px] italic ">
+              <p className="text-gray-600 text-[12px]  ">
                 {item.para}
               </p>
             </div>

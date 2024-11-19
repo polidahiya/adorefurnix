@@ -127,7 +127,7 @@ export default function Page({ userdata, token, orderstatus }) {
       )}
       <div className="p-[5px] md:p-[20px] flex flex-col lg:flex-row gap-[10px] bg-bg1 min-h-[calc(100vh-111px)]">
         <div className="w-full">
-          <div className="h-[50px] flex items-center justify-center gap-[10px] text-[20px] font-bold font-serif italic  lg:hidden">
+          <div className="h-[50px] flex items-center justify-center gap-[10px] text-[20px] font-bold font-recline   lg:hidden">
             Cart
             <FaOpencart />
           </div>

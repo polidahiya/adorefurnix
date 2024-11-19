@@ -8,7 +8,7 @@ async function page() {
 
   return (
     <div>
-      <h2 className="text-center font-bold text-[25px] md:text-[35px] italic font-serif mt-[20px]">
+      <h2 className="text-center font-bold text-[25px] md:text-[35px]  font-recline mt-[20px]">
         Blogs
       </h2>
       <section

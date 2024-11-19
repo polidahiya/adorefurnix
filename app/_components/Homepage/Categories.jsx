@@ -6,7 +6,7 @@ import Image from "next/image";
 function Categories() {
   return (
     <div id="categories" className="">
-      <h3 className="text-2xl md:text-4xl font-bold p-0 text-center italic font-serif ">
+      <h3 className="text-2xl md:text-4xl font-bold p-0 text-center  font-recline ">
         Shop By Categories
       </h3>
       <div className=" flex items-stretch justify-center flex-wrap  gap-[1.4vw] px-[1.4vw] mt-[30px]">

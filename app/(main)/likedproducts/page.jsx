@@ -19,7 +19,7 @@ export default async function page() {
 
   return (
     <div>
-      <h2 className="text-center font-bold text-[25px] md:text-[30px] italic font-serif mt-[20px]">
+      <h2 className="text-center font-bold text-[25px] md:text-[30px]  font-recline mt-[20px]">
         Favourites
       </h2>
       <Likedproducts filtereditems={filtereditems} />

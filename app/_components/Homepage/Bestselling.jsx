@@ -12,10 +12,10 @@ async function Bestselling({ products }) {
   return (
     <section className="px-4 md:px-8 lg:px-16">
       <div className="text-center mb-12">
-        <h3 className="text-2xl md:text-4xl font-bold  mb-2 font-serif italic">
+        <h3 className="text-2xl md:text-4xl font-bold  mb-2 font-recline ">
           Best Selling Products
         </h3>
-        <p className="text-gray-600 mb-6 italic">
+        <p className="text-gray-600 mb-6 ">
           Discover our most popular products that are loved by many.
         </p>
         <div className="relative grid place-content-center z-20">

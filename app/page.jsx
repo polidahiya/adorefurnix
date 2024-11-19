@@ -3,16 +3,14 @@ import Blogscomp from "./_components/Homepage/Blogscomp";
 import Promices from "./_components/Homepage/Promices";
 import Bestselling from "./_components/Homepage/Bestselling";
 import Categories from "./_components/Homepage/Categories";
-import Searchbox from "./_components/Searchbox";
 import { Cachedproducts } from "./_serveractions/Getcachedata";
-import Homenavbar from "./_components/Homepage/Homenavbar";
 import Footer from "./_components/Footer";
 import Newarrival from "./_components/Homepage/Newarrival";
 import { cookies } from "next/headers";
-import Image from "next/image";
 import Allproducts from "./_components/Homepage/Allproducts";
 import Roundcategories from "./_components/Homepage/Roundcategories";
 import Citiesdescription from "./_components/Homepage/Citiesdescription";
+import Herosection from "./_components/Homepage/Herosection";
 // import Posters from "./_components/Homepage/Posters";
 
 export default async function Home({ searchParams }) {
@@ -23,47 +21,11 @@ export default async function Home({ searchParams }) {
   const productsname = products?.map((item) => item?.name);
   return (
     <div className="flex flex-col gap-16 lg:gap-20">
-      <div className="relative w-full box-content h-fit">
-        <Homenavbar userdata={userdata} token={token} />
-        {/*  */}
-        <div className="absolute top-[25%] md:top-[20%] w-full z-10">
-          <h2 className="text-[3vw] text-center mx-auto italic text-white font-serif">
-            Furnish with Love, Live with Elegance
-          </h2>
-          <center>
-            <div className="w-[70%] max-w-[650px] h-[35px] md:h-[40px] mt-[10px]">
-              <Searchbox productsname={productsname} />
-            </div>
-          </center>
-        </div>
-
-        {/* bg image */}
-        <Image
-          className="w-full  md:h-[100vh] max-h-[600px]  object-cover bg-graygradient top-0 z-[-1] hidden md:inline-block"
-          src="/images/desktophomepageimage.webp"
-          alt="homepageslide"
-          height={1000}
-          width={1000}
-          priority={true}
-        />
-        {/* mobile */}
-        <Image
-          className="w-full  md:h-[100vh] max-h-[600px]  object-cover bg-graygradient top-0 z-[-1] md:hidden"
-          src="/images/mobilehomepageimage.webp"
-          alt="homepageslide"
-          height={1000}
-          width={1000}
-          priority={true}
-        />
-        {/* gradient full*/}
-        <div
-          className="absolute bottom-0 translate-y-1/2 left-0 w-full h-[10vw] "
-          style={{
-            backgroundImage:
-              "linear-gradient(0deg,transparent, white, transparent)",
-          }}
-        ></div>
-      </div>
+      <Herosection
+        token={token}
+        userdata={userdata}
+        productsname={productsname}
+      />
       <Roundcategories />
       {/* <Posters /> */}
       <Categories />
@@ -72,7 +34,7 @@ export default async function Home({ searchParams }) {
       <Allproducts products={products.sort(() => Math.random() - 0.5)} />
       <Blogscomp />
       <div>
-        <h2 className="text-center font-bold text-2xl md:text-4xl italic font-serif">
+        <h2 className="text-center font-bold text-2xl md:text-4xl  font-recline">
           Why Choose Us?
         </h2>
         <Promices />

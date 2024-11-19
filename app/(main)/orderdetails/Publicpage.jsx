@@ -59,7 +59,7 @@ export default function Publicpage({ res }) {
         </div>
       ))}
       {/* Order details note */}
-      <p className="text-center text-sm text-gray-600 italic mb-[10px]">
+      <p className="text-center text-sm text-gray-600  mb-[10px]">
         Note: The details of the orders shown are reflective of the state at the
         time of your purchase and may not represent current availability or
         prices.

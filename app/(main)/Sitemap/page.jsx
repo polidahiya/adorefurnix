@@ -94,7 +94,7 @@ const SiteMap = () => {
 
   return (
     <div className="container mx-auto p-6">
-      <h1 className="text-4xl font-extrabold text-center font-serif italic mb-8">
+      <h1 className="text-4xl font-extrabold text-center font-recline  mb-8">
         Site Map
       </h1>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">

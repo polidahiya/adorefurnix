@@ -19,7 +19,7 @@ async function page({ params }) {
               return (
                 <h1
                   key={i}
-                  className="text-[32px] font-extrabold my-4 font-serif italic tracking-wide "
+                  className="text-[32px] font-extrabold my-4 font-recline  tracking-wide "
                 >
                   {item?.content}
                   {i == 0 && (

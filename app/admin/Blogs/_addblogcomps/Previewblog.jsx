@@ -23,7 +23,7 @@ export default function Previewblog({
               return (
                 <h1
                   key={i}
-                  className="group hover:ring-2 ring-indigo-300 relative text-[32px] font-extrabold my-4 font-serif italic tracking-wide cursor-pointer transition-all duration-200"
+                  className="group hover:ring-2 ring-indigo-300 relative text-[32px] font-extrabold my-4 font-recline  tracking-wide cursor-pointer transition-all duration-200"
                   onClick={() => {
                     setactivelem(i);
                     settextarea(item?.content);

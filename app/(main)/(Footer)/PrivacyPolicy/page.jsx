@@ -103,7 +103,7 @@ function page() {
                   practices, feel free to contact our Customer Support.
                 </p>
 
-                <p className="italic mt-4">
+                <p className=" mt-4">
                   Note: The privacy policy of {mail} may be subject to change at
                   any time to include or exclude clauses; thus, users are
                   requested to visit this page in a timely manner to stay aware

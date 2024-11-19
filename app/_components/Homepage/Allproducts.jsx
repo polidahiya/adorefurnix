@@ -11,10 +11,10 @@ function Allproducts({ products }) {
 
   return (
     <div className="relative px-4 md:px-8 lg:px-16">
-      <h2 className="text-center font-bold text-2xl md:text-4xl italic font-serif">
+      <h2 className="text-center font-bold text-2xl md:text-4xl  font-recline">
         lovely Collection
       </h2>
-      <p className="text-gray-600 mb-6 italic text-center mt-2 md:mt-4">
+      <p className="text-gray-600 mb-6  text-center mt-2 md:mt-4">
         You will love to take these home.
       </p>
       <div className="grid grid-cols-2 md:grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-2 md:gap-6">

@@ -7,7 +7,7 @@ const About = () => {
     <div className="bg-gray-100 text-gray-800 min-h-screen flex flex-col">
       <header className="relative py-6">
         <div className="container mx-auto text-center">
-          <h1 className="aboutusheading font-black text-[10vw] lg:text-[9vw] font-serif">
+          <h1 className="aboutusheading font-black text-[10vw] lg:text-[9vw] font-recline">
             Adorefurnix.com
           </h1>
         </div>

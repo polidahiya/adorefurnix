@@ -7,7 +7,7 @@ const Citiesdescription = ({ city = "Delhi" }) => {
 
   return (
     <div className="text-sm text-justify px-5 md:px-10">
-      <h2 className="text-2xl font-bold  mb-4 italic font-serif text-center">
+      <h2 className="text-2xl font-bold  mb-4  font-recline text-center">
         Select the Perfect Furniture for Your Home or Workspace
       </h2>
       <p className="my-1">

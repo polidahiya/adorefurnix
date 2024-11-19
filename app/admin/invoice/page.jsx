@@ -70,7 +70,7 @@ const InvoiceComponent = () => {
           <h2 className="text-xl font-bold text-gray-800">
             {invoiceData.seller.name}
           </h2>
-          <address className="mt-2 not-italic text-gray-600">
+          <address className="mt-2 not- text-gray-600">
             {invoiceData.seller.address}
             <br />
             GSTIN/UIN: {invoiceData.seller.gstin}
@@ -93,7 +93,7 @@ const InvoiceComponent = () => {
         {/* Buyer Info */}
         <div>
           <h2 className="text-xl font-bold text-gray-800">Bill To</h2>
-          <address className="mt-2 not-italic text-gray-600">
+          <address className="mt-2 not- text-gray-600">
             {invoiceData.buyer.name}
             <br />
             {invoiceData.buyer.address}
@@ -160,7 +160,7 @@ const InvoiceComponent = () => {
       {/* Totals & Tax */}
       <div className="flex justify-between items-end mb-8">
         <div>
-          <p className="text-sm italic text-gray-500">
+          <p className="text-sm  text-gray-500">
             Amount Chargeable (in words):
           </p>
           <p className="font-semibold text-gray-700">
@@ -202,7 +202,7 @@ const InvoiceComponent = () => {
         <p className="text-gray-500">Authorised Signatory</p>
       </div>
 
-      <p className="text-center mt-8 text-sm text-gray-400 italic">
+      <p className="text-center mt-8 text-sm text-gray-400 ">
         This is a Computer Generated Invoice
       </p>
     </div>

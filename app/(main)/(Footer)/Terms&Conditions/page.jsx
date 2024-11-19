@@ -33,7 +33,7 @@ const page = () => {
             <p className="mb-4">
               The website Adorefurnix.com is an e-commerce portal owned and operated by the Company. Use of the website is subject to your acceptance without any modifications to all the terms and conditions made by the Company, at its sole discretion and stated on the website.
             </p>
-            <p className="italic font-semibold mb-4">
+            <p className=" font-semibold mb-4">
               User will agree to the terms and privacy policy of the Company by:
             </p>
             <ol className="list-decimal list-inside mb-4">

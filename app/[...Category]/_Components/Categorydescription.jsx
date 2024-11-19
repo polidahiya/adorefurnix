@@ -66,7 +66,7 @@ function Categorydescription({ category, subcat, location }) {
   const SubcatComponent = subcategoryComponents[subcat];
 
   return (
-    <div className="px-5 md:px-10 text-sm font-serif italic my-10 text-justify ">
+    <div className="px-5 md:px-10 text-sm font-recline  my-10 text-justify ">
       {/* {subcat ? (
         <SubcatComponent location={location} />
       ) : ( */}
