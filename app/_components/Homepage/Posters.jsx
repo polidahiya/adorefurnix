@@ -3,12 +3,10 @@ import Image from "next/image";
 
 function Posters() {
   const list = [
-    "/posterimages/real-estate-social-media-header-facebook-cover-design_583496-155.jpg",
-    "/posterimages/321b563e7b3813ae81d686d0abcd910f.jpg",
-    "/posterimages/321b563e7b3813ae81d686d0abcd910f111.jpg",
-    "/posterimages/digital-marketing-facebook-cover-web-banner-template_169307-1765.jpg",
-    "/posterimages/flash-sale-furniture-web-banner-social-media-banner_611460-3.jpg",
-    "/posterimages/furniture-sale-facebook-cover-template_148840-278.jpg",
+    "/321b563e7b3813ae81d686d0abcd910f111.jpg",
+    "/321b563e7b3813ae81d686d0abcd910f111.jpg",
+    "/321b563e7b3813ae81d686d0abcd910f111.jpg",
+    "/321b563e7b3813ae81d686d0abcd910f111.jpg",
   ];
   return (
     <div className="px-2 md:px-10 my-12">
