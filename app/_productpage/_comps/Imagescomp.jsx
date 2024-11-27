@@ -132,6 +132,13 @@ function ImagesComp({ filteredproducts, color, token }) {
             ))}
           </div>
         </div>
+        {/* note */}
+        <p className="absolute top-full left-1/2 -translate-x-1/2 text-[8px] w-full text-center hidden lg:block">
+          Note: The actual product you receive may look slightly different from
+          the images due to natural variations in wood grain, color, and
+          texture, as well as differences in lighting during photography. Each
+          piece is unique, and these variations are normal.
+        </p>
       </div>
     </div>
   );

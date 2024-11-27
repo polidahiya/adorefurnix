@@ -2,8 +2,7 @@
 import { getcollection } from "@/app/Mongodb";
 import { unstable_cache } from "next/cache";
 import { revalidateTag } from "next/cache";
-
-const CACHE_TIME = 60 * 60 * 1000; // 24 hours
+import { CACHE_TIME } from "../commondata";
 
 export const Cachedproducts = unstable_cache(
   async () => {

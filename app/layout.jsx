@@ -39,6 +39,11 @@ export default function RootLayout({ children }) {
           src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`}
           strategy="afterInteractive"
         ></Script>
+        {/* pinterest site claim */}
+        <meta
+          name="p:domain_verify"
+          content="44c7e34daae240451f1159d0ec6cb12b"
+        />
       </head>
       <Appwrapper>
         <body className="antialiased">

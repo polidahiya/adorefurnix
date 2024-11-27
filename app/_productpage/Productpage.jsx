@@ -17,6 +17,7 @@ import Newarrival from "../_components/Homepage/Newarrival";
 import FAQSection from "@/app/_components/Faq";
 import Quantity from "./_comps/Quantity";
 import Prouctid from "./_comps/Prouctid";
+import CurrencyConverter from "./_comps/CurrencyConverter";
 
 async function Productpage({ category, subcat, productid, color }) {
   const token = cookies()?.get("token")?.value;
@@ -152,6 +153,7 @@ const PriceDisplay = ({ filteredProduct, priceBeforeDiscount }) => (
         </span>
       </>
     )}
+    <CurrencyConverter priceInINR={filteredProduct?.price}/>
   </div>
 );
 

@@ -339,3 +339,6 @@ export const cities = [
   "Aizawl",
   "Agartala",
 ];
+
+
+export const CACHE_TIME = 60 * 60 * 1000; // 24 hours
