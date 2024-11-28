@@ -1,27 +1,26 @@
 "use server";
-import { domain, sociallinks } from "@/app/commondata";
+import { domain } from "@/app/commondata";
 import { Cachedproducts } from "@/app/_serveractions/Getcachedata";
 
 export async function GET() {
   try {
     const allproducts = await Cachedproducts();
     const today = new Date(); // Get today's date
+
     const posts = allproducts.flatMap((item) => {
-      return item?.colorpalets.map((color, j) => {
-        return {
-          title: item?.name,
-          link: `${domain}/${item?.category}/${item?.subcat}/${item?._id}?color=${j}`.replace(
-            / /g,
-            "_"
-          ),
-          description:
-            "Dimensions: " +
-            item?.Dimensions +
-            "_______________Explore the best solid wood furniture in India. Find quality furniture online and near you, including Sheesham wood furniture, dining tables, sofa sets, and more at affordable prices.______________ #furnituredesign #homedecor #interiordesign #furnitureinspo #furnituregoals #furnitureaddict #furniturelovers #modernfurniture #luxuryfurniture #customfurniture",
-          pubDate: today, // Use today's date
-          imageUrl: color?.images[0],
-        };
-      });
+      return item?.colorpalets.map((color, j) => ({
+        title: item?.name,
+        link: `${domain}/${item?.category}/${item?.subcat}/${item?._id}?color=${j}`.replace(
+          / /g,
+          "_"
+        ),
+        description:
+          "Dimensions: " +
+          item?.Dimensions +
+          "_______________ Explore the best solid wood furniture in India. Find quality furniture online and near you, including Sheesham wood furniture, dining tables, sofa sets, and more at affordable prices.______________ #furnituredesign #homedecor #interiordesign #furnitureinspo #furnituregoals #furnitureaddict #furniturelovers #modernfurniture #luxuryfurniture #customfurniture",
+        pubDate: today.toUTCString(), // Convert to proper date string
+        imageUrl: color?.images[0],
+      }));
     });
 
     const rssFeed = `
@@ -36,23 +35,23 @@ export async function GET() {
             .map(
               (post) => `
             <item>
-              <title>${post.title}</title>
-              <link>${post.link}</link>
-              <description>${post.description}</description>
-              <pubDate>${post.pubDate.toUTCString()}</pubDate>
-              <enclosure url="${post.imageUrl}" />
+              <title><![CDATA[${post.title}]]></title>
+              <link><![CDATA[${post.link}]]></link>
+              <description><![CDATA[${post.description}]]></description>
+              <pubDate>${post.pubDate}</pubDate>
+              <enclosure url="${post.imageUrl}"/>
             </item>
           `
             )
             .join("")}
         </channel>
       </rss>
-      `;
+    `.trim();
 
     return new Response(rssFeed, {
       status: 200,
       headers: {
-        "Content-Type": "application/rss+xml",
+        "Content-Type": "application/xml",
       },
     });
   } catch (error) {
