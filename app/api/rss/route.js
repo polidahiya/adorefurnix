@@ -47,8 +47,21 @@ export async function GET() {
         </channel>
       </rss>
     `.trim();
+    const test = `<item>
+<title>
+<![CDATA[ Merlin mose full cushion bed ]]>
+</title>
+<link>
+<![CDATA[ https://adorefurnix.com/Bedroom/King_Size_Bed/6682da7d1e75b277128f181b?color=0 ]]>
+</link>
+<description>
+<![CDATA[ Dimensions: 72 x 78 ( mattress size ) _______________ Explore the best solid wood furniture in India. Find quality furniture online and near you, including Sheesham wood furniture, dining tables, sofa sets, and more at affordable prices.______________ #furnituredesign #homedecor #interiordesign #furnitureinspo #furnituregoals #furnitureaddict #furniturelovers #modernfurniture #luxuryfurniture #customfurniture ]]>
+</description>
+<pubDate>Thu, 28 Nov 2024 15:34:28 GMT</pubDate>
+<enclosure url="https://res.cloudinary.com/drnfvc0jt/image/upload/v1719851644/Adorefurnix/zzwqzoj909v1jlrtpwxn.jpg"/>
+</item>`;
 
-    return new Response(rssFeed, {
+    return new Response(test, {
       status: 200,
       headers: {
         "Content-Type": "application/xml",
