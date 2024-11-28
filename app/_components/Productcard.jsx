@@ -119,7 +119,7 @@ function Productcard({
           {colorpalets?.slice(0, 2).map((colors, j) => (
             <div
               key={j}
-              className="aspect-square h-3 md:h-4 rounded-full border border-slate-300"
+              className="aspect-square h-3 md:h-4 rounded-full outline outline-1 outline-slate-300"
               style={{ backgroundColor: colors.color }}
             ></div>
           ))}

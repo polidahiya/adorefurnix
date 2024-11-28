@@ -228,7 +228,7 @@ export const sortinglist = [
   { name: "Discount" },
   { name: "Rating" },
   { name: "Price : low to high" },
-  { name: "Price : hight to low" },
+  { name: "Price : high to low" },
 ];
 
 // fixed search options
@@ -278,14 +278,18 @@ export const searchoptions = [
   "Study & Laptop Tables",
   "Office Sofa",
   "Home Decor & More",
+  "Mirror Frame",
+  "Wall Arts",
+  "Wall Hangings",
+  "Planters",
 ];
 
 export const permanentsearchoptions = [
-  "King Size Bed",
+  "Sofa sets",
+  "Queen Size Bed",
+  "Wardrobe",
   "4-Seater Dining Set",
-  "Coffee Tables",
-  "Flora kids bed",
-  "Home Decor & More",
+  "Tv and Entertainment Unit",
 ];
 
 // login time
