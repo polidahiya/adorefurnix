@@ -11,6 +11,7 @@ import Allproducts from "./_components/Homepage/Allproducts";
 import Roundcategories from "./_components/Homepage/Roundcategories";
 import Citiesdescription from "./_components/Homepage/Citiesdescription";
 import Herosection from "./_components/Homepage/Herosection";
+// import Blackfridaybanner from "./_components/Homepage/Blackfridaybanner";
 // import Posters from "./_components/Homepage/Posters";
 
 export default async function Home({ searchParams }) {
@@ -27,6 +28,7 @@ export default async function Home({ searchParams }) {
         productsname={productsname}
       />
       <Roundcategories />
+      {/* <Blackfridaybanner /> */}
       {/* <Posters /> */}
       <Categories />
       <Newarrival products={products} />

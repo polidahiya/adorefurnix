@@ -65,11 +65,10 @@ function Roundcategories() {
             <Image
               src={item?.image}
               alt={item?.image}
-              className=""
               width={175}
               height={150}
               quality={100}
-              priority={true}
+              loading="lazy"
             ></Image>
 
             <p className="text-center font-semibold mt-2 text-[14px] md:text-[16px]">

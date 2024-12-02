@@ -14,7 +14,10 @@ export async function GET() {
           / /g,
           "_"
         ),
-        description: "Dimensions: " + item?.Dimensions,
+        description:
+          "Dimensions: " +
+          item?.Dimensions +
+          "_______________ Explore the best solid wood furniture in India. Find quality furniture online and near you, including Sheesham wood furniture, dining tables, sofa sets, and more at affordable prices.______________ #furnituredesign #homedecor #interiordesign #furnitureinspo #furnituregoals #furnitureaddict #furniturelovers #modernfurniture #luxuryfurniture #customfurniture",
         pubDate: today.toUTCString(), // Convert to proper date string
         imageUrl: color?.images[0],
       }));
@@ -56,8 +59,3 @@ export async function GET() {
     return new Response("Internal Server Error", { status: 500 });
   }
 }
-
-// description:
-// "Dimensions: " +
-// item?.Dimensions +
-// "_______________ Explore the best solid wood furniture in India. Find quality furniture online and near you, including Sheesham wood furniture, dining tables, sofa sets, and more at affordable prices.______________ #furnituredesign #homedecor #interiordesign #furnitureinspo #furnituregoals #furnitureaddict #furniturelovers #modernfurniture #luxuryfurniture #customfurniture",
