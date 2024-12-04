@@ -35,6 +35,7 @@ function Publiccomp({ pid, index, color, allproducts }) {
         className="h-full w-full object-contain"
         quality={100}
         loading="lazy"
+        
         onClick={() => settogglemenu((pre) => !pre)}
       ></Image>
       <div
@@ -58,6 +59,7 @@ function Publiccomp({ pid, index, color, allproducts }) {
               width={100}
               quality={0}
               loading="lazy"
+              
               className={`min-w-16 w-16 md:min-w-12 md:w-12 aspect-square border md:border-2 ${index==i?"border-theme":"border-slate-300"}`}
             ></Image>
           </Link>

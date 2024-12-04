@@ -8,9 +8,9 @@ function Gotopbutton() {
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 1000) {
-        setIsVisible(true);
+        if (!isVisible) setIsVisible(true);
       } else {
-        setIsVisible(false);
+        if (isVisible) setIsVisible(false);
       }
     };
 
@@ -19,7 +19,7 @@ function Gotopbutton() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [isVisible]);
 
   return (
     <button

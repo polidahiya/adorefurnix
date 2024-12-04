@@ -31,7 +31,13 @@ export default async function RootLayout({ children }) {
     <div>
       <nav className="sticky top-0 flex items-center gap-[5px] md:gap-[10px] h-[50px] shadow-md p-[7px] px-[10px] lg:px-[40px] z-20 bg-graygradient">
         <Link href="/">
-          <Image src="/logo3.png" alt="logo" height={40} width={150} />
+          <Image
+            src="/logo3.png"
+            alt="logo"
+            height={40}
+            width={150}
+            
+          />
         </Link>
         {navLinks.map(({ href, label, logo }, index) => (
           <NavLink key={href} href={href} isFirst={index === 0}>

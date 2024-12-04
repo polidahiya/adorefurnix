@@ -60,6 +60,7 @@ async function page({ params }) {
                   width={400}
                   loading="lazy"
                   alt="furniture blog"
+                  
                   className="w-full md:max-w-[60%] aspect-video object-cover object-center rounded-lg shadow-md mb-4 bg-bg1"
                 />
               );
@@ -100,6 +101,7 @@ function Showblogs({ blogs }) {
                 width={500}
                 src={firstImage}
                 alt={`Blog image ${i + 1}`} // Add descriptive alt text
+                
               />
               <p className="mt-1 line-clamp-2">{mainHeading}</p>
             </Link>

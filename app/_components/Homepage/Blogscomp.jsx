@@ -44,6 +44,7 @@ async function Blogscomp() {
                 height={300}
                 width={400}
                 quality={10}
+                
               />
               <div className="w-full flex flex-col min-h-full">
                 <h3 className="text-xl md:text-2xl font-bold mb-2 ">

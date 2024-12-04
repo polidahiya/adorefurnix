@@ -69,6 +69,7 @@ function Productcard({
           height={300}
           className="w-full h-full object-cover object-center  scale-100 lg:group-hover:scale-105 lg:duration-300"
           loading="lazy"
+          layout="responsive"
           onLoad={() => {
             setloading((pre) => ({ ...pre, effect: false }));
             setTimeout(() => {

@@ -163,6 +163,7 @@ const MainImage = ({ image, name, pid, index, color }) => {
         height={400}
         width={754}
         loading="lazy"
+        
         onLoad={() => {
           setloading((pre) => ({ ...pre, effect: false }));
           setTimeout(() => {
@@ -207,6 +208,7 @@ const MiniImage = ({ image, alt, onClick, isActive }) => {
         width={100}
         quality={50}
         loading="lazy"
+        
         onLoad={() => {
           setloading((pre) => ({ ...pre, effect: false }));
           setTimeout(() => {

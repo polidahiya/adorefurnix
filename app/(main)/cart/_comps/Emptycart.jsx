@@ -9,6 +9,7 @@ function Emptycart() {
         alt="Empty cart image"
         height={300}
         width={300}
+        
       ></Image>
       <p className="mt-[30px] font-bold text-[20px] text-center">
         Your Cart is Empty, Add Some Products.

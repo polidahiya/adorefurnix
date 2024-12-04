@@ -63,6 +63,7 @@ function Navbar({ params, productsname, token, userdata }) {
               alt="adorefurnix logo"
               height={50}
               width={200}
+              
             ></Image>
           </Link>
         </div>
@@ -161,6 +162,7 @@ export const Cartlink = () => {
                         quality={10}
                         width={112}
                         height={84}
+                        
                       ></Image>
                       <div className="flex flex-col text-xs">
                         <h3 className="line-clamp-2">{item.name}</h3>
@@ -220,6 +222,7 @@ export const Cartlink = () => {
                 height={100}
                 width={100}
                 className="w-[100px]"
+                
               ></Image>
               <p className="text-[14px] text-center">
                 Your Cart is Empty, Add Some Products.

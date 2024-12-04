@@ -9,6 +9,7 @@ function Productnotfound() {
         alt="no product found image"
         width={300}
         height={300}
+        
       ></Image>
     </div>
   );

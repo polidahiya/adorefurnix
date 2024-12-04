@@ -53,6 +53,7 @@ function Footer() {
             width={200}
             height={52}
             className="h-[40px] w-[160px] "
+            
           ></Image>
           <p className="mt-[30px]  mb-[20px] text-justify">
             Our mission is to provide high-quality, handcrafted wooden furniture

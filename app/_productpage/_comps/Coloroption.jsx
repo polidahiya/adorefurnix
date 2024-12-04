@@ -45,6 +45,7 @@ function Comp({ image, i }) {
       alt={"color-option-" + i}
       height={100}
       width={100}
+      
       onError={() => {
         setsafeimage("/default-fallback-image.png");
       }}

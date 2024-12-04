@@ -64,6 +64,7 @@ export default function Products({ item, i }) {
             width={200}
             className="h-full w-full aspect-[2/1] md:aspect-square object-contain object-center"
             onError={handleImageError}
+            
           />
         </Link>
         <div className="flex flex-col h-full w-full">

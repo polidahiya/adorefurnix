@@ -28,6 +28,7 @@ function Subcategories({ category, subcat }) {
                   className={`w-full aspect-[4/3] object-cover object-center rounded-[10px]  p-[2px] ${
                     subcat == itemsubcat.name ? "bg-theme" : "bg-slate-300"
                   }`}
+                  
                 ></Image>
                 <div
                   className={`h-fit w-full  text-center p-[5px]  text-[14px] text-ellipsis whitespace-nowrap overflow-hidden ${

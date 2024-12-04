@@ -27,6 +27,7 @@ const Newarrival = async ({ products }) => {
               height={400}
               quality={10}
               loading="lazy"
+              
             />
             <h4 className="text-[14px] md:text-[16px] font-semibold  mb-2 truncate mt-2">
               {item.name}
@@ -48,6 +49,7 @@ const Newarrival = async ({ products }) => {
               height={300}
               width={500}
               loading="lazy"
+              
             />
           </div>
         ))}

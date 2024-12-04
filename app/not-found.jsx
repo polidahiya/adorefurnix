@@ -18,6 +18,7 @@ function page() {
             alt="not found gif image"
             height={300}
             width={400}
+            
             className="max-w-[400px] m-auto w-full object-contain object-center"
           ></Image>
           <h3 className=" font-bold text-center">

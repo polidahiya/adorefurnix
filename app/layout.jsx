@@ -6,6 +6,7 @@ import Script from "next/script";
 // import Logininstant from "./_components/Logininstant";
 import Gotopbutton from "./_components/Gotopbutton";
 import Link from "next/link";
+import Googleanayltics from "./_components/Googleanayltics";
 
 export const metadata = {
   title:
@@ -24,7 +25,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <Script
+        {/* <Script
           strategy="afterInteractive"
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-RVM5D7G14S"
@@ -34,7 +35,10 @@ export default function RootLayout({ children }) {
           strategy="afterInteractive"
           async
           src="/Googlescript.js"
-        ></Script>
+        ></Script> */}
+        <Googleanayltics />
+
+        {/* recaptcha */}
         <Script
           src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`}
           strategy="afterInteractive"

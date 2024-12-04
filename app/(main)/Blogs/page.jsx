@@ -35,6 +35,7 @@ async function page() {
                   height={300}
                   width={300}
                   alt="Blog Image"
+                  
                 />
               </div>
               <div className="p-4">

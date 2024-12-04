@@ -58,6 +58,7 @@ function Form({ userdata }) {
         className=" top-[20px] left-[30px] h-[50px] w-[50px]"
         width={156}
         height={60}
+        
       ></Image>
       <div className="flex items-center justify-center gap-[10px] text-[25px] font-semibold  font-recline ">
         <Updateusersvg styles="h-[30px] translate-y-[-3px]" />

@@ -16,8 +16,9 @@ export default function ProductCard({ product, orderid, productindex }) {
         src={product?.colorpalets[product?.selectedcolor].images[0]}
         alt="product image"
         width={300}
-        loading="lazy"
         height={300}
+        loading="lazy"
+        
       />
       <div className="p-4">
         <OrderDetail label="Name" value={product?.name} />

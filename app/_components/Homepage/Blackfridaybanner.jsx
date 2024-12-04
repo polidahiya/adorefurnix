@@ -12,6 +12,7 @@ function Blackfridaybanner() {
         height={300}
         width={1000}
         loading="lazy"
+        
       ></Image>
     </Link>
   );

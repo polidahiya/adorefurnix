@@ -23,6 +23,7 @@ function Posters() {
             quality={100}
             width={946}
             height={358}
+            
           ></Image>
         ))}
       </div>

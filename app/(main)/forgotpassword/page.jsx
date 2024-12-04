@@ -20,6 +20,7 @@ function page({ searchParams }) {
           className=" top-[20px] left-[30px] h-[50px] w-[50px] invert"
           width={156}
           height={60}
+          
         ></Image>
         <center>
           <div className="relative w-fit flex items-center justify-center text-base md:text-[30px] ">
