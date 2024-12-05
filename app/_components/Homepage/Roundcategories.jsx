@@ -69,7 +69,7 @@ function Roundcategories() {
               height={150}
               quality={100}
               loading="lazy"
-              layout="responsive"
+              
             ></Image>
 
             <p className="text-center font-semibold mt-2 text-[14px] md:text-[16px]">

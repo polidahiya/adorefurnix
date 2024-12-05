@@ -34,11 +34,11 @@ async function Blogscomp() {
           return (
             <div
               key={i}
-              className="flex flex-col md:flex-row items-stretch gap-5 p-5 bg-white shadow-md mt-5 rounded-lg"
+              className="flex flex-col md:flex-row items-stretch gap-5 p-5 bg-white shadow-md mt-5 "
             >
               <Image
                 src={firstImage}
-                className="rounded-lg md:h-[250px]  w-full md:w-fit aspect-[4/3]  object-cover object-center bg-bg1"
+                className=" md:h-[250px]  w-full md:w-fit aspect-[4/3]  object-cover object-center bg-bg1"
                 alt="Blog Image"
                 loading="lazy"
                 height={300}

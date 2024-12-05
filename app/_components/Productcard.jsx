@@ -57,19 +57,19 @@ function Productcard({
           ? link.replace(/ /g, "_")
           : `/${category}/${subcat}/${id}`.replace(/ /g, "_")
       }
-      className={`group relative h-full w-full max-w-[350px] md:min-w-[270px] shadow-md rounded-[10px]  bg-white duration-300 ${
+      className={`group relative h-full w-full max-w-[350px] md:min-w-[270px] shadow-md  bg-white duration-300 ${
         showproduct ? "opacity-100 scale-100" : "opacity-0 scale-75"
       }`}
     >
-      <div className="relative aspect-[4/3] w-full rounded-[10px] overflow-hidden">
+      <div className="relative aspect-square w-full overflow-hidden">
         <Image
           src={imgSrc}
           alt={name}
           width={300}
           height={300}
-          className="w-full h-full object-cover object-center  scale-100 lg:group-hover:scale-105 lg:duration-300"
+          className="min-w-full min-h-full  object-cover object-center  scale-100 lg:group-hover:scale-105 lg:duration-300"
           loading="lazy"
-          layout="responsive"
+          
           onLoad={() => {
             setloading((pre) => ({ ...pre, effect: false }));
             setTimeout(() => {

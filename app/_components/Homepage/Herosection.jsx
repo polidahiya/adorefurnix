@@ -27,7 +27,7 @@ function Herosection({ token, userdata, productsname }) {
         alt="homepageslide"
         height={1000}
         width={1000}
-        layout="responsive"
+        
         priority={true}
       />
       {/* mobile */}
@@ -38,7 +38,7 @@ function Herosection({ token, userdata, productsname }) {
         alt="homepageslide"
         height={1000}
         width={1000}
-        layout="responsive"
+        
         priority={true}
       />
       {/* gradient full*/}

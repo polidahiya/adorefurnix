@@ -27,7 +27,7 @@ import { IoShieldHalf } from "react-icons/io5";
 
 function Footer() {
   const list1 = [
-    { name: "About", link: "/About" },
+    { name: "About Us", link: "/About" },
     { name: "Blogs", link: "/Blogs" },
     { name: "Contact Us", link: "/Contact" },
     { name: "Shipping Policy", link: "/ShippingPolicy" },
@@ -38,6 +38,7 @@ function Footer() {
   const list2 = [
     { name: "Living Room", link: "/Living_Room" },
     { name: "Bedroom", link: "/Bedroom" },
+    { name: "Storage", link: "/Storage" },
     { name: "Bar Furniture", link: "/Bar_Furniture" },
     { name: "Office Furniture", link: "/Office_Furniture" },
     { name: "Home Decor & More", link: "/Home_Decor_&_More" },
@@ -53,7 +54,6 @@ function Footer() {
             width={200}
             height={52}
             className="h-[40px] w-[160px] "
-            
           ></Image>
           <p className="mt-[30px]  mb-[20px] text-justify">
             Our mission is to provide high-quality, handcrafted wooden furniture
@@ -133,7 +133,7 @@ function Links({ name, link }) {
   return (
     <Link href={link} className="relative group">
       {name}
-      <span className="w-0 h-[2px] absolute bottom-0 left-0 block bg-theme rounded-full lg:group-hover:w-[calc(100%+20px)] duration-200"></span>
+      <span className="w-0 h-[2px] absolute bottom-0 left-0 block bg-theme lg:group-hover:w-[calc(100%+20px)] duration-200"></span>
     </Link>
   );
 }

@@ -15,12 +15,9 @@ const Newarrival = async ({ products }) => {
       </h3>
       <div className="relative grid grid-cols-2 md:grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-3 md:gap-6 px-4 md:px-16">
         {newarrival.map((item) => (
-          <div
-            key={item.name}
-            className="relative bg-white shadow-md rounded-xl p-2"
-          >
+          <div key={item.name} className="relative bg-white shadow-md  p-2">
             <Image
-              className="w-full aspect-[4/3] object-cover rounded-lg bg-bg1"
+              className="w-full aspect-square object-cover bg-bg1"
               src={item.colorpalets[0]?.images[0]}
               alt={item.name}
               width={400}
@@ -36,8 +33,11 @@ const Newarrival = async ({ products }) => {
               ₹{parseInt(item?.price, 10).toLocaleString("en-IN")}
             </p>
             <Link
-              href={`/${item.category}/${item.subcat}/${item._id}`.replace(/ /g, "_")}
-              className="block mt-4 bg-orange-500 text-center text-white py-2 rounded-lg hover:bg-orange-600"
+              href={`/${item.category}/${item.subcat}/${item._id}`.replace(
+                / /g,
+                "_"
+              )}
+              className="block mt-4 bg-orange-500 text-center text-white py-2 hover:bg-orange-600"
             >
               View Details
             </Link>
@@ -49,7 +49,6 @@ const Newarrival = async ({ products }) => {
               height={300}
               width={500}
               loading="lazy"
-              
             />
           </div>
         ))}
