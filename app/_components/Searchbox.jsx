@@ -17,7 +17,7 @@ function Searchbox({ productsname }) {
   useEffect(() => {
     if (typeof window != undefined) {
       const params = new URLSearchParams(window.location.search);
-      setSearch(params.get("query")?.replace(/_/g, " ") || "");
+      setSearch(params.get("query")?.replace(/-/g, " ") || "");
     }
   }, []);
 
@@ -115,11 +115,11 @@ function Searchbox({ productsname }) {
             if (e.key === "Enter") {
               if (arrowselectedsuggest == null) {
                 if (search.trim() !== "")
-                  router.push(`/Search?query=${search}`.replace(/ /g, "_"));
+                  router.push(`/Search?query=${search}`.replace(/ /g, "-"));
               } else {
                 setSearch(finalsuggestion[arrowselectedsuggest]?.original);
                 router.push(
-                  `/Search?query=${finalsuggestion[arrowselectedsuggest]?.original}`.replace(/ /g, "_")
+                  `/Search?query=${finalsuggestion[arrowselectedsuggest]?.original}`.replace(/ /g, "-")
                 );
               }
               searchinputref.current.blur();
@@ -173,7 +173,7 @@ function Searchbox({ productsname }) {
           </p>
         )}
         <Link
-          href={search.trim() !== "" ? `/Search?query=${search}`.replace(/ /g, "_") : "#"}
+          href={search.trim() !== "" ? `/Search?query=${search}`.replace(/ /g, "-") : "#"}
           className="flex items-center justify-center bg-theme h-full aspect-square lg:aspect-auto md:gap-[5px] lg:px-[10px] rounded-full text-white"
         >
           <FiSearch className="text-[20px]" />
@@ -199,7 +199,7 @@ function Searchbox({ productsname }) {
                 className={`${arrowselectedsuggest === i && "bg-slate-200"}`}
               >
                 <Link
-                  href={`/Search?query=${item.original}`.replace(/ /g, "_")}
+                  href={`/Search?query=${item.original}`.replace(/ /g, "-")}
                   className="w-full flex items-center justify-between h-[40px] lg:hover:bg-slate-100 pl-[20px] pr-[10px]"
                 >
                   <p className="text-start max-w-[calc(100%-50px)] text-ellipsis overflow-hidden whitespace-nowrap">

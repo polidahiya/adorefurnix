@@ -12,7 +12,7 @@ function Subcategories({ category, subcat }) {
             return (
               <Link
                 key={i}
-                href={`/${category}/${itemsubcat.name}`.replace(/ /g, "_")}
+                href={`/${category}/${itemsubcat.name}`.replace(/ /g, "-")}
                 className={`min-w-28 w-28 lg:w-36 lg:min-w-36 flex flex-col items-center  ${
                   subcat == itemsubcat.name &&
                   "bg-theme bg-clip-text text-transparent"

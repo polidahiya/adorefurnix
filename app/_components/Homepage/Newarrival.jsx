@@ -35,7 +35,7 @@ const Newarrival = async ({ products }) => {
             <Link
               href={`/${item.category}/${item.subcat}/${item._id}`.replace(
                 / /g,
-                "_"
+                "-"
               )}
               className="block mt-4 bg-orange-500 text-center text-white py-2 hover:bg-orange-600"
             >

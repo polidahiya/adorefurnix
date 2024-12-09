@@ -16,7 +16,7 @@ function Coloroption({ filteredproducts, color }) {
               key={i}
               href={`/${filteredproducts.category}/${filteredproducts.subcat}/${filteredproducts._id}?color=${i}`.replace(
                 / /g,
-                "_"
+                "-"
               )}
               replace
               className={`relative p-[5px] flex flex-col items-center  cursor-pointer shadow-[0px_0px_5px_#bababa7f] 

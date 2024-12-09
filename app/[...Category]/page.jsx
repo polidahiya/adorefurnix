@@ -16,12 +16,12 @@ async function page({ params, searchParams }) {
   const { Category: slug } = params;
 
   const category =
-    slug && slug[0] ? decodeURIComponent(slug[0])?.replace(/_/g, " ") : null;
+    slug && slug[0] ? decodeURIComponent(slug[0])?.replace(/-/g, " ") : null;
   const subcat =
-    slug && slug[1] ? decodeURIComponent(slug[1])?.replace(/_/g, " ") : null;
+    slug && slug[1] ? decodeURIComponent(slug[1])?.replace(/-/g, " ") : null;
   const productid = slug && slug[2] ? decodeURIComponent(slug[2]) : null;
 
-  const location = searchParams?.location?.replace(/_/g, " ") || "Delhi";
+  const location = searchParams?.location?.replace(/-/g, " ") || "Delhi";
 
   if (productid)
     return (
@@ -39,7 +39,7 @@ async function page({ params, searchParams }) {
   let producttorender;
 
   if (category == "Search") {
-    const searchQuery = searchParams?.query?.replace(/_/g, " ");
+    const searchQuery = searchParams?.query?.replace(/-/g, " ");
     producttorender = searchProducts(allproducts, searchQuery);
   } else {
     validateCategoryAndSubcategory(category, subcat);
@@ -191,11 +191,11 @@ const categoriesedproducts = (allproducts, category, subcat) => {
 export const generateMetadata = async ({ params, searchParams }) => {
   const { Category: slug } = params;
   const category =
-    slug && slug[0] ? decodeURIComponent(slug[0])?.replace(/_/g, " ") : null;
+    slug && slug[0] ? decodeURIComponent(slug[0])?.replace(/-/g, " ") : null;
   const subcat =
-    slug && slug[1] ? decodeURIComponent(slug[1])?.replace(/_/g, " ") : null;
+    slug && slug[1] ? decodeURIComponent(slug[1])?.replace(/-/g, " ") : null;
   const productid = slug && slug[2] ? decodeURIComponent(slug[2]) : null;
-  const location = searchParams?.location?.replace(/_/g, " ") || "India";
+  const location = searchParams?.location?.replace(/-/g, " ") || "India";
 
   // Handle product-specific metadata
   if (productid) {

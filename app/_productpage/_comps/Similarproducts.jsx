@@ -41,7 +41,7 @@ function Similarproducts({ allproducts, category, subcat, productid }) {
             {similarproducts.length == maxproducts && (
               <div className="relative flex items-center z-20 whitespace-nowrap px-5">
                 <Link
-                  href={`/${category}/${subcat}`.replace(/ /g, "_")}
+                  href={`/${category}/${subcat}`.replace(/ /g, "-")}
                   className="relative group flex items-center justify-center gap-[10px] px-6 py-3  text-white font-semibold rounded-full overflow-hidden"
                 >
                   <span>View all</span>

@@ -149,14 +149,14 @@ const Breadcrumbs = ({ category, subcat, productName }) => (
     <RxChevronRight className="min-w-3" />
     <Link
       className="lg:hover:text-cyan-500"
-      href={`/${category}`.replace(/ /g, "_")}
+      href={`/${category}`.replace(/ /g, "-")}
     >
       {category}
     </Link>
     <RxChevronRight className="min-w-3" />
     <Link
       className="lg:hover:text-cyan-500"
-      href={`/${category}/${subcat}`.replace(/ /g, "_")}
+      href={`/${category}/${subcat}`.replace(/ /g, "-")}
     >
       {subcat}
     </Link>

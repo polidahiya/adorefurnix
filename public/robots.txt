@@ -13,4 +13,4 @@ Disallow: /cart
 Host: https://adorefurnix.com
 
 # Sitemaps
-Sitemap: https://adorefurnix.com/sitemap.xml
+Sitemap: https://adorefurnix.com/api/sitemap

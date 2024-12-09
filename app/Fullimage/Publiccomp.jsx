@@ -18,7 +18,7 @@ function Publiccomp({ pid, index, color, allproducts }) {
         <Link
           href={`/${product?.category}/${product?.subcat}/${product?._id}?color=${color}`.replace(
             / /g,
-            "_"
+            "-"
           )}
           className="text-xl p-2 box-content rounded-full lg:hover:bg-white  lg:hover:bg-opacity-20"
           replace
@@ -48,7 +48,7 @@ function Publiccomp({ pid, index, color, allproducts }) {
             key={i}
             href={`/Fullimage?pid=${pid}&color=${color}&index=${i}`.replace(
               / /g,
-              "_"
+              "-"
             )}
             replace
           >

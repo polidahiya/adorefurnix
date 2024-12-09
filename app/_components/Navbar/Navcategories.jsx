@@ -22,12 +22,12 @@ function Navcategories({ category }) {
           <div key={i} className="group relative">
             <Link
               key={i}
-              href={"/" + item.replace(/ /g, "_")}
+              href={"/" + item.replace(/ /g, "-")}
               onClick={(e) => {
                 if (window.innerWidth < 1024) {
                   setshowcat(false);
                   e.preventDefault();
-                  router.replace("/" + item.replace(/ /g, "_"));
+                  router.replace("/" + item.replace(/ /g, "-"));
                 }
               }}
               className={`lg:h-[30px] w-full flex  items-center justify-start lg:justify-center  text-[14px] lg:text-white py-[10px] px-5 lg:px-[10px] lg:py-[5px] rounded-[10px] lg:rounded-full ${
@@ -73,13 +73,13 @@ function Navcategories({ category }) {
                       return (
                         <Link
                           key={j}
-                          href={`/${item}/${subcat.name}`.replace(/ /g, "_")}
+                          href={`/${item}/${subcat.name}`.replace(/ /g, "-")}
                           onClick={(e) => {
                             if (window.innerWidth < 1024) {
                               setshowcat(false);
                               e.preventDefault();
                               router.replace(
-                                `/${item}/${subcat.name}`.replace(/ /g, "_")
+                                `/${item}/${subcat.name}`.replace(/ /g, "-")
                               );
                             }
                           }}

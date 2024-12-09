@@ -50,7 +50,7 @@ function FilterItem({ label, link }) {
     <div className="flex items-center h-7 pl-5 rounded-lg bg-bg1">
       {label}{" "}
       <Link
-        href={link?.replace(/ /g, "_")}
+        href={link?.replace(/ /g, "-")}
         className="text-sm hover:text-theme px-3"
         // replace
       >

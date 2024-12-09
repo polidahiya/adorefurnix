@@ -14,7 +14,7 @@ const xmlEscape = (str) =>
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&apos;");
 
-const urlEncode = (str) => encodeURIComponent(str).replace(/%20/g, "_");
+const urlEncode = (str) => encodeURIComponent(str).replace(/%20/g, "-");
 
 const baseurl = {
   loc: `${domain}`,

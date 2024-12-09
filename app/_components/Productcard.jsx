@@ -54,8 +54,8 @@ function Productcard({
     <Link
       href={
         link
-          ? link.replace(/ /g, "_")
-          : `/${category}/${subcat}/${id}`.replace(/ /g, "_")
+          ? link.replace(/ /g, "-")
+          : `/${category}/${subcat}/${id}`.replace(/ /g, "-")
       }
       className={`group relative h-full w-full max-w-[350px] md:min-w-[270px] shadow-md  bg-white duration-300 ${
         showproduct ? "opacity-100 scale-100" : "opacity-0 scale-75"
