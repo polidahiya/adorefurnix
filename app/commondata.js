@@ -65,15 +65,15 @@ export const categorylist = {
     subcat: [
       {
         image: "/categoriesimages/subcats/2-SeaterDiningSet.jpg",
-        name: "2-Seater Dining Set",
+        name: "2 Seater Dining Set",
       },
       {
         image: "/categoriesimages/subcats/4-SeaterDiningSet.jpg",
-        name: "4-Seater Dining Set",
+        name: "4 Seater Dining Set",
       },
       {
         image: "/categoriesimages/subcats/6-SeaterDiningSet.jpg",
-        name: "6-Seater Dining Set",
+        name: "6 Seater Dining Set",
       },
     ],
   },
