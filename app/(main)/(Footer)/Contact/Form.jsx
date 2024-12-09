@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Sendmessage } from "@/app/_serveractions/Contactmessages";
 import { AppContextfn } from "@/app/Context";
 import Recaptcha from "@/app/_components/_helperfunctions/Recaptcha";
+import { event } from "nextjs-google-analytics";
 
 export default function ContactForm({ userdata }) {
   const { setmessagefn } = AppContextfn();
@@ -129,6 +130,13 @@ export default function ContactForm({ userdata }) {
         <button
           type="submit"
           className="flex items-center justify-center gap-[10px] w-full bg-theme text-white py-3 px-4 rounded-lg shadow-sm hover:from-indigo-600 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400"
+          onClick={() => {
+            event("button_click", {
+              category: "User Interaction",
+              label: "Use send help message",
+              value: 1,
+            });
+          }}
         >
           {loading && (
             <div className="h-[20px] aspect-square border-[2px] border-l-0 border-t-0 rounded-full border-white animate-spin duration-200"></div>

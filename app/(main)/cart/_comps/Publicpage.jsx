@@ -13,6 +13,7 @@ import Link from "next/link";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import Recaptcha from "@/app/_components/_helperfunctions/Recaptcha";
+import { event } from "nextjs-google-analytics";
 
 export default function Page({ userdata, token, orderstatus }) {
   const router = useRouter();
@@ -86,6 +87,11 @@ export default function Page({ userdata, token, orderstatus }) {
       async () => {
         const res = await Placeorder(cart);
         if (res?.status == 200) {
+          event("button_click", {
+            category: "User Interaction",
+            label: "Order placed",
+            value: 1,
+          });
           setorderid(res?.id);
           setshowpaymentform(true);
         } else {

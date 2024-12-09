@@ -8,7 +8,7 @@ function Prouctid({ pid }) {
   const { setmessagefn } = AppContextfn();
   return (
     <p className="font-semibold my-3">
-      Product-id : <span className="">{pid}</span>
+      SKU : <span className="">{pid}</span>
       <MdContentCopy
         className="inline-block ml-2 text-theme lg:text-inherit lg:hover:text-theme cursor-pointer"
         onClick={() => {

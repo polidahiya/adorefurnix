@@ -7,10 +7,12 @@ import Script from "next/script";
 import Gotopbutton from "./_components/Gotopbutton";
 import Link from "next/link";
 import Googleanayltics from "./_components/Googleanayltics";
+import { cities } from "./commondata";
+import React from "react";
 
 export const metadata = {
   title:
-    "Adorefurnix - Best Solid Wood Furniture in India - Affordable Quality Furniture",
+    "Adorefurnix - Best Solid Wood Furniture in India",
   description:
     "Explore the best solid wood furniture in India. Find quality furniture online and near you, including Sheesham wood furniture, dining tables, sofa sets, and more at affordable prices.",
   keywords:
@@ -25,19 +27,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        {/* <Script
-          strategy="afterInteractive"
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-RVM5D7G14S"
-        />
-        <Script
-          id="google-analytics"
-          strategy="afterInteractive"
-          async
-          src="/Googlescript.js"
-        ></Script> */}
         <Googleanayltics />
-
         {/* recaptcha */}
         <Script
           src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`}
@@ -47,6 +37,24 @@ export default function RootLayout({ children }) {
         <meta
           name="p:domain_verify"
           content="44c7e34daae240451f1159d0ec6cb12b"
+        />
+        {/* ld json */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "AdoreFurnix",
+              url: "https://adorefurnix.com",
+              potentialAction: {
+                "@type": "SearchAction",
+                target:
+                  "https://adorefurnix.com/Search?query={search_term_string}",
+                "query-input": "required name=search_term_string",
+              },
+            }),
+          }}
         />
       </head>
       <Appwrapper>
@@ -101,7 +109,11 @@ const Seopara = () => (
       <p>
         If you&apos;re looking for&nbsp;
         <strong>solid wood furniture near me</strong>, popular areas include
-        cities like New Delhi, where markets such as the&nbsp;
+        cities like{" "}
+        {cities.map((city, i) => {
+          return <strong key={i}>{city} </strong>;
+        })}
+        , where markets such as the&nbsp;
         <strong>Kirti Nagar furniture market</strong> and&nbsp;
         <strong>Dwarka, Delhi</strong> are well-known for their wide selection
         of&nbsp;

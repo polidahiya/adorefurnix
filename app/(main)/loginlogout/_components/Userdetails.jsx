@@ -11,6 +11,7 @@ import { IoIosEyeOff } from "react-icons/io";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 import Recaptcha from "@/app/_components/_helperfunctions/Recaptcha";
+import { event } from "nextjs-google-analytics";
 
 function Userdetails() {
   const router = useRouter();
@@ -88,7 +89,6 @@ function Userdetails() {
         className=" top-[20px] left-[30px] h-[50px] w-[50px] invert"
         width={156}
         height={60}
-        
       ></Image>
       <center>
         <div className="relative w-fit flex items-center justify-center  text-[30px] ">
@@ -243,9 +243,14 @@ function SignInPage() {
         <button
           key={provider.id}
           className="w-full flex items-center justify-center gap-2 border border-slate-200 rounded-lg h-11"
-          onClick={() =>
-            signIn(provider.id, { callbackUrl: redirectloginlink || "/" })
-          }
+          onClick={() => {
+            signIn(provider.id, { callbackUrl: redirectloginlink || "/" });
+            event("button_click", {
+              category: "User Interaction",
+              label: `login with ${provider.name}`,
+              value: 1,
+            });
+          }}
         >
           {provider.icon}
           <span>Continue with {provider.name}</span>

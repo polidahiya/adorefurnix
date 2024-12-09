@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Imagescomp from "./_comps/Imagescomp";
 import { Cachedproducts } from "@/app/_serveractions/Getcachedata";
-import { categorylist } from "@/app/commondata";
+import { categorylist, domain } from "@/app/commondata";
 import { notFound } from "next/navigation";
 import Coloroption from "./_comps/Coloroption";
 import Promices from "@/app/_components/Homepage/Promices";
@@ -40,64 +40,104 @@ async function Productpage({ category, subcat, productid, color }) {
         )
       : null;
 
+  const productSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: filteredProduct.name,
+    image: filteredProduct.colorpalets[filteredProduct?.color]?.images[0],
+    description:
+      filteredProduct.desc[0] || "Solid wood furniture - @Adorefurnix",
+    sku: filteredProduct?._id,
+    brand: {
+      "@type": "Brand",
+      name: "Adorefurnix",
+    },
+    offers: {
+      "@type": "Offer",
+      url: `${domain}/${filteredProduct.category}/${filteredProduct.subcat}/${filteredProduct._id}?color=${color}`, // Dynamically adds the product URL
+      priceCurrency: "INR",
+      price: parseInt(filteredProduct.price, 10).toLocaleString("en-IN"),
+      availability: filteredProduct.available
+        ? "https://schema.org/InStock"
+        : "https://schema.org/OutOfStock",
+    },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: filteredProduct.rating,
+      bestRating: "5",
+      worstRating: "1",
+    },
+  };
+
   return (
-    <article>
-      <header className="flex flex-col lg:flex-row items-start p-[10px]">
-        <div className="w-full lg:w-[50%] lg:sticky lg:top-[130px]">
-          <Imagescomp
-            filteredproducts={filteredProduct}
-            color={color}
-            token={token}
-          />
+    <>
+      <article>
+        <header className="flex flex-col lg:flex-row items-start p-[10px]">
+          <div className="w-full lg:w-[50%] lg:sticky lg:top-[130px]">
+            <Imagescomp
+              filteredproducts={filteredProduct}
+              color={color}
+              token={token}
+            />
+          </div>
+          <section className="w-full lg:w-[50%] p-[10px] px-[20px]">
+            <Breadcrumbs
+              category={category}
+              subcat={subcat}
+              productName={filteredProduct.name}
+            />
+
+            <h1
+              className="text-[20px] md:text-[25px] py-[10px] font-semibold"
+              itemProp="name"
+            >
+              {filteredProduct.name}
+            </h1>
+            <Prouctid pid={filteredProduct._id} />
+            <Rating rating={filteredProduct.rating} />
+
+            <PriceDisplay
+              filteredProduct={filteredProduct}
+              priceBeforeDiscount={priceBeforeDiscount}
+            />
+
+            <Coloroption filteredproducts={filteredProduct} color={color} />
+
+            <Dimensions dimensions={filteredProduct.Dimensions} />
+
+            <Description description={filteredProduct.desc} />
+            <Quantity filteredproducts={filteredProduct} color={color} />
+
+            <Addtocartbuttons
+              filteredproducts={filteredProduct}
+              color={color}
+            />
+          </section>
+        </header>
+
+        <ProductCare />
+        <Similarproducts
+          allproducts={allproducts}
+          category={category}
+          subcat={subcat}
+          productid={productid}
+        />
+        <div className="mt-10 lg:mt-20">
+          <Bestselling products={allproducts} />
         </div>
-        <section className="w-full lg:w-[50%] p-[10px] px-[20px]">
-          <Breadcrumbs
-            category={category}
-            subcat={subcat}
-            productName={filteredProduct.name}
-          />
-
-          <h1
-            className="text-[20px] md:text-[25px] py-[10px] font-semibold"
-            itemProp="name"
-          >
-            {filteredProduct.name}
-          </h1>
-          <Prouctid pid={filteredProduct._id}/>
-          <Rating rating={filteredProduct.rating} />
-
-          <PriceDisplay
-            filteredProduct={filteredProduct}
-            priceBeforeDiscount={priceBeforeDiscount}
-          />
-
-          <Coloroption filteredproducts={filteredProduct} color={color} />
-
-          <Dimensions dimensions={filteredProduct.Dimensions} />
-
-          <Description description={filteredProduct.desc} />
-          <Quantity filteredproducts={filteredProduct} color={color} />
-
-          <Addtocartbuttons filteredproducts={filteredProduct} color={color} />
-        </section>
-      </header>
-
-      <ProductCare />
-      <Similarproducts
-        allproducts={allproducts}
-        category={category}
-        subcat={subcat}
-        productid={productid}
+        <div className="mt-10 lg:mt-20">
+          <Newarrival products={allproducts} />
+        </div>
+        <FAQSection />
+        <Promices />
+      </article>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(productSchema),
+        }}
       />
-      <div className="mt-10 lg:mt-20">
-        <Bestselling products={allproducts} />
-      </div>
-      <div className="mt-10 lg:mt-20">
-        <Newarrival products={allproducts} />
-      </div>
-      <FAQSection />
-      <Promices />
-    </article>
+    </>
   );
 }
 
@@ -153,13 +193,15 @@ const PriceDisplay = ({ filteredProduct, priceBeforeDiscount }) => (
         </span>
       </>
     )}
-    <CurrencyConverter priceInINR={filteredProduct?.price}/>
+    <CurrencyConverter priceInINR={filteredProduct?.price} />
   </div>
 );
 
 const Dimensions = ({ dimensions }) => (
   <div className="flex gap-[10px] mt-[30px] font-semibold">
-    <span className="text-slate-400 whitespace-nowrap min-w-28">Dimension:</span>
+    <span className="text-slate-400 whitespace-nowrap min-w-28">
+      Dimension:
+    </span>
     {dimensions || <span className="text-red-500">Not Available{" *"}</span>}
   </div>
 );
@@ -167,7 +209,9 @@ const Dimensions = ({ dimensions }) => (
 const Description = ({ description }) =>
   description?.length > 0 && (
     <div className="flex flex-col md:flex-row gap-[10px] mt-[30px] font-semibold">
-      <span className="text-slate-400 whitespace-nowrap min-w-28">Description:</span>
+      <span className="text-slate-400 whitespace-nowrap min-w-28">
+        Description:
+      </span>
       <div>
         {description.map((item, index) => (
           <div key={index} className="flex items-start gap-[10px] pl-5 md:pl-0">

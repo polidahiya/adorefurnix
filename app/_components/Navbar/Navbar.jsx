@@ -63,7 +63,6 @@ function Navbar({ params, productsname, token, userdata }) {
               alt="adorefurnix logo"
               height={50}
               width={200}
-              
             ></Image>
           </Link>
         </div>
@@ -134,8 +133,7 @@ export const Cartlink = () => {
         </div>
       )}
       {/* cart peak */}
-      <div className="absolute h-3 w-full hidden lg:group-hover:block"
-      >
+      <div className="absolute h-3 w-full hidden lg:group-hover:block">
         <div className="absolute top-full right-0  w-96 translate-x-[50px] rounded-lg bg-white flex  flex-col items-center  p-3 shadow-md">
           <span className="absolute top-0 right-[65px] -translate-y-1/2 rotate-45 w-2 aspect-square bg-white"></span>
           {Object.keys(cart).length > 0 ? (
@@ -162,7 +160,6 @@ export const Cartlink = () => {
                         quality={10}
                         width={112}
                         height={84}
-                        
                       ></Image>
                       <div className="flex flex-col text-xs">
                         <h3 className="line-clamp-2">{item.name}</h3>
@@ -222,7 +219,6 @@ export const Cartlink = () => {
                 height={100}
                 width={100}
                 className="w-[100px]"
-                
               ></Image>
               <p className="text-[14px] text-center">
                 Your Cart is Empty, Add Some Products.

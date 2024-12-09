@@ -5,8 +5,7 @@ function Googleanayltics() {
   return (
     <GoogleAnalytics
       trackPageViews
-      // debug
-      // disabled={process.env.NODE_ENV === "development"}
+      disabled={process.env.NODE_ENV === "development"}
     />
   );
 }

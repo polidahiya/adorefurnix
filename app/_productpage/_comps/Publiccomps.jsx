@@ -5,6 +5,7 @@ import { FaCartShopping } from "react-icons/fa6";
 import { BsLightningChargeFill } from "react-icons/bs";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
+import { event } from "nextjs-google-analytics";
 
 export function Addtocartbuttons({ filteredproducts, color }) {
   const router = useRouter();
@@ -49,6 +50,11 @@ export function Addtocartbuttons({ filteredproducts, color }) {
 
     updateCart();
     setmessagefn("Added to Cart");
+    event("button_click", {
+      category: "User Interaction",
+      label: "Product added to cart",
+      value: 1,
+    });
   };
 
   const Buynow = () => {
@@ -60,7 +66,11 @@ export function Addtocartbuttons({ filteredproducts, color }) {
     if (!availableincart) {
       updateCart();
     }
-
+    event("button_click", {
+      category: "User Interaction",
+      label: "Product added to cart",
+      value: 1,
+    });
     router.push("/cart");
   };
 

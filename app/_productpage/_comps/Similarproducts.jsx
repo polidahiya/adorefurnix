@@ -27,7 +27,7 @@ function Similarproducts({ allproducts, category, subcat, productid }) {
               return (
                 <div
                   key={i}
-                  className="min-w-[250px] md:min-w-[300px] max-w-[350px]  shadow-md rounded-[10px] overflow-hidden bg-white"
+                  className="min-w-[250px] md:min-w-[300px] max-w-[350px]  shadow-md  overflow-hidden bg-white"
                 >
                   <Productcard
                     index={i}
