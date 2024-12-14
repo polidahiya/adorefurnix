@@ -183,13 +183,13 @@ function Searchbox({ productsname }) {
       {/* suggestions */}
       {showsuggestions[0] && (
         <div
-          className={`absolute top-[calc(100%+2px)] left-0 w-full p-[2px] border border-gray-300 rounded-[10px] duration-300 ${
+          className={`absolute top-[calc(100%+2px)] left-0 w-full p-[2px] border border-gray-300 rounded-2xl duration-300 ${
             showsuggestions[1]
               ? "opacity-100 translate-y-0"
               : "opacity-0 translate-y-[10px]"
           }`}
         >
-          <div className="h-full w-full rounded-[8px] overflow-hidden bg-white">
+          <div className="h-full w-full rounded-[14px] overflow-hidden bg-white">
             {finalsuggestion.map((item, i) => (
               <div
                 key={i}
