@@ -7,12 +7,12 @@ import Script from "next/script";
 import Gotopbutton from "./_components/Gotopbutton";
 import Link from "next/link";
 import Googleanayltics from "./_components/Googleanayltics";
-import { cities } from "./commondata";
+import { cities, mobile } from "./commondata";
 import React from "react";
+import { FaWhatsapp } from "react-icons/fa";
 
 export const metadata = {
-  title:
-    "Adorefurnix - Best Solid Wood Furniture in India",
+  title: "Adorefurnix - Best Solid Wood Furniture in India",
   description:
     "Discover the best solid wood furniture in India. Shop Sheesham wood furniture, dining tables, sofas, and more online at affordable prices.",
   keywords:
@@ -64,6 +64,7 @@ export default function RootLayout({ children }) {
           {/* <Logininstant /> */}
           <div className="fixed bottom-5 right-5 md:bottom-10 md:right-10 flex flex-col items-end gap-2 z-30">
             <Gotopbutton />
+            <Whatsappbutton />
             <Helpbutton />
           </div>
           <Seopara />
@@ -83,6 +84,24 @@ const Helpbutton = () => (
     </span>
     <span className="h-8 aspect-square rounded-full bg-white text-theme grid place-content-center">
       ?
+    </span>
+  </Link>
+);
+
+const Whatsappbutton = () => (
+  <Link
+    href={`https://wa.me/${mobile.replace(/ /g, "")}?text=${encodeURIComponent(
+      "Hi Adorefurnix, I found your products interesting, and I would like to know more!"
+    )}`}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="group bg-theme flex items-center justify-center p-1 rounded-full overflow-hidden"
+  >
+    <span className="text-white opacity-0 text-sm max-w-0 lg:group-hover:opacity-100 lg:group-hover:max-w-60  lg:group-hover:px-5 whitespace-nowrap transition-all duration-300 ease-in-out">
+      Chat with us on WhatsApp
+    </span>
+    <span className="h-8 aspect-square rounded-full bg-white text-theme grid place-content-center">
+      <FaWhatsapp className="text-lg" />
     </span>
   </Link>
 );

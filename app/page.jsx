@@ -11,6 +11,7 @@ import Allproducts from "./_components/Homepage/Allproducts";
 import Roundcategories from "./_components/Homepage/Roundcategories";
 import Citiesdescription from "./_components/Homepage/Citiesdescription";
 import Herosection from "./_components/Homepage/Herosection";
+import Reviews from "./_components/Homepage/Reviews";
 // import Blackfridaybanner from "./_components/Homepage/Blackfridaybanner";
 // import Posters from "./_components/Homepage/Posters";
 
@@ -34,6 +35,7 @@ export default async function Home({ searchParams }) {
       <Newarrival products={products} />
       <Bestselling products={products} />
       <Allproducts products={products.sort(() => Math.random() - 0.5)} />
+      <Reviews />
       <Blogscomp />
       <div>
         <h2 className="text-center font-bold text-2xl md:text-4xl  font-recline">

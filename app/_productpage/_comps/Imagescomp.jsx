@@ -16,6 +16,7 @@ function ImagesComp({ filteredproducts, color, token }) {
   const imagesScrollRef = useRef();
   const [isLiked, setIsLiked] = useState(false);
 
+  // check liked
   useEffect(() => {
     const checkLikedStatus = async () => {
       if (token) {
@@ -53,6 +54,25 @@ function ImagesComp({ filteredproducts, color, token }) {
   };
 
   const images = filteredproducts?.colorpalets[color]?.images;
+
+  // move using arrow buttons
+  useEffect(() => {
+    const handleArrowKeyScroll = (e) => {
+      if (!imagesScrollRef.current) return;
+
+      const scrollAmount = imagesScrollRef.current.clientWidth;
+      if (e.key === "ArrowRight") {
+        imagesScrollRef.current.scrollLeft += scrollAmount;
+      } else if (e.key === "ArrowLeft") {
+        imagesScrollRef.current.scrollLeft -= scrollAmount;
+      }
+    };
+
+    window.addEventListener("keydown", handleArrowKeyScroll);
+    return () => {
+      window.removeEventListener("keydown", handleArrowKeyScroll);
+    };
+  }, []);
 
   return (
     <div className="flex flex-col-reverse lg:flex-row lg:items-center gap-2 ">
@@ -163,7 +183,6 @@ const MainImage = ({ image, name, pid, index, color }) => {
         height={400}
         width={754}
         loading="lazy"
-        
         onLoad={() => {
           setloading((pre) => ({ ...pre, effect: false }));
           setTimeout(() => {
@@ -208,7 +227,6 @@ const MiniImage = ({ image, alt, onClick, isActive }) => {
         width={100}
         quality={50}
         loading="lazy"
-        
         onLoad={() => {
           setloading((pre) => ({ ...pre, effect: false }));
           setTimeout(() => {
