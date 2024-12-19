@@ -134,7 +134,7 @@ function Colorpalets() {
                           ? URL.createObjectURL(image)
                           : image
                       }
-                      className="border border-slate-300 aspect-[4/3] w-32 rounded overflow-hidden object-cover"
+                      className="border border-slate-300 aspect-square w-32 rounded overflow-hidden object-cover"
                       alt={`Color image ${imageindex + 1}`}
                     />
                     {/* move button */}
