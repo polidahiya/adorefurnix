@@ -163,14 +163,14 @@ function Reviews() {
         What Our Customers Say
       </h2>
       <div
-        className="w-full flex overflow-x-scroll snap-x snap-always snap-mandatory"
+        className="w-full flex overflow-x-scroll snap-x snap-mandatory"
         onScroll={handleImageScroll}
         ref={imagesScrollRef}
       >
         {reviewslist.map((chunk, i) => (
           <div
             key={i}
-            className="min-w-full grid grid-cols-1 md:grid-cols-3 items-stretch place-items-center gap-2 md:gap-14 lg:gap-20 py-10  md:mt-10 px-8 lg:px-16 snap-center"
+            className="min-w-full grid grid-cols-1 md:grid-cols-3  items-stretch place-items-center gap-2 md:gap-14 lg:gap-20 py-10  md:mt-10 px-8 lg:px-16 snap-center snap-always"
           >
             {chunk.map((review, index) => (
               <Reviewcard key={index} review={review} />

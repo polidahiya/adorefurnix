@@ -67,9 +67,12 @@ export default function Page({ userdata, token, orderstatus }) {
     }
 
     if (
-      userdata?.phonenum.trim() === "" ||
-      userdata?.address.trim() === "" ||
-      userdata?.username.trim() === ""
+      !userdata.phonenum ||
+      !userdata.address ||
+      !userdata.username ||
+      userdata?.phonenum?.trim() === "" ||
+      userdata?.address?.trim() === "" ||
+      userdata?.username?.trim() === ""
     ) {
       setmessagefn("Update Your Details");
       setredirectloginlink("/cart");
