@@ -32,7 +32,7 @@ function Navcategories({ category }) {
               }}
               className={`lg:h-[30px] w-full flex  items-center justify-start lg:justify-center  text-[14px] lg:text-white py-[10px] px-5 lg:px-[10px] lg:py-[5px] rounded-[10px] lg:rounded-full ${
                 category == item
-                  ? "lg:bg-slate-700 "
+                  ? "lg:bg-theme"
                   : "lg:group-hover:bg-slate-700 "
               }`}
             >

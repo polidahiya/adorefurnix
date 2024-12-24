@@ -98,7 +98,7 @@ function ImagesComp({ filteredproducts, color, token }) {
         ))}
       </div>
       {/* main */}
-      <div className="relative  overflow-hidden w-full  h-full md:max-h-[400px] lg:max-h-full">
+      <div className="relative  overflow-hidden w-full  h-full lg:max-h-full">
         <div
           className="h-full w-full flex items-stretch overflow-x-scroll snap-x snap-mandatory scroll-smooth"
           onScroll={handleImageScroll}
