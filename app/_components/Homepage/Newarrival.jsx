@@ -53,7 +53,7 @@ const Newarrival = async ({ products }) => {
           </div>
         ))}
       </div>
-      <center>
+      <div className="flex justify-center">
         <Link
           href={"/Search?query=new_arrivals"}
           className="relative w-fit group flex items-center justify-center gap-[10px] px-6 py-3 mt-8  text-white font-semibold rounded-full overflow-hidden"
@@ -62,7 +62,7 @@ const Newarrival = async ({ products }) => {
           <LuArrowRightCircle className="z-10" />
           <div className="absolute top-0 left-0 w-[200%] h-full bg-animatingtheme  group-hover:translate-x-[-50%] duration-200"></div>
         </Link>
-      </center>
+      </div>
     </section>
   );
 };

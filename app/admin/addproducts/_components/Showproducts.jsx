@@ -114,14 +114,14 @@ function Showproducts() {
           </div>
         )}
       </div>
-      <center>
+      <div className="flex justify-center">
         <button
           className="bg-slate-300 rounded-md p-[5px] px-5 my-5"
           onClick={() => showproducts(false)}
         >
           Show Products
         </button>
-      </center>
+      </div>
       {/* products */}
       <div className="w-full grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] md:grid-cols-[repeat(auto-fit,minmax(250px,1fr))] place-items-center gap-[10px] md:gap-[20px] p-3 md:p-8">
         {products.map((item, i) => {

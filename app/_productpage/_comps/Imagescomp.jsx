@@ -98,9 +98,9 @@ function ImagesComp({ filteredproducts, color, token }) {
         ))}
       </div>
       {/* main */}
-      <div className="relative aspect-[4/3] w-full max-h-[400px] lg:max-h-full">
+      <div className="relative  overflow-hidden w-full  h-full md:max-h-[400px] lg:max-h-full">
         <div
-          className="h-full w-full flex overflow-x-scroll snap-x snap-mandatory scroll-smooth"
+          className="h-full w-full flex items-stretch overflow-x-scroll snap-x snap-mandatory scroll-smooth"
           onScroll={handleImageScroll}
           ref={imagesScrollRef}
         >
@@ -115,6 +115,7 @@ function ImagesComp({ filteredproducts, color, token }) {
             />
           ))}
         </div>
+        {/* buttons */}
         <div className="absolute right-[10px] top-[10px] flex gap-2">
           {/* like  */}
           <button
@@ -174,13 +175,13 @@ const MainImage = ({ image, name, pid, index, color }) => {
   return (
     <Link
       href={`/Fullimage?pid=${pid}&color=${color}&index=${index}`}
-      className="relative min-w-[100%] h-full cursor-zoom-in"
+      className="relative block aspect-square min-w-[100%] h-full w-full cursor-zoom-in snap-start snap-always overflow-hidden"
     >
       <Image
-        className="min-w-[100%] h-full snap-start snap-always object-contain"
+        className="min-w-full w-full h-full  object-contain"
         src={hasError ? fallbackImage : image}
         alt={name}
-        height={400}
+        height={754}
         width={754}
         loading="lazy"
         onLoad={() => {
@@ -194,7 +195,7 @@ const MainImage = ({ image, name, pid, index, color }) => {
       {/* loading */}
       {loading.show && (
         <div
-          className={`imgloader absolute inset-0 bg-bg1 ${
+          className={`imgloader absolute top-0 left-0  h-full w-full bg-bg1 ${
             !loading.effect && "opacity-0"
           } duration-500`}
         ></div>
@@ -212,7 +213,7 @@ const MiniImage = ({ image, alt, onClick, isActive }) => {
 
   return (
     <div
-      className={`relative w-[70px] lg:w-full aspect-square cursor-pointer ${
+      className={`relative w-[70px] lg:w-full aspect-square cursor-pointer overflow-hidden ${
         isActive
           ? "border-[2px] border-cyan-500"
           : "border-[2px] border-slate-300"
@@ -220,7 +221,7 @@ const MiniImage = ({ image, alt, onClick, isActive }) => {
       onClick={onClick}
     >
       <Image
-        className={`h-full w-full aspect-square object-contain bg-white`}
+        className={`h-full w-full aspect-square object-cover bg-white`}
         src={hasError ? fallbackImage : image}
         alt={alt}
         height={100}

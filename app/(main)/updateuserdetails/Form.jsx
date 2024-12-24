@@ -108,7 +108,7 @@ function Form({ userdata }) {
           </label>
         </div>
       </div>
-      <center>
+      <div className="flex items-center justify-center">
         <button
           className="flex items-center justify-center gap-[10px] px-[100px] py-[5px] bg-theme text-white rounded-full mt-[20px] "
           onClick={updateuserfn}
@@ -118,7 +118,7 @@ function Form({ userdata }) {
           )}
           <span>Update Details</span>
         </button>
-      </center>
+      </div>
     </div>
   );
 }

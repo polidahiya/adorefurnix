@@ -9,7 +9,7 @@ async function Blogscomp() {
 
   return (
     <div className="">
-      <center>
+      <div className="flex items-center justify-center">
         <Link
           href="/Blogs"
           className="text-2xl md:text-4xl font-bold mb-4 font-recline "
@@ -17,7 +17,7 @@ async function Blogscomp() {
         >
           Blogs
         </Link>
-      </center>
+      </div>
       <section className="px-4 md:px-8 lg:px-16 mt-5">
         {blogs?.slice(0, 3).map((blog, i) => {
           const mainHeading = blog?.blogdata?.find(
@@ -66,7 +66,7 @@ async function Blogscomp() {
           );
         })}
       </section>
-      {/* <center>
+      {/* <div className="flex justify-center">
         <Link
           href={`/Blogs`}
           className="bg-theme text-white w-fit flex items-center gap-3  py-2 px-4 rounded-full mt-5"
@@ -74,7 +74,7 @@ async function Blogscomp() {
           More Blogs
           <LuArrowRightCircle />
         </Link>
-      </center> */}
+      </div> */}
     </div>
   );
 }

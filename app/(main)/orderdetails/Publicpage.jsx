@@ -162,7 +162,7 @@ const Historyproductcard = ({ item, product, index }) => {
 
 const OrderStatus = ({ item }) => {
   return (
-    <center>
+    <div className="flex items-center justify-center w-full">
       {item.status < 4 && (
         <div className="bg-white rounded-lg lg:rounded-b-none pt-3 w-full md:w-[600px] ">
           <div className="flex items-center w-full mt-[10px] px-[40px] md:px-[60px]">
@@ -196,7 +196,7 @@ const OrderStatus = ({ item }) => {
           </div>
         </div>
       )}
-    </center>
+    </div>
   );
 };
 

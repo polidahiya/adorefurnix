@@ -13,11 +13,11 @@ function Herosection({ token, userdata, productsname }) {
           <p className="w-full text-start font-recline ">Furnish with Love,</p>
           <p className="w-full text-end font-recline ">Live with Elegance</p>
         </h2>
-        <center>
+        <div className="flex justify-center">
           <div className="w-[90%] max-w-[650px] h-[35px] md:h-[40px] mt-[10px]">
             <Searchbox productsname={productsname} />
           </div>
-        </center>
+        </div>
       </div>
 
       {/* bg image */}

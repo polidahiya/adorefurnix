@@ -81,7 +81,7 @@ function Publicpage({ token = null }) {
           </label>
         </div>
       </div>
-      <center>
+      <div className="flex items-center justify-center">
         <button
           className="relative group flex items-center justify-center gap-[10px] px-[50px] py-[5px] text-white rounded-full mt-[20px]  overflow-hidden"
           onClick={Submitform}
@@ -92,7 +92,7 @@ function Publicpage({ token = null }) {
           <span className="z-10">{token ? "Change password" : "Continue"}</span>
           <div className="absolute top-0 left-0 w-[200%] h-full bg-animatingtheme group-hover:translate-x-[-50%] duration-200"></div>
         </button>
-      </center>
+      </div>
     </>
   );
 }
