@@ -98,7 +98,7 @@ function ImagesComp({ filteredproducts, color, token }) {
         ))}
       </div>
       {/* main */}
-      <div className="relative  overflow-hidden w-full  h-full lg:max-h-full">
+      <div className="relative  overflow-hidden w-full  h-full lg:max-h-full lg:border">
         <div
           className="h-full w-full flex items-stretch overflow-x-scroll snap-x snap-mandatory scroll-smooth"
           onScroll={handleImageScroll}
@@ -175,7 +175,7 @@ const MainImage = ({ image, name, pid, index, color }) => {
   return (
     <Link
       href={`/Fullimage?pid=${pid}&color=${color}&index=${index}`}
-      className="relative block aspect-square min-w-[100%] h-full w-full cursor-zoom-in snap-start snap-always overflow-hidden"
+      className="relative block aspect-square min-w-[100%] h-full w-full cursor-zoom-in p-px snap-start snap-always overflow-hidden"
     >
       <Image
         className="min-w-full w-full h-full  object-contain"

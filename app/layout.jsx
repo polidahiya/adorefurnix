@@ -58,7 +58,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <Appwrapper>
-        <body className="antialiased">
+        <body className="antialiased max-w-[1920px] mx-auto">
           <Message />
           <div>{children}</div>
           {/* <Logininstant /> */}

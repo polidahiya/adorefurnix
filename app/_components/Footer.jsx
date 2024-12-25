@@ -147,6 +147,7 @@ const Protectedbygoogle = () => (
       <a
         href="https://policies.google.com/privacy"
         target="_blank"
+        rel="noopener noreferrer"
         className="text-cyan-500 hover:underline"
       >
         Privacy Policy
@@ -155,6 +156,7 @@ const Protectedbygoogle = () => (
       <a
         href="https://policies.google.com/terms"
         target="_blank"
+         rel="noopener noreferrer"
         className="text-cyan-500 hover:underline"
       >
         Terms of Service

@@ -16,8 +16,9 @@ import Reviews from "./_components/Homepage/Reviews";
 // import Posters from "./_components/Homepage/Posters";
 
 export default async function Home({ searchParams }) {
-  const token = cookies()?.get("token")?.value;
-  const userdata = cookies()?.get("userdata")?.value;
+  const allcookies = cookies();
+  const token = allcookies?.get("token")?.value;
+  const userdata = allcookies?.get("userdata")?.value || {};
 
   const products = await Cachedproducts();
   const productsname = products?.map((item) => item?.name);

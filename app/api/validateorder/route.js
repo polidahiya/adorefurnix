@@ -265,12 +265,12 @@ const sendconfirmationmail = async (orderdetails, amount) => {
                                         <div class="social-icons">
                                           <a href="${
                                             sociallinks.twitter
-                                          }" target="_blank">
+                                          }" target="_blank"  rel="noopener noreferrer">
                                             <img src="${domain}/socialicons/xlogo.png" alt="X Logo" />
                                           </a>
                                           <a href="${
                                             sociallinks.insta
-                                          }" target="_blank">
+                                          }" target="_blank"  rel="noopener noreferrer">
                                             <img
                                               src="${domain}/socialicons/instagramlogo.jpg"
                                               alt="Instagram Logo"
@@ -278,7 +278,7 @@ const sendconfirmationmail = async (orderdetails, amount) => {
                                           </a>
                                           <a href="${
                                             sociallinks.facebook
-                                          }" target="_blank">
+                                          }" target="_blank"  rel="noopener noreferrer">
                                             <img
                                               src="${domain}/socialicons/facebooklogo.png"
                                               alt="Facebook Logo"
@@ -474,12 +474,12 @@ const sendconfirmationmail = async (orderdetails, amount) => {
                                         <div class="social-icons">
                                           <a href="${
                                             sociallinks.twitter
-                                          }" target="_blank">
+                                          }" target="_blank"  rel="noopener noreferrer">
                                             <img src="${domain}/socialicons/xlogo.png" alt="X Logo" />
                                           </a>
                                           <a href="${
                                             sociallinks.insta
-                                          }" target="_blank">
+                                          }" target="_blank"  rel="noopener noreferrer">
                                             <img
                                               src="${domain}/socialicons/instagramlogo.jpg"
                                               alt="Instagram Logo"
@@ -487,7 +487,7 @@ const sendconfirmationmail = async (orderdetails, amount) => {
                                           </a>
                                           <a href="${
                                             sociallinks.facebook
-                                          }" target="_blank">
+                                          }" target="_blank"  rel="noopener noreferrer">
                                             <img
                                               src="${domain}/socialicons/facebooklogo.png"
                                               alt="Facebook Logo"

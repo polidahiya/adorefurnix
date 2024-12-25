@@ -123,19 +123,19 @@ export const Sendpassresetmail = async (email) => {
           <div class="footer">
             <p>Follow us on social media:</p>
             <div class="social-icons">
-              <a href=${sociallinks.twitter} target="_blank">
+              <a href=${sociallinks.twitter} ">
                 <img
                   src="${domain}/socialicons/xlogo.png"
                   alt="X Logo"
                 />
               </a>
-              <a href=${sociallinks.insta} target="_blank">
+              <a href=${sociallinks.insta} ">
                 <img
                   src="${domain}/socialicons/instagramlogo.jpg"
                   alt="Instagram Logo"
                 />
               </a>
-              <a href=${sociallinks.facebook} target="_blank">
+              <a href=${sociallinks.facebook} ">
                 <img
                   src="${domain}/socialicons/facebooklogo.png"
                   alt="Facebook Logo"

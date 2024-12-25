@@ -37,7 +37,7 @@ const FAQSection = () => {
     },
     {
       question: "Can I modify or cancel my order after placing it?",
-      answer: `You can cancel your order within 24 hours of placing it. After this period, the order cannot be canceled. If the product does not comply with the specifications as per your original order, raise the issue immediately & report it to us. For more details, please get in touch with us on our customer care number or write to us at <a href="mailto:${mail}" target="_blank" class="text-blue-500 hover:underline">${mail}</a>. Products purchased on discount or during sale cannot be canceled.`,
+      answer: `You can cancel your order within 24 hours of placing it. After this period, the order cannot be canceled. If the product does not comply with the specifications as per your original order, raise the issue immediately & report it to us. For more details, please get in touch with us on our customer care number or write to us at <a href="mailto:${mail}" target="_blank"  rel="noopener noreferrer" class="text-blue-500 hover:underline">${mail}</a>. Products purchased on discount or during sale cannot be canceled.`,
     },
     {
       question: "Do you offer bulk or wholesale pricing?",
