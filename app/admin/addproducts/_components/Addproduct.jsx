@@ -62,7 +62,7 @@ function Addandupdateproduct() {
       {/* add or update product button */}
       <div className="flex items-center justify-center gap-[20px] my-[50px]">
         <button
-          className="relative flex items-center justify-center gap-[10px] h-[30px] min-w-[160px] bg-green-600 text-white rounded-[10px] "
+          className="relative flex items-center justify-center gap-[10px] h-[30px] min-w-[160px] bg-theme text-white rounded-[10px] "
           onClick={uploadproductfn}
         >
           {uploadloading && <Loadingcomp />}
