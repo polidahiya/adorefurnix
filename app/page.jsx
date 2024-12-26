@@ -18,7 +18,7 @@ import Reviews from "./_components/Homepage/Reviews";
 export default async function Home({ searchParams }) {
   const allcookies = cookies();
   const token = allcookies?.get("token")?.value;
-  const userdata = allcookies?.get("userdata")?.value || {};
+  const userdata = allcookies?.get("userdata")?.value ;
 
   const products = await Cachedproducts();
   const productsname = products?.map((item) => item?.name);
