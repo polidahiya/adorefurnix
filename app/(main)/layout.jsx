@@ -6,7 +6,7 @@ import Footer from "../_components/Footer";
 export default async function RootLayout({ children, params }) {
   const products = await Cachedproducts();
   const productsname = products.map((item) => item.name);
-  
+
   // cookies
   const token = cookies()?.get("token")?.value;
   const userdata = cookies()?.get("userdata")?.value;

@@ -94,6 +94,10 @@ export const categorylist = {
         image: "/categoriesimages/subcats/NestingTables.jpg",
         name: "Nesting Tables",
       },
+      {
+        image: "/categoriesimages/subcats/diningtables.jpg",
+        name: "Dining Tables",
+      },
     ],
   },
   Storage: {
@@ -343,6 +347,5 @@ export const cities = [
   "Aizawl",
   "Agartala",
 ];
-
 
 export const CACHE_TIME = 60 * 60 * 1000; // 24 hours
