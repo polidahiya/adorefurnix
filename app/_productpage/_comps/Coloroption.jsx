@@ -39,17 +39,16 @@ function Coloroption({ filteredproducts, color }) {
 function Comp({ image, i }) {
   const [safeimage, setsafeimage] = useState(image);
   return (
-    <Image
+    <img
       src={safeimage}
       className="h-[100px] min-w-[100px] object-contain object-center rounded-[5px]"
       alt={"color-option-" + i}
       height={100}
       width={100}
-      
       onError={() => {
         setsafeimage("/default-fallback-image.png");
       }}
-    ></Image>
+    ></img>
   );
 }
 

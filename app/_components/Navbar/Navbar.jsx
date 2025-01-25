@@ -153,14 +153,14 @@ export const Cartlink = () => {
                       )}
                       className="flex gap-2"
                     >
-                      <Image
+                      <img
                         className="min-w-32 aspect-[4/3] rounded-sm object-cover bg-bg1"
                         src={item?.colorpalets[item?.selectedcolor]?.images[0]}
                         alt={item?.name}
                         quality={10}
                         width={112}
                         height={84}
-                      ></Image>
+                      ></img>
                       <div className="flex flex-col text-xs">
                         <h3 className="line-clamp-2">{item.name}</h3>
                         {/* price */}
@@ -213,13 +213,13 @@ export const Cartlink = () => {
             </>
           ) : (
             <div className="flex items-center px-5">
-              <Image
+              <img
                 src="/no-cart.png"
                 alt="Empty cart image"
                 height={100}
                 width={100}
                 className="w-[100px]"
-              ></Image>
+              ></img>
               <p className="text-[14px] text-center">
                 Your Cart is Empty, Add Some Products.
               </p>

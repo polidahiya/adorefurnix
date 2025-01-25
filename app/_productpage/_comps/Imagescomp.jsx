@@ -177,7 +177,7 @@ const MainImage = ({ image, name, pid, index, color }) => {
       href={`/Fullimage?pid=${pid}&color=${color}&index=${index}`}
       className="relative block aspect-square min-w-[100%] h-full w-full cursor-zoom-in p-px snap-start snap-always overflow-hidden"
     >
-      <Image
+      <img
         className="min-w-full w-full h-full  object-contain"
         src={hasError ? fallbackImage : image}
         alt={name}
@@ -220,7 +220,7 @@ const MiniImage = ({ image, alt, onClick, isActive }) => {
       }`}
       onClick={onClick}
     >
-      <Image
+      <img
         className={`h-full w-full aspect-square object-cover bg-white`}
         src={hasError ? fallbackImage : image}
         alt={alt}
