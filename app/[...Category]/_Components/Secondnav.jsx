@@ -69,7 +69,7 @@ function Secondnav({ category, subcat, searchParams, lengthofproducts }) {
 
       {/* mobile filter button */}
       <button
-        className="fixed top-[70px] right-[10px] h-[40px] aspect-square text-[20px] grid place-content-center rounded-full text-white bg-theme z-10"
+        className="fixed top-[70px] right-[10px] h-[40px] aspect-square lg:hidden text-[20px] grid place-content-center rounded-full text-white bg-theme z-10"
         onClick={() => {
           history.pushState(null, "", "");
           setshowfilter(true);

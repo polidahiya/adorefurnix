@@ -42,7 +42,7 @@ const Newarrival = async ({ products }) => {
               View Details
             </Link>
             {/* new tag */}
-            <Image
+            <img
               className="absolute top-[-13px] right-[-14px] w-24 aspect-square"
               src="/images/newtag.webp"
               alt="new tag image"

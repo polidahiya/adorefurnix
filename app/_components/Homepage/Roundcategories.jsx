@@ -62,15 +62,14 @@ function Roundcategories() {
       <div className="flex items-center gap-5 w-full overflow-x-scroll hidescroll px-3 md:px-10">
         {list.map((item, i) => (
           <Link key={i} href={item?.link} className="min-w-28 md:min-w-44">
-            <Image
+            <img
               src={item?.image}
               alt={item?.image}
               width={175}
               height={150}
               quality={100}
               loading="lazy"
-              
-            ></Image>
+            ></img>
 
             <p className="text-center font-semibold mt-2 text-[14px] md:text-[16px]">
               {item?.name}

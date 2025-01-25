@@ -153,14 +153,14 @@ export const Cartlink = () => {
                       )}
                       className="flex gap-2"
                     >
-                      <img
-                        className="min-w-32 aspect-[4/3] rounded-sm object-cover bg-bg1"
+                      <Image
+                        className="min-w-32 w-32 aspect-[4/3] rounded-sm object-cover bg-bg1"
                         src={item?.colorpalets[item?.selectedcolor]?.images[0]}
                         alt={item?.name}
-                        quality={10}
-                        width={112}
-                        height={84}
-                      ></img>
+                        width={300}
+                        height={300}
+                        loading="lazy"
+                      ></Image>
                       <div className="flex flex-col text-xs">
                         <h3 className="line-clamp-2">{item.name}</h3>
                         {/* price */}

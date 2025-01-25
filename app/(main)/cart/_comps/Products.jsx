@@ -60,11 +60,11 @@ export default function Products({ item, i }) {
           <Image
             src={imgSrc}
             alt={product.name}
-            height={200}
-            width={200}
+            width={300}
+            height={300}
+            loading="lazy"
             className="h-full w-full aspect-[2/1] md:aspect-square object-contain object-center"
             onError={handleImageError}
-            
           />
         </Link>
         <div className="flex flex-col h-full w-full">
