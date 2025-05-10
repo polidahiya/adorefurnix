@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import Image from "next/image";
+import Nextimage from "@/app/_components/Nextimage";
 import { AppContextfn } from "@/app/Context";
 import { updateuserdetails } from "./Serveractions";
 import Updateusersvg from "@/app/_svgs/Updateusersvg";
@@ -52,14 +52,14 @@ function Form({ userdata }) {
 
   return (
     <div className="blackshadow1 w-full md:w-[700px] bg-white p-[30px] rounded-[20px]">
-      <Image
+      <Nextimage
         src="/minlogo.png"
         alt="adorefurnix logo image"
         className=" top-[20px] left-[30px] h-[50px] w-[50px]"
         width={156}
         height={60}
         
-      ></Image>
+      ></Nextimage>
       <div className="flex items-center justify-center gap-[10px] text-[25px] font-semibold  font-recline ">
         <Updateusersvg styles="h-[30px] translate-y-[-3px]" />
         Update Details

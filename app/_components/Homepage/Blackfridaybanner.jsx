@@ -1,11 +1,11 @@
 import Link from "next/link";
-import Image from "next/image";
+import Nextimage from "@/app/_components/Nextimage";
 import React from "react";
 
 function Blackfridaybanner() {
   return (
     <Link href={"/"} className="w-full lg:px-10">
-      <Image
+      <Nextimage
         className="w-full h-full shadow-xl"
         src="/images/blackfridaybanner.jpg"
         alt="ksjdf"
@@ -13,7 +13,7 @@ function Blackfridaybanner() {
         width={1000}
         loading="lazy"
         
-      ></Image>
+      ></Nextimage>
     </Link>
   );
 }

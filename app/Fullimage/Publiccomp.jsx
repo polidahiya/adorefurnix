@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { IoArrowBackOutline } from "react-icons/io5";
 import Link from "next/link";
-import Image from "next/image";
+import Nextimage from "@/app/_components/Nextimage";
 
 function Publiccomp({ pid, index, color, allproducts }) {
   const [togglemenu, settogglemenu] = useState(true);
@@ -27,7 +27,7 @@ function Publiccomp({ pid, index, color, allproducts }) {
         </Link>
         <h1>{product?.name}</h1>
       </div>
-      <Image
+      <Nextimage
         src={images[index]}
         alt={product?.name}
         width={2000}
@@ -37,7 +37,7 @@ function Publiccomp({ pid, index, color, allproducts }) {
         loading="lazy"
         unoptimized
         onClick={() => settogglemenu((pre) => !pre)}
-      ></Image>
+      ></Nextimage>
       <div
         className={`w-full flex items-center justify-center flex-wrap gap-2 bg-black bg-opacity-50 absolute bottom-0 p-5 left-1/2 -translate-x-1/2 duration-300 ${
           togglemenu ? "translate-y-0" : "translate-y-full"
@@ -52,7 +52,7 @@ function Publiccomp({ pid, index, color, allproducts }) {
             )}
             replace
           >
-            <Image
+            <Nextimage
               src={image}
               alt={product?.name}
               height={100}
@@ -63,7 +63,7 @@ function Publiccomp({ pid, index, color, allproducts }) {
               className={`min-w-16 w-16 md:min-w-12 md:w-12 aspect-square border md:border-2 ${
                 index == i ? "border-theme" : "border-slate-300"
               }`}
-            ></Image>
+            ></Nextimage>
           </Link>
         ))}
       </div>

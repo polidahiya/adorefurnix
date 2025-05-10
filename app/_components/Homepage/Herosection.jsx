@@ -1,7 +1,7 @@
 import React from "react";
 import Homenavbar from "./Homenavbar";
 import Searchbox from "../Searchbox";
-import Image from "next/image";
+import Nextimage from "@/app/_components/Nextimage";
 import Topinfobar from "../Topinfobar";
 
 function Herosection({ token, userdata, productsname }) {
@@ -28,7 +28,7 @@ function Herosection({ token, userdata, productsname }) {
         </div>
 
         {/* bg image */}
-        <Image
+        <Nextimage
           className="w-full  md:h-[100vh] max-h-[600px]  object-cover bg-graygradient top-0 z-[-1] hidden md:inline-block"
           src="/images/desktophomepageimage.webp"
           alt="homepageslide"
@@ -38,7 +38,7 @@ function Herosection({ token, userdata, productsname }) {
           priority={true}
         />
         {/* mobile */}
-        <Image
+        <Nextimage
           className="w-full  md:h-[100vh] max-h-[600px]  object-cover bg-graygradient top-0 z-[-1] md:hidden"
           src="/images/mobilehomepageimage2.webp"
           alt="homepageslide"

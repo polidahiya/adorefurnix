@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import Image from "next/image";
+import Nextimage from "@/app/_components/Nextimage";
 import Footer from "./_components/Footer";
 import Navbar from "./_components/Navbar/Navbar";
 
@@ -13,14 +13,14 @@ function page() {
           <h1 className="m-0 p-0 translate-y-[50px] text-[30px] font-extrabold text-center">
             404
           </h1>
-          <Image
+          <Nextimage
             src="/notfound.gif"
             alt="not found gif image"
             height={300}
             width={400}
             
             className="max-w-[400px] m-auto w-full object-contain object-center"
-          ></Image>
+          ></Nextimage>
           <h3 className=" font-bold text-center">
             Look like you&lsquo;re lost
           </h3>

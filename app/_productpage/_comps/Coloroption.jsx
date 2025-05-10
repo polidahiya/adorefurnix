@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import Image from "next/image";
+import Nextimage from "@/app/_components/Nextimage";
 import Link from "next/link";
 
 function Coloroption({ filteredproducts, color }) {

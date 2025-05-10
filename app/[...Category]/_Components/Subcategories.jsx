@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import Nextimage from "@/app/_components/Nextimage";
 import { categorylist } from "@/app/commondata";
 // import { BiSolidCategory } from "react-icons/bi";
 
@@ -18,7 +18,7 @@ function Subcategories({ category, subcat }) {
                   "bg-theme bg-clip-text text-transparent"
                 }`}
               >
-                <Image
+                <Nextimage
                   src={itemsubcat.image}
                   width={100}
                   height={100}
@@ -29,7 +29,7 @@ function Subcategories({ category, subcat }) {
                     subcat == itemsubcat.name ? "bg-theme" : "bg-slate-300"
                   }`}
                   
-                ></Image>
+                ></Nextimage>
                 <div
                   className={`h-fit w-full  text-center p-[5px]  text-[14px] text-ellipsis whitespace-nowrap overflow-hidden ${
                     subcat == itemsubcat.name && "font-semibold"

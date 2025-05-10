@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import Image from "next/image";
+import Nextimage from "@/app/_components/Nextimage";
 import { RiStarSLine } from "react-icons/ri";
 import {
   FaCcVisa,
@@ -48,13 +48,13 @@ function Footer() {
     <footer className="bg-graygradient text-white px-[30px] md:px-[50px] p-[20px] pt-[30px] lg:pt-[20px] text-[14px]">
       <section className=" flex gap-[50px] flex-col md:flex-row">
         <div className="flex-1 flex flex-col items-start">
-          <Image
+          <Nextimage
             src="/logo3.png"
             alt="logo image"
             width={200}
             height={52}
             className="h-[40px] w-[160px] "
-          ></Image>
+          ></Nextimage>
           <p className="mt-[30px]  mb-[20px] text-justify">
             Our mission is to provide high-quality, handcrafted wooden furniture
             and home decor that enhances your living space. We strive to offer

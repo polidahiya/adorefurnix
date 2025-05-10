@@ -50,7 +50,9 @@ function Quantity({ filteredproducts, color }) {
 
   return (
     <div className="flex items-center gap-[10px] mt-8 font-semibold">
-      <span className="text-slate-400 whitespace-nowrap min-w-28">Quantity:</span>
+      <span className="text-slate-400 whitespace-nowrap min-w-28">
+        Quantity:
+      </span>
       <div className="flex items-center gap-[5px] h-8">
         <button
           className="h-full aspect-square rounded-[5px] border border-slate-300"

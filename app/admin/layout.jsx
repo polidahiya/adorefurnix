@@ -1,6 +1,6 @@
 import { autologin } from "../_serveractions/Loginaction";
 import Link from "next/link";
-import Image from "next/image";
+import Nextimage from "@/app/_components/Nextimage";
 import Loginpage from "./Loginpage";
 import { FaDollyFlatbed } from "react-icons/fa";
 import { RiBloggerFill } from "react-icons/ri";
@@ -31,7 +31,7 @@ export default async function RootLayout({ children }) {
     <div>
       <nav className="sticky top-0 flex items-center gap-[5px] md:gap-[10px] h-[50px] shadow-md p-[7px] px-[10px] lg:px-[40px] z-20 bg-graygradient">
         <Link href="/">
-          <Image
+          <Nextimage
             src="/logo3.png"
             alt="logo"
             height={40}

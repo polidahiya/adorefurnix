@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/image";
+import Nextimage from "@/app/_components/Nextimage";
 
 function Posters() {
   const list = [
@@ -12,7 +12,7 @@ function Posters() {
     <div className="px-2 md:px-10 my-12">
       <div className="flex items-center overflow-x-scroll snap-x scroll-smooth">
         {list.map((item, i) => (
-          <Image
+          <Nextimage
             className={`min-w-full md:min-w-[50%] ${
               i % 2 == 0 && "snap-start"
             }  object-contain `}
@@ -24,7 +24,7 @@ function Posters() {
             width={946}
             height={358}
             
-          ></Image>
+          ></Nextimage>
         ))}
       </div>
     </div>

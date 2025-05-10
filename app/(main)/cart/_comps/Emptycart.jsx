@@ -1,16 +1,16 @@
-import Image from "next/image";
+import Nextimage from "@/app/_components/Nextimage";
 import Link from "next/link";
 
 function Emptycart() {
   return (
     <div className="flex flex-col items-center justify-center min-h-[calc(100vh-60px)] lg:min-h-[calc(100vh-111px)] p-[20px]">
-      <Image
+      <Nextimage
         src="/no-cart.png"
         alt="Empty cart image"
         height={300}
         width={300}
         
-      ></Image>
+      ></Nextimage>
       <p className="mt-[30px] font-bold text-[20px] text-center">
         Your Cart is Empty, Add Some Products.
       </p>

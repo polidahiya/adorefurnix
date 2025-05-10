@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef, useState } from "react";
 import { RatingStars } from "../Ratingstars";
-import Image from "next/image";
+import Nextimage from "@/app/_components/Nextimage";
 
 function Reviews() {
   const reviewslist = [
@@ -220,14 +220,14 @@ const Reviewcard = ({ review }) => {
 
       {/* Profile Image */}
       <div className="absolute -right-6 -top-6 w-20 aspect-square rounded-full overflow-hidden border-4 border-gray-100 shadow-md">
-        <Image
+        <Nextimage
           src={review?.image ? review?.image : defaultimages[review?.gender]}
           alt={review?.name}
           height={80}
           width={80}
           loading="lazy"
           className="w-full h-full object-cover bg-gray-400"
-        ></Image>
+        ></Nextimage>
       </div>
 
       {/* Star Rating */}

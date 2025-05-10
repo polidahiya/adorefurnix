@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
+import Nextimage from "@/app/_components/Nextimage";
 import Navcategories from "./Navcategories";
 import Animatingmobilenemubutton from "./_comps/Animatingmobilenemubutton";
 import Logedinusermenu from "./_comps/Logedinusermenu";
@@ -57,13 +57,13 @@ function Navbar({ params, productsname, token, userdata }) {
             href="/"
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[30px] md:h-full md:static md:flex  md:translate-x-0 md:translate-y-0  md:w-fit "
           >
-            <Image
+            <Nextimage
               className="w-auto h-full "
               src="/logo3.png"
               alt="adorefurnix logo"
               height={50}
               width={200}
-            ></Image>
+            ></Nextimage>
           </Link>
         </div>
         {/* searchbar */}
@@ -153,14 +153,14 @@ export const Cartlink = () => {
                       )}
                       className="flex gap-2"
                     >
-                      <Image
+                      <Nextimage
                         className="min-w-32 w-32 aspect-[4/3] rounded-sm object-cover bg-bg1"
                         src={item?.colorpalets[item?.selectedcolor]?.images[0]}
                         alt={item?.name}
                         width={300}
                         height={300}
                         loading="lazy"
-                      ></Image>
+                      ></Nextimage>
                       <div className="flex flex-col text-xs">
                         <h3 className="line-clamp-2">{item.name}</h3>
                         {/* price */}

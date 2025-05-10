@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Image from "next/image";
+import Nextimage from "@/app/_components/Nextimage";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { changeproductstatus } from "@/app/_serveractions/Adminorders";
 import { AppContextfn } from "@/app/Context";
@@ -11,7 +11,7 @@ export default function ProductCard({ product, orderid, productindex }) {
   return (
     <div className={`relative bg-white shadow-lg rounded-lg p-4 md:max-w-80`}>
       {localStatus != 0 && <Canceledorrefundedbadge status={localStatus} />}
-      <Image
+      <Nextimage
         className="w-full rounded-t-lg aspect-[4/3] object-cover object-center"
         src={product?.colorpalets[product?.selectedcolor].images[0]}
         alt="product image"

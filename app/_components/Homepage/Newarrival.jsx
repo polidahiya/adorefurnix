@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import Nextimage from "@/app/_components/Nextimage";
 import { LuArrowRightCircle } from "react-icons/lu";
 
 const Newarrival = async ({ products }) => {
@@ -16,7 +16,7 @@ const Newarrival = async ({ products }) => {
       <div className="relative grid grid-cols-2 md:grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-3 md:gap-6 px-4 md:px-16">
         {newarrival.map((item) => (
           <div key={item.name} className="relative bg-white shadow-md  p-2">
-            <Image
+            <Nextimage
               className="w-full aspect-square object-cover bg-bg1"
               src={item.colorpalets[0]?.images[0]}
               alt={item.name}

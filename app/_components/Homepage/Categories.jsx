@@ -1,7 +1,7 @@
 import React from "react";
 import { categorylist } from "@/app/commondata";
 import Link from "next/link";
-import Image from "next/image";
+import Nextimage from "@/app/_components/Nextimage";
 
 function Categories() {
   return (
@@ -17,7 +17,7 @@ function Categories() {
               href={`/${item}`.replace(/ /g, "-")}
               className={`item w-[30vw] md:w-[23vw] lg:w-[15vw] bg-white rounded-md lg:rounded-[1vw] lg:overflow-hidden lg:shadow-[0px_0px_10px_#bababa7f] lg:hover:scale-[103%] duration-200 `}
             >
-              <Image
+              <Nextimage
                 src={categorylist[item].image}
                 width={300}
                 height={300}
@@ -26,7 +26,7 @@ function Categories() {
                 priority={true}
                 
                 className="w-full aspect-[4/3] object-cover object-center rounded-[2.5vw] md:rounded-[1vw] bg-bg1"
-              ></Image>
+              ></Nextimage>
               <div className="text-center text-[14px] md:text-[16px] py-[10px]">{item}</div>
             </Link>
           );

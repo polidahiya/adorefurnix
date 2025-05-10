@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
+import Nextimage from "@/app/_components/Nextimage";
 import Rating from "./Ratingstars";
 import { FaTags } from "react-icons/fa";
 import { FiClock } from "react-icons/fi";
@@ -62,7 +62,7 @@ function Productcard({
       }`}
     >
       <div className="relative aspect-square w-full overflow-hidden">
-        <Image
+        <Nextimage
           src={imgSrc}
           alt={name}
           width={300}
@@ -106,7 +106,7 @@ function Productcard({
         </div>
         {/* best selling tag */}
         {keywords?.toLowerCase().includes("best seller") && (
-          <Image
+          <Nextimage
             className="absolute top-0 right-0 w-12 md:w-16 aspect-square object-contain"
             src="/images/bestsellertag.png"
             alt="best selling tag Image"
