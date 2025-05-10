@@ -74,7 +74,7 @@ async function Productpage({ category, subcat, productid, color }) {
       <article>
         <header className="flex flex-col lg:flex-row items-start p-[10px]">
           <div className="w-full lg:w-[50%] lg:sticky lg:top-[130px]">
-            <Nextimagescomp
+            <Imagescomp
               filteredproducts={filteredProduct}
               color={color}
               token={token}
