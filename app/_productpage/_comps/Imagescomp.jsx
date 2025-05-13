@@ -170,7 +170,6 @@ const MainImage = ({ image, name, pid, index, color }) => {
     effect: true,
     show: true,
   });
-  const [hasError, setHasError] = useState(false);
 
   return (
     <Link
@@ -179,7 +178,7 @@ const MainImage = ({ image, name, pid, index, color }) => {
     >
       <Nextimage
         className="min-w-full w-full h-full  object-contain"
-        src={hasError ? fallbackImage : image}
+        src={image}
         alt={name}
         height={754}
         width={754}
@@ -190,7 +189,6 @@ const MainImage = ({ image, name, pid, index, color }) => {
             setloading((pre) => ({ ...pre, show: false }));
           }, 550);
         }}
-        onError={() => setHasError(true)}
       />
       {/* loading */}
       {loading.show && (
@@ -209,7 +207,6 @@ const MiniImage = ({ image, alt, onClick, isActive }) => {
     effect: true,
     show: true,
   });
-  const [hasError, setHasError] = useState(false);
 
   return (
     <div
@@ -222,7 +219,7 @@ const MiniImage = ({ image, alt, onClick, isActive }) => {
     >
       <Nextimage
         className={`h-full w-full aspect-square object-cover bg-white`}
-        src={hasError ? fallbackImage : image}
+        src={image}
         alt={alt}
         height={100}
         width={100}
@@ -234,7 +231,6 @@ const MiniImage = ({ image, alt, onClick, isActive }) => {
             setloading((pre) => ({ ...pre, show: false }));
           }, 550);
         }}
-        onError={() => setHasError(true)}
       />
       {/* loading */}
       {loading.show && (
