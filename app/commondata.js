@@ -1,5 +1,5 @@
 export const mail = "adorefurnix@gmail.com";
-export const mobile = "+91 95822 14574";
+export const mobile = "+91 92115 09476";
 export const address = "Plot no. 1081 sector 3A, Gurgaon Haryana 122001";
 
 // export const payulink="https://test.payu.in/_payment" //test

@@ -7,7 +7,7 @@ import Script from "next/script";
 import Gotopbutton from "./_components/Gotopbutton";
 import Link from "next/link";
 import Googleanayltics from "./_components/Googleanayltics";
-import { cities } from "./commondata";
+import { cities, mobile } from "./commondata";
 import React from "react";
 import { FaWhatsapp } from "react-icons/fa";
 
@@ -90,7 +90,7 @@ const Helpbutton = () => (
 
 const Whatsappbutton = () => (
   <Link
-    href={`https://wa.me/9319454989?text=${encodeURIComponent(
+    href={`https://wa.me/${mobile.replace(/ /g,"")}?text=${encodeURIComponent(
       "Hi Adorefurnix, I found your products interesting, and I would like to know more!"
     )}`}
     target="_blank"

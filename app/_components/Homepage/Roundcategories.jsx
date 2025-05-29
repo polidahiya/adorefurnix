@@ -10,10 +10,11 @@ function Roundcategories() {
       link: "/Living_Room/Sofa_sets",
     },
     {
-      name: "Bed",
-      image: "/circledimages/bed.webp",
-      link: "/Search?query=Bed",
+      name: "Chester",
+      image: "/circledimages/chester.webp",
+      link: "/Bedroom/Chest_of_Drawers",
     },
+
     {
       name: "Chairs",
       image: "/circledimages/chairs.webp",
@@ -25,15 +26,16 @@ function Roundcategories() {
       image: "/circledimages/tvunit.webp",
       link: "/Storage/Tv_and_Entertainment_Unit",
     },
-    {
-      name: "Chester",
-      image: "/circledimages/chester.webp",
-      link: "/Bedroom/Chest_of_Drawers",
-    },
+
     {
       name: "Sofa Cum Bed",
       image: "/circledimages/sofacumbed.webp",
       link: "/Living_Room/Sofa_cum_bed",
+    },
+    {
+      name: "Bed",
+      image: "/circledimages/bed.webp",
+      link: "/Search?query=Bed",
     },
     {
       name: "Bar Unit",
