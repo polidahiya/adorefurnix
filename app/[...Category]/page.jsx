@@ -16,12 +16,17 @@ async function page({ params, searchParams }) {
   const { Category: slug } = params;
 
   const category =
-    slug && slug[0] ? decodeURIComponent(slug[0])?.replace(/-/g, " ").replace(/_/g," ") : null;
+    slug && slug[0]
+      ? decodeURIComponent(slug[0])?.replace(/-/g, " ").replace(/_/g, " ")
+      : null;
   const subcat =
-    slug && slug[1] ? decodeURIComponent(slug[1])?.replace(/-/g, " ").replace(/_/g," ") : null;
+    slug && slug[1]
+      ? decodeURIComponent(slug[1])?.replace(/-/g, " ").replace(/_/g, " ")
+      : null;
   const productid = slug && slug[2] ? decodeURIComponent(slug[2]) : null;
 
-  const location = searchParams?.location?.replace(/-/g, " ").replace(/_/g," ") || "Delhi";
+  const location =
+    searchParams?.location?.replace(/-/g, " ").replace(/_/g, " ") || "Delhi";
 
   if (productid)
     return (
@@ -39,7 +44,9 @@ async function page({ params, searchParams }) {
   let producttorender;
 
   if (category == "Search") {
-    const searchQuery = searchParams?.query?.replace(/-/g, " ").replace(/_/g," ");
+    const searchQuery = searchParams?.query
+      ?.replace(/-/g, " ")
+      .replace(/_/g, " ");
     producttorender = searchProducts(allproducts, searchQuery);
   } else {
     validateCategoryAndSubcategory(category, subcat);
@@ -191,11 +198,16 @@ const categoriesedproducts = (allproducts, category, subcat) => {
 export const generateMetadata = async ({ params, searchParams }) => {
   const { Category: slug } = params;
   const category =
-    slug && slug[0] ? decodeURIComponent(slug[0])?.replace(/-/g, " ").replace(/_/g," ") : null;
+    slug && slug[0]
+      ? decodeURIComponent(slug[0])?.replace(/-/g, " ").replace(/_/g, " ")
+      : null;
   const subcat =
-    slug && slug[1] ? decodeURIComponent(slug[1])?.replace(/-/g, " ").replace(/_/g," ") : null;
+    slug && slug[1]
+      ? decodeURIComponent(slug[1])?.replace(/-/g, " ").replace(/_/g, " ")
+      : null;
   const productid = slug && slug[2] ? decodeURIComponent(slug[2]) : null;
-  const location = searchParams?.location?.replace(/-/g, " ").replace(/_/g," ") || "India";
+  const location =
+    searchParams?.location?.replace(/-/g, " ").replace(/_/g, " ") || "India";
 
   // Handle product-specific metadata
   if (productid) {
@@ -229,9 +241,9 @@ export const generateMetadata = async ({ params, searchParams }) => {
       );
 
       return {
-        title: `Get ${subcat} at Best Price Online in ${location} | ${new Date().getFullYear()}`,
-        description:
-          categoryData.desc || `Shop ${subcat} at the best prices online!`,
+        title: subCategoryData.meta.title,
+        description: subCategoryData.meta.desc,
+        keywords: subCategoryData.meta.keywords,
         openGraph: {
           images: subCategoryData ? `${domain}${subCategoryData.image}` : null,
         },
@@ -245,11 +257,9 @@ export const generateMetadata = async ({ params, searchParams }) => {
 
     if (categoryData) {
       return {
-        title: `Get ${
-          categoryData?.name
-        } at Best Price Online in ${location} | ${new Date().getFullYear()}`,
-        description:
-          categoryData.desc || `Shop ${categoryData?.name} and decor online.`,
+        title: categoryData.meta.title,
+        description: categoryData.meta.desc,
+        keywords: categoryData.meta.keywords,
         openGraph: {
           images: `${domain}${categoryData.image}`,
         },

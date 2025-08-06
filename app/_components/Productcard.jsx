@@ -26,10 +26,6 @@ function Productcard({
     effect: true,
     show: true,
   });
-  const [imgSrc, setImgSrc] = useState(image);
-
-  // Fallback image URL
-  const fallbackImage = "/default-fallback-image.png";
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -40,10 +36,6 @@ function Productcard({
       clearTimeout(timeout);
     };
   }, [index]);
-
-  const handleImageError = () => {
-    setImgSrc(fallbackImage);
-  };
 
   let pricebeforediscount = null;
   if (discount > 0) {
@@ -63,20 +55,18 @@ function Productcard({
     >
       <div className="relative aspect-square w-full overflow-hidden">
         <Nextimage
-          src={imgSrc}
+          src={image}
           alt={name}
           width={300}
           height={300}
           className="min-w-full min-h-full  object-cover object-center  scale-100 lg:group-hover:scale-105 lg:duration-300"
           loading="lazy"
-          
           onLoad={() => {
             setloading((pre) => ({ ...pre, effect: false }));
             setTimeout(() => {
               setloading((pre) => ({ ...pre, show: false }));
             }, 550);
           }}
-          onError={handleImageError} // Handle image error
         />
         {/* loading */}
         {loading.show && (
