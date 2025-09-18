@@ -1,6 +1,6 @@
 export const mail = "adorefurnix@gmail.com";
 export const mobile = "+91 92115 09476";
-export const address = "Plot no. 1081 sector 3A, Gurgaon Haryana 122001";
+export const address = "C-8 , SECTOR 104, Ram Vihar , Near Dhanwapur Fatak  Gurgaon 122001";
 
 // export const payulink="https://test.payu.in/_payment" //test
 export const payulink = "https://secure.payu.in/_payment"; //live
