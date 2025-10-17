@@ -209,7 +209,7 @@ const Reviewcard = ({ review }) => {
   };
 
   return (
-    <div className="relative bg-white rounded-xl shadow-lg p-6 min-w-full md:max-w-96">
+    <div className="relative bg-white rounded-xl shadow-sm shadow-gray-300 p-6 min-w-full md:max-w-96">
       {/* Ribbon for Name */}
       <div className="bg-gray-100 text-lg font-semibold py-2 px-4 rounded-r-full rounded-tl-full absolute -top-4 -left-4 shadow-md">
         {review?.name}

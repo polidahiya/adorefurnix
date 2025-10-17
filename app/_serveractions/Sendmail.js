@@ -1,33 +1,34 @@
 "use server";
 import nodemailer from "nodemailer";
 
-export default async function sendMail(mailto, subject, text, html) {
+export default async function Sendmail({
+  to,
+  subject,
+  html,
+  from = "noreply@adorefurnix.com",
+}) {
   try {
     const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 465,
-      secure: true,
+      host: "smtp-relay.brevo.com",
+      port: 587,
+      secure: false,
       auth: {
-        user: process.env.MAIL,
-        pass: process.env.GMAIL_PASSWORD,
+        user: process.env.brevo_user,
+        pass: process.env.brevo_pass,
       },
     });
 
-    // Set up email options
-    const mailOptions = {
-      from: process.env.MAIL,
-      to: mailto,
-      subject: subject,
-      text: text,
-      html: html,
-    };
-
-    // Send the email
+    const mailOptions = { from, to, subject, html };
     const info = await transporter.sendMail(mailOptions);
-    console.log("Email sent:", info.response);
-    return { status: 200, message: "Please check your mail inbox" };
+    return {
+      status: 200,
+      message: "Email sent successfully",
+    };
   } catch (error) {
-    console.error("Error occurred:", error);
-    return { status: 500, message: "Unable to send mail!" };
+    console.log("❌ Error sending email:", error);
+    return {
+      status: 500,
+      message: "Error sending email",
+    };
   }
 }

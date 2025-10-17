@@ -34,7 +34,7 @@ async function Blogscomp() {
           return (
             <div
               key={i}
-              className="flex flex-col md:flex-row items-stretch gap-5 p-5 bg-white shadow-md mt-5 "
+              className="flex flex-col md:flex-row items-stretch gap-5 p-5 bg-white shadow-sm shadow-gray-300 mt-5 "
             >
               <Nextimage
                 src={firstImage}

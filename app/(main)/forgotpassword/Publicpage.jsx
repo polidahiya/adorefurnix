@@ -10,7 +10,7 @@ function Publicpage({ token = null }) {
   const inputref = useRef(null);
   const [loading, setloading] = useState(false);
 
-  const Submitform = () => {
+  const Submitform = async () => {
     const inputvalue = inputref.current.value;
     if (token) {
       // password check
@@ -50,6 +50,7 @@ function Publicpage({ token = null }) {
         return;
       }
       setloading(true);
+
       Recaptcha(
         async () => {
           const res = await Sendpassresetmail(inputvalue);

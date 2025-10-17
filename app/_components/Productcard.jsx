@@ -49,7 +49,7 @@ function Productcard({
           ? link.replace(/ /g, "-")
           : `/${category}/${subcat}/${id}`.replace(/ /g, "-")
       }
-      className={`group relative h-full w-full max-w-[350px] md:min-w-[270px] shadow-md  bg-white duration-300 ${
+      className={`group relative h-full w-full max-w-[350px] md:min-w-[270px] shadow-sm shadow-gray-300  bg-white duration-300 ${
         showproduct ? "opacity-100 scale-100" : "opacity-0 scale-75"
       }`}
     >

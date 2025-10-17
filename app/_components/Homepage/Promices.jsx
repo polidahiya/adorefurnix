@@ -29,7 +29,7 @@ function Promices() {
           {services.map((item, i) => (
             <div
               key={i}
-              className="flex flex-col items-center text-center p-6 rounded-lg shadow-lg bg-gray-50 transition-transform transform hover:scale-105"
+              className="flex flex-col items-center text-center p-6 rounded-lg shadow-sm shadow-gray-300 bg-gray-50 transition-transform transform hover:scale-105"
             >
               <div className="flex items-center justify-center mb-4">
                 {item.image}

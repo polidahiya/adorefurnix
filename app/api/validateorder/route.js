@@ -1,7 +1,7 @@
 "use server";
 import crypto from "crypto";
 import { getcollection } from "@/app/Mongodb";
-import sendMail from "@/app/_serveractions/Sendmail";
+import Sendmail from "@/app/_serveractions/Sendmail";
 import { domain, sociallinks } from "@/app/commondata";
 
 export async function POST(req) {
@@ -286,7 +286,7 @@ const sendconfirmationmail = async (orderdetails, amount) => {
                                           </a>
                                         </div>
                                         <p>Have any questions? <a href="${domain}/Contact">Contact us</a></p>
-                                        <p>© 2024 Adorefurnix.com. All rights reserved.</p>
+                                        <p>© 2025 Adorefurnix.com. All rights reserved.</p>
                                       </div>
                                     </div>
                                   </body>
@@ -495,23 +495,13 @@ const sendconfirmationmail = async (orderdetails, amount) => {
                                           </a>
                                         </div>
                                         <p>Have any questions? <a href="${domain}/Contact">Contact us</a></p>
-                                        <p>© 2024 Adorefurnix.com. All rights reserved.</p>
+                                        <p>© 2025 Adorefurnix.com. All rights reserved.</p>
                                       </div>
                                     </div>
                                   </body>
                                 </html>
   `;
 
-  await sendMail(
-    orderdetails.userdata.email,
-    "Order confirmation",
-    "Order placed successfully",
-    usermail
-  );
-  await sendMail(
-    "Vs8287802215@gmail.com",
-    "New Order",
-    "We have a new order",
-    adminmail
-  );
+  await Sendmail(orderdetails.userdata.email, "Order confirmation", usermail);
+  await Sendmail("Vs8287802215@gmail.com", "New Order", adminmail);
 };

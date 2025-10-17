@@ -2,7 +2,7 @@
 import jwt from "jsonwebtoken";
 import { domain } from "@/app/commondata";
 import { sociallinks } from "@/app/commondata";
-import sendMail from "@/app/_serveractions/Sendmail";
+import Sendmail from "@/app/_serveractions/Sendmail";
 import bcrypt from "bcrypt";
 import { getcollection } from "@/app/Mongodb";
 
@@ -146,19 +146,18 @@ export const Sendpassresetmail = async (email) => {
               Have any questions?
               <a href="${domain}/Contact">Contact us</a>
             </p>
-            <p>© 2024 Adorefurnix.com. All rights reserved.</p>
+            <p>© 2025 Adorefurnix.com. All rights reserved.</p>
           </div>
         </div>
       </body>
     </html>
   `;
 
-    const sendmailres = await sendMail(
-      email,
-      "Passsword Reset",
-      "Do not share this mail to anyone.",
-      passresetmail
-    );
+    const sendmailres = await Sendmail({
+      to: email,
+      subject: "Passsword Reset",
+      html: passresetmail,
+    });
 
     return sendmailres;
   } catch (error) {
