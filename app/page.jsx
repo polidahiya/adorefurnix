@@ -25,10 +25,15 @@ export default async function Home({ searchParams }) {
   const products = await Cachedproducts();
 
   const comp1productslist = [
-    "68cd1f46cdd9963d24f58d10",
-    "68cd2072546b3a8deddc5491",
-    "68f09256232ab81da129d4b1",
+    "6737924c0d2e1e642c5a571c",
+    "673d715b78ec3de1b5795ceb",
+    "67379092be7f652faba2b643",
   ];
+  // const comp1productslist = [
+  //   "68cd1f46cdd9963d24f58d10",
+  //   "68cd2072546b3a8deddc5491",
+  //   "68f09256232ab81da129d4b1",
+  // ];
   let comp1products = [];
   const productsname = products?.map((item) => {
     if (comp1productslist.includes(item._id)) {
@@ -48,7 +53,7 @@ export default async function Home({ searchParams }) {
       {/* <Posters /> */}
       <Categories />
       <Newarrival products={products} />
-      {/* <Comp1 comp1products={comp1products}/> */}
+      {/* <Comp1 comp1products={comp1products} /> */}
       <Bestselling products={products} />
       <Allproducts products={products.sort(() => Math.random() - 0.5)} />
       <Reviews />
