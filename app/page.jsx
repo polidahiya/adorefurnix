@@ -12,7 +12,6 @@ import Roundcategories from "./_components/Homepage/Roundcategories";
 import Citiesdescription from "./_components/Homepage/Citiesdescription";
 import Herosection from "./_components/Homepage/Herosection";
 import Reviews from "./_components/Homepage/Reviews";
-import Comp1 from "./_components/Homepage/Comp1";
 
 // import Blackfridaybanner from "./_components/Homepage/Blackfridaybanner";
 // import Posters from "./_components/Homepage/Posters";
@@ -24,23 +23,8 @@ export default async function Home({ searchParams }) {
 
   const products = await Cachedproducts();
 
-  const comp1productslist = [
-    "6737924c0d2e1e642c5a571c",
-    "673d715b78ec3de1b5795ceb",
-    "67379092be7f652faba2b643",
-  ];
-  // const comp1productslist = [
-  //   "68cd1f46cdd9963d24f58d10",
-  //   "68cd2072546b3a8deddc5491",
-  //   "68f09256232ab81da129d4b1",
-  // ];
-  let comp1products = [];
-  const productsname = products?.map((item) => {
-    if (comp1productslist.includes(item._id)) {
-      comp1products.push(item);
-    }
-    return item?.name;
-  });
+  const productsname = products?.map((item) => item?.name);
+
   return (
     <div className="flex flex-col gap-16 lg:gap-20">
       <Herosection
@@ -53,7 +37,6 @@ export default async function Home({ searchParams }) {
       {/* <Posters /> */}
       <Categories />
       <Newarrival products={products} />
-      {/* <Comp1 comp1products={comp1products} /> */}
       <Bestselling products={products} />
       <Allproducts products={products.sort(() => Math.random() - 0.5)} />
       <Reviews />
