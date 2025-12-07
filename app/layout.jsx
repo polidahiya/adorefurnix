@@ -10,6 +10,7 @@ import Googleanayltics from "./_components/Googleanayltics";
 import { cities, mobile } from "./commondata";
 import React from "react";
 import { FaWhatsapp } from "react-icons/fa";
+import { Googleadsid } from "./commondata";
 
 export const metadata = {
   title: "Adorefurnix - Best Solid Wood Furniture in India",
@@ -38,6 +39,13 @@ export default function RootLayout({ children }) {
           name="p:domain_verify"
           content="44c7e34daae240451f1159d0ec6cb12b"
         />
+        {/* google adsense */}
+        <script
+          async
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${Googleadsid}`}
+          crossOrigin="anonymous"
+        ></script>
+        <meta name="google-adsense-account" content={Googleadsid} />
         {/* ld json */}
         <script
           type="application/ld+json"
@@ -90,7 +98,7 @@ const Helpbutton = () => (
 
 const Whatsappbutton = () => (
   <Link
-    href={`https://wa.me/${mobile.replace(/ /g,"")}?text=${encodeURIComponent(
+    href={`https://wa.me/${mobile.replace(/ /g, "")}?text=${encodeURIComponent(
       "Hi Adorefurnix, I found your products interesting, and I would like to know more!"
     )}`}
     target="_blank"

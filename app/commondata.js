@@ -9,6 +9,9 @@ export const payulink = "https://secure.payu.in/_payment"; //live
 // export const domain = "http://localhost:3000";
 export const domain = "https://adorefurnix.com";
 
+// google ads id
+export const Googleadsid = "ca-pub-7398670337880164";
+
 export const sociallinks = {
   insta: "https://www.instagram.com/adorefurnix?igsh=emc0cmUwcHVsdXR2",
   facebook: "https://www.facebook.com/share/VN5R1yTY3ZHarwW9/?mibextid=qi2Omg",
