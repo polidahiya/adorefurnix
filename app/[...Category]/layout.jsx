@@ -2,6 +2,7 @@ import Navbar from "../_components/Navbar/Navbar";
 import { Cachedproducts } from "../_serveractions/Getcachedata";
 import { cookies } from "next/headers";
 import Footer from "../_components/Footer";
+import Googleads from "@/app/_components/_ads/Googleads";
 
 export const metadata = {
   title: "Adorefurnix",
@@ -25,7 +26,10 @@ export default async function RootLayout({ children, params }) {
         userdata={userdata}
       />
       {children}
-      <Footer/>
+      <div className="mx-auto py-3">
+        <Googleads type={2} />
+      </div>
+      <Footer />
     </div>
   );
 }

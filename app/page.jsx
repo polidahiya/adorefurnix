@@ -16,6 +16,8 @@ import Reviews from "./_components/Homepage/Reviews";
 // import Blackfridaybanner from "./_components/Homepage/Blackfridaybanner";
 // import Posters from "./_components/Homepage/Posters";
 
+import Googleads from "@/app/_components/_ads/Googleads";
+
 export default async function Home({ searchParams }) {
   const allcookies = cookies();
   const token = allcookies?.get("token")?.value;
@@ -48,6 +50,9 @@ export default async function Home({ searchParams }) {
         <Promices />
       </div>
       <Citiesdescription city={searchParams?.location} />
+      <div className="mx-auto py-3">
+        <Googleads type={2} />
+      </div>
       <Footer />
     </div>
   );

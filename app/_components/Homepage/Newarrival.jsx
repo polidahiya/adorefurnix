@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Nextimage from "@/app/_components/Nextimage";
-import { LuArrowRightCircle } from "react-icons/lu";
+import { BsArrowRightCircleFill } from "react-icons/bs";
+
 
 const Newarrival = async ({ products }) => {
   const newarrival = products
@@ -59,7 +60,7 @@ const Newarrival = async ({ products }) => {
           className="relative w-fit group flex items-center justify-center gap-[10px] px-6 py-3 mt-8  text-white font-semibold rounded-full overflow-hidden"
         >
           <span className="z-10">View More</span>
-          <LuArrowRightCircle className="z-10" />
+          <BsArrowRightCircleFill className="z-10" />
           <div className="absolute top-0 left-0 w-[200%] h-full bg-animatingtheme  group-hover:translate-x-[-50%] duration-200"></div>
         </Link>
       </div>

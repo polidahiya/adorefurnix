@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { LuArrowRightCircle } from "react-icons/lu";
+import { BsArrowRightCircleFill } from "react-icons/bs";
 import Productcard from "../Productcard";
 
 async function Bestselling({ products }) {
@@ -24,7 +24,7 @@ async function Bestselling({ products }) {
             className="relative group flex items-center justify-center gap-[10px] px-6 py-3  text-white font-semibold rounded-full overflow-hidden"
           >
             <span>See All Collection</span>
-            <LuArrowRightCircle />
+            <BsArrowRightCircleFill />
             <div className="absolute top-0 left-0 w-[200%] h-full bg-animatingtheme -z-10 group-hover:translate-x-[-50%] duration-200"></div>
           </Link>
         </div>

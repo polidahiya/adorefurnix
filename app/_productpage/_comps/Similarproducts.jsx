@@ -2,7 +2,8 @@ import React from "react";
 import Productcard from "@/app/_components/Productcard";
 import { AiFillProduct } from "react-icons/ai";
 import Link from "next/link";
-import { LuArrowRightCircle } from "react-icons/lu";
+import { BsArrowRightCircleFill } from "react-icons/bs";
+
 
 function Similarproducts({ allproducts, category, subcat, productid }) {
   const maxproducts = 15;
@@ -45,7 +46,7 @@ function Similarproducts({ allproducts, category, subcat, productid }) {
                   className="relative group flex items-center justify-center gap-[10px] px-6 py-3  text-white font-semibold rounded-full overflow-hidden"
                 >
                   <span>View all</span>
-                  <LuArrowRightCircle />
+                  <BsArrowRightCircleFill />
                   <div className="absolute top-0 left-0 w-[200%] h-full bg-animatingtheme -z-10 group-hover:translate-x-[-50%] duration-200"></div>
                 </Link>
               </div>

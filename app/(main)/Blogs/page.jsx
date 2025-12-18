@@ -2,6 +2,7 @@ import React from "react";
 import { Cachedblogs } from "@/app/_serveractions/Getcachedata";
 import Nextimage from "@/app/_components/Nextimage";
 import Link from "next/link";
+import Googleads from "@/app/_components/_ads/Googleads";
 
 async function page() {
   const blogs = await Cachedblogs();
@@ -35,7 +36,6 @@ async function page() {
                   height={300}
                   width={300}
                   alt="Blog Image"
-                  
                 />
               </div>
               <div className="p-4">
@@ -53,6 +53,9 @@ async function page() {
           );
         })}
       </section>
+      <div className="mx-auto py-3">
+        <Googleads type={2} />
+      </div>
     </div>
   );
 }

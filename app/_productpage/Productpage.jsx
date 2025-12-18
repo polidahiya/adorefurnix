@@ -18,6 +18,7 @@ import FAQSection from "@/app/_components/Faq";
 import Quantity from "./_comps/Quantity";
 import Prouctid from "./_comps/Prouctid";
 import CurrencyConverter from "./_comps/CurrencyConverter";
+import Googleads from "../_components/_ads/Googleads";
 
 async function Productpage({ category, subcat, productid, color }) {
   const token = cookies()?.get("token")?.value;
@@ -131,6 +132,9 @@ async function Productpage({ category, subcat, productid, color }) {
         <FAQSection />
         <Promices />
       </article>
+      <div className="mx-auto py-3">
+        <Googleads type={2} />
+      </div>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

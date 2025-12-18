@@ -5,6 +5,7 @@ import { FaArrowAltCircleRight } from "react-icons/fa";
 import { SlCalender } from "react-icons/sl";
 import Link from "next/link";
 import Nextimage from "@/app/_components/Nextimage";
+import Googleads from "@/app/_components/_ads/Googleads";
 
 async function page({ params }) {
   const blogs = await Cachedblogs();
@@ -60,7 +61,6 @@ async function page({ params }) {
                   width={400}
                   loading="lazy"
                   alt="furniture blog"
-                  
                   className="w-full md:max-w-[60%] aspect-video object-cover object-center rounded-lg shadow-md mb-4 bg-bg1"
                 />
               );
@@ -70,6 +70,9 @@ async function page({ params }) {
         })}
       </div>
       <Showblogs blogs={blogs?.filter((item) => item._id != params?.blogid)} />
+      <div className="mx-auto py-3">
+        <Googleads type={2} />
+      </div>
     </div>
   );
 }
@@ -101,7 +104,6 @@ function Showblogs({ blogs }) {
                 width={500}
                 src={firstImage}
                 alt={`Blog image ${i + 1}`} // Add descriptive alt text
-                
               />
               <p className="mt-1 line-clamp-2">{mainHeading}</p>
             </Link>

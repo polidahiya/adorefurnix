@@ -2,7 +2,7 @@ import React from "react";
 import { Cachedblogs } from "@/app/_serveractions/Getcachedata";
 import Nextimage from "@/app/_components/Nextimage";
 import Link from "next/link";
-// import { LuArrowRightCircle } from "react-icons/lu";
+import { BsArrowRightCircleFill } from "react-icons/bs";
 
 async function Blogscomp() {
   const blogs = await Cachedblogs();
@@ -72,7 +72,7 @@ async function Blogscomp() {
           className="bg-theme text-white w-fit flex items-center gap-3  py-2 px-4 rounded-full mt-5"
         >
           More Blogs
-          <LuArrowRightCircle />
+          <BsArrowRightCircleFill />
         </Link>
       </div> */}
     </div>
