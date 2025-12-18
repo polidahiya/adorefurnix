@@ -132,7 +132,7 @@ async function Productpage({ category, subcat, productid, color }) {
         <FAQSection />
         <Promices />
       </article>
-      <div className="mx-auto py-3">
+      <div className="py-3">
         <Googleads type={2} />
       </div>
       <script

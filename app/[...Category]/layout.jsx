@@ -26,7 +26,7 @@ export default async function RootLayout({ children, params }) {
         userdata={userdata}
       />
       {children}
-      <div className="mx-auto py-3">
+      <div className="py-3">
         <Googleads type={2} />
       </div>
       <Footer />

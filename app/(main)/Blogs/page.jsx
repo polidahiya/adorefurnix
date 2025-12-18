@@ -53,7 +53,7 @@ async function page() {
           );
         })}
       </section>
-      <div className="mx-auto py-3">
+      <div className="py-3">
         <Googleads type={2} />
       </div>
     </div>

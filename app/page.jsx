@@ -50,7 +50,7 @@ export default async function Home({ searchParams }) {
         <Promices />
       </div>
       <Citiesdescription city={searchParams?.location} />
-      <div className="mx-auto py-3">
+      <div className="py-3">
         <Googleads type={2} />
       </div>
       <Footer />

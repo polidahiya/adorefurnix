@@ -70,7 +70,7 @@ async function page({ params }) {
         })}
       </div>
       <Showblogs blogs={blogs?.filter((item) => item._id != params?.blogid)} />
-      <div className="mx-auto py-3">
+      <div className="py-3">
         <Googleads type={2} />
       </div>
     </div>
